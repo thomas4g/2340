@@ -1,0 +1,21 @@
+Thomas Shields
+2110 HW1 Part 3
+
+1)
+	a) 1b
+	b) 01
+2) both the register and the output clear, then at the
+	next clock tick go back to their last values
+3) Nothing
+4) Conflicts or short-circuits. The example showed two
+	wires hooked to the same input on the register, which
+	is effectively telling the register to take both
+	at once, which is impossible and just downright silly.
+5) Data flow that's not getting routed. E.g, I had failed
+	to wire up the splitter to the multiplexer correctly
+	and when I began the simulation the wires I hadn't 
+	properly hooked up were blue
+	Also, the enable trigger on the register (which we
+	don't use) is blue, so I'm guessing it's expecting
+	input but not getting any?
+6) True
