@@ -2,6 +2,7 @@ package org.mule;
 
 
 public abstract class Drawable {
-	private int[][] coords;
+	protected int x;
+	protected int y;
 	private Sprite sprite;
 }

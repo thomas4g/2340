@@ -14,7 +14,10 @@ public class Property extends Map{
 		}
 	}
 	
-	public void action() {
-		
+	@Override
+	public void action(Player p) {
+		if(p.hasMule()) {
+			mules.add(p.deployMule());
+		}
 	}
 }
