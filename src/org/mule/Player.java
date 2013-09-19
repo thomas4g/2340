@@ -42,7 +42,7 @@ public class Player extends Drawable {
 	 * @return whether or not the player has a mule
 	 */
 	public boolean hasMule() {
-		return true || false;
+		return mule != null;
 	}
 	
 	/**
