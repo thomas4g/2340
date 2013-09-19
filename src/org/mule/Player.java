@@ -2,6 +2,15 @@ package org.mule;
 
 import java.util.List;
 
+/**
+ * A player represents the user in the game.
+ * 
+ * A player can buy and sell resources, move around the map,
+ * and earn or lose money.
+ * 
+ * @author Susanna Dong
+ * @version 1.0
+ */
 public class Player extends Drawable {
 	private double money;
 	private List<Property> properties;

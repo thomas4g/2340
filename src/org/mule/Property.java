@@ -2,6 +2,12 @@ package org.mule;
 
 import java.util.List;
 
+/**
+ * A propety
+ * 
+ * @author Susanna Dong
+ * @version 1.0
+ */
 public class Property extends Map{
 	
 //	private enum Type {RIVER, PLAIN, MOUNTAIN};

@@ -2,6 +2,12 @@ package org.mule;
 
 import java.util.List;
 
+/**
+ * Game controller
+ * 
+ * @author Susanna Dong
+ * @version 1.0
+ */
 public class Game {
 	private static int rounds = 12;
 	private List<Player> players;
