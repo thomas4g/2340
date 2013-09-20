@@ -3,7 +3,7 @@ package org.mule;
 import java.util.List;
 
 /**
- * A property
+ * A property.
  * 
  * @author Thomas Shields
  * @version 1.0
@@ -14,6 +14,10 @@ public class Property extends Tile{
 	private List<Mule> mules;
 //	private Type type;
 	
+	/**
+	 * Produces stuff.
+	 * TODO revise this. Should it return something?
+	 */
 	public void produce() {
 		for (Mule mule : mules) {
 			mule.produce();

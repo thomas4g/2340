@@ -9,7 +9,7 @@ import java.util.List;
  * A player can buy and sell resources, move around the map,
  * and earn or lose money.
  * 
- * @author Susanna Dong
+ * @author Thomas Shields
  * @version 1.0
  */
 public class Player extends Drawable {
