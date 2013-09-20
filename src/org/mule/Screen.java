@@ -7,11 +7,13 @@ package org.mule;
  *
  */
 public abstract class Screen {
-	protected AtariMule game;
+	protected ImageAsset[] assets;
+	protected Graphics handler;
 	
-	public Screen(AtariMule game) {
-		this.game = game;
+	//for each screen, it will need to load its ImageAssets
+	public abstract void load();
+	
+	public void activate(){
+		handler.setScreen(this);
 	}
-	
-	public abstract void activate();
 }

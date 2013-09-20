@@ -2,9 +2,7 @@ package org.mule;
 
 public class InputListener {
 
-	public void setScreen(Screen current) {
-		// TODO Auto-generated method stub
-		
-	}
+	//just needs to get input
+	//let the graphics module handle the screen changing
 
 }

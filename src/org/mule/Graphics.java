@@ -6,11 +6,20 @@ package org.mule;
  *
  */
 public class Graphics {
-
-	public void setScreen(Screen current) {
-		// TODO Auto-generated method stub
-		
+	
+	private Screen currentScreen;
+	
+	public void setScreen(Screen currentScreen) {
+		this.currentScreen=currentScreen;
 	}
-	//TODO add constructor
-	//TODO add a "load screen" method
+	
+	public Screen getScreen(){
+		return currentScreen;
+	}
+
+	public void loadScreen(){
+		//each screen will have a different method of loading
+		//The most important thing is just to note that each
+		//is basically a mixture of ImageAssets
+	}
 }

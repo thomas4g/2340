@@ -16,8 +16,8 @@ public class AtariMule {
 	
 	public AtariMule() {
 		graphics = new Graphics();
-		//TODO create a listener here. Pass it the screens. Listener passes back.
-		//TODO call player loader. Use the instance variables!
+		//TODO set Graphics screen to MenuScreen
+		//TODO Init all players
 		loadScreens();
 	}
 	
@@ -31,22 +31,20 @@ public class AtariMule {
 	 */
 	private void loadScreens() {
 		//TODO throw a bunch of singletons in here. Maybe get creative with the enum?
-		//I don't know.
+		//Performs logic to call setScreen() aka gamelogic loop
 	}
 	
 	/**
 	 * runs the application
 	 */
-	private void run() {
+	private void start(){
 		setScreen(ScreenType.WELCOME);
 	}
 	
-	
+	//Adjustment to Screen simplifies this
 	public void setScreen(ScreenType next) {
 		Screen current = screens.get(next);
 		current.activate();
-		listener.setScreen(current);
-		graphics.setScreen(current);
 	}
 
 }

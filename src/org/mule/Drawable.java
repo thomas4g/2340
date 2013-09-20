@@ -11,6 +11,9 @@ import java.awt.Point;
  */
 public abstract class Drawable {
 	protected Point coords;
-	protected Sprite sprite;
+	protected ImageAsset asset;
 	
+	public void draw(){
+		asset.draw(coords);
+	}
 }
