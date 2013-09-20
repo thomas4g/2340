@@ -1,19 +1,24 @@
 package org.mule;
 
+import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
 
 public class AtariMule {
+	public enum ScreenType {WELCOME, MENU, GAMEPLAY, AUCTION, ENDING};
+	
 	private Graphics graphics;
-	private Queue<Screen> screens;
+	private InputListener listener;
+	
+	private HashMap<ScreenType, Screen> screens;
 	private List<Player> players;
 	
 	public AtariMule() {
 		graphics = new Graphics();
+		//TODO create a listener here. Pass it the screens. Listener passes back.
 		//TODO call player loader. Use the instance variables!
 		loadScreens();
-		
-		run();
 	}
 	
 
@@ -25,30 +30,23 @@ public class AtariMule {
 	 * or we may have it pull from somewhere.
 	 */
 	private void loadScreens() {
-		screens.add(new Game(players));
+		//TODO throw a bunch of singletons in here. Maybe get creative with the enum?
+		//I don't know.
 	}
 	
 	/**
 	 * runs the application
 	 */
 	private void run() {
-		//setup
-		displayScreen();
+		setScreen(ScreenType.WELCOME);
+	}
+	
+	
+	public void setScreen(ScreenType next) {
+		Screen current = screens.get(next);
+		current.activate();
+		listener.setScreen(current);
+		graphics.setScreen(current);
 	}
 
-	/**
-	 * Displays the next screen in sequence
-	 * This is a little ghetto right now.
-	 * It might change. It probably will change.
-	 * Like say, what if screens have sub-screens? 
-	 * Also, how do you wait for a screen to continue? 
-	 * Custom events? 
-	 * ...like I said: ghetto.
-	 */
-	private void displayScreen() {
-		Screen current = screens.poll();
-		//TODO process screen, wait for it to request the next screen
-		screens.add(current);
-		displayScreen();
-	}
 }

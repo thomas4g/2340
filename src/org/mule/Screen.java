@@ -6,6 +6,12 @@ package org.mule;
  * @author Thomas Shields
  *
  */
-public class Screen {
-
+public abstract class Screen {
+	protected AtariMule game;
+	
+	public Screen(AtariMule game) {
+		this.game = game;
+	}
+	
+	public abstract void activate();
 }
