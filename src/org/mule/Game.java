@@ -1,6 +1,7 @@
 package org.mule;
 
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Game controller
@@ -9,7 +10,8 @@ import java.util.List;
  * @version 1.0
  */
 public class Game extends Screen {
-	private static int rounds = 12;
+	private static int numRounds = 12;
+	private Queue<Round> rounds;
 	private List<Player> players;
 	private Tile[][] map;
 	
@@ -21,9 +23,13 @@ public class Game extends Screen {
 	 * cycles through all the rounds
 	 */
 	public void run() {
-		for(int i=0;i<rounds;i++) {
-			Round r = new Round(players);
-			r.run();
-		}
+//		for(int i=0;i<rounds;i++) {
+//			Round r = new Round(players);
+//			r.run();
+//		}
+	}
+	
+	public void action() {
+		rounds.peek().action();
 	}
 }
