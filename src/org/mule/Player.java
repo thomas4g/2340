@@ -1,5 +1,6 @@
 package org.mule;
 
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -14,9 +15,18 @@ import java.util.List;
 public class Player extends Drawable {
 	private double money;
 	private List<Property> properties;
-	private Map location;
-	private Map map;
+	private Point location;
+	private Tile currentTile;
+	private Tile[][] map;
 	private Mule mule;
+	
+	/**
+	 * Creates a player
+	 * @param map the game map
+	 */
+	public Player(Tile[][] map) {
+		this.map = map;
+	}
 	
 	/**
 	 * reaps the benefits from all the properties
@@ -34,16 +44,17 @@ public class Player extends Drawable {
 	 * @param y distance to move in y dimension
 	 */
 	public void move(int x, int y) {
-		this.x += x;
-		this.y -= y;
+		location.x += x;
+		location.y += y;
+		currentTile = map[location.x][location.y];
 	}
 	
 	/**
-	 * Called when the space-bar is pressed.
+	 * Called when the action key is pressed.
 	 * Simply runs the action on the current map
 	 */
 	public void action() {
-		location.action(this);
+		currentTile.action(this);
 	}
 	
 	/**

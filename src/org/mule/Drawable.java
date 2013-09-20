@@ -1,14 +1,16 @@
 package org.mule;
 
+import java.awt.Point;
+
 /**
  * Abstract class for all objects that will be
  * represented by graphics
  * 
- * @author Susanna Dong
+ * @author Thomas Shields
  * @version 1.0
  */
 public abstract class Drawable {
-	protected int x;
-	protected int y;
-	private Sprite sprite;
+	protected Point coords;
+	protected Sprite sprite;
+	
 }
