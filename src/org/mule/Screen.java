@@ -7,13 +7,17 @@ package org.mule;
  *
  */
 public abstract class Screen {
-	protected ImageAsset[] assets;
-	protected Graphics handler;
+
+	public enum ScreenType {WELCOME, MENU, GAMEPLAY, AUCTION, ENDING};
+	protected ScreenType screenType;
 	
-	//for each screen, it will need to load its ImageAssets
-	public abstract void load();
-	
-	public void activate(){
-		handler.setScreen(this);
+	public void setScreenType(ScreenType type){
+		this.screenType=type;
 	}
+	/* Subclasses will have many more things
+	 * They will have a Map object, GUI elements, Drawable Entities
+	 * There should be a genEntities() method and a getMap() method
+	 * so that the GraphicsEngine and GameEngine can access this data
+	 */
+
 }

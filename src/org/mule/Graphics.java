@@ -7,19 +7,25 @@ package org.mule;
  */
 public class Graphics {
 	
-	private Screen currentScreen;
+	private Screen screen;
 	
-	public void setScreen(Screen currentScreen) {
-		this.currentScreen=currentScreen;
+	public void recieveScreen(Screen screen){
+		this.screen=screen;
 	}
 	
-	public Screen getScreen(){
-		return currentScreen;
+	private void drawFrame(){
+		//draws GUI
 	}
-
-	public void loadScreen(){
-		//each screen will have a different method of loading
-		//The most important thing is just to note that each
-		//is basically a mixture of ImageAssets
+	private void drawWorld(){
+		//basically (for Tile t in Map: draw(t))
 	}
+	
+	private void drawEntities(){
+		//similiar to drawWorld() but (for Drawable d in entities: draw(d))
+	}
+	
+	public void draw(){
+		//this method checks based on the SceneType which draw methods to call
+	}
+	
 }

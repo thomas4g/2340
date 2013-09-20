@@ -14,6 +14,8 @@ public abstract class Drawable {
 	protected ImageAsset asset;
 	
 	public void draw(){
-		asset.draw(coords);
+		//implement actual draw here (will figure out when we actually
+		//get into the coding
+		//drawing will vary depending on if this is a Texture or Sprite
 	}
 }

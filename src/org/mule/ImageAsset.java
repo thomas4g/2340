@@ -11,7 +11,4 @@ public abstract class ImageAsset {
 		this.width=width;
 		this.height=height;
 	}
-	
-	public abstract void draw(Point position);
-
 }

@@ -16,9 +16,4 @@ public class Sprite extends ImageAsset {
 			//draw each frame with graphics API
 		}
 	}
-
-	@Override
-	public void draw(Point position) {
-		animate();
-	}
 }

@@ -2,8 +2,7 @@ package org.mule;
 
 public class Menu extends Screen {
 
-	public Menu(AtariMule game) {
-		super(game);
+	public Menu() {
 		// TODO Auto-generated constructor stub
 	}
 	public void activate() {

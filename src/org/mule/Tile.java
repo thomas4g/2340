@@ -13,5 +13,17 @@ public abstract class Tile extends Drawable{
 	 * while on this tile
 	 * @param p the current player
 	 */
-	public abstract void action(Player p);
+	//Tile is basically just a Drawable since it can have 
+	//a Texture or Sprite
+	private enum TileType { /*can someone put the tile types plzzz*/};
+	private TileType type;
+	
+	
+	public Tile(TileType type){
+		this.type=type;
+	}
+	
+	public TileType getTileType(){
+		return type;
+	}
 }

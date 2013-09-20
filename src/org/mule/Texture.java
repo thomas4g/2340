@@ -8,10 +8,4 @@ public class Texture extends ImageAsset {
 		super(width, height);
 	}
 
-	@Override
-	public void draw(Point position) {
-		// draw using fx or swing API
-		
-	}
-
 }
