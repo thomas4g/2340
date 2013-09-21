@@ -9,9 +9,20 @@ public class Graphics {
 	
 	private Screen screen;
 	
+	/*
+	 * The current screen is is drawn as a collection of
+	 * Textures, GUI elements, and Sprites
+	 * @param the scene object passed from the SceneHandler
+	 */
+	
 	public void recieveScreen(Screen screen){
 		this.screen=screen;
 	}
+	
+	/*
+	 * The current screen is is drawn as a collection of
+	 * Textures, GUI elements, and Sprites
+	 */
 	
 	private void drawFrame(){
 		//draws GUI
