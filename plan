@@ -1,0 +1,21 @@
+Screen Handler:
+	tells the graphics engine what screen to draw
+	controls switching screens
+
+Screens are composed of two parts:
+	ScreenView
+		contains entities and controls to be drawn
+		handles input and sends it to controller
+	ScreenController
+		accepts input from view
+		does logicy stuff
+		tells screen handler when to switch to a new screen
+		May interact with models/data
+
+
+Example: Gameplay (a ScreenController)
+	will maintain state: i.e, even though it will be re-called
+	multiple times, it's not being reinstantiated (it's a singleton)
+	so the state stays the same. State might be the current turn number,
+	the round number, whether or not to display an auction, etc.
+
