@@ -1,6 +1,7 @@
 package edu.gatech.mule.screen;
 
-import edu.gatech.mule.screens.presenters.MenuPresenter;
+import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screens.presenters.*;
 import edu.gatech.mule.screens.views.fx.*;
 import edu.gatech.mule.screens.views.text.*;
 
@@ -17,8 +18,8 @@ public class ScreenHandler {
 	private Screen currentScreen;
 	
 	public enum Screen {
-		MENU(new MenuPresenter(new TextMenuView()));
-//		PLAYER(new PlayerConfigPresenter())
+		MENU(new MenuPresenter(new TextMenuView())),
+		PLAYER(new PlayerConfigPresenter(new TextPlayerConfigView()));
 		
 		public ScreenPresenter presenter;
 		

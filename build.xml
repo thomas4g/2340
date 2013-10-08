@@ -1,0 +1,43 @@
+<project name="2340-revamp" basedir="." default="main">
+	<target name="init">
+		<property name="src.dir"	value="src"/>
+		<property name="build.dir" 	value="build"/>
+		<property name="lib.dir" 	value="lib/jfxrt.jar"/>
+		<property name="api.dir"	value="apidoc"/>
+		<property name="jar.dir"	value="AtariMule.jar"/>
+	</target>
+
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${api.dir}"/>
+	</target>
+
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="${lib.dir}"/>
+	</target>
+
+	<target name="javadoc" depends="prepare">
+		<javadoc sourcepath="${src.dir}" classpath="${lib.dir}" destdir="${api.dir}"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar basedir="${build.dir}" destfile="${jar.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.mule.core.AtariMule"/>
+				<attribute name="Class-Path" value="${lib.dir}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java jar="${jar.dir}" fork="true"/>
+	</target>
+
+	<target name="all" depends="run,javadoc"/>
+
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}"/>
+		<delete dir="${api.dir}"/>
+		<delete file="${jar.dir}"/>
+	</target>
+</project>
