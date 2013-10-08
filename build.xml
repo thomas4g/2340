@@ -1,23 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="Mule" default="main" basedir=".">
-    
-    <property name="src.dir" value="src"/>
-    <property name="build.dir" value="build"/>
-    <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir" value="${build.dir}/jar"/>
-    
-    <target name="clean">
-        <delete dir="${build.dir}"/>
-    </target>
-    
-    <target name="compile">
-        <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
-    </target>
-    
-    <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
-        <jar basedir="${classes.dir}" destfile="${jar.dir}/${ant.project.name}"></jar>        
-    </target>
- 
+<project name="2340-revamp" basedir="." default="main">
+	<target name="init">
+		<property name="src.dir"	value="src"/>
+		<property name="build.dir" 	value="build"/>
+		<property name="lib.dir" 	value="lib/jfxrt.jar"/>
+		<property name="api.dir"	value="apidoc"/>
+		<property name="jar.dir"	value="AtariMule.jar"/>
+	</target>
+
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${api.dir}"/>
+	</target>
+
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="${lib.dir}"/>
+	</target>
+
+	<target name="javadoc" depends="prepare">
+		<javadoc sourcepath="${src.dir}" classpath="${lib.dir}" destdir="${api.dir}"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar basedir="${build.dir}" destfile="${jar.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.mule.core.AtariMule"/>
+				<attribute name="Class-Path" value="${lib.dir}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java jar="${jar.dir}" fork="true"/>
+	</target>
+
+	<target name="all" depends="run,javadoc"/>
+
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}"/>
+		<delete dir="${api.dir}"/>
+		<delete file="${jar.dir}"/>
+	</target>
 </project>
