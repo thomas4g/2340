@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.gatech.mule.game.*;
 import edu.gatech.mule.screen.*;
+import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public class GameEngine {
 	
@@ -16,7 +17,7 @@ public class GameEngine {
 	}
 	
 	public void start() {
-		screenHandler.setScreen(Screen.MENU);
+		screenHandler.setScreen(ScreenType.MENU);
 	}
 	
 
