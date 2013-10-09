@@ -14,6 +14,8 @@ public class GameEngine {
 	public GameEngine(ScreenHandler screenHandler) {
 		this.screenHandler = screenHandler;
 		this.settings = new Settings();
+		System.out.println(this);
+		this.screenHandler.start(this);
 	}
 	
 	public void start() {

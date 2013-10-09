@@ -4,9 +4,12 @@ package edu.gatech.mule.fx.graphics;
  * and open the template in the editor.
  */
 
+import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -15,23 +18,20 @@ import javafx.stage.Stage;
  */
 public class Graphics extends Application {
     
-     public static final String MAIN = "main"; 
-     public static final String MAIN_FXML ="/Sample.fxml";
-    
+	public static StackPane view;
+
     @Override
     public void start(Stage stage) throws Exception {
-        ViewHandler handler=new ViewHandler();
-        handler.loadScreen(Graphics.MAIN, Graphics.MAIN_FXML);
-        handler.setScreen(Graphics.MAIN);
-       
+          
         Group root = new Group();
-        root.getChildren().addAll(handler);
+        root.getChildren().addAll(view);
         Scene scene = new Scene(root,400,400);
         stage.setScene(scene);
         stage.setTitle("Testomatic");
         stage.show();
         
     }
+    
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

@@ -4,7 +4,7 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.IScreen;
 
-abstract class AbstractMenuScreen implements IScreen {
+public abstract class AbstractMenuScreen implements IScreen {
 
 	protected GameEngine engine;
 	protected Settings settings;
