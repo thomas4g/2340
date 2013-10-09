@@ -9,7 +9,7 @@ public class FXScreenHandler extends ScreenHandler {
 	
 	public FXScreenHandler() {
 		graphics = new Graphics();
-		Graphics.launch(new String[]{});
+		javafx.application.Application.launch(Graphics.class);
 	}
 
 	@Override

@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Graphics extends Application {
     
      public static final String MAIN = "main"; 
-     public static final String MAIN_FXML ="Sample.fxml";
+     public static final String MAIN_FXML ="/Sample.fxml";
     
     @Override
     public void start(Stage stage) throws Exception {
