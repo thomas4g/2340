@@ -14,8 +14,10 @@ public class GameEngine {
 	public GameEngine(ScreenHandler screenHandler) {
 		this.screenHandler = screenHandler;
 		this.settings = new Settings();
-		System.out.println(this);
-		this.screenHandler.start(this);
+		
+		screenHandler.load(this);
+		chooseSettings();
+		screenHandler.start();
 	}
 	
 	public void start() {
@@ -25,7 +27,7 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.MENU);
 	}
 	public void playGame() {
-		//starts the game
+		System.out.println("HEY BUDDY");
 	}
 
 	

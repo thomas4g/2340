@@ -22,14 +22,24 @@ public class FXScreenHandler extends ScreenHandler {
 	private HashMap<ScreenType, Node> screens;
 	
 	@Override
-	public void start(GameEngine game) {
+	public void load(GameEngine game) {
+		this.game = game;
+		screens = new HashMap<ScreenType, Node>();
+		stack = new StackPane();
+		
 		Graphics.view = stack; 
-		javafx.application.Application.launch(Graphics.class);
 		loadScreens();
 	}
-	    
-	private boolean loadScreen(ScreenType type, String resource, Initializable controller) {
+
+	@Override
+	public void start() {
+		javafx.application.Application.launch(Graphics.class);
+	}
+	
+	
+	private boolean loadScreen(ScreenType type, Initializable controller) {
 	    try{
+	    	String resource = "/" + type.name().toLowerCase() + ".fxml";
 	    	FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
 	        controller.initialize(null, null);
 	        myLoader.setController(controller);
@@ -49,7 +59,7 @@ public class FXScreenHandler extends ScreenHandler {
        
 	
 	private void loadScreens() {
-		loadScreen(ScreenType.MENU, "/Sample.fxml", new FXMenuScreen(game, game.getSettings()));
+		loadScreen(ScreenType.MENU, new FXMenuScreen(game, game.getSettings()));
 	}
 	
 	//TODO exception handling
