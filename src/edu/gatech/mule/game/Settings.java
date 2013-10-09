@@ -3,18 +3,18 @@ package edu.gatech.mule.game;
 import java.util.*;
 
 public class Settings {
-	public enum DIFFICULTY {EASY, MEDIUM, HARD};
-	private DIFFICULTY difficulty;
+	public enum Difficulty {BEGINNER, STANDARD};
+	private Difficulty difficulty;
 	private List<CharacterType> players;
 	
 	public Settings() {
 		players = new ArrayList<CharacterType>();
 	}
 	
-	public DIFFICULTY getDifficulty() {
+	public Difficulty getDifficulty() {
 		return difficulty;
 	}
-	public void setDifficulty(DIFFICULTY difficulty) {
+	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 	

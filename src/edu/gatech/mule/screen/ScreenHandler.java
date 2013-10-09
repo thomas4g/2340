@@ -10,7 +10,5 @@ public abstract class ScreenHandler {
 		screens = new HashMap<ScreenType, IScreen>();
 	}
 	
-	public void setScreen(ScreenType type) {
-		screens.get(type).display();
-	}
+	public abstract void setScreen(ScreenType type);
 }
