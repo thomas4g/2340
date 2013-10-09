@@ -20,5 +20,14 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.MENU);
 	}
 	
+	public Settings getSettings() {
+		return settings;
+	}
+	
+	public void startGame() {
+		//starts the game
+	}
+	
+	
 
 }
