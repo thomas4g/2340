@@ -15,7 +15,7 @@ abstract class AbstractMenuScreen implements IScreen {
 	}
 	
 	public void done() {
-		engine.startGame();
+		engine.playGame();
 	}
 
 }

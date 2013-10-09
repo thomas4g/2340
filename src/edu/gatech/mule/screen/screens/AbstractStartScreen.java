@@ -12,7 +12,7 @@ abstract class AbstractStartScreen implements IScreen {
 	}
 	
 	public void done() {
-		engine.start();
+		engine.chooseSettings();
 	}
 	
 }

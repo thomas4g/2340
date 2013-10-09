@@ -17,16 +17,20 @@ public class GameEngine {
 	}
 	
 	public void start() {
+		screenHandler.setScreen(ScreenType.START);
+	}
+	public void chooseSettings() {
 		screenHandler.setScreen(ScreenType.MENU);
 	}
+	public void playGame() {
+		//starts the game
+	}
+
 	
 	public Settings getSettings() {
 		return settings;
 	}
 	
-	public void startGame() {
-		//starts the game
-	}
 	
 	
 
