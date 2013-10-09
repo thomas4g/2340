@@ -11,6 +11,6 @@ public abstract class ScreenHandler {
 	}
 	
 	public void setScreen(ScreenType type) {
-		screens.get(type).display();
+		screens.get(type).displayScreen();
 	}
 }
