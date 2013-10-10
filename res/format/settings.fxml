@@ -17,22 +17,26 @@
     </Button>
     <Text font="$x1" layoutX="228.0" layoutY="77.0" scaleX="2.67355871039536" scaleY="2.4450119906543635" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Setup" />
     <Separator layoutX="163.0" layoutY="96.0" prefWidth="200.0" />
-    <Text font="$x1" layoutX="44.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty" />
-    <Text font="$x1" layoutX="44.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Type" />
-    <Text font="$x1" layoutX="44.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Players" />
-    <ComboBox layoutX="206.0" layoutY="259.0" prefWidth="53.0" promptText="2" fx:id="combo">
+    <Text layoutX="14.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty">
+      <font>
+        <Font name="Tlwg Typo Bold" size="18.0" fx:id="x2" />
+      </font>
+    </Text>
+    <Text font="$x2" layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Type" />
+    <Text font="$x2" layoutX="9.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Players" />
+    <ComboBox fx:id="combo" layoutX="223.0" layoutY="258.0" prefWidth="53.0" promptText="2">
       <items>
-        <FXCollections fx:factory="observableArrayList" >
+        <FXCollections fx:factory="observableArrayList">
           <String fx:value="2" />
           <String fx:value="3" />
           <String fx:value="4" />
         </FXCollections>
       </items>
     </ComboBox>
-    <CheckBox layoutX="136.0" layoutY="132.0" mnemonicParsing="false" text="Beginner" fx:id="beginner" onAction="#OnClick" />
-    <CheckBox layoutX="233.0" layoutY="132.0" mnemonicParsing="false" text="Intermediate" fx:id="intermediate" onAction="#OnClick" />
-    <CheckBox layoutX="351.0" layoutY="132.0" mnemonicParsing="false" text="Advanced" fx:id="advanced" onAction="#OnClick" />
-    <CheckBox layoutX="122.0" layoutY="201.0" mnemonicParsing="false" text="Standard" fx:id="standard" onAction="#OnClick" />
-    <CheckBox layoutX="223.0" layoutY="202.0" mnemonicParsing="false" text="Random" fx:id="random" onAction="#OnClick" />
+    <CheckBox fx:id="beginner" layoutX="136.0" layoutY="132.0" mnemonicParsing="false" onAction="#OnClick" style="-fx-border-color: lightblue;&#10;-fx-border-radius: 5;&#10;-fx-border-style: dotted;&#10;-fx-border-width: 2;&#10;-fx-border-insets: -5;&#10;" text="Beginner" />
+    <CheckBox fx:id="intermediate" layoutX="257.0" layoutY="132.0" mnemonicParsing="false" onAction="#OnClick" style="-fx-border-color: lightblue;&#10;-fx-border-radius: 5;&#10;-fx-border-style: dotted;&#10;-fx-border-width: 2;&#10;-fx-border-insets: -5;&#10;" text="Intermediate" />
+    <CheckBox fx:id="advanced" layoutX="412.0" layoutY="132.0" mnemonicParsing="false" onAction="#OnClick" style="-fx-border-color: lightblue;&#10;-fx-border-radius: 5;&#10;-fx-border-style: dotted;&#10;-fx-border-width: 2;&#10;-fx-border-insets: -5;&#10;" text="Advanced" />
+    <CheckBox fx:id="standard" layoutX="169.0" layoutY="201.0" mnemonicParsing="false" onAction="#OnClick" style="-fx-border-color: lightblue;&#10;-fx-border-radius: 5;&#10;-fx-border-style: dotted;&#10;-fx-border-width: 2;&#10;-fx-border-insets: -5;&#10;" text="Standard" />
+    <CheckBox fx:id="random" layoutX="313.0" layoutY="201.0" mnemonicParsing="false" onAction="#OnClick" style="-fx-border-color: lightblue;&#10;-fx-border-radius: 5;&#10;-fx-border-style: dotted;&#10;-fx-border-width: 2;&#10;-fx-border-insets: -5;&#10;" text="Random" />
   </children>
 </AnchorPane>
