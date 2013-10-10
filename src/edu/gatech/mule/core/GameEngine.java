@@ -33,7 +33,7 @@ public class GameEngine {
 	}
 	
 	public void playGame() {
-		System.out.println("HEY BUDDY");
+		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	public Settings getSettings() {

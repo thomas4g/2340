@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.Graphics;
+import edu.gatech.mule.fx.screens.FXGameScreen;
 import edu.gatech.mule.fx.screens.FXPlayerScreen;
 import edu.gatech.mule.fx.screens.FXRaceSelectScreen;
 import edu.gatech.mule.fx.screens.FXSettingsScreen;
@@ -67,6 +68,7 @@ public class FXScreenHandler extends ScreenHandler {
 		loadScreen(ScreenType.SETTINGS, new FXSettingsScreen(game, game.getSettings()));
 		loadScreen(ScreenType.RACE_SELECT, new FXRaceSelectScreen(game,game.getSettings()));
 		loadScreen(ScreenType.PLAYER_SCREEN, new FXPlayerScreen(game,game.getSettings()));
+		loadScreen(ScreenType.GAME_SCREEN, new FXGameScreen(game, game.getSettings()));
 	}
 	
 	//TODO exception handling

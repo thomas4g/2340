@@ -38,5 +38,7 @@
     <Button layoutX="400.0" layoutY="129.0" mnemonicParsing="false" onAction="#OnConfirm" text="Confirm" />
     <Separator layoutX="249.0" layoutY="29.0" orientation="VERTICAL" prefHeight="182.0" />
     <Separator layoutX="27.0" layoutY="253.0" prefWidth="200.0" />
+    <TextField layoutX="282.0" layoutY="200.0" onKeyPressed="#OnEnterPressed" prefWidth="200.0" fx:id="field" />
+    <Text layoutX="334.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Name" />
   </children>
 </AnchorPane>

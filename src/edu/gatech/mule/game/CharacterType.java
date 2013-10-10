@@ -1,5 +1,7 @@
 package edu.gatech.mule.game;
 
+import edu.gatech.mule.screen.screens.AbstractPlayerScreen.Color;
+
 public enum CharacterType {
 	
 	HUMANOID("Humanoid", 
@@ -29,6 +31,8 @@ public enum CharacterType {
 	public final double money;
 	public final String name;
 	public final String descrip;
+	public static Color color;
+	public static String title;
 	
 	CharacterType(String name, String description, double money, String sprite, String headshot) {
 		this.sprite = IMAGE_PATH + sprite;
