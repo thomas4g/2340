@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="533.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView fitHeight="142.0" fitWidth="189.33333333333331" layoutX="60.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+    <Button layoutX="27.0" layoutY="352.0" mnemonicParsing="false" text="Back" onAction="#OnBack"/>
+    <Button layoutX="447.0" layoutY="352.0" mnemonicParsing="false" text="Choose" onAction="#OnAdd" />
+    <ChoiceBox layoutX="322.0" layoutY="88.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Purple" />
+          <String fx:value="Blue" />
+          <String fx:value="Teal" />
+		  <String fx:value="SeaFoam"/>
+		  <String fx:value="Green" />  
+		  <String fx:value="Gold" />
+		  <String fx:value="Orange" />
+		  <String fx:value="Maroon" />        
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+  </children>
+</AnchorPane>

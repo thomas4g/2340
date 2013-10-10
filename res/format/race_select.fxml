@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="533.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Text layoutX="113.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Character">
+      <font>
+        <Font name="Tlwg Typo Bold" size="32.0" />
+      </font>
+    </Text>
+    <Separator layoutX="155.0" layoutY="94.0" prefWidth="200.0" />
+    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="32.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="/assets/h1.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="217.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="118.50007709503132" fitWidth="158.00010681152344" layoutX="398.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="/assets/f1.png" />
+      </image>
+    </ImageView>
+    <Separator layoutX="161.0" layoutY="167.0" orientation="VERTICAL" prefHeight="87.0" prefWidth="30.0" />
+    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="214.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="/assets/b1.png" />
+      </image>
+    </ImageView>
+    <Separator layoutX="374.0" layoutY="163.0" orientation="VERTICAL" prefHeight="87.0" />
+    <Button layoutX="37.0" layoutY="269.0" mnemonicParsing="false" text="Humanoid" fx:id="human" onAction="#OnChoice" />
+    <Button layoutX="225.0" layoutY="269.0" mnemonicParsing="false" text="Monkey" fx:id="monkey" onAction="#OnChoice" />
+    <Button layoutX="403.0" layoutY="269.0" mnemonicParsing="false" text="Flapper" fx:id="flapper" onAction="#OnChoice" />
+  </children>
+</AnchorPane>

@@ -3,7 +3,7 @@ package edu.gatech.mule.screen.screens;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.IScreen;
 
-abstract class AbstractStartScreen implements IScreen {
+public abstract class AbstractStartScreen implements IScreen {
 
 	protected GameEngine engine;
 	

@@ -13,6 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.*;
@@ -21,19 +24,19 @@ import edu.gatech.mule.screen.screens.*;
  *
  * @author dengel6
  */
-public class FXMenuScreen extends AbstractMenuScreen implements Initializable {
-    
-    @FXML
-    private Label label;
+public class FXStartScreen extends AbstractStartScreen implements Initializable {
+   
         
-    public FXMenuScreen(GameEngine g, Settings s) {
-    	super(g, s);
+    public FXStartScreen(GameEngine g) {
+    	super(g);
     }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void OnPress(ActionEvent event){
+    	System.out.println("fdafdaf");
     	done();
     }
+  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

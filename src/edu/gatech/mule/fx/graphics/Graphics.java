@@ -25,9 +25,9 @@ public class Graphics extends Application {
           
         Group root = new Group();
         root.getChildren().addAll(view);
-        Scene scene = new Scene(root,400,400);
+        Scene scene = new Scene(root,533,500);
         stage.setScene(scene);
-        stage.setTitle("Testomatic");
+        stage.setTitle("Mule");
         stage.show();
         
     }

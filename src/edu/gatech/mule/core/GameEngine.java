@@ -16,7 +16,6 @@ public class GameEngine {
 		this.settings = new Settings();
 		
 		screenHandler.load(this);
-		chooseSettings();
 		screenHandler.start();
 	}
 	
@@ -24,12 +23,18 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.START);
 	}
 	public void chooseSettings() {
-		screenHandler.setScreen(ScreenType.MENU);
+		screenHandler.setScreen(ScreenType.SETTINGS);
 	}
+	public void chooseRace(){
+		screenHandler.setScreen(ScreenType.RACE_SELECT);
+	}
+	public void choosePlayer(){
+		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
+	}
+	
 	public void playGame() {
 		System.out.println("HEY BUDDY");
 	}
-
 	
 	public Settings getSettings() {
 		return settings;

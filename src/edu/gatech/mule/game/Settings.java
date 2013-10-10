@@ -3,9 +3,14 @@ package edu.gatech.mule.game;
 import java.util.*;
 
 public class Settings {
-	public enum Difficulty {BEGINNER, STANDARD};
+	public enum Difficulty {BEGINNER, INTERMEDIATE,ADVANCED};
+	public enum MapType {STANDARD, RANDOM};
 	private Difficulty difficulty;
+	private MapType type;
 	private List<CharacterType> players;
+	//default to 4 because combobox issue
+	int playerCount=3;
+	CharacterType currentPlayer;
 	
 	public Settings() {
 		players = new ArrayList<CharacterType>();
@@ -18,6 +23,14 @@ public class Settings {
 		this.difficulty = difficulty;
 	}
 	
+	public MapType getMapType(){
+		return type;
+	}
+	
+	public void setMapType(MapType type){
+		this.type=type;
+	}
+	
 	public List<CharacterType> getPlayers() {
 		return players;
 	}
@@ -25,5 +38,20 @@ public class Settings {
 		players.add(type);
 	}
 	
+	public void updatePlayerCount(int count){
+		playerCount=count;
+	}
+	
+	public int getPlayerCount(){
+		return playerCount;
+	}
+	
+	public void setCurrentPlayer(CharacterType type){
+		currentPlayer=type;
+	}
+	
+	public CharacterType getCurrentPlayer(){
+		return currentPlayer;
+	}
 
 }
