@@ -7,25 +7,35 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="533.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="533.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" onMouseEntered="#OnLoad">
   <children>
-    <ImageView fitHeight="142.0" fitWidth="189.33333333333331" layoutX="60.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="142.0" fitWidth="189.33333333333331" layoutX="60.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" fx:id="imgView"/>
     <Button layoutX="27.0" layoutY="352.0" mnemonicParsing="false" text="Back" onAction="#OnBack"/>
-    <Button layoutX="447.0" layoutY="352.0" mnemonicParsing="false" text="Choose" onAction="#OnAdd" />
-    <ChoiceBox layoutX="322.0" layoutY="88.0">
+    <Button layoutX="447.0" layoutY="352.0" mnemonicParsing="false" text="Add" onAction="#OnAdd" />
+    <ComboBox layoutX="302.0" layoutY="128.0" fx:id="combo">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Purple" />
           <String fx:value="Blue" />
           <String fx:value="Teal" />
-		  <String fx:value="SeaFoam"/>
-		  <String fx:value="Green" />  
-		  <String fx:value="Gold" />
-		  <String fx:value="Orange" />
-		  <String fx:value="Maroon" />        
+          <String fx:value="Seafoam" />
+          <String fx:value="Green" />
+          <String fx:value="Gold" />
+          <String fx:value="Orange" />
+          <String fx:value="Marroon" />
         </FXCollections>
       </items>
-    </ChoiceBox>
+    </ComboBox>
+    <Text layoutX="329.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Color" >
+      <font>
+        <Font name="Tlwg Typo Bold" size="13.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Label layoutX="40.0" layoutY="246.0" prefHeight="87.0" prefWidth="374.0" text="" fx:id="charDescrip"/>
+    <Text font="$x1" layoutX="53.0" layoutY="240.0" scaleX="1.5680472643599233" scaleY="1.827723214207308" strokeType="OUTSIDE" strokeWidth="0.0" text="About:" />
+    <Button layoutX="400.0" layoutY="129.0" mnemonicParsing="false" onAction="#OnConfirm" text="Confirm" />
+    <Separator layoutX="249.0" layoutY="29.0" orientation="VERTICAL" prefHeight="182.0" />
   </children>
 </AnchorPane>

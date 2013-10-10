@@ -3,22 +3,22 @@ package edu.gatech.mule.game;
 public enum CharacterType {
 	
 	HUMANOID("Humanoid", 
-		"Though the empress herself is said to be a " 
-		+ "humanoid, the rest of her assumed race lives in poverty. " 
-		+ "Most humanoids work as farmers, servants, or men-for-hire.", 
+		"Though the empress herself is said to be a \n" 
+		+ "humanoid, the rest of her assumed race lives in \npoverty. " 
+		+ "Most humanoids work as farmers, servants,\nor men-for-hire.\n", 
 		600, "human.gif", "human_head.png"),
 	BONZOID("Bonzoid", 
-			"Despite their bulky size, Bonzoids are a peaceful race. "
-			+ "Many work as tailors, blacksmiths, carpenters, and shopowners.", 
+			"Despite their bulky size, Bonzoids are a peaceful race. \n"
+			+ "Many work as tailors, blacksmiths, carpenters,  \nand shopowners.", 
 			"bonzoid.gif", "bonzoid_head.png"),
 	MECHTRON("Mechtron", 
-			"Mechtrons are machines created to do the will of the empress. " 
-			+ "They are stronger, faster, and more alter than any race in the empire. " 
+			"Mechtrons are machines created to do the will of the empress. \n" 
+			+ "They are stronger, faster, and more alter than any race in the empire. \n" 
 			+ "Players cannot control Mechtrons; selecting one creates an npc.", 
 			"mechtron.gif", "mechtron_head.png"),
 	FLAPPER("Flapper", 
-			"The aristocracy of the empire is primarily composed of Flappers. " 
-			+ "Their race has accumulated vast riches by establishing trade with far-off lands.", 
+			"The aristocracy of the empire is primarily composed\nof Flappers. " 
+			+ "Their race has accumulated vast riches by\nestablishing trade with far-off lands.", 
 			1600, "flapper.gif", "flapper.png");
 	
 	private static final double MONEY = 1000;

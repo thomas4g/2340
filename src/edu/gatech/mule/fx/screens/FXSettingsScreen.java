@@ -23,14 +23,14 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 		super(engine, settings);
 	}
 	
+	@FXML
+	private ComboBox combo;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-	}
 	
-	public ComboBox<String> combo;
+	}
 	
 	//Blah blah single cases (will fix later)
 	@FXML
@@ -45,6 +45,8 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	
 	@FXML
 	private void onButtonClicked(ActionEvent event){
+		if(combo.getValue()!=null) settings.updatePlayerCount(Integer.parseInt(combo.getValue().toString()));
+		System.out.println(settings.getPlayerCount());
 		done();
 	}
 	

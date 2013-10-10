@@ -15,7 +15,6 @@ public abstract class AbstractPlayerScreen implements IScreen {
 		this.settings = settings;
 	}
 	
-	
 	public void nextPlayer(){
 		engine.chooseRace();
 	}

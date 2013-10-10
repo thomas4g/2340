@@ -8,8 +8,8 @@ public class Settings {
 	private Difficulty difficulty;
 	private MapType type;
 	private List<CharacterType> players;
-	//default to 4 because combobox issue
-	int playerCount=3;
+	//default to 2 because of simple case
+	int playerCount=2;
 	CharacterType currentPlayer;
 	
 	public Settings() {

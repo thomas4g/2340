@@ -35,7 +35,7 @@
     </ImageView>
     <Separator layoutX="374.0" layoutY="163.0" orientation="VERTICAL" prefHeight="87.0" />
     <Button layoutX="37.0" layoutY="269.0" mnemonicParsing="false" text="Humanoid" fx:id="human" onAction="#OnChoice" />
-    <Button layoutX="225.0" layoutY="269.0" mnemonicParsing="false" text="Monkey" fx:id="monkey" onAction="#OnChoice" />
+    <Button layoutX="225.0" layoutY="269.0" mnemonicParsing="false" text="Bonzoid" fx:id="monkey" onAction="#OnChoice" />
     <Button layoutX="403.0" layoutY="269.0" mnemonicParsing="false" text="Flapper" fx:id="flapper" onAction="#OnChoice" />
   </children>
 </AnchorPane>
