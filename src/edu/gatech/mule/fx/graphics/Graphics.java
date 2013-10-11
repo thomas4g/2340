@@ -13,13 +13,22 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
+ * Graphics ???
  *
  * @author dengel6
+ * @version 1.0
  */
 public class Graphics extends Application {
     
 	public static StackPane view;
 
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param stage
+	 * 
+	 */
     @Override
     public void start(Stage stage) throws Exception {
           

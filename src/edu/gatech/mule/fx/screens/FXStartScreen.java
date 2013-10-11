@@ -22,15 +22,28 @@ import edu.gatech.mule.screen.screens.*;
 
 /**
  *
- * @author dengel6
+ * FX start screen sets up the graphics for the start screen
+ *
+ * @version 1.0
+ * 
  */
 public class FXStartScreen extends AbstractStartScreen implements Initializable {
    
-        
+    /**
+     * ???
+     * 
+     * @param g
+     */
     public FXStartScreen(GameEngine g) {
     	super(g);
     }
     
+    /**
+     * 
+     * ???
+     * 
+     * @param event
+     */
     @FXML
     private void OnPress(ActionEvent event){
     	System.out.println("fdafdaf");

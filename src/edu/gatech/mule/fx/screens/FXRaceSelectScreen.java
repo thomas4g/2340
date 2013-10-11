@@ -12,13 +12,35 @@ import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractRaceSelectScreen;
 
+/**
+ * 
+ * FX race select screen
+ * 
+ * @version 1.0
+ *
+ */
 public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Initializable {
 
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param engine
+	 * @param settings
+	 * 
+	 */
 	public FXRaceSelectScreen(GameEngine engine,Settings settings) {
 		super(engine,settings);
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void OnChoice(ActionEvent event){
 		if(((Button)event.getSource()).getId().equals("human")) settings.setCurrentPlayer(CharacterType.HUMANOID);
@@ -27,6 +49,14 @@ public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Init
 		done();
 	}
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param location
+	 * @param resources
+	 * 
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

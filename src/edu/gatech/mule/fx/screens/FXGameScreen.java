@@ -8,19 +8,42 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractGameScreen;
 
+/**
+ * 
+ * FX game screen ???
+ * 
+ * @version 1.0
+ *
+ */
 public class FXGameScreen extends AbstractGameScreen implements Initializable {
 
+	/**
+	 * ???
+	 * 
+	 * @param game
+	 * @param settings
+	 */
 	public FXGameScreen(GameEngine game, Settings settings) {
 		super(game, settings);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * ???
+	 */
 	@Override
 	public void done() {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param location
+	 * @param resource
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

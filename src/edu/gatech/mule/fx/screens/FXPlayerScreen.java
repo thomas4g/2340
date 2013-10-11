@@ -20,8 +20,23 @@ import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractPlayerScreen;
 
+/**
+ * 
+ * FX player screen
+ * 
+ * @version 1.0
+ *
+ */
 public class FXPlayerScreen extends AbstractPlayerScreen implements Initializable {
 
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param engine
+	 * @param settings
+	 * 
+	 */
 	public FXPlayerScreen(GameEngine engine, Settings settings) {
 		super(engine, settings);
 		// TODO Auto-generated constructor stub
@@ -41,6 +56,9 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	private TextField field;
 	
 
+	/**
+	 * ???
+	 */
 	private Image changeImage(){
 		String resourcePath="/assets/";
 		System.out.println(currentColor.ordinal());
@@ -51,7 +69,9 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 		return new Image(resourcePath);
 	}
 	
-	
+	/**
+	 * ???
+	 */
 	@FXML
 	private void OnEnterPressed(KeyEvent event){
 		if(event.getCode().equals(KeyCode.ENTER)) {
@@ -62,6 +82,12 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 		
 	}
 	
+	/**
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void OnLoad(MouseEvent event){
 		imgView.setImage(changeImage());
@@ -72,6 +98,12 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 		
 	}
 	
+	/**
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void OnConfirm(ActionEvent event){
 		if(combo.getValue()!=null){
@@ -81,11 +113,23 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 		System.out.println(currentColor);
 	}
 	
+	/**
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void OnBack(ActionEvent event){
 		nextPlayer();
 	}
 	
+	/**
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void OnAdd(ActionEvent event){
 		settings.addPlayer(settings.getCurrentPlayer());
@@ -95,6 +139,14 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 			nextPlayer();
 		}
 	}
+	
+	/**
+	 * ???
+	 * 
+	 * @param location
+	 * @param resources
+	 * 
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

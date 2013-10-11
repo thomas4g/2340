@@ -15,8 +15,23 @@ import edu.gatech.mule.game.Settings.Difficulty;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.screen.screens.AbstractSettingsScreen;
 
+/**
+ * 
+ * FX settings screen
+ * 
+ * @version 1.0
+ *
+ */
 public class FXSettingsScreen extends AbstractSettingsScreen implements Initializable {
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param engine
+	 * @param settings
+	 * 
+	 */
 	public FXSettingsScreen(GameEngine engine, Settings settings) {
 		super(engine, settings);
 	}
@@ -27,11 +42,26 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	@FXML
 	private ToggleGroup mapType, difficulty;
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param location
+	 * @param resources
+	 * 
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
 	}
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param event
+	 * 
+	 */
 	@FXML
 	private void onButtonClicked(ActionEvent event){
 		if(((RadioButton)mapType.getSelectedToggle()).getId().equals("default"))

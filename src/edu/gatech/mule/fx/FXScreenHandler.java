@@ -18,6 +18,13 @@ import edu.gatech.mule.fx.screens.FXStartScreen;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
+/**
+ * 
+ * FX screen handler
+ * 
+ * @version 1.0
+ *
+ */
 public class FXScreenHandler extends ScreenHandler {
 	
 	private Graphics graphics;
@@ -25,6 +32,12 @@ public class FXScreenHandler extends ScreenHandler {
 	private StackPane stack;
 	private HashMap<ScreenType, Node> screens;
 	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param game
+	 */
 	@Override
 	public void load(GameEngine game) {
 		this.game = game;
@@ -35,12 +48,22 @@ public class FXScreenHandler extends ScreenHandler {
 		setScreen(ScreenType.START);
 	}
 
+	/**
+	 * ???
+	 */
 	@Override
 	public void start() {
 		javafx.application.Application.launch(Graphics.class);
 	}
 	
-	
+	/**
+	 * 
+	 * ???
+	 * 
+	 * @param type
+	 * @param controller
+	 * 
+	 */
 	private boolean loadScreen(ScreenType type, Initializable controller) {
 	    try{
 	    	String resource = "/format/" + type.name().toLowerCase() + ".fxml";
@@ -62,7 +85,9 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	    
        
-	
+	/**
+	 * Loads screens upon game start
+	 */
 	private void loadScreens() {
 		loadScreen(ScreenType.START,new FXStartScreen(game));
 		loadScreen(ScreenType.SETTINGS, new FXSettingsScreen(game, game.getSettings()));
@@ -71,6 +96,11 @@ public class FXScreenHandler extends ScreenHandler {
 		loadScreen(ScreenType.GAME_SCREEN, new FXGameScreen(game, game.getSettings()));
 	}
 	
+	/**
+	 * ???
+	 * 
+	 * @param type
+	 */
 	//TODO exception handling
 	@Override
 	public void setScreen(ScreenType type) {
