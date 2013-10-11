@@ -33,7 +33,7 @@ public class GameEngine {
 	}
 	
 	public void playGame() {
-		settings.printSettings();
+		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	public Settings getSettings() {

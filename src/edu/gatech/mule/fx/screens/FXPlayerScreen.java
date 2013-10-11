@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx.screens;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,8 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType;
@@ -33,6 +37,10 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	@FXML
 	private Label charDescrip;
 	
+	@FXML
+	private TextField field;
+	
+
 	private Image changeImage(){
 		String resourcePath="/assets/";
 		System.out.println(currentColor.ordinal());
@@ -43,10 +51,25 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 		return new Image(resourcePath);
 	}
 	
+	
+	@FXML
+	private void OnEnterPressed(KeyEvent event){
+		if(event.getCode().equals(KeyCode.ENTER)) {
+			settings.getCurrentPlayer().title=field.getText();
+			System.out.println(settings.getCurrentPlayer().title);
+		}
+		
+		
+	}
+	
 	@FXML
 	private void OnLoad(MouseEvent event){
 		imgView.setImage(changeImage());
 		charDescrip.setText(settings.getCurrentPlayer().descrip);
+		if(settings.getCurrentPlayer().equals(CharacterType.HUMANOID)) field.setText("Jimbo");
+		else if(settings.getCurrentPlayer().equals(CharacterType.BONZOID)) field.setText("Colonel Mustard");
+		else if(settings.getCurrentPlayer().equals(CharacterType.FLAPPER)) field.setText("Samantha");
+		
 	}
 	
 	@FXML
