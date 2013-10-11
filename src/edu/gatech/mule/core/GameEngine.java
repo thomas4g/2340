@@ -33,13 +33,12 @@ public class GameEngine {
 	}
 	
 	public void playGame() {
-		System.out.println("HEY BUDDY");
+		settings.printSettings();
 	}
 	
 	public Settings getSettings() {
 		return settings;
 	}
-	
 	
 	
 

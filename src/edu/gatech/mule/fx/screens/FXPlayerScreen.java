@@ -21,6 +21,7 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	public FXPlayerScreen(GameEngine engine, Settings settings) {
 		super(engine, settings);
 		// TODO Auto-generated constructor stub
+
 	}
 	
 	@FXML
@@ -61,21 +62,19 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	private void OnBack(ActionEvent event){
 		nextPlayer();
 	}
-	//Goofy code I know
+	
 	@FXML
 	private void OnAdd(ActionEvent event){
-		if(settings.getPlayers().size()<settings.getPlayerCount()-1){
-			settings.addPlayer(settings.getCurrentPlayer());
-				nextPlayer();
-			System.out.println(settings.getPlayers().size());
-		}else{
+		settings.addPlayer(settings.getCurrentPlayer());
+		if(settings.getPlayerCount() == settings.getPlayers().size()) {
 			done();
+		} else {
+			nextPlayer();
 		}
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		//charDescrip.setText(settings.getCurrentPlayer().descrip);
 	}
 	
 	

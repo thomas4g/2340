@@ -3,14 +3,14 @@ package edu.gatech.mule.game;
 import java.util.*;
 
 public class Settings {
-	public enum Difficulty {BEGINNER, INTERMEDIATE,ADVANCED};
-	public enum MapType {STANDARD, RANDOM};
+	public enum Difficulty {BEGINNER, STANDARD, ADVANCED};
+	public enum MapType {DEFAULT, RANDOM};
 	private Difficulty difficulty;
-	private MapType type;
+	private MapType mapType;
 	private List<CharacterType> players;
 	//default to 2 because of simple case
-	int playerCount=2;
-	CharacterType currentPlayer;
+	private int playerCount=2;
+	private CharacterType currentPlayer;
 	
 	public Settings() {
 		players = new ArrayList<CharacterType>();
@@ -24,11 +24,11 @@ public class Settings {
 	}
 	
 	public MapType getMapType(){
-		return type;
+		return mapType;
 	}
 	
 	public void setMapType(MapType type){
-		this.type=type;
+		this.mapType=type;
 	}
 	
 	public List<CharacterType> getPlayers() {
@@ -53,5 +53,14 @@ public class Settings {
 	public CharacterType getCurrentPlayer(){
 		return currentPlayer;
 	}
-
+	
+	/**
+	 * Print settings for debugging purposes
+	 */
+	public void printSettings() {
+		System.out.println("Players: " + playerCount + ", Difficulty: " + difficulty + ", MapType: " + mapType);
+		for(int i=0; i<players.size(); i++) {
+			System.out.println("Player " + i + ": " + players.get(i));
+		}
+	}
 }

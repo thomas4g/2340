@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -26,25 +24,28 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	@FXML
 	private ComboBox combo;
 	
+	@FXML
+	private ToggleGroup mapType, difficulty;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
 	}
 	
-	//Blah blah single cases (will fix later)
-	@FXML
-	private void OnClick(ActionEvent event){
-		if(((CheckBox)event.getSource()).getId().equals("beginner")) settings.setDifficulty(Difficulty.BEGINNER);
-		else if(((CheckBox)event.getSource()).getId().equals("intermediate")) settings.setDifficulty(Difficulty.INTERMEDIATE);
-		else if(((CheckBox)event.getSource()).getId().equals("advanced")) settings.setDifficulty(Difficulty.ADVANCED);
-		else if(((CheckBox)event.getSource()).getId().equals("standard")) settings.setMapType(MapType.STANDARD);
-		else if(((CheckBox)event.getSource()).getId().equals("random")) settings.setMapType(MapType.RANDOM);
-		else return;
-	}
-	
 	@FXML
 	private void onButtonClicked(ActionEvent event){
+		if(((RadioButton)mapType.getSelectedToggle()).getId().equals("default"))
+			settings.setMapType(MapType.DEFAULT);
+		else if(((RadioButton)mapType.getSelectedToggle()).getId().equals("random"))
+			settings.setMapType(MapType.RANDOM);
+		
+		if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("beginner"))
+			settings.setDifficulty(Difficulty.BEGINNER);
+		else if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("standard"))
+			settings.setDifficulty(Difficulty.STANDARD);
+		else if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("advanced"))
+			settings.setDifficulty(Difficulty.ADVANCED);
+		
 		if(combo.getValue()!=null) settings.updatePlayerCount(Integer.parseInt(combo.getValue().toString()));
 		System.out.println(settings.getPlayerCount());
 		done();
