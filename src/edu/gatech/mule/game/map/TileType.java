@@ -1,5 +1,12 @@
 package edu.gatech.mule.game.map;
 
+/**
+ * 
+ * Library of tile types
+ * 
+ * @version 1.0
+ *
+ */
 public enum TileType {
 
 	RIVER(true, 4, 2, 0, ""),
@@ -16,6 +23,15 @@ public enum TileType {
 	private int foodRate, energyRate, oreRate;
 	private String fileName;
 	
+	/**
+	 * Constructor for the tile type
+	 * 
+	 * @param purchasable, designates whether a tile is buyable or not
+	 * @param foodRate, the rate of food to be produced
+	 * @param energyRate, the rate of energy to be produced
+	 * @param oreRate, the rate of ore to be produced
+	 * @param fileName, the filename of the tile picture
+	 */
 	private TileType(boolean purchasable, int foodRate, int energyRate, int oreRate, String fileName) {
 		this.purchasable = purchasable;
 		this.foodRate = foodRate;
@@ -24,22 +40,37 @@ public enum TileType {
 		this.fileName = fileName;
 	}
 	
+	/**
+	 * ???
+	 */
 	public boolean purchasable() {
 		return this.purchasable;
 	}
 	
+	/**
+	 * ???
+	 */
 	public int getFoodRate() {
 		return this.foodRate;
 	}
 	
+	/**
+	 * ???
+	 */
 	public int getEnergyRate() {
 		return this.energyRate;
 	}
 	
+	/**
+	 * ???
+	 */
 	public int getOreRate() {
 		return this.oreRate;
 	}
 	
+	/**
+	 * ???
+	 */
 	public String getFileName() {
 		return this.fileName;
 	}
