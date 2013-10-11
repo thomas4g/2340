@@ -10,7 +10,7 @@
   <children>
     <ImageView fitHeight="400.0" fitWidth="533.0" layoutX="64.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: black;">
       <image>
-        <Image url="file:/home/dengel6/2340/res/assets/map.png" />
+        <Image url="/assets/map.png" />
       </image>
     </ImageView>
   </children>
