@@ -6,16 +6,16 @@ import edu.gatech.mule.screen.IScreen;
 
 public abstract class AbstractRaceSelectScreen implements IScreen {
 
-	protected GameEngine engine;
+	protected GameEngine game;
 	protected Settings settings;
 	
-	public AbstractRaceSelectScreen(GameEngine engine,Settings settings){
-		this.engine=engine;
-		this.settings=settings;
+	public AbstractRaceSelectScreen(GameEngine game){
+		this.game = game;
+		this.settings = game.getSettings();
 	}
 	
 	public void done(){
-		engine.choosePlayer();
+		game.choosePlayer();
 	}
 	
 }

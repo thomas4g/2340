@@ -1,6 +1,7 @@
 package edu.gatech.mule.game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -14,7 +15,9 @@ public class Settings {
 	/**
 	 * Difficulty of the game
 	 */
-	public enum Difficulty {BEGINNER, STANDARD, ADVANCED};
+	public enum Difficulty { BEGINNER, STANDARD, ADVANCED };
+	public enum MapType { DEFAULT, RANDOM };
+	public enum Color { PURPLE, BLUE, TEAL, SEAFOAM, GREEN, GOLD, ORANGE, MAROON };
 	
 	/**
 	 * Map type
@@ -22,20 +25,18 @@ public class Settings {
 	 * Default is a predefined map
 	 * Random is a randomly-generated map
 	 */
-	public enum MapType {DEFAULT, RANDOM};
 	
 	private Difficulty difficulty;
 	private MapType mapType;
-	private List<CharacterType> players;
+	private List<Player> players;
 	private int playerCount;
-	private CharacterType currentPlayer;
+	private Player currentPlayer;
 	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
-		players = new ArrayList<CharacterType>();
-		playerCount = 2;  // default value is 2
+		players = new ArrayList<Player>();
 	}
 	
 	/**
@@ -79,7 +80,7 @@ public class Settings {
 	 * 
 	 * @param list of players in the game
 	 */
-	public List<CharacterType> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 	
@@ -88,14 +89,14 @@ public class Settings {
 	 * 
 	 * @param type, a character type
 	 */
-	public void addPlayer(CharacterType type) {
-		players.add(type);
+	public void addPlayer(Player player) {
+		players.add(player);
 	}
 	
 	/**
 	 * ???
 	 */
-	public void updatePlayerCount(int count){
+	public void setPlayerCount(int count){
 		playerCount=count;
 	}
 	
@@ -109,14 +110,14 @@ public class Settings {
 	/**
 	 * ???
 	 */
-	public void setCurrentPlayer(CharacterType type){
-		currentPlayer=type;
+	public void setCurrentPlayer(Player player){
+		currentPlayer = player;
 	}
 	
 	/**
 	 * ???
 	 */
-	public CharacterType getCurrentPlayer(){
+	public Player getCurrentPlayer(){
 		return currentPlayer;
 	}
 	
@@ -126,7 +127,8 @@ public class Settings {
 	public void printSettings() {
 		System.out.println("Players: " + playerCount + ", Difficulty: " + difficulty + ", MapType: " + mapType);
 		for(int i=0; i<players.size(); i++) {
-			System.out.println("Player " + i + ": " + players.get(i));
+			Player p = players.get(i);
+			System.out.println("Player " + i + ": " + p.getType() + ", " + p.getName() + ", " + p.getColor());
 		}
 	}
 }

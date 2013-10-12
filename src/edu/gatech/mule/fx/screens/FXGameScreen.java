@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractGameScreen;
 
 /**
@@ -23,8 +22,8 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable {
 	 * @param game
 	 * @param settings
 	 */
-	public FXGameScreen(GameEngine game, Settings settings) {
-		super(game, settings);
+	public FXGameScreen(GameEngine game) {
+		super(game);
 		// TODO Auto-generated constructor stub
 	}
 

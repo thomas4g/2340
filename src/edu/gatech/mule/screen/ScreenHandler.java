@@ -10,7 +10,7 @@ import edu.gatech.mule.core.GameEngine;
  *
  */
 public abstract class ScreenHandler {
-	public enum ScreenType {START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, GAME_SCREEN};
+	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, GAME_SCREEN };
 	
 	/**
 	 * 
@@ -29,6 +29,8 @@ public abstract class ScreenHandler {
 	 * 
 	 */
 	public abstract void load(GameEngine g);
+	
+	public abstract void disposeScreen(ScreenType type);
 	
 	/**
 	 * ???

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType;
+import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractRaceSelectScreen;
 
@@ -29,8 +30,8 @@ public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Init
 	 * @param settings
 	 * 
 	 */
-	public FXRaceSelectScreen(GameEngine engine,Settings settings) {
-		super(engine,settings);
+	public FXRaceSelectScreen(GameEngine game) {
+		super(game);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -43,9 +44,17 @@ public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Init
 	 */
 	@FXML
 	private void OnChoice(ActionEvent event){
-		if(((Button)event.getSource()).getId().equals("human")) settings.setCurrentPlayer(CharacterType.HUMANOID);
-		else if(((Button)event.getSource()).getId().equals("monkey")) settings.setCurrentPlayer(CharacterType.BONZOID);
-		else if(((Button)event.getSource()).getId().equals("flapper")) settings.setCurrentPlayer(CharacterType.FLAPPER);
+		CharacterType c = null;
+		if(((Button)event.getSource()).getId().equals("flapper"))
+			c = CharacterType.FLAPPER;
+		if(((Button)event.getSource()).getId().equals("bonzoid"))
+			c = CharacterType.BONZOID;
+		if(((Button)event.getSource()).getId().equals("humanoid"))
+			c = CharacterType.HUMANOID;
+		
+		Player p = new Player(c);
+		settings.setCurrentPlayer(p);
+		settings.addPlayer(p);
 		done();
 	}
 	

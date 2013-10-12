@@ -1,6 +1,7 @@
 package edu.gatech.mule.fx;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import edu.gatech.mule.fx.screens.FXRaceSelectScreen;
 import edu.gatech.mule.fx.screens.FXSettingsScreen;
 import edu.gatech.mule.fx.screens.FXStartScreen;
 import edu.gatech.mule.screen.ScreenHandler;
-import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 /**
  * 
@@ -31,6 +31,7 @@ public class FXScreenHandler extends ScreenHandler {
 	private GameEngine game;
 	private StackPane stack;
 	private HashMap<ScreenType, Node> screens;
+	private HashMap<ScreenType, Class<?>> classes;
 	
 	/**
 	 * 
@@ -42,6 +43,7 @@ public class FXScreenHandler extends ScreenHandler {
 	public void load(GameEngine game) {
 		this.game = game;
 		screens = new HashMap<ScreenType, Node>();
+		classes = new HashMap<ScreenType, Class<?>>();
 		stack = new StackPane();
 		Graphics.view = stack; 
 		loadScreens();
@@ -67,9 +69,8 @@ public class FXScreenHandler extends ScreenHandler {
 	private boolean loadScreen(ScreenType type, Initializable controller) {
 	    try{
 	    	String resource = "/format/" + type.name().toLowerCase() + ".fxml";
-	    	System.out.println(resource);
 	    	FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
-	        controller.initialize(null, null);
+	    	System.out.println(resource);
 	        myLoader.setController(controller);
 	        Parent node = (Parent) myLoader.load();
 	        screens.put(type, node);
@@ -89,11 +90,17 @@ public class FXScreenHandler extends ScreenHandler {
 	 * Loads screens upon game start
 	 */
 	private void loadScreens() {
-		loadScreen(ScreenType.START,new FXStartScreen(game));
-		loadScreen(ScreenType.SETTINGS, new FXSettingsScreen(game, game.getSettings()));
-		loadScreen(ScreenType.RACE_SELECT, new FXRaceSelectScreen(game,game.getSettings()));
-		loadScreen(ScreenType.PLAYER_SCREEN, new FXPlayerScreen(game,game.getSettings()));
-		loadScreen(ScreenType.GAME_SCREEN, new FXGameScreen(game, game.getSettings()));
+		classes.put(ScreenType.START, FXStartScreen.class);
+		classes.put(ScreenType.SETTINGS, FXSettingsScreen.class);
+		classes.put(ScreenType.RACE_SELECT, FXRaceSelectScreen.class);
+		classes.put(ScreenType.PLAYER_SCREEN, FXPlayerScreen.class);
+		classes.put(ScreenType.GAME_SCREEN, FXGameScreen.class);
+	}
+	
+	public void disposeScreen(ScreenType type) {
+		if(!screens.containsKey(type))
+			return;					
+		screens.remove(type);
 	}
 	
 	/**
@@ -104,8 +111,19 @@ public class FXScreenHandler extends ScreenHandler {
 	//TODO exception handling
 	@Override
 	public void setScreen(ScreenType type) {
+		try {
+			if(screens.get(type) == null) {
+				Class<?> clazz = classes.get(type);
+				Constructor<?> con = clazz.getConstructor(GameEngine.class);
+				Initializable controller = (Initializable)con.newInstance(game);
+				loadScreen(type, controller);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(screens.get(type) != null){
-			//Is there is more than one screen
+			//If there is more than one screen
 		    if(!stack.getChildren().isEmpty()){
 		    	stack.getChildren().remove(0);    
 		        stack.getChildren().add(0, screens.get(type));

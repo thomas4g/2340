@@ -15,7 +15,7 @@ import edu.gatech.mule.screen.IScreen;
  */
 public abstract class AbstractSettingsScreen implements IScreen {
 
-	protected GameEngine engine;
+	protected GameEngine game;
 	protected Settings settings;
 	
 	/**
@@ -23,16 +23,16 @@ public abstract class AbstractSettingsScreen implements IScreen {
 	 * 
 	 * 
 	 */
-	public AbstractSettingsScreen(GameEngine engine, Settings settings) {
-		this.engine = engine;
-		this.settings = settings;
+	public AbstractSettingsScreen(GameEngine game) {
+		this.game = game;
+		this.settings = game.getSettings();
 	}
 	
 	/**
 	 * ???
 	 */
 	public void done() {
-		engine.chooseRace();
+		game.chooseRace();
 	}
 
 }

@@ -1,9 +1,7 @@
 package edu.gatech.mule.core;
 
-import java.util.ArrayList;
-
-import edu.gatech.mule.game.*;
-import edu.gatech.mule.screen.*;
+import edu.gatech.mule.game.Settings;
+import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 /**
@@ -17,7 +15,7 @@ import edu.gatech.mule.screen.ScreenHandler.ScreenType;
  */
 public class GameEngine {
 	
-	private ScreenHandler screenHandler;
+	public ScreenHandler screenHandler;
 	private Settings settings;
 	
 	/**
@@ -33,6 +31,10 @@ public class GameEngine {
 		
 		screenHandler.load(this);
 		screenHandler.start();
+	}
+	
+	public void disposeScreen(ScreenType type) {
+		screenHandler.disposeScreen(type);
 	}
 	
 	/**
@@ -67,6 +69,7 @@ public class GameEngine {
 	 * Shows the screen of the main map ???
 	 */
 	public void playGame() {
+		settings.printSettings();
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	

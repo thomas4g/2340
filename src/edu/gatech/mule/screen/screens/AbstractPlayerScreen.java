@@ -3,25 +3,25 @@ package edu.gatech.mule.screen.screens;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.IScreen;
+import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public abstract class AbstractPlayerScreen implements IScreen {
 
-	protected GameEngine engine;
+	protected GameEngine game;
 	protected Settings settings;
-	public enum Color { PURPLE, BLUE, TEAL, SEAFOAM, GREEN, GOLD, ORANGE, MAROON};
-	protected Color currentColor=Color.PURPLE;
 	
-	public AbstractPlayerScreen(GameEngine engine, Settings settings) {
-		this.engine = engine;
-		this.settings = settings;
+	public AbstractPlayerScreen(GameEngine game) {
+		this.game = game;
+		this.settings = game.getSettings();
 	}
 	
 	public void nextPlayer(){
-		engine.chooseRace();
+		game.disposeScreen(ScreenType.PLAYER_SCREEN);
+		game.chooseRace();
 	}
 	
 	public void done(){
-		engine.playGame();
+		game.playGame();
 	}
 	
 	

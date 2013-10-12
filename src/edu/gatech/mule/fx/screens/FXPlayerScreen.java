@@ -12,12 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.CharacterType;
-import edu.gatech.mule.game.Settings;
+import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.screen.screens.AbstractPlayerScreen;
 
 /**
@@ -37,14 +33,14 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * @param settings
 	 * 
 	 */
-	public FXPlayerScreen(GameEngine engine, Settings settings) {
-		super(engine, settings);
+	public FXPlayerScreen(GameEngine game) {
+		super(game);
 		// TODO Auto-generated constructor stub
 
 	}
 	
 	@FXML
-	private ComboBox combo;
+	private ComboBox<String> combo;
 	
 	@FXML
 	private ImageView imgView;
@@ -55,62 +51,21 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	@FXML
 	private TextField field;
 	
+	private Color currentColor = Color.PURPLE;
 
 	/**
 	 * ???
 	 */
 	private Image changeImage(){
-		String resourcePath="/assets/";
-		System.out.println(currentColor.ordinal());
-		if(settings.getCurrentPlayer().equals(CharacterType.HUMANOID)) resourcePath+="h" +(currentColor.ordinal()+1)+".png";
-		else if(settings.getCurrentPlayer().equals(CharacterType.BONZOID)) resourcePath+="b" +(currentColor.ordinal()+1)+".png";
-		else if(settings.getCurrentPlayer().equals(CharacterType.FLAPPER)) resourcePath+="f" +(currentColor.ordinal()+1)+".png";
-		System.out.println(resourcePath);
-		return new Image(resourcePath);
+		return new Image(settings.getCurrentPlayer().getType().getResPrefix() + (currentColor.ordinal()+1) + ".png");
 	}
 	
-	/**
-	 * ???
-	 */
 	@FXML
-	private void OnEnterPressed(KeyEvent event){
-		if(event.getCode().equals(KeyCode.ENTER)) {
-			settings.getCurrentPlayer().title=field.getText();
-			System.out.println(settings.getCurrentPlayer().title);
-		}
-		
-		
-	}
-	
-	/**
-	 * ???
-	 * 
-	 * @param event
-	 * 
-	 */
-	@FXML
-	private void OnLoad(MouseEvent event){
-		imgView.setImage(changeImage());
-		charDescrip.setText(settings.getCurrentPlayer().descrip);
-		if(settings.getCurrentPlayer().equals(CharacterType.HUMANOID)) field.setText("Jimbo");
-		else if(settings.getCurrentPlayer().equals(CharacterType.BONZOID)) field.setText("Colonel Mustard");
-		else if(settings.getCurrentPlayer().equals(CharacterType.FLAPPER)) field.setText("Samantha");
-		
-	}
-	
-	/**
-	 * ???
-	 * 
-	 * @param event
-	 * 
-	 */
-	@FXML
-	private void OnConfirm(ActionEvent event){
-		if(combo.getValue()!=null){
-			currentColor=Color.valueOf(combo.getValue().toString().toUpperCase());
+	private void onSelect(ActionEvent event) {
+		if(combo.getValue() != null) {
+			currentColor = Color.valueOf(combo.getValue().toString().toUpperCase());
 			imgView.setImage(changeImage());
 		}
-		System.out.println(currentColor);
 	}
 	
 	/**
@@ -120,7 +75,8 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * 
 	 */
 	@FXML
-	private void OnBack(ActionEvent event){
+	private void OnBack(ActionEvent event) {
+		settings.getPlayers().remove(settings.getCurrentPlayer());
 		nextPlayer();
 	}
 	
@@ -132,7 +88,8 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 */
 	@FXML
 	private void OnAdd(ActionEvent event){
-		settings.addPlayer(settings.getCurrentPlayer());
+		settings.getCurrentPlayer().setColor(currentColor);
+		settings.getCurrentPlayer().setName(field.getText());
 		if(settings.getPlayerCount() == settings.getPlayers().size()) {
 			done();
 		} else {
@@ -149,7 +106,9 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		imgView.setImage(changeImage());
+		charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
+		field.setText(settings.getCurrentPlayer().getType().getDefaultName());
 	}
 	
 	

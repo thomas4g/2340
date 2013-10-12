@@ -46,7 +46,6 @@ public class FXStartScreen extends AbstractStartScreen implements Initializable 
      */
     @FXML
     private void OnPress(ActionEvent event){
-    	System.out.println("fdafdaf");
     	done();
     }
   

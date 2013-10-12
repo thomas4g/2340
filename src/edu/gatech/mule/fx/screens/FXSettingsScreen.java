@@ -10,7 +10,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Difficulty;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.screen.screens.AbstractSettingsScreen;
@@ -32,15 +31,17 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	 * @param settings
 	 * 
 	 */
-	public FXSettingsScreen(GameEngine engine, Settings settings) {
-		super(engine, settings);
+	public FXSettingsScreen(GameEngine game) {
+		super(game);
 	}
 	
 	@FXML
-	private ComboBox combo;
+	private ComboBox<String> combo;
 	
 	@FXML
 	private ToggleGroup mapType, difficulty;
+	
+	private int playerCount;
 	
 	/**
 	 * 
@@ -52,7 +53,11 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		playerCount = 2;
+	}
 	
+	public void onSelect(ActionEvent event) {
+		playerCount = Integer.parseInt(combo.getValue());
 	}
 	
 	/**
@@ -76,8 +81,7 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 		else if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("advanced"))
 			settings.setDifficulty(Difficulty.ADVANCED);
 		
-		if(combo.getValue()!=null) settings.updatePlayerCount(Integer.parseInt(combo.getValue().toString()));
-		System.out.println(settings.getPlayerCount());
+		settings.setPlayerCount(playerCount);		
 		done();
 	}
 	

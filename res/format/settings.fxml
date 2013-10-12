@@ -24,7 +24,7 @@
     </Text>
     <Text font="$x2" layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Type" />
     <Text font="$x2" layoutX="9.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Players" />
-    <ComboBox fx:id="combo" cache="false" cacheHint="DEFAULT" layoutX="223.0" layoutY="258.0" prefWidth="53.0" promptText="2">
+    <ComboBox fx:id="combo" cache="false" cacheHint="DEFAULT" layoutX="223.0" layoutY="258.0" onAction="#onSelect" prefWidth="53.0" promptText="2">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="2" />
