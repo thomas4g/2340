@@ -57,26 +57,24 @@ public class GameEngine {
 	}
 	
 	/**
-	 * Shows the screen for ???
+	 * Shows the screen for player config
 	 */
 	public void choosePlayer(){
 		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
 	}
 	
 	/**
-	 * Shows the screen of the main map ???
+	 * Shows the screen of the main map
 	 */
 	public void playGame() {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	/**
-	 * Gets the settings ???
+	 * Gets the game settings
 	 */
 	public Settings getSettings() {
 		return settings;
 	}
 	
-	
-
 }

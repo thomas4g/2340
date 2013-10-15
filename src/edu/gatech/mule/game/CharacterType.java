@@ -4,7 +4,6 @@ import edu.gatech.mule.screen.screens.AbstractPlayerScreen.Color;
 
 /**
  * Library of character types
- * 
  * Contains listings of races with corresponding name, description, and images
  * 
  * @version 1.0
