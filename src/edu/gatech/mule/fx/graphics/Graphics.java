@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * Graphics ???
+ * Graphics engine
  *
  * @author dengel6
  * @version 1.0
@@ -23,22 +23,18 @@ public class Graphics extends Application {
 	public static StackPane view;
 
 	/**
+	 * Sets up the main frame for the game
 	 * 
-	 * ???
-	 * 
-	 * @param stage
-	 * 
+	 * @param stage, the main frame of the game
 	 */
     @Override
     public void start(Stage stage) throws Exception {
-          
         Group root = new Group();
         root.getChildren().addAll(view);
         Scene scene = new Scene(root,533,500);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();
-        
     }
     
 

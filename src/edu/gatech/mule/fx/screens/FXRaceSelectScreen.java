@@ -13,21 +13,17 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractRaceSelectScreen;
 
 /**
- * 
- * FX race select screen
+ * Graphics for race select screen
  * 
  * @version 1.0
- *
  */
 public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Initializable {
 
 	/**
+	 * Constructor for race select screen graphics
 	 * 
-	 * ???
-	 * 
-	 * @param engine
-	 * @param settings
-	 * 
+	 * @param game, the game engine
+	 * @param settings, the game config
 	 */
 	public FXRaceSelectScreen(GameEngine engine,Settings settings) {
 		super(engine,settings);
@@ -35,11 +31,9 @@ public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Init
 	}
 	
 	/**
-	 * 
 	 * ???
 	 * 
-	 * @param event
-	 * 
+	 * @param event, event thrown
 	 */
 	@FXML
 	private void OnChoice(ActionEvent event){
@@ -50,12 +44,10 @@ public class FXRaceSelectScreen extends AbstractRaceSelectScreen implements Init
 	}
 	
 	/**
-	 * 
 	 * ???
 	 * 
 	 * @param location
 	 * @param resources
-	 * 
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -9,19 +9,17 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractGameScreen;
 
 /**
- * 
- * FX game screen ???
+ * Graphics for game screen
  * 
  * @version 1.0
- *
  */
 public class FXGameScreen extends AbstractGameScreen implements Initializable {
 
 	/**
-	 * ???
+	 * Constructor for game screen graphics
 	 * 
-	 * @param game
-	 * @param settings
+	 * @param game, the game engine
+	 * @param settings, the game config
 	 */
 	public FXGameScreen(GameEngine game, Settings settings) {
 		super(game, settings);
@@ -38,7 +36,6 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable {
 	}
 
 	/**
-	 * 
 	 * ???
 	 * 
 	 * @param location

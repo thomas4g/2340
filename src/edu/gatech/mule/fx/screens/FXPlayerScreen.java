@@ -21,21 +21,17 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.AbstractPlayerScreen;
 
 /**
- * 
- * FX player screen
+ * Graphics for player screen
  * 
  * @version 1.0
- *
  */
 public class FXPlayerScreen extends AbstractPlayerScreen implements Initializable {
 
 	/**
+	 * Constructor for player screen graphics
 	 * 
-	 * ???
-	 * 
-	 * @param engine
-	 * @param settings
-	 * 
+	 * @param game, the game engine
+	 * @param settings, the game config
 	 */
 	public FXPlayerScreen(GameEngine engine, Settings settings) {
 		super(engine, settings);
@@ -86,7 +82,6 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * ???
 	 * 
 	 * @param event
-	 * 
 	 */
 	@FXML
 	private void OnLoad(MouseEvent event){
@@ -102,7 +97,6 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * ???
 	 * 
 	 * @param event
-	 * 
 	 */
 	@FXML
 	private void OnConfirm(ActionEvent event){
@@ -117,7 +111,6 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * ???
 	 * 
 	 * @param event
-	 * 
 	 */
 	@FXML
 	private void OnBack(ActionEvent event){
@@ -128,7 +121,6 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * ???
 	 * 
 	 * @param event
-	 * 
 	 */
 	@FXML
 	private void OnAdd(ActionEvent event){
@@ -145,7 +137,6 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * 
 	 * @param location
 	 * @param resources
-	 * 
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

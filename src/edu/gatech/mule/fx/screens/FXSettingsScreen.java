@@ -16,21 +16,17 @@ import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.screen.screens.AbstractSettingsScreen;
 
 /**
- * 
- * FX settings screen
+ * Graphics for settings screen
  * 
  * @version 1.0
- *
  */
 public class FXSettingsScreen extends AbstractSettingsScreen implements Initializable {
 	
 	/**
+	 * Constructor for settings screen graphics
 	 * 
-	 * ???
-	 * 
-	 * @param engine
-	 * @param settings
-	 * 
+	 * @param game, the game engine
+	 * @param settings, the game config
 	 */
 	public FXSettingsScreen(GameEngine engine, Settings settings) {
 		super(engine, settings);
@@ -43,12 +39,10 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	private ToggleGroup mapType, difficulty;
 	
 	/**
-	 * 
 	 * ???
 	 * 
 	 * @param location
 	 * @param resources
-	 * 
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -56,11 +50,9 @@ public class FXSettingsScreen extends AbstractSettingsScreen implements Initiali
 	}
 	
 	/**
-	 * 
 	 * ???
 	 * 
 	 * @param event
-	 * 
 	 */
 	@FXML
 	private void onButtonClicked(ActionEvent event){

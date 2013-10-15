@@ -19,11 +19,9 @@ import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 /**
- * 
- * FX screen handler
+ * Screen handler for graphics
  * 
  * @version 1.0
- *
  */
 public class FXScreenHandler extends ScreenHandler {
 	
@@ -33,10 +31,9 @@ public class FXScreenHandler extends ScreenHandler {
 	private HashMap<ScreenType, Node> screens;
 	
 	/**
+	 * Sets up general graphics upon game start
 	 * 
-	 * ???
-	 * 
-	 * @param game
+	 * @param game, the game engine
 	 */
 	@Override
 	public void load(GameEngine game) {
@@ -49,7 +46,7 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	/**
-	 * ???
+	 * Launches graphics engine
 	 */
 	@Override
 	public void start() {
@@ -57,12 +54,10 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	
 	/**
+	 * some FX XML WTH BBQ stuff
 	 * 
-	 * ???
-	 * 
-	 * @param type
-	 * @param controller
-	 * 
+	 * @param type, type of screen to be displayed currently
+	 * @param controller, IDK
 	 */
 	private boolean loadScreen(ScreenType type, Initializable controller) {
 	    try{
@@ -97,9 +92,9 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	
 	/**
-	 * ???
+	 * Shows screen to current display
 	 * 
-	 * @param type
+	 * @param type, type of screen to be displayed
 	 */
 	//TODO exception handling
 	@Override
