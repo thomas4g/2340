@@ -5,11 +5,9 @@ import java.awt.Point;
 import edu.gatech.mule.game.Player;
 
 /**
- * 
  * Representation of a tile in a map
  * 
  * @version 1.0
- *
  */
 public abstract class Tile {
 
@@ -20,7 +18,7 @@ public abstract class Tile {
 	/**
 	 * Constructor for a tile
 	 * 
-	 * @param loc, location in the tile
+	 * @param loc, location of player in the tile ???
 	 * @param type, type of the tile
 	 */
 	public Tile(Point loc, TileType type) {
@@ -29,14 +27,18 @@ public abstract class Tile {
 	}
 	
 	/**
-	 * ???
+	 * Get the location of the player in the tile
+	 * 
+	 * @return location of the player in the tile
 	 */
 	public Point getLoc() {
 		return loc;
 	}
 	
 	/**
-	 * ???
+	 * Get the type of tile
+	 * 
+	 * @return type of tile
 	 */
 	public TileType getType() {
 		return type;

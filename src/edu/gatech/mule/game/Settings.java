@@ -3,11 +3,9 @@ package edu.gatech.mule.game;
 import java.util.*;
 
 /**
- * 
  * Settings for the game
  * 
  * @version 1.0
- *
  */
 public class Settings {
 	
@@ -77,7 +75,7 @@ public class Settings {
 	/**
 	 * Get the list of players in the game
 	 * 
-	 * @param list of players in the game
+	 * @return list of players in the game
 	 */
 	public List<CharacterType> getPlayers() {
 		return players;
@@ -93,28 +91,36 @@ public class Settings {
 	}
 	
 	/**
-	 * ???
+	 * Updates the player count
+	 * 
+	 * @param count, the number of players
 	 */
 	public void updatePlayerCount(int count){
 		playerCount=count;
 	}
 	
 	/**
-	 * ???
+	 * Get the player count
+	 * 
+	 * @return the number of players
 	 */
 	public int getPlayerCount(){
 		return playerCount;
 	}
 	
 	/**
-	 * ???
+	 * Sets the player config onto the player
+	 * 
+	 * @param type, the character type chosen for the current player
 	 */
 	public void setCurrentPlayer(CharacterType type){
 		currentPlayer=type;
 	}
 	
 	/**
-	 * ???
+	 * Get the current player
+	 * 
+	 * @return the current player
 	 */
 	public CharacterType getCurrentPlayer(){
 		return currentPlayer;

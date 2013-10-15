@@ -1,11 +1,9 @@
 package edu.gatech.mule.game.map;
 
 /**
- * 
  * General set up for a map
  * 
  * @version 1.0
- *
  */
 public abstract class Map {
 
@@ -19,7 +17,7 @@ public abstract class Map {
 	}
 	
 	/**
-	 * Gets map
+	 * Gets map in representation of tiles
 	 * 
 	 * @return the map
 	 */

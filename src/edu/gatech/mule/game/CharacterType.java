@@ -3,13 +3,11 @@ package edu.gatech.mule.game;
 import edu.gatech.mule.screen.screens.AbstractPlayerScreen.Color;
 
 /**
- * 
  * Library of character types
  * 
  * Contains listings of races with corresponding name, description, and images
  * 
  * @version 1.0
- *
  */
 public enum CharacterType {
 	
@@ -36,7 +34,7 @@ public enum CharacterType {
 	/**
 	 * Mechtron
 	 * 
-	 * Playable only for AI
+	 * Only available for AI, go marching band!
 	 */
 	MECHTRON("Mechtron", 
 			"Mechtrons are machines created to do the will of the empress. \n" 
@@ -66,7 +64,6 @@ public enum CharacterType {
 	public static String title;
 	
 	/**
-	 * 
 	 * Constructor of a character type
 	 * 
 	 * @param name, name of the race
@@ -74,7 +71,6 @@ public enum CharacterType {
 	 * @param money, starting money in the game
 	 * @param sprite, world sprite filename
 	 * @param headshot, headshot filename
-	 * 
 	 */
 	CharacterType(String name, String description, double money, String sprite, String headshot) {
 		this.sprite = IMAGE_PATH + sprite;
@@ -92,7 +88,6 @@ public enum CharacterType {
 	 * @param money, starting money in the game
 	 * @param sprite, world sprite filename
 	 * @param headshot, headshot filename
-	 * 
 	 */
 	CharacterType(String name, String description, String sprite, String headshot) {
 		this(name, description, MONEY, sprite, headshot);
