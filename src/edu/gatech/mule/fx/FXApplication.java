@@ -1,11 +1,9 @@
-package edu.gatech.mule.fx.graphics;
+package edu.gatech.mule.fx;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,7 +16,7 @@ import javafx.stage.Stage;
  * @author dengel6
  * @version 1.0
  */
-public class Graphics extends Application {
+public class FXApplication extends Application {
     
 	public static StackPane view;
 
@@ -34,7 +32,7 @@ public class Graphics extends Application {
           
         Group root = new Group();
         root.getChildren().addAll(view);
-        Scene scene = new Scene(root,533,500);
+        Scene scene = new Scene(root,720,550);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();

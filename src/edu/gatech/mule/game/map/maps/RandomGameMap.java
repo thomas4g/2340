@@ -1,15 +1,8 @@
 package edu.gatech.mule.game.map.maps;
 
-import edu.gatech.mule.game.map.Map;
+import edu.gatech.mule.game.map.GameMap;
 
-/**
- * 
- * Representation of the main game map
- * 
- * @version 1.0
- *
- */
-public class GameMap extends Map {
+public class RandomGameMap extends GameMap {
 
 	/**
 	 * Generates the game map

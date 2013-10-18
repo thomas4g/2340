@@ -1,6 +1,6 @@
 package edu.gatech.mule.game.map.maps;
 
-import edu.gatech.mule.game.map.Map;
+import edu.gatech.mule.game.map.GameMap;
 
 /**
  * 
@@ -9,7 +9,7 @@ import edu.gatech.mule.game.map.Map;
  * @version 1.0
  *
  */
-public class TownMap extends Map {
+public class TownMap extends GameMap {
 
 	/**
 	 * Generates the town map

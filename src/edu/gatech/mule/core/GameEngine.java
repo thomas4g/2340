@@ -1,6 +1,11 @@
 package edu.gatech.mule.core;
 
+import tiled.core.Map;
 import edu.gatech.mule.game.Settings;
+import edu.gatech.mule.game.Settings.MapType;
+import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.maps.DefaultGameMap;
+import edu.gatech.mule.game.map.maps.RandomGameMap;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
@@ -15,8 +20,10 @@ import edu.gatech.mule.screen.ScreenHandler.ScreenType;
  */
 public class GameEngine {
 	
-	public ScreenHandler screenHandler;
+	private ScreenHandler screenHandler;
 	private Settings settings;
+	private GameMap gameMap;
+	private GameMap townMap;
 	
 	/**
 	 * Sets up the screen handler and instantiates the settings.
@@ -31,6 +38,14 @@ public class GameEngine {
 		
 		screenHandler.load(this);
 		screenHandler.start();
+	}
+	
+	public Map getGameMap() {
+		return gameMap.getMap();
+	}
+	
+	public Map getTownMap() {
+		return townMap.getMap();
 	}
 	
 	public void disposeScreen(ScreenType type) {
@@ -54,27 +69,33 @@ public class GameEngine {
 	/**
 	 * Shows the screen for choosing race
 	 */
-	public void chooseRace(){
+	public void chooseRace() {
 		screenHandler.setScreen(ScreenType.RACE_SELECT);
 	}
 	
 	/**
-	 * Shows the screen for ???
+	 * Shows the screen for
 	 */
-	public void choosePlayer(){
+	public void choosePlayer() {
 		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
 	}
 	
 	/**
-	 * Shows the screen of the main map ???
+	 * Shows the screen of the main map
 	 */
 	public void playGame() {
 		settings.printSettings();
+//		townMap = new TownMap();
+		if(settings.getMapType().equals(MapType.DEFAULT)) {
+			gameMap = new DefaultGameMap();
+		} else if(settings.getMapType().equals(MapType.RANDOM)) {
+			gameMap = new RandomGameMap();
+		}
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	/**
-	 * Gets the settings ???
+	 * Gets the settings
 	 */
 	public Settings getSettings() {
 		return settings;

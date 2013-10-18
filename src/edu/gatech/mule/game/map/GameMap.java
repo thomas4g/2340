@@ -1,5 +1,7 @@
 package edu.gatech.mule.game.map;
 
+import tiled.core.Map;
+
 /**
  * 
  * General set up for a map
@@ -7,24 +9,29 @@ package edu.gatech.mule.game.map;
  * @version 1.0
  *
  */
-public abstract class Map {
+public abstract class GameMap {
 
-	protected Tile[][] tiles;
+	protected GameTile[][] tiles;
+	protected Map map;
 	
 	/**
 	 * Constructor for the map
 	 */
-	public Map() {
+	public GameMap() {
 		generateMap();
 	}
 	
 	/**
-	 * Gets map
+	 * Gets the tiles in the map
 	 * 
-	 * @return the map
+	 * @return the array of tiles
 	 */
-	public Tile[][] getTiles() {
+	public GameTile[][] getTiles() {
 		return tiles;
+	}
+	
+	public Map getMap() {
+		return map;
 	}
 	
 	/**

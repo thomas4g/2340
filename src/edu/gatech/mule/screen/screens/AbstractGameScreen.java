@@ -14,6 +14,10 @@ public abstract class AbstractGameScreen implements IScreen {
 		this.settings = game.getSettings();
 	}
 	
+	public void done() {
+		
+	}
+	
 	//TODO add all the map stuff here later
 	
 }

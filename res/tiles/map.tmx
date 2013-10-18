@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="9" height="5" tilewidth="80" tileheight="80">
+ <tileset firstgid="1" name="tiles" tilewidth="80" tileheight="80">
+  <image source="tileset.png" width="400" height="80"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="plain"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="mountain1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="mountain2"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="mountain3"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="6" name="rivertiles" tilewidth="80" tileheight="80">
+  <image source="rivertileset.png" width="240" height="400"/>
+  <tile id="0">
+   <properties>
+    <property name="animated" value="r1f1"/>
+    <property name="frame" value="1"/>
+    <property name="tile" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="animated" value="r1f2"/>
+    <property name="frame" value="2"/>
+    <property name="tile" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="animated" value="r1f3"/>
+    <property name="frame" value="3"/>
+    <property name="tile" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="animated" value="r2f1"/>
+    <property name="frame" value="1"/>
+    <property name="tile" value="2"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="animated" value="r2f2"/>
+    <property name="frame" value="2"/>
+    <property name="tile" value="2"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="animated" value="r2f3"/>
+    <property name="frame" value="3"/>
+    <property name="tile" value="2"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="animated" value="r3f1"/>
+    <property name="frame" value="1"/>
+    <property name="tile" value="3"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="animated" value="r3f2"/>
+    <property name="frame" value="2"/>
+    <property name="tile" value="3"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="animated" value="r3f3"/>
+    <property name="frame" value="3"/>
+    <property name="tile" value="3"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="animated" value="r4f1"/>
+    <property name="frame" value="1"/>
+    <property name="tile" value="4"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="animated" value="r4f2"/>
+    <property name="frame" value="2"/>
+    <property name="tile" value="4"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="animated" value="r4f3"/>
+    <property name="frame" value="3"/>
+    <property name="tile" value="4"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="animated" value="r5f1"/>
+    <property name="frame" value="1"/>
+    <property name="tile" value="5"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="animated" value="r5f2"/>
+    <property name="frame" value="2"/>
+    <property name="tile" value="5"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="animated" value="r5f3"/>
+    <property name="frame" value="3"/>
+    <property name="tile" value="5"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="9" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYARiJijNBqVZoDQjmjwIc6LJsWBRz4NDPzOSGD8WMUY0MSEs4gAngAB5
+  </data>
+ </layer>
+</map>

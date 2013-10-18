@@ -1,52 +1,28 @@
 package edu.gatech.mule.fx.screens;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.canvas.Canvas;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.screens.AbstractGameScreen;
+import edu.gatech.mule.fx.graphics.FXGraphics;
+import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 
-/**
- * 
- * FX game screen ???
- * 
- * @version 1.0
- *
- */
-public class FXGameScreen extends AbstractGameScreen implements Initializable {
+public class FXGameScreen extends Parent {
 
-	/**
-	 * ???
-	 * 
-	 * @param game
-	 * @param settings
-	 */
-	public FXGameScreen(GameEngine game) {
-		super(game);
-		// TODO Auto-generated constructor stub
+	private Canvas mapCanvas;
+	private FXGraphics graphics;
+	private OrthogonalMapRenderer mapRenderer;
+	
+	public FXGameScreen(GameEngine engine) {
+		mapCanvas = new Canvas(720, 400);
+		graphics = new FXGraphics(mapCanvas.getGraphicsContext2D());
+		mapRenderer = new OrthogonalMapRenderer(engine.getGameMap());
+		this.getChildren().add(mapCanvas);
+		renderMap();
 	}
-
-	/**
-	 * ???
-	 */
-	@Override
-	public void done() {
-		// TODO Auto-generated method stub
-
+	
+	public void renderMap() {
+		mapRenderer.render(graphics);
 	}
-
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param location
-	 * @param resource
-	 */
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	
 }

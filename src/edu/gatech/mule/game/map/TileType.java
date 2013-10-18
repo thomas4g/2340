@@ -43,7 +43,7 @@ public enum TileType {
 	/**
 	 * ???
 	 */
-	public boolean purchasable() {
+	public boolean isPurchasable() {
 		return this.purchasable;
 	}
 	
@@ -74,6 +74,4 @@ public enum TileType {
 	public String getFileName() {
 		return this.fileName;
 	}
-	
-	//needs variables and accessors
 }

@@ -1,16 +1,13 @@
 package edu.gatech.mule.fx;
 
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.graphics.Graphics;
 import edu.gatech.mule.fx.screens.FXGameScreen;
 import edu.gatech.mule.fx.screens.FXPlayerScreen;
 import edu.gatech.mule.fx.screens.FXRaceSelectScreen;
@@ -27,7 +24,8 @@ import edu.gatech.mule.screen.ScreenHandler;
  */
 public class FXScreenHandler extends ScreenHandler {
 	
-	private Graphics graphics;
+	private static final String FXML_DIR = "/format/";
+	
 	private GameEngine game;
 	private StackPane stack;
 	private HashMap<ScreenType, Node> screens;
@@ -45,51 +43,34 @@ public class FXScreenHandler extends ScreenHandler {
 		screens = new HashMap<ScreenType, Node>();
 		classes = new HashMap<ScreenType, Class<?>>();
 		stack = new StackPane();
-		Graphics.view = stack; 
+		FXApplication.view = stack; //TODO this is bad
 		loadScreens();
 		setScreen(ScreenType.START);
 	}
 
 	/**
-	 * ???
+	 * starts the javafx stage
 	 */
 	@Override
 	public void start() {
-		javafx.application.Application.launch(Graphics.class);
+		javafx.application.Application.launch(FXApplication.class);
 	}
 	
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param type
-	 * @param controller
-	 * 
-	 */
-	private boolean loadScreen(ScreenType type, Initializable controller) {
-	    try{
-	    	String resource = "/format/" + type.name().toLowerCase() + ".fxml";
-	    	FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
-	    	System.out.println(resource);
-	        myLoader.setController(controller);
-	        Parent node = (Parent) myLoader.load();
-	        screens.put(type, node);
-	        return true;
-	    }
-	    catch(IOException io) {
-	    	return false;
-	    }
-	    catch(Exception e) {
-	    	e.printStackTrace();
-	        return false;
-	    }
+	public StackPane getScreenStack() {
+		return stack;
 	}
 	    
        
 	/**
-	 * Loads screens upon game start
+	 * Loads the screen classes upon game start
 	 */
 	private void loadScreens() {
+//		screens.put(ScreenType.START, new FXStartScreen(game));
+//		screens.put(ScreenType.SETTINGS, new FXSettingsScreen(game));
+//		screens.put(ScreenType.RACE_SELECT, new FXRaceSelectScreen(game));
+//		screens.put(ScreenType.PLAYER_SCREEN, new FXPlayerScreen(game));
+//		screens.put(ScreenType.GAME_SCREEN, new FXGameScreen(game));
+		
 		classes.put(ScreenType.START, FXStartScreen.class);
 		classes.put(ScreenType.SETTINGS, FXSettingsScreen.class);
 		classes.put(ScreenType.RACE_SELECT, FXRaceSelectScreen.class);
@@ -97,39 +78,47 @@ public class FXScreenHandler extends ScreenHandler {
 		classes.put(ScreenType.GAME_SCREEN, FXGameScreen.class);
 	}
 	
+	/**
+	 * Removes the screen from the screen stack
+	 */
 	public void disposeScreen(ScreenType type) {
 		if(!screens.containsKey(type))
 			return;					
 		screens.remove(type);
 	}
 	
+	public void setScreen(Parent node) {
+		if(!stack.getChildren().isEmpty()){
+	    	stack.getChildren().remove(0);    
+	        stack.getChildren().add(0, node);
+	    } else {
+	    	stack.getChildren().add(node);
+	    }
+	}
+	
 	/**
-	 * ???
+	 * Changes the currently displayed screen
 	 * 
-	 * @param type
+	 * @param type the Screen Type
 	 */
-	//TODO exception handling
 	@Override
 	public void setScreen(ScreenType type) {
 		try {
 			if(screens.get(type) == null) {
 				Class<?> clazz = classes.get(type);
 				Constructor<?> con = clazz.getConstructor(GameEngine.class);
-				Initializable controller = (Initializable)con.newInstance(game);
-				loadScreen(type, controller);
+				Parent node = (Parent)con.newInstance(game);
+				screens.put(type, node);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		if(screens.get(type) != null){
-			//If there is more than one screen
 		    if(!stack.getChildren().isEmpty()){
 		    	stack.getChildren().remove(0);    
 		        stack.getChildren().add(0, screens.get(type));
-		    }
-		    else{
-		    	//no one else been displayed, then just show
+		    } else {
 		    	stack.getChildren().add(screens.get(type));
 		    }
 		}
