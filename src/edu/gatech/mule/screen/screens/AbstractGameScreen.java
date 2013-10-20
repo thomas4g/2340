@@ -18,6 +18,7 @@ public abstract class AbstractGameScreen implements IScreen {
 		
 	}
 	
+	public abstract void renderMap();
 	//TODO add all the map stuff here later
 	
 }

@@ -32,11 +32,13 @@ public class GameEngine {
 	 * @param screenHandler, the screen handler of the program.
 	 * 
 	 */
-	public GameEngine(ScreenHandler screenHandler) {
-		this.screenHandler = screenHandler;
-		this.settings = new Settings();
-		
-		screenHandler.load(this);
+	public GameEngine() {
+		this.settings = new Settings();		
+	}
+	
+	public void load(ScreenHandler handler) {
+		this.screenHandler = handler;
+		screenHandler.load();
 		screenHandler.start();
 	}
 	
@@ -48,9 +50,9 @@ public class GameEngine {
 		return townMap.getMap();
 	}
 	
-	public void disposeScreen(ScreenType type) {
-		screenHandler.disposeScreen(type);
-	}
+//	public void disposeScreen(ScreenType type) {
+//		screenHandler.disposeScreen(type);
+//	}
 	
 	/**
 	 * Shows the main screen

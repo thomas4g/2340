@@ -1,7 +1,9 @@
 package edu.gatech.mule.screen;
 
-import javafx.scene.Parent;
+import java.util.HashMap;
+
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.*;
 
 /**
  * 
@@ -12,31 +14,34 @@ import edu.gatech.mule.core.GameEngine;
  */
 public abstract class ScreenHandler {
 	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, GAME_SCREEN };
+	protected HashMap<ScreenType, IScreen> screens;
+	protected GameEngine game;
 	
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param type
-	 * 
-	 */
-	public abstract void setScreen(ScreenType type);
+	public ScreenHandler(GameEngine game) {
+		this.game = game;
+		this.screens = new HashMap<ScreenType, IScreen>();
+	}
 	
-	public abstract void setScreen(Parent node);
+	public final void load() {
+		screens.put(ScreenType.START, loadStartScreen());
+		screens.put(ScreenType.SETTINGS, loadSettingsScreen());
+		screens.put(ScreenType.RACE_SELECT, loadRaceSelectScreen());
+		screens.put(ScreenType.PLAYER_SCREEN, loadPlayerScreen());
+		screens.put(ScreenType.GAME_SCREEN, loadGameScreen());
+		setScreen(ScreenType.START);
+	}
+
+	protected abstract AbstractStartScreen loadStartScreen();
+	protected abstract AbstractSettingsScreen loadSettingsScreen();
+	protected abstract AbstractRaceSelectScreen loadRaceSelectScreen();
+	protected abstract AbstractPlayerScreen loadPlayerScreen();
+	protected abstract AbstractGameScreen loadGameScreen();
+
+
+	public void setScreen(ScreenType type) {
+		screens.get(type).display();
+	};
+		
 	
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param g
-	 * 
-	 */
-	public abstract void load(GameEngine g);
-	
-	public abstract void disposeScreen(ScreenType type);
-	
-	/**
-	 * ???
-	 */
 	public abstract void start();
 }

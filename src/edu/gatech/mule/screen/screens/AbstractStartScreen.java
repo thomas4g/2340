@@ -11,7 +11,7 @@ public abstract class AbstractStartScreen implements IScreen {
 		this.engine = engine;
 	}
 	
-	public void done() {
+	public final void dispose() {
 		engine.chooseSettings();
 	}
 	

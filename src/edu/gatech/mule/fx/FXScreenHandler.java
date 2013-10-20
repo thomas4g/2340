@@ -8,12 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.FXGameScreen;
-import edu.gatech.mule.fx.screens.FXPlayerScreen;
-import edu.gatech.mule.fx.screens.FXRaceSelectScreen;
-import edu.gatech.mule.fx.screens.FXSettingsScreen;
-import edu.gatech.mule.fx.screens.FXStartScreen;
-import edu.gatech.mule.screen.ScreenHandler;
+import edu.gatech.mule.screen.*;
+import edu.gatech.mule.screen.screens.*;
+import edu.gatech.mule.fx.screens.*;
 
 /**
  * 
@@ -26,26 +23,12 @@ public class FXScreenHandler extends ScreenHandler {
 	
 	private static final String FXML_DIR = "/format/";
 	
-	private GameEngine game;
 	private StackPane stack;
-	private HashMap<ScreenType, Node> screens;
-	private HashMap<ScreenType, Class<?>> classes;
-	
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param game
-	 */
-	@Override
-	public void load(GameEngine game) {
-		this.game = game;
-		screens = new HashMap<ScreenType, Node>();
-		classes = new HashMap<ScreenType, Class<?>>();
+
+	public FXScreenHandler(GameEngine game) {
+		super(game);
 		stack = new StackPane();
 		FXApplication.view = stack; //TODO this is bad
-		loadScreens();
-		setScreen(ScreenType.START);
 	}
 
 	/**
@@ -56,73 +39,59 @@ public class FXScreenHandler extends ScreenHandler {
 		javafx.application.Application.launch(FXApplication.class);
 	}
 	
-	public StackPane getScreenStack() {
-		return stack;
-	}
 	    
-       
-	/**
-	 * Loads the screen classes upon game start
-	 */
-	private void loadScreens() {
-//		screens.put(ScreenType.START, new FXStartScreen(game));
-//		screens.put(ScreenType.SETTINGS, new FXSettingsScreen(game));
-//		screens.put(ScreenType.RACE_SELECT, new FXRaceSelectScreen(game));
-//		screens.put(ScreenType.PLAYER_SCREEN, new FXPlayerScreen(game));
-//		screens.put(ScreenType.GAME_SCREEN, new FXGameScreen(game));
-		
-		classes.put(ScreenType.START, FXStartScreen.class);
-		classes.put(ScreenType.SETTINGS, FXSettingsScreen.class);
-		classes.put(ScreenType.RACE_SELECT, FXRaceSelectScreen.class);
-		classes.put(ScreenType.PLAYER_SCREEN, FXPlayerScreen.class);
-		classes.put(ScreenType.GAME_SCREEN, FXGameScreen.class);
-	}
+//	/**
+//	 * Removes the screen from the screen stack
+//	 */
+//	public void disposeScreen(ScreenType type) {
+//		if(!screens.containsKey(type))
+//			return;					
+//		screens.remove(type);
+//	}
 	
 	/**
-	 * Removes the screen from the screen stack
+	 * TODO Move all of this to the display method
 	 */
-	public void disposeScreen(ScreenType type) {
-		if(!screens.containsKey(type))
-			return;					
-		screens.remove(type);
-	}
-	
-	public void setScreen(Parent node) {
+	public void setScreen(ScreenType type) {
+		FXScreen scr = (FXScreen)screens.get(type);
+		scr.load();
+		Node node = scr.getNode();
+
 		if(!stack.getChildren().isEmpty()){
 	    	stack.getChildren().remove(0);    
+//			stack.getChildren().clear();
 	        stack.getChildren().add(0, node);
 	    } else {
 	    	stack.getChildren().add(node);
 	    }
-	}
-	
-	/**
-	 * Changes the currently displayed screen
-	 * 
-	 * @param type the Screen Type
-	 */
-	@Override
-	public void setScreen(ScreenType type) {
-		try {
-			if(screens.get(type) == null) {
-				Class<?> clazz = classes.get(type);
-				Constructor<?> con = clazz.getConstructor(GameEngine.class);
-				Parent node = (Parent)con.newInstance(game);
-				screens.put(type, node);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		
-		if(screens.get(type) != null){
-		    if(!stack.getChildren().isEmpty()){
-		    	stack.getChildren().remove(0);    
-		        stack.getChildren().add(0, screens.get(type));
-		    } else {
-		    	stack.getChildren().add(screens.get(type));
-		    }
-		}
+		super.setScreen(type);
 	}
+
 	
+	@Override
+	protected AbstractStartScreen loadStartScreen() {
+		return new FXStartScreen(game);
+	}
+
+	@Override
+	protected AbstractSettingsScreen loadSettingsScreen() {
+		return new FXSettingsScreen(game);
+	}
+
+	@Override
+	protected AbstractRaceSelectScreen loadRaceSelectScreen() {
+		return new FXRaceSelectScreen(game);
+	}
+
+	@Override
+	protected AbstractPlayerScreen loadPlayerScreen() {
+		return new FXPlayerScreen(game);
+	}
+
+	@Override
+	protected AbstractGameScreen loadGameScreen() {
+		return new FXGameScreen(game);
+	}
 
 }

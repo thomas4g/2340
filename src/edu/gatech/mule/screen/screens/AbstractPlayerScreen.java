@@ -16,7 +16,7 @@ public abstract class AbstractPlayerScreen implements IScreen {
 	}
 	
 	public void nextPlayer(){
-		game.disposeScreen(ScreenType.PLAYER_SCREEN);
+//		game.disposeScreen(ScreenType.PLAYER_SCREEN);
 		game.chooseRace();
 	}
 	
