@@ -1,6 +1,5 @@
 package edu.gatech.mule.game;
 
-
 /**
  * 
  * Library of character types
@@ -54,6 +53,7 @@ public enum CharacterType {
 	
 	
 	public static final String IMAGE_EXT = ".png";
+	public enum Direction{DOWN,UP,RIGHT,LEFT};
 	
 	private static final double MONEY = 1000;
 	private static final String IMAGE_PATH = "/assets";
@@ -84,7 +84,8 @@ public enum CharacterType {
 		this.money = money;
 		this.name = name;
 		
-		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0);
+		//need to add color here instead of + "1"
+		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0) + "1f";
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
 		
 	}
@@ -103,8 +104,13 @@ public enum CharacterType {
 		this(name, description, MONEY, defaultName);
 	}
 
-	public String getSprites() {
-		return sprites;
+	public String getStillSprite(Direction direction) {
+		return sprites + (3*direction.ordinal() + 1) + IMAGE_EXT;
+	}
+	
+	public String[] getDirectionalSprites(Direction direction) {
+		int base = 3*direction.ordinal() + 1;
+		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
 	}
 
 	public String getHeadshot() {

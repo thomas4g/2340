@@ -2,6 +2,7 @@ package edu.gatech.mule.game;
 
 import java.awt.Point;
 
+import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import javafx.scene.image.Image;
@@ -10,7 +11,6 @@ public abstract class Entity {
 
 	protected Image image;
 	protected Point location;
-	public enum Direction{LEFT,RIGHT,UP,DOWN};
 	protected Direction currentDir;
 	protected GameTile currentTile;
 	
