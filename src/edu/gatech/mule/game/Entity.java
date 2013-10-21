@@ -66,13 +66,14 @@ public abstract class Entity {
 		for(int i=0;i<frames.length;i++){
 			frames[i]=new Image(srcFrames[i]);
 		}
+		updateFrame();
 	}
 	
 	public Point getPosition(){
 		return location;
 	}
 
-	public void updateFrame(){
+	private void updateFrame(){
 		frameIndex=(frameIndex+1)%frames.length;
 		System.out.println(frameIndex);
 		image=frames[frameIndex];

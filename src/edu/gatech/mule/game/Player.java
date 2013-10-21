@@ -37,7 +37,7 @@ public class Player extends Entity {
 	@Override
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
-		setStillSprite();
+		setDirectionalFrames();
 	}
 	
 	public void setName(String name) {
