@@ -23,7 +23,7 @@ public class LandSelectController extends ScreenController {
 	private GameMap map;
 	
 	private int currentPlayer;
-	private int round;
+	private int round = 1;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
@@ -51,17 +51,19 @@ public class LandSelectController extends ScreenController {
 	}
 
 	@Override
-	public void action(){
+	public void action(){		
+		game.getPlayers().get(currentPlayer).addLand(map.getTile(location.x, location.y));
+		currentPlayer++;
+		if(currentPlayer >= game.getPlayers().size()) {
+			round++;
+			currentPlayer = 0;
+		}
+		setPlayer();
+		
 		if(round > FREE_ROUNDS) {
 			//for now, we're just moving straight to gameplay
 			//TODO implement paid land buying and a timer to detect a "pass"
 			game.gameplay();
-		}
-		else {
-			game.getPlayers().get(currentPlayer).addLand(map.getTile(location.x, location.y));
-			currentPlayer = ++currentPlayer % game.getPlayers().size();
-			setPlayer();
-			round++;
 		}
 	}
 

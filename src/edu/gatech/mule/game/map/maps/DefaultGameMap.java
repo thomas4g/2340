@@ -40,7 +40,7 @@ public class DefaultGameMap extends GameMap {
 		
 		TileLayer layer = (TileLayer)map.getLayer(0);
 
-		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
+		tiles = new PropertyTile[layer.getWidth()][layer.getHeight()];
 		for(int x=0; x<layer.getWidth(); x++) {
 			for(int y=0; y<layer.getHeight(); y++) {
 				Tile tile = layer.getTileAt(x, y);

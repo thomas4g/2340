@@ -8,6 +8,7 @@ import tiled.core.Tile;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.*;
+import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * 
@@ -74,6 +75,7 @@ public class Player extends Entity {
 	
 	public void addLand(Tile tile){
 		ownedLands.add(tile);
+		((PropertyTile)tile).setOwner(this);
 	}
 	
 	public ArrayList<Tile> getLands(){
