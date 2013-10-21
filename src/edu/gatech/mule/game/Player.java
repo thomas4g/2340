@@ -2,6 +2,7 @@ package edu.gatech.mule.game;
 
 import java.awt.Point;
 
+import javafx.scene.image.Image;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
@@ -13,24 +14,23 @@ import edu.gatech.mule.game.map.GameTile;
  * 
  *
  */
-public class Player {
+public class Player extends Entity {
 	
 	private CharacterType type;
 	private Color color;
 	private String name;
-	private Point position;
 	private GameTile currentTile;
-	public enum Direction{LEFT,RIGHT,UP,DOWN};
-	private Direction currentDirection;
+	
+
 	
 	/**
 	 * Constructor for player based on player type
 	 * 
 	 * @param type, the character type of the player
 	 */
-	public Player(CharacterType type) {
+	public Player(CharacterType type,Image image,Point location,GameTile tile) {
+		super(image,location,tile);
 		this.type = type;
-		position=new Point(0, 0); //Need to figure out where the character starts by default
 		//Need to set a default tile here
 	}
 	
@@ -54,27 +54,4 @@ public class Player {
 		return type;
 	}
 	
-	public void move(int deltaX,int deltaY){
-		position.x+=deltaX;
-		position.y+=deltaY;
-	}
-	
-	public void setDirection(Direction dir){
-		currentDirection=dir;
-	}
-	
-	public void draw(){
-		
-	}
-	
-	public void setCurrentTile(GameMap map){
-		int xTilePos=(int)(position.getX()/map.getTileWidth());
-		int yTilePos=(int)(position.getY()/map.getTileHeight());
-		currentTile=map.getTile(xTilePos, yTilePos);
-	}
-		
-	public GameTile getCurrentTile(){
-		
-		return currentTile;
-	}
 }
