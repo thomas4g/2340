@@ -24,7 +24,7 @@ public class Player extends Entity {
 	private Color color;
 	private String name;
 	private GameTile currentTile;
-	private ArrayList<Tile> ownedLands;
+	private ArrayList<GameTile> ownedLands;
 	
 	/**
 	 * Constructor for player based on player type
@@ -73,12 +73,12 @@ public class Player extends Entity {
 		setFrames(type.getDirectionalSprites(direction));
 	}
 	
-	public void addLand(Tile tile){
+	public void addLand(GameTile tile){
 		ownedLands.add(tile);
-		((PropertyTile)tile).setOwner(this);
+		tile.setOwner(this);
 	}
 	
-	public ArrayList<Tile> getLands(){
+	public ArrayList<GameTile> getLands(){
 		return ownedLands;
 	}
 	
