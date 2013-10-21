@@ -43,7 +43,7 @@ public class LandSelectController extends ScreenController {
 				y = y == 0 ? 0 : y / Math.abs(y);
 				location.translate(x, y);
 				((FXMapView) view).render();
-				((FXMapView) view).drawSelector(location);
+				((FXMapView) view).drawSelector(location,settings.getCurrentPlayer().getColor());
 			}else{
 				view.setController(new GameplayController(game, view));
 			}
@@ -66,13 +66,6 @@ public class LandSelectController extends ScreenController {
 		settings.getCurrentPlayer().addLand(map.getTile(location.x, location.y));
 		nextPlayer();
 	}
-	
-	private void printPlayerStuff(){
-		for(Player p: settings.getPlayers()){
-			for(Tile t: p.getLands()){
-				System.out.println(t);
-			}
-		}
-	}
+
 
 }
