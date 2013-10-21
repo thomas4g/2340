@@ -18,7 +18,27 @@ public class Settings {
 	 */
 	public enum Difficulty { BEGINNER, STANDARD, ADVANCED };
 	public enum MapType { DEFAULT, RANDOM };
-	public enum Color { PURPLE, BLUE, TEAL, SEAFOAM, GREEN, GOLD, ORANGE, MAROON };
+	public enum Color { 
+		PURPLE(145,85,134),
+		BLUE(83,99,141), 
+		TEAL(66,110,125), 
+		SEAFOAM(86,136,126), 
+		GREEN(97,149,75), 
+		GOLD(143,142,74), 
+		ORANGE(157,108,56), 
+		MAROON(123,63,59); 
+		
+		public final int red;
+		public final int green;
+		public final int blue;
+	
+		Color(int red,int green,int blue){
+			this.red=red;
+			this.green=green;
+			this.blue=blue;
+		}
+		
+	};
 	
 	/**
 	 * Map type

@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import tiled.core.Tile;
 import tiled.util.ImageHelper;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.graphics.Renderer;
 
@@ -28,12 +29,14 @@ public class FXGraphics implements Renderer {
 
 	private GraphicsContext gc;
 	private HashMap<java.awt.Image, Image> convertedImages;
+
 	
 	public FXGraphics(GraphicsContext gc) {
 		this.gc = gc;
 		convertedImages = new HashMap<java.awt.Image, Image>();
 	}
-
+	
+	
 	@Override
 	public void translate(int x, int y) {
 		gc.translate(x, y);
@@ -65,8 +68,9 @@ public class FXGraphics implements Renderer {
 		drawImage(image, position, image.getWidth(), image.getHeight());
 	}
 	
-	public void drawSelector(Point location){
+	public void drawSelector(Point location,Color color){
 		gc.setLineWidth(3);
+		gc.setFill(color);
 		gc.strokeRect(location.getX()*OrthogonalMapRenderer.TILE_WIDTH, location.getY()*OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_HEIGHT);
 		
 	}

@@ -6,8 +6,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import tiled.core.Map;
-import tiled.core.Tile;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -18,9 +16,9 @@ import javafx.scene.text.Text;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
-import edu.gatech.mule.screen.screens.controllers.*;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
@@ -54,7 +52,7 @@ public class FXMapView extends FXView implements MapView {
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
-		graphics.drawSelector(new Point(0,0));
+		graphics.drawSelector(new Point(0,0),null);
 	}
 	
 	
@@ -104,6 +102,10 @@ public class FXMapView extends FXView implements MapView {
 		drawCurrentPlayer();
 	}
 
+	public void drawSelector(Point location, Color color) {
+		graphics.drawSelector(location,new javafx.scene.paint.Color(color.red, color.green, color.blue, 1));
+	}
+	
 	private void drawCurrentPlayer() {
 		if(currentPlayer != null) {
 			BufferedImage hs = currentPlayer.getHeadshot();
@@ -114,9 +116,6 @@ public class FXMapView extends FXView implements MapView {
 		}
 	}
 	
-	public void drawSelector(Point location) {
-		graphics.drawSelector(location);
-	}
 	
 	@Override
 	public void setGameMap(GameMap gameMap) {
