@@ -1,6 +1,7 @@
 package edu.gatech.mule.game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,16 +31,13 @@ public class Settings {
 	private MapType mapType;
 	private List<Player> players;
 	private int playerCount;
-	private int currentPlayer;
-	private boolean playersLoaded;
+	private Player currentPlayer;
 	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
 		players = new ArrayList<Player>();
-		currentPlayer=0;
-		playersLoaded=false;
 	}
 	
 	/**
@@ -93,7 +91,6 @@ public class Settings {
 	 * @param type, a character type
 	 */
 	public void addPlayer(Player player) {
-		System.out.println(currentPlayer);
 		players.add(player);
 	}
 	
@@ -114,32 +111,23 @@ public class Settings {
 	/**
 	 * ???
 	 */
-	public void setCurrentPlayer(int playerIndex){
-		currentPlayer=playerIndex;
+	public void setCurrentPlayer(Player player){
+		currentPlayer = player;
 	}
 	
 	/**
 	 * ???
 	 */
 	public Player getCurrentPlayer(){
-		return players.get(currentPlayer);
+		return currentPlayer;
 	}
-	
+		
 	public void nextPlayer(){
-		currentPlayer++;
-		if(currentPlayer>=playerCount) {
-			System.out.println("max players");
-			playersLoaded=true;
-		}
+		
 	}
 	
-	public void resetPlayers(){
-		playersLoaded=false;
-		currentPlayer=0;
-	}
-	
-	public boolean playersLoaded(){
-		return playersLoaded;
+	public Iterator<Player> playerIterator() {
+		return players.iterator();
 	}
 	
 	/**

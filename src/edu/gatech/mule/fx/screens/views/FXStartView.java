@@ -37,6 +37,6 @@ public class FXStartView extends FXView {
 	
     @FXML
     private void OnPress(ActionEvent event){
-    	controller.dispose();
+    	controller.done();
     }
 }

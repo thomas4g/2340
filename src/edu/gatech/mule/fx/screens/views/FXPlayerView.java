@@ -6,20 +6,14 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Color;
-import edu.gatech.mule.screen.screens.controllers.*;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
@@ -78,7 +72,8 @@ public class FXPlayerView extends FXView implements SettingsView {
 	@FXML
 	private void OnBack(ActionEvent event) {
 		settings.getPlayers().remove(settings.getCurrentPlayer());
-		controller.dispose();
+
+		controller.done();
 	}
 	
 	/**
@@ -91,7 +86,7 @@ public class FXPlayerView extends FXView implements SettingsView {
 	private void OnAdd(ActionEvent event){
 		settings.getCurrentPlayer().setColor(currentColor);
 		settings.getCurrentPlayer().setName(field.getText());
-		controller.dispose();
+		controller.done();
 	}
 	
 	/**

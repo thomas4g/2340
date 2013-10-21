@@ -2,12 +2,10 @@ package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import tiled.core.Tile;
+
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -36,7 +34,7 @@ public class LandSelectController extends ScreenController {
 	@Override
 	public void load() {
 		super.load();
-		map=game.getGameMap();
+		map = game.getGameMap();
 		view.setGameEntities(new ArrayList<Entity>());
 		view.setGameMap(map);
 		setPlayer();
@@ -49,11 +47,6 @@ public class LandSelectController extends ScreenController {
 		location.translate(x, y);
 		((FXMapView) view).render();
 		((FXMapView) view).drawSelector(location);
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -74,13 +67,10 @@ public class LandSelectController extends ScreenController {
 	private void setPlayer() {
 		view.setCurrentPlayer(game.getPlayers().get(currentPlayer));
 	}
-	
-	private void printPlayerStuff(){
-		for(Player p: game.getPlayers()){
-			for(Tile t: p.getLands()){
-				System.out.println(t);
-			}
-		}
-	}
 
+	@Override
+	public void done() {
+		// TODO Auto-generated method stub
+		
+	}
 }

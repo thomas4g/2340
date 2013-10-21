@@ -31,6 +31,10 @@ public abstract class GameTile extends Tile {
 		return type;
 	}
 	
+	public String toString() {
+		return type.toString();
+	}
+	
 	public abstract void action();
 	public abstract void onEnter();
 }

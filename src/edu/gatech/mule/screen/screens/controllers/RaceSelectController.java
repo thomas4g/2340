@@ -1,8 +1,6 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class RaceSelectController extends ScreenController{
@@ -21,7 +19,7 @@ public class RaceSelectController extends ScreenController{
 	}
 	
 	@Override
-	public void dispose(){
+	public void done(){
 		game.choosePlayer();
 	}
 	
