@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx.screens.views;
 
+import java.awt.Point;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,6 +45,7 @@ public class FXMapView extends FXView {
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
+		graphics.drawSelector(new Point(0,0));
 	}
 	
 	@Override
