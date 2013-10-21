@@ -10,16 +10,18 @@ import javafx.scene.image.Image;
 public abstract class Entity {
 
 	protected Image[] frames;
-	protected Image stillFrame;
+	protected Image image;
 	protected Point location;
 	protected Direction direction;
 	protected GameTile tile;
+	protected int frameIndex;
 	
 	public Entity(String imgPath,Point location,GameTile tile){
+		frameIndex=0;
 		this.location = location;
 		this.tile = tile;
 		this.direction = Direction.DOWN;
-		stillFrame=new Image(imgPath);
+		image=new Image(imgPath);
 	}
 	
 	
@@ -56,7 +58,7 @@ public abstract class Entity {
 	}
 	
 	public Image getImage(){
-		return stillFrame;
+		return image;
 	}
 	
 	public void setFrames(String[] srcFrames){
@@ -70,4 +72,10 @@ public abstract class Entity {
 		return location;
 	}
 
+	public void updateFrame(){
+		frameIndex=(frameIndex+1)%frames.length;
+		System.out.println(frameIndex);
+		image=frames[frameIndex];
+	}
+	
 }

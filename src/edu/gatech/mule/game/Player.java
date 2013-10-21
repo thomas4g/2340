@@ -31,6 +31,7 @@ public class Player extends Entity {
 		//Add color later
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
+		setDirectionalFrames();
 	}
 	
 	@Override
@@ -60,7 +61,7 @@ public class Player extends Entity {
 	}
 	
 	public void setStillSprite(){
-		stillFrame=new Image(type.getStillSprite(direction));
+		image=new Image(type.getStillSprite(direction));
 	}
 	
 	public void setDirectionalFrames(){
