@@ -113,8 +113,8 @@ public enum CharacterType {
 		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
 	}
 
-	public String getHeadshot() {
-		return headshot;
+	public String getHeadshot(int color) {
+		return headshot + color + IMAGE_EXT;
 	}
 
 	public double getMoney() {

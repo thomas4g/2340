@@ -1,16 +1,21 @@
 package edu.gatech.mule.game;
 
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
-import javafx.scene.image.Image;
 
 public abstract class Entity {
 
-	protected Image[] frames;
-	protected Image image;
+	protected BufferedImage[] frames;
+	protected BufferedImage image;
 	protected Point location;
 	protected Direction direction;
 	protected GameTile tile;
@@ -21,7 +26,7 @@ public abstract class Entity {
 		this.location = location;
 		this.tile = tile;
 		this.direction = Direction.DOWN;
-		image=new Image(imgPath);
+		this.image = loadImage(imgPath);
 	}
 	
 	
@@ -57,14 +62,14 @@ public abstract class Entity {
 		return tile;
 	}
 	
-	public Image getImage(){
+	public BufferedImage getImage(){
 		return image;
 	}
 	
 	public void setFrames(String[] srcFrames){
-		frames=new Image[srcFrames.length];
+		frames=new BufferedImage[srcFrames.length];
 		for(int i=0;i<frames.length;i++){
-			frames[i]=new Image(srcFrames[i]);
+			frames[i] = loadImage(srcFrames[i]);
 		}
 		updateFrame();
 	}
@@ -77,6 +82,15 @@ public abstract class Entity {
 		frameIndex=(frameIndex+1)%frames.length;
 		System.out.println(frameIndex);
 		image=frames[frameIndex];
+	}
+	
+	protected BufferedImage loadImage(String src) {
+		try {
+			return ImageIO.read(Entity.class.getResource(src));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new BufferedImage(0,0,0);
+		}
 	}
 	
 }
