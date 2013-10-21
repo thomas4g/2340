@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.FXScreen;
+import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.screen.screens.AbstractPlayerScreen;
 
@@ -72,7 +73,7 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	 * ???
 	 */
 	private Image changeImage(){
-		return new Image(settings.getCurrentPlayer().getType().getResPrefix() + (currentColor.ordinal()+1) + ".png");
+		return new Image(settings.getCurrentPlayer().getType().getHeadshot() + (currentColor.ordinal()+1) + CharacterType.IMAGE_EXT);
 	}
 	
 	@FXML
@@ -123,7 +124,7 @@ public class FXPlayerScreen extends AbstractPlayerScreen implements Initializabl
 	public void initialize(URL location, ResourceBundle resources) {
 		imgView.setImage(changeImage());
 		charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
-		field.setText(settings.getCurrentPlayer().getType().getDefaultName());
+		field.setText(settings.getCurrentPlayer().getType().getName());
 	}
 
 	@Override

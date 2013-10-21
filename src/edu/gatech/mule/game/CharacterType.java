@@ -11,7 +11,7 @@ package edu.gatech.mule.game;
  *
  */
 public enum CharacterType {
-	
+
 	/**
 	 * Humanoid
 	 * 
@@ -21,9 +21,9 @@ public enum CharacterType {
 		"Though the empress herself is said to be a \n" 
 		+ "humanoid, the rest of her assumed race lives in \npoverty. " 
 		+ "Most humanoids work as farmers, servants,\nor men-for-hire.\n", 
-		600, "human.gif", "human_head.png", "Jimbo", "/assets/h"),
+		600, "Jimbo"),
 	
-	/**
+	/**z
 	 * Bonzoid
 	 * 
 	 * The monkey race that apparently reminds someone of Colonel Mustard.
@@ -31,17 +31,16 @@ public enum CharacterType {
 	BONZOID("Bonzoid", 
 			"Despite their bulky size, Bonzoids are a peaceful race. \n"
 			+ "Many work as tailors, blacksmiths, carpenters,  \nand shopowners.", 
-			"bonzoid.gif", "bonzoid_head.png", "Colonel Mustard", "/assets/b"),
+			"Colonel Mustard"),
 	/**
 	 * Mechtron
 	 * 
 	 * Playable only for AI
 	 */
-	MECHTRON("Mechtron", 
+	AUTOMATON("Automaton", 
 			"Mechtrons are machines created to do the will of the empress. \n" 
 			+ "They are stronger, faster, and more alter than any race in the empire. \n" 
-			+ "Players cannot control Mechtrons; selecting one creates an npc.", 
-			"mechtron.gif", "mechtron_head.png", "", ""),
+			+ "Players cannot control Mechtrons; selecting one creates an npc.", ""),
 	
 	/**
 	 * Flapper
@@ -51,18 +50,21 @@ public enum CharacterType {
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed\nof Flappers. " 
 			+ "Their race has accumulated vast riches by\nestablishing trade with far-off lands.", 
-			1600, "flapper.gif", "flapper.png", "Samantha", "/assets/f");
+			1600, "Samantha");
+	
+	
+	public static final String IMAGE_EXT = ".png";
 	
 	private static final double MONEY = 1000;
-	private static final String IMAGE_PATH = "resources/";
+	private static final String IMAGE_PATH = "/assets";
+	private static final String SPRITES = "/overmap walksprites/";
 	
-	private final String sprite;
+	private final String sprites;
 	private final String headshot;
 	private final double money;
+	private final String type;
 	private final String name;
-	private final String defaultName;
-	private final String descripion;
-	private final String resPrefix;
+	private final String description;
 
 	
 	/**
@@ -76,14 +78,15 @@ public enum CharacterType {
 	 * @param headshot, headshot filename
 	 * 
 	 */
-	CharacterType(String name, String description, double money, String sprite, String headshot, String defaultName, String resPrefix) {
-		this.sprite = IMAGE_PATH + sprite;
-		this.headshot = IMAGE_PATH + headshot;
+	CharacterType(String type, String description, double money, String name) {
+		this.type = type.toLowerCase();
+		this.description = description;
 		this.money = money;
-		this.descripion = description;
 		this.name = name;
-		this.defaultName = defaultName;
-		this.resPrefix = resPrefix;
+		
+		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0);
+		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
+		
 	}
 	
 	/**
@@ -96,12 +99,12 @@ public enum CharacterType {
 	 * @param headshot, headshot filename
 	 * 
 	 */
-	CharacterType(String name, String description, String sprite, String headshot, String defaultName, String resPrefix) {
-		this(name, description, MONEY, sprite, headshot, defaultName, resPrefix);
+	CharacterType(String name, String description, String defaultName) {
+		this(name, description, MONEY, defaultName);
 	}
 
-	public String getSprite() {
-		return sprite;
+	public String getSprites() {
+		return sprites;
 	}
 
 	public String getHeadshot() {
@@ -117,15 +120,7 @@ public enum CharacterType {
 	}
 
 	public String getDescripion() {
-		return descripion;
+		return description;
 	}
-	
-	public String getDefaultName() {
-		return this.defaultName;
-	}
-	
-	public String getResPrefix() {
-		return this.resPrefix;
-	}
-	
+
 }
