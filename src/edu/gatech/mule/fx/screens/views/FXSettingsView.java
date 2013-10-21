@@ -18,6 +18,7 @@ import edu.gatech.mule.game.Settings.Difficulty;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.controllers.SettingsController;
+import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * 
@@ -26,22 +27,21 @@ import edu.gatech.mule.screen.screens.controllers.SettingsController;
  * @version 1.0
  *
  */
-public class FXSettingsView extends FXView implements Initializable {
+public class FXSettingsView extends FXView implements SettingsView {
 	@FXML
 	private ComboBox<String> combo;
 	@FXML
 	private ToggleGroup mapType, difficulty;
 	private int playerCount;
-	private SettingsController controller;
+	private Settings settings;
 	
 	public FXSettingsView() {
 		super("settings");
 	}
 	
 	@Override
-	public void setController(ScreenController controller) {
-		super.setController(controller);
-		this.controller = (SettingsController)controller;
+	public void setSettings(Settings settings) {
+		this.settings = settings;
 	}
 	
 	/**
@@ -61,18 +61,18 @@ public class FXSettingsView extends FXView implements Initializable {
 	@FXML
 	public void onButtonClicked(ActionEvent event){
 		if(((RadioButton)mapType.getSelectedToggle()).getId().equals("default"))
-			controller.getSettings().setMapType(MapType.DEFAULT);
+			settings.setMapType(MapType.DEFAULT);
 		else if(((RadioButton)mapType.getSelectedToggle()).getId().equals("random"))
-			controller.getSettings().setMapType(MapType.RANDOM);
+			settings.setMapType(MapType.RANDOM);
 		
 		if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("beginner"))
-			controller.getSettings().setDifficulty(Difficulty.BEGINNER);
+			settings.setDifficulty(Difficulty.BEGINNER);
 		else if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("standard"))
-			controller.getSettings().setDifficulty(Difficulty.STANDARD);
+			settings.setDifficulty(Difficulty.STANDARD);
 		else if(((RadioButton)difficulty.getSelectedToggle()).getId().equals("advanced"))
-			controller.getSettings().setDifficulty(Difficulty.ADVANCED);
+			settings.setDifficulty(Difficulty.ADVANCED);
 		
-		controller.getSettings().setPlayerCount(playerCount);		
+		settings.setPlayerCount(playerCount);		
 		controller.dispose();
 	}
 }

@@ -2,7 +2,6 @@ package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
 import tiled.core.Tile;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
@@ -10,10 +9,14 @@ import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 
+
+/**
+ * Controls the land selection phase
+ * @author Thomas Shields
+ * @version 1.0
+ */
 public class LandSelectController extends ScreenController {
 	private Point location;
 	private MapView view;
@@ -36,14 +39,13 @@ public class LandSelectController extends ScreenController {
 		settings.resetPlayers();
 	}
 	
+	@Override
 	public final void move(int x, int y) {
-
-			x = x == 0 ? 0 : x / Math.abs(x);
-			y = y == 0 ? 0 : y / Math.abs(y);
-			location.translate(x, y);
-			((FXMapView) view).render();
-			((FXMapView) view).drawSelector(location);
-
+		x = x == 0 ? 0 : x / Math.abs(x);
+		y = y == 0 ? 0 : y / Math.abs(y);
+		location.translate(x, y);
+		((FXMapView) view).render();
+		((FXMapView) view).drawSelector(location);
 	}
 
 	@Override

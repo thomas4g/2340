@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.controllers.RaceSelectController;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
+import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * 
@@ -18,20 +20,18 @@ import edu.gatech.mule.screen.screens.controllers.ScreenController;
  * @version 1.0
  *
  */
-public class FXRaceSelectView extends FXView {
+public class FXRaceSelectView extends FXView implements SettingsView {
 
-	protected RaceSelectController controller;
+	protected Settings settings;
 	
 	public FXRaceSelectView() {
 		super("race_select");
 	}
 	
 	@Override
-	public void setController(ScreenController controller) {
-		super.setController(controller);
-		this.controller = (RaceSelectController)controller;
+	public void setSettings(Settings settings) {
+		this.settings = settings;
 	}
-	
 	/**
 	 * 
 	 * ???
@@ -50,7 +50,7 @@ public class FXRaceSelectView extends FXView {
 			c = CharacterType.HUMANOID;
 		
 		Player p = new Player(c);
-		controller.getSettings().addPlayer(p);
+		settings.addPlayer(p);
 		controller.dispose();
 	}
 	
