@@ -45,7 +45,11 @@ public class LandSelectController extends ScreenController {
 	public final void move(int x, int y) {
 
 		x = x == 0 ? 0 : x / Math.abs(x);
-		y = y == 0 ? 0 : y / Math.abs(y);
+		y = y == 0 ? 0 : y / Math.abs(y);		
+		x = location.x + x >= game.getGameMap().getTiles().length ? 0 : x;
+		y = location.y + y >= game.getGameMap().getTiles()[0].length ? 0 : y;
+		x = location.x + x < 0 ? 0 : x;
+		y = location.y + y < 0 ? 0 : y;
 		location.translate(x, y);
 		((FXMapView) view).render();
 		((FXMapView) view).drawSelector(location,game.getPlayers().get(currentPlayer).getColor());
