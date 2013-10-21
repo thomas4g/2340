@@ -53,7 +53,7 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 				if(k.getCode().isArrowKey()) {
 					move(
 							k.getCode() == KeyCode.LEFT ? -1 : k.getCode() == KeyCode.RIGHT ? 1 : 0,
-							k.getCode() == KeyCode.DOWN ? -1 : k.getCode() == KeyCode.UP ? 1 : 0);
+							k.getCode() == KeyCode.DOWN ? 1 : k.getCode() == KeyCode.UP ? -1 : 0);
 				}
 			}
 		});
@@ -100,9 +100,10 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 
 	@Override
 	public void render() {
-		if(null == mapRenderer)
+		if(null == mapRenderer) {
 			mapRenderer = new OrthogonalMapRenderer(game.getGameMap());
-		mapRenderer.render(graphics);
+			mapRenderer.render(graphics);
+		}
 		
 		for(Entity entity : entities) {
 			graphics.drawEntity(entity);

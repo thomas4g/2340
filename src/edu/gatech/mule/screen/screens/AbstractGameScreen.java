@@ -34,8 +34,8 @@ public abstract class AbstractGameScreen implements IScreen {
 			currentPlayer = players.get(0); 
 			entities.add(currentPlayer);
 		}
-		x = x == 0 ? 0 : x/x;
-		y = y == 0 ? 0 : y/y;
+		x = x == 0 ? 0 : x/Math.abs(x);
+		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(25*x, 25*y);
 		render();
 	}
