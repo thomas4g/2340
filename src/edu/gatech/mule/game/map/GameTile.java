@@ -1,9 +1,6 @@
 package edu.gatech.mule.game.map;
 
-import java.awt.Point;
-
 import tiled.core.Tile;
-import edu.gatech.mule.game.Player;
 
 /**
  * 
@@ -12,7 +9,7 @@ import edu.gatech.mule.game.Player;
  * @version 1.0
  *
  */
-public class GameTile extends Tile {
+public abstract class GameTile extends Tile {
 
 	protected TileType type;
 	
@@ -33,4 +30,7 @@ public class GameTile extends Tile {
 	public TileType getType() {
 		return type;
 	}
+	
+	public abstract void action();
+	public abstract void onEnter();
 }

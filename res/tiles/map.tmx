@@ -30,6 +30,7 @@
     <property name="animated" value="r1f1"/>
     <property name="frame" value="1"/>
     <property name="tile" value="1"/>
+    <property name="type" value="river"/>
    </properties>
   </tile>
   <tile id="1">
@@ -51,6 +52,7 @@
     <property name="animated" value="r2f1"/>
     <property name="frame" value="1"/>
     <property name="tile" value="2"/>
+    <property name="type" value="river"/>
    </properties>
   </tile>
   <tile id="4">
@@ -72,6 +74,7 @@
     <property name="animated" value="r3f1"/>
     <property name="frame" value="1"/>
     <property name="tile" value="3"/>
+    <property name="type" value="entertown"/>
    </properties>
   </tile>
   <tile id="7">
@@ -93,6 +96,7 @@
     <property name="animated" value="r4f1"/>
     <property name="frame" value="1"/>
     <property name="tile" value="4"/>
+    <property name="type" value="river"/>
    </properties>
   </tile>
   <tile id="10">
@@ -114,6 +118,7 @@
     <property name="animated" value="r5f1"/>
     <property name="frame" value="1"/>
     <property name="tile" value="5"/>
+    <property name="type" value="river"/>
    </properties>
   </tile>
   <tile id="13">
