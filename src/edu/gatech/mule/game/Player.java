@@ -1,14 +1,13 @@
 package edu.gatech.mule.game;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import tiled.core.Tile;
-import javafx.scene.image.Image;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
-import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.*;
 
 /**
  * 
@@ -19,6 +18,7 @@ import edu.gatech.mule.game.map.GameTile;
  */
 public class Player extends Entity {
 	
+	private BufferedImage headshot;
 	private CharacterType type;
 	private Color color;
 	private String name;
@@ -31,10 +31,10 @@ public class Player extends Entity {
 	 * @param type, the character type of the player
 	 */
 	public Player(CharacterType type) {
-		//Add color later
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
-		ownedLands=new ArrayList<>();
+		this.ownedLands=new ArrayList<>();
+		
 		setDirectionalFrames();
 	}
 	
@@ -65,7 +65,7 @@ public class Player extends Entity {
 	}
 	
 	public void setStillSprite(){
-		image=new Image(type.getStillSprite(direction));
+		image = loadImage(type.getStillSprite(direction));
 	}
 	
 	public void setDirectionalFrames(){
@@ -80,4 +80,10 @@ public class Player extends Entity {
 		return ownedLands;
 	}
 	
+	public BufferedImage getHeadshot() {
+		if(this.headshot == null) {
+			this.headshot = loadImage(type.getHeadshot(1));
+		}
+		return this.headshot;
+	}
 }

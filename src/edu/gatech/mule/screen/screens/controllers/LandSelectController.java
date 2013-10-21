@@ -18,16 +18,19 @@ import edu.gatech.mule.screen.screens.views.MapView;
  * @version 1.0
  */
 public class LandSelectController extends ScreenController {
+	private final static int FREE_ROUNDS = 2;
+	
 	private Point location;
 	private MapView view;
 	private GameMap map;
-	private Settings settings;
+	
+	private int currentPlayer;
+	private int round;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
 		this.view = view;
 		location = new Point(0,0);
-		settings=game.getSettings();
 	}
 	
 	@Override
@@ -36,43 +39,44 @@ public class LandSelectController extends ScreenController {
 		map=game.getGameMap();
 		view.setGameEntities(new ArrayList<Entity>());
 		view.setGameMap(map);
-		settings.resetPlayers();
+		setPlayer();
 	}
 	
 	@Override
 	public final void move(int x, int y) {
-		if (!settings.playersLoaded()) {
-			x = x == 0 ? 0 : x / Math.abs(x);
-			y = y == 0 ? 0 : y / Math.abs(y);
-			location.translate(x, y);
-			((FXMapView) view).render();
-			((FXMapView) view).drawSelector(location);
-		}
-		else{
-			game.gameplay();
-//			view.setController(new GameplayController(game, view));
-		}
+		x = x == 0 ? 0 : x / Math.abs(x);
+		y = y == 0 ? 0 : y / Math.abs(y);
+		location.translate(x, y);
+		((FXMapView) view).render();
+		((FXMapView) view).drawSelector(location);
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 	}
-	
-	private void nextPlayer(){
-		game.getSettings().nextPlayer();
-	}
-	
+
 	@Override
 	public void action(){
-		System.out.println(settings.getCurrentPlayer());
-		System.out.println(map);
-		settings.getCurrentPlayer().addLand(map.getTile(location.x, location.y));
-		nextPlayer();
+		if(round > FREE_ROUNDS) {
+			//for now, we're just moving straight to gameplay
+			//TODO implement paid land buying and a timer to detect a "pass"
+			game.gameplay();
+		}
+		else {
+			game.getPlayers().get(currentPlayer).addLand(map.getTile(location.x, location.y));
+			currentPlayer = ++currentPlayer % game.getPlayers().size();
+			setPlayer();
+			round++;
+		}
+	}
+	
+	private void setPlayer() {
+		view.setCurrentPlayer(game.getPlayers().get(currentPlayer));
 	}
 	
 	private void printPlayerStuff(){
-		for(Player p: settings.getPlayers()){
+		for(Player p: game.getPlayers()){
 			for(Tile t: p.getLands()){
 				System.out.println(t);
 			}

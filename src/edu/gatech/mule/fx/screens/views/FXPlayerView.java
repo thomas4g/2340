@@ -58,7 +58,7 @@ public class FXPlayerView extends FXView implements SettingsView {
 	 * ???
 	 */
 	private Image changeImage(){
-		return new Image(settings.getCurrentPlayer().getType().getHeadshot() + (currentColor.ordinal()+1) + CharacterType.IMAGE_EXT);
+		return new Image(settings.getCurrentPlayer().getType().getHeadshot(currentColor.ordinal()+1));
 	}
 	
 	@FXML

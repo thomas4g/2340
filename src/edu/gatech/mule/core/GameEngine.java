@@ -1,6 +1,9 @@
 package edu.gatech.mule.core;
 
+import java.util.List;
+
 import tiled.core.Map;
+import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
@@ -24,6 +27,7 @@ public class GameEngine {
 	private Settings settings;
 	private GameMap gameMap;
 	private GameMap townMap;
+	private List<Player> players;
 	
 	/**
 	 * Sets up the screen handler and instantiates the settings.
@@ -93,6 +97,9 @@ public class GameEngine {
 		} else if(settings.getMapType().equals(MapType.RANDOM)) {
 			gameMap = new RandomGameMap();
 		}
+
+		players = settings.getPlayers();
+		
 		screenHandler.setScreen(ScreenType.LAND_SELECT);
 	}
 	
@@ -105,6 +112,10 @@ public class GameEngine {
 	 */
 	public Settings getSettings() {
 		return settings;
+	}
+	
+	public List<Player> getPlayers() {
+		return players;
 	}
 	
 	
