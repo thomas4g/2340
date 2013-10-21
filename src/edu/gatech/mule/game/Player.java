@@ -29,6 +29,7 @@ public class Player extends Entity {
 	 * @param type, the character type of the player
 	 */
 	public Player(CharacterType type) {
+		//Add color later
 		super(type.getSprites() + "1f1" + CharacterType.IMAGE_EXT,new Point(0,0),null);
 		this.type = type;
 	}

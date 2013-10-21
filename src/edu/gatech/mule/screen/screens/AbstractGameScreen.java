@@ -11,7 +11,7 @@ import edu.gatech.mule.screen.IScreen;
 
 public abstract class AbstractGameScreen implements IScreen {
 
-	public final int MOVEMENT = 5;
+	public final int MOVEMENT = 2;
 	protected GameEngine game;
 	protected Settings settings;
 	private List<Player> players;
