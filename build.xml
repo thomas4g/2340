@@ -1,0 +1,59 @@
+<project name="My Ant File" default="all" basedir=".">
+
+	<target name="init">
+		<property name="src.dir" value="src" />
+		<property name="build.dir" value="bin" />
+		<property name="apidoc.dir" value="apidoc" />
+		<property name="lib.dir" value="lib" />
+		<property name="main.class" value="edu.gatech.mule.core.AtariMule" />
+		<path id="classpath">
+			<fileset dir="lib" includes="jfxrt.jar" />
+		</path>
+	</target>
+	
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${apidoc.dir}" />
+	</target>
+	
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+	
+	<target name="javadoc" depends="compile">
+		<javadoc sourcepath="${src.dir}" destdir="${apidoc.dir}">
+			<classpath refid="classpath"/>
+		</javadoc>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="MULE.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+				<attribute name="Built-By" value="Susanna"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run" depends="jar">
+		<!-- add when know what to do -->
+		<java classname="${main.class}" fork="true">
+			<classpath>
+				<path refid="classpath" />
+				<path location="MULE.jar" />
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="all" depends="run" />
+	
+	<target name="doc" depends="javadoc" />
+	
+	<target name="clean" depends="init">
+		<delete file="MULE.jar" />
+		<delete dir="${apidoc.dir}" />
+	</target>
+
+</project>
