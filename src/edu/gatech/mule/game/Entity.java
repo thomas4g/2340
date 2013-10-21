@@ -14,8 +14,8 @@ public abstract class Entity {
 	protected Direction currentDir;
 	protected GameTile currentTile;
 	
-	public Entity(Image image,Point location,GameTile tile){
-		this.image=image;
+	public Entity(String imgPath,Point location,GameTile tile){
+		image=new Image(imgPath);
 		this.location=location;
 		this.currentTile=tile;
 		currentDir=Direction.DOWN;
@@ -42,5 +42,9 @@ public abstract class Entity {
 	
 	public Image getImage(){
 		return image;
+	}
+	
+	public Point getPosition(){
+		return location;
 	}
 }

@@ -23,7 +23,7 @@ import edu.gatech.mule.screen.screens.AbstractGameScreen;
  *
  */
 public class FXGameScreen extends AbstractGameScreen implements Initializable, FXScreen {
-	private Canvas mapCanvas;
+	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
 	/**
@@ -37,16 +37,16 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 	}
 	
 	public void load() {
-		mapCanvas = new Canvas(720, 400);
-		graphics = new FXGraphics(mapCanvas.getGraphicsContext2D());
+		canvas = new Canvas(720, 400);
+		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
 	}
 	
 	private void wireKeyboard(){
-		mapCanvas.setFocusTraversable(true);
-		mapCanvas.requestFocus();
-		mapCanvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+		canvas.setFocusTraversable(true);
+		canvas.requestFocus();
+		canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent k) {
 				if(k.getCode().isArrowKey()) {
@@ -92,7 +92,7 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 	@Override
 	public Node getNode() {
 		// TODO Auto-generated method stub
-		return mapCanvas;
+		return canvas;
 	}
 
 
@@ -101,8 +101,8 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 	public void render() {
 		if(null == mapRenderer)
 			mapRenderer = new OrthogonalMapRenderer(game.getGameMap());
-		mapRenderer.render(graphics);	
-		
+		mapRenderer.render(graphics);
+		//graphics.drawEntity(currentPlayer);
 	}
 
 }

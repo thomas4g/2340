@@ -28,10 +28,9 @@ public class Player extends Entity {
 	 * 
 	 * @param type, the character type of the player
 	 */
-	public Player(CharacterType type,Image image,Point location,GameTile tile) {
-		super(image,location,tile);
+	public Player(CharacterType type) {
+		super(type.getResPrefix(),new Point(0,0),null);
 		this.type = type;
-		//Need to set a default tile here
 	}
 	
 	public void setName(String name) {

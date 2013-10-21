@@ -12,7 +12,7 @@ public abstract class AbstractGameScreen implements IScreen {
 	protected GameEngine game;
 	protected Settings settings;
 	private List<Player> players;
-	private Player currentPlayer;
+	protected Player currentPlayer;
 	
 	public AbstractGameScreen(GameEngine game){
 		this.game = game;
