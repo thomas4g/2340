@@ -1,6 +1,7 @@
 package edu.gatech.mule.fx.graphics;
 
 import java.io.ByteArrayInputStream;
+import java.util.HashMap;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -18,9 +19,11 @@ import edu.gatech.mule.graphics.Renderer;
 public class FXGraphics implements Renderer {
 
 	private GraphicsContext gc;
+	private HashMap<java.awt.Image, Image> convertedImages;
 	
 	public FXGraphics(GraphicsContext gc) {
 		this.gc = gc;
+		convertedImages = new HashMap<java.awt.Image, Image>();
 	}
 
 	@Override
@@ -29,14 +32,17 @@ public class FXGraphics implements Renderer {
 	}
 
 	@Override
-	public void drawTile(Tile tile, int x, int y, int width, int height) {		
+	public void drawTile(Tile tile, int x, int y, int width, int height) {
 		gc.drawImage(createImage(tile), x, y, width, height);
 	}
 	
 	
 	public Image createImage(Tile tile) {
-		ByteArrayInputStream in = new ByteArrayInputStream(ImageHelper.imageToPNG(tile.getImage()));
-		return new Image(in);
+		if(!convertedImages.containsKey(tile.getImage())) {
+			ByteArrayInputStream in = new ByteArrayInputStream(ImageHelper.imageToPNG(tile.getImage()));
+			convertedImages.put(tile.getImage(), new Image(in));
+		}
+		return convertedImages.get(tile.getImage());		
 	}
 
 	@Override

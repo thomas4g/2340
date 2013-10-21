@@ -102,8 +102,9 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 	public void render() {
 		if(null == mapRenderer) {
 			mapRenderer = new OrthogonalMapRenderer(game.getGameMap());
-			mapRenderer.render(graphics);
 		}
+		mapRenderer.render(graphics);
+//		}
 		
 		for(Entity entity : entities) {
 			graphics.drawEntity(entity);
