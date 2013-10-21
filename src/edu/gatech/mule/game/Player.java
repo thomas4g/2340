@@ -3,6 +3,7 @@ package edu.gatech.mule.game;
 import java.awt.Point;
 
 import javafx.scene.image.Image;
+import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
@@ -30,7 +31,7 @@ public class Player extends Entity {
 	 */
 	public Player(CharacterType type) {
 		//Add color later
-		super(type.getSprites() + "1f1" + CharacterType.IMAGE_EXT,new Point(0,0),null);
+		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
 	}
 	
