@@ -1,5 +1,6 @@
 package edu.gatech.mule.game.map;
 
+import edu.gatech.mule.game.Player;
 import tiled.core.Tile;
 
 /**
@@ -12,6 +13,7 @@ import tiled.core.Tile;
 public abstract class GameTile extends Tile {
 
 	protected TileType type;
+	protected Player owner;
 	
 	/**
 	 * Constructor for a tile
@@ -22,6 +24,13 @@ public abstract class GameTile extends Tile {
 	public GameTile(Tile t, TileType type) {
 		super(t);
 		this.type = type;
+	}
+	
+	public void setOwner(Player player) {
+		this.owner = player;
+	}
+	public Player getOwner() {
+		return owner;
 	}
 	
 	/**

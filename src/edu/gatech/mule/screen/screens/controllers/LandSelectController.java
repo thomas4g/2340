@@ -7,6 +7,7 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 
@@ -52,14 +53,16 @@ public class LandSelectController extends ScreenController {
 
 	@Override
 	public void action(){		
-		game.getPlayers().get(currentPlayer).addLand(map.getTile(location.x, location.y));
-		currentPlayer++;
-		if(currentPlayer >= game.getPlayers().size()) {
-			round++;
-			currentPlayer = 0;
+		GameTile tile = map.getTile(location.x, location.y);
+		if(tile.getOwner() == null) {
+			game.getPlayers().get(currentPlayer).addLand(tile);
+			currentPlayer++;
+			if(currentPlayer >= game.getPlayers().size()) {
+				round++;
+				currentPlayer = 0;
+			}
+			setPlayer();
 		}
-		setPlayer();
-		
 		if(round > FREE_ROUNDS) {
 			//for now, we're just moving straight to gameplay
 			//TODO implement paid land buying and a timer to detect a "pass"
