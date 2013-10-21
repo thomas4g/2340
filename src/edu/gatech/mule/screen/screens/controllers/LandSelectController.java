@@ -19,7 +19,6 @@ public class LandSelectController extends ScreenController {
 	private MapView view;
 	private GameMap map;
 	private Settings settings;
-	private boolean playersLoaded;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
@@ -27,7 +26,6 @@ public class LandSelectController extends ScreenController {
 		location = new Point(0,0);
 		map=game.getGameMap();
 		settings=game.getSettings();
-		playersLoaded=false;
 	}
 	
 	@Override
@@ -35,19 +33,17 @@ public class LandSelectController extends ScreenController {
 		super.load();
 		view.setGameEntities(new ArrayList<Entity>());
 		view.setGameMap(game.getGameMap());
+		settings.resetPlayers();
 	}
 	
 	public final void move(int x, int y) {
-		
-		if (!settings.playersLoaded()) {
+
 			x = x == 0 ? 0 : x / Math.abs(x);
 			y = y == 0 ? 0 : y / Math.abs(y);
 			location.translate(x, y);
 			((FXMapView) view).render();
 			((FXMapView) view).drawSelector(location);
-		}else{
-			view.setController(new GameplayController(game, view));
-		}
+
 	}
 
 	@Override
