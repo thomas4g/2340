@@ -59,4 +59,12 @@ public class Player extends Entity {
 		return type;
 	}
 	
+	public void setStillSprite(){
+		stillFrame=new Image(type.getStillSprite(currentDir));
+	}
+	
+	public void setDirectionalFrames(){
+		setFrames(type.getDirectionalSprites(currentDir));
+	}
+	
 }
