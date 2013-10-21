@@ -1,17 +1,22 @@
 package edu.gatech.mule.fx.screens.views;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -29,6 +34,7 @@ public class FXMapView extends FXView implements MapView {
 	private OrthogonalMapRenderer mapRenderer;
 	private GameMap gameMap;
 	private List<Entity> gameEntities;
+	private Player currentPlayer;
 	/**
 	 * ???
 	 * 
@@ -41,7 +47,7 @@ public class FXMapView extends FXView implements MapView {
 	
 	@Override
 	public void load() {
-		canvas = new Canvas(720, 400);
+		canvas = new Canvas(720, 700);
 		node = canvas;
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
@@ -82,21 +88,34 @@ public class FXMapView extends FXView implements MapView {
 	}
 
 	public void render() {
+		graphics.getGraphicsContext().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		
 		if(null == mapRenderer) {
 			mapRenderer = new OrthogonalMapRenderer(gameMap.getMap());
 		}
 		mapRenderer.render(graphics);
-//		}
 		
 		for(Entity entity : gameEntities) {
-			graphics.drawEntity(entity);
-			System.out.println("drawing");
+			graphics.drawImage(entity.getImage(), entity.getPosition());
 		}
+		
+		drawCurrentPlayer();
 	}
 
 	public void drawSelector(Point location, Color color) {
-		graphics.drawSelector(location,color);
+		graphics.drawSelector(location,new javafx.scene.paint.Color(color.red, color.green, color.blue, 1));
 	}
+	
+	private void drawCurrentPlayer() {
+		if(currentPlayer != null) {
+			BufferedImage hs = currentPlayer.getHeadshot();
+			float ratio = (float)hs.getHeight()/hs.getWidth();
+			int newWidth = 75;
+			int newHeight = (int)(newWidth*ratio);
+			graphics.drawImage(currentPlayer.getHeadshot(), new Point(15, 400), newWidth, newHeight);
+		}
+	}
+	
 	
 	@Override
 	public void setGameMap(GameMap gameMap) {
@@ -106,6 +125,11 @@ public class FXMapView extends FXView implements MapView {
 	@Override
 	public void setGameEntities(List<Entity> gameEntities) {
 		this.gameEntities = gameEntities;
+	}
+
+	@Override
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;		
 	}
 
 }

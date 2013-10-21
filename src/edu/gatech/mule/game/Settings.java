@@ -1,6 +1,7 @@
 package edu.gatech.mule.game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,7 +18,27 @@ public class Settings {
 	 */
 	public enum Difficulty { BEGINNER, STANDARD, ADVANCED };
 	public enum MapType { DEFAULT, RANDOM };
-	public enum Color { PURPLE, BLUE, TEAL, SEAFOAM, GREEN, GOLD, ORANGE, MAROON };
+	public enum Color { 
+		PURPLE(145,85,134),
+		BLUE(83,99,141), 
+		TEAL(66,110,125), 
+		SEAFOAM(86,136,126), 
+		GREEN(97,149,75), 
+		GOLD(143,142,74), 
+		ORANGE(157,108,56), 
+		MAROON(123,63,59); 
+		
+		public final int red;
+		public final int green;
+		public final int blue;
+	
+		Color(int red,int green,int blue){
+			this.red=red;
+			this.green=green;
+			this.blue=blue;
+		}
+		
+	};
 	
 	/**
 	 * Map type
@@ -30,16 +51,13 @@ public class Settings {
 	private MapType mapType;
 	private List<Player> players;
 	private int playerCount;
-	private int currentPlayer;
-	private boolean playersLoaded;
+	private Player currentPlayer;
 	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
 		players = new ArrayList<Player>();
-		currentPlayer=0;
-		playersLoaded=false;
 	}
 	
 	/**
@@ -93,7 +111,6 @@ public class Settings {
 	 * @param type, a character type
 	 */
 	public void addPlayer(Player player) {
-		System.out.println(currentPlayer);
 		players.add(player);
 	}
 	
@@ -114,32 +131,23 @@ public class Settings {
 	/**
 	 * ???
 	 */
-	public void setCurrentPlayer(int playerIndex){
-		currentPlayer=playerIndex;
+	public void setCurrentPlayer(Player player){
+		currentPlayer = player;
 	}
 	
 	/**
 	 * ???
 	 */
 	public Player getCurrentPlayer(){
-		return players.get(currentPlayer);
+		return currentPlayer;
 	}
-	
+		
 	public void nextPlayer(){
-		currentPlayer++;
-		if(currentPlayer>=playerCount) {
-			System.out.println("max players");
-			playersLoaded=true;
-		}
+		
 	}
 	
-	public void resetPlayers(){
-		playersLoaded=false;
-		currentPlayer=0;
-	}
-	
-	public boolean playersLoaded(){
-		return playersLoaded;
+	public Iterator<Player> playerIterator() {
+		return players.iterator();
 	}
 	
 	/**

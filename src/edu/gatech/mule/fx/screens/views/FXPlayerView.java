@@ -6,19 +6,15 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType;
+import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Color;
-import edu.gatech.mule.screen.screens.controllers.*;
+import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * 
@@ -27,7 +23,7 @@ import edu.gatech.mule.screen.screens.controllers.*;
  * @version 1.0
  *
  */
-public class FXPlayerView extends FXView {
+public class FXPlayerView extends FXView implements SettingsView {
 	@FXML
 	private ComboBox<String> combo;
 	
@@ -41,23 +37,22 @@ public class FXPlayerView extends FXView {
 	private TextField field;
 	
 	private Color currentColor = Color.PURPLE;
-	private PlayerController controller;
+	private Settings settings;
 
 	public FXPlayerView() {
 		super("player_screen");
 	}
 
 	@Override
-	public void setController(ScreenController controller) {
-		super.setController(controller);
-		this.controller = (PlayerController)controller;
+	public void setSettings(Settings settings) {
+		this.settings = settings;
 	}
 	
 	/**
 	 * ???
 	 */
 	private Image changeImage(){
-		return new Image(controller.getSettings().getCurrentPlayer().getType().getHeadshot() + (currentColor.ordinal()+1) + CharacterType.IMAGE_EXT);
+		return new Image(settings.getCurrentPlayer().getType().getHeadshot(currentColor.ordinal()+1));
 	}
 	
 	@FXML
@@ -76,8 +71,9 @@ public class FXPlayerView extends FXView {
 	 */
 	@FXML
 	private void OnBack(ActionEvent event) {
-		controller.getSettings().getPlayers().remove(controller.getSettings().getCurrentPlayer());
-		controller.nextPlayer();
+		settings.getPlayers().remove(settings.getCurrentPlayer());
+
+		controller.done();
 	}
 	
 	/**
@@ -88,9 +84,9 @@ public class FXPlayerView extends FXView {
 	 */
 	@FXML
 	private void OnAdd(ActionEvent event){
-		controller.getSettings().getCurrentPlayer().setColor(currentColor);
-		controller.getSettings().getCurrentPlayer().setName(field.getText());
-		controller.nextPlayer();
+		settings.getCurrentPlayer().setColor(currentColor);
+		settings.getCurrentPlayer().setName(field.getText());
+		controller.done();
 	}
 	
 	/**
@@ -103,7 +99,7 @@ public class FXPlayerView extends FXView {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		imgView.setImage(changeImage());
-		charDescrip.setText(controller.getSettings().getCurrentPlayer().getType().getDescripion());
-		field.setText(controller.getSettings().getCurrentPlayer().getType().getName());
+		charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
+		field.setText(settings.getCurrentPlayer().getType().getName());
 	}
 }

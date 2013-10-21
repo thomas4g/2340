@@ -37,9 +37,9 @@ public abstract class ScreenHandler {
 	}
 
 	protected abstract ScreenView loadStartView();
-	protected abstract ScreenView loadSettingsView();
-	protected abstract ScreenView loadRaceSelectView();
-	protected abstract ScreenView loadPlayerView();
+	protected abstract SettingsView loadSettingsView();
+	protected abstract SettingsView loadRaceSelectView();
+	protected abstract SettingsView loadPlayerView();
 	protected abstract MapView loadGameplayView();
 	protected abstract MapView loadLandSelectView();
 

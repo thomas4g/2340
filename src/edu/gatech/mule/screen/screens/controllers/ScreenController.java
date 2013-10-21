@@ -16,7 +16,7 @@ public abstract class ScreenController {
 		view.setController(this);		
 	}
 	
-	public abstract void dispose();
+	public abstract void done();
 	
 	public ScreenView getView() {
 		return view;

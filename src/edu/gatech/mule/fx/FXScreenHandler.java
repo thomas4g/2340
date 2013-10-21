@@ -65,17 +65,17 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	protected ScreenView loadSettingsView() {
+	protected SettingsView loadSettingsView() {
 		return new FXSettingsView();
 	}
 
 	@Override
-	protected ScreenView loadRaceSelectView() {
+	protected SettingsView loadRaceSelectView() {
 		return new FXRaceSelectView();
 	}
 
 	@Override
-	protected ScreenView loadPlayerView() {
+	protected SettingsView loadPlayerView() {
 		return new FXPlayerView();
 	}
 

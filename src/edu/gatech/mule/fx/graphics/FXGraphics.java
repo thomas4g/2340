@@ -1,9 +1,12 @@
 package edu.gatech.mule.fx.graphics;
 
+import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Effect;
@@ -12,6 +15,7 @@ import javafx.scene.paint.Color;
 import tiled.core.Tile;
 import tiled.util.ImageHelper;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.graphics.Renderer;
 
@@ -25,12 +29,14 @@ public class FXGraphics implements Renderer {
 
 	private GraphicsContext gc;
 	private HashMap<java.awt.Image, Image> convertedImages;
+
 	
 	public FXGraphics(GraphicsContext gc) {
 		this.gc = gc;
 		convertedImages = new HashMap<java.awt.Image, Image>();
 	}
-
+	
+	
 	@Override
 	public void translate(int x, int y) {
 		gc.translate(x, y);
@@ -38,22 +44,28 @@ public class FXGraphics implements Renderer {
 
 	@Override
 	public void drawTile(Tile tile, int x, int y, int width, int height) {
-		gc.drawImage(createImage(tile), x, y, width, height);
+		gc.drawImage(createImage((BufferedImage)tile.getImage()), x, y, width, height);
 	}
 	
 	
-	public Image createImage(Tile tile) {
-		if(!convertedImages.containsKey(tile.getImage())) {
-			ByteArrayInputStream in = new ByteArrayInputStream(ImageHelper.imageToPNG(tile.getImage()));
-			convertedImages.put(tile.getImage(), new Image(in));
+//	public Image createImage(java.awt.Image image) {
+//		return createImage(ImageIO.)
+//	}
+	public Image createImage(BufferedImage image) {
+		if(!convertedImages.containsKey(image)) {
+			Image fxImage = SwingFXUtils.toFXImage(image, null);
+//			ByteArrayInputStream in = new ByteArrayInputStream(ImageHelper.imageToPNG(image));
+//			convertedImages.put(image, new Image(in));
+			convertedImages.put(image, fxImage);
 		}
-		return convertedImages.get(tile.getImage());		
+		return convertedImages.get(image);		
 	}
 
-	@Override
-	public void drawEntity(Entity entity) {
-		gc.drawImage(entity.getImage(), entity.getPosition().getX(), entity.getPosition().getY());
-		
+	public void drawImage(BufferedImage image, Point position, int width, int height) {
+		gc.drawImage(createImage(image), position.x, position.y, width, height);	
+	}
+	public void drawImage(BufferedImage image, Point position) {
+		drawImage(image, position, image.getWidth(), image.getHeight());
 	}
 	
 	public void drawSelector(Point location,Color color){
@@ -61,6 +73,16 @@ public class FXGraphics implements Renderer {
 		gc.setFill(color);
 		gc.strokeRect(location.getX()*OrthogonalMapRenderer.TILE_WIDTH, location.getY()*OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_HEIGHT);
 		
+	}
+	
+	public GraphicsContext getGraphicsContext() {
+		return gc;
+	}
+
+	@Override
+	public void drawEntity(Entity entity) {
+		// TODO Auto-generated method stub
+		//NOT USING THIS BEAR WITH ME
 	}
 
 }
