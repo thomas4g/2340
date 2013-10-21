@@ -15,7 +15,7 @@ import edu.gatech.mule.screen.screens.views.*;
  *
  */
 public abstract class ScreenHandler {
-	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, GAME_SCREEN };
+	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, LAND_SELECT, GAME_SCREEN };
 //	protected HashMap<ScreenType, IScreen> screens;
 	protected HashMap<ScreenType, ScreenController> screens;
 	protected GameEngine game;
@@ -31,6 +31,7 @@ public abstract class ScreenHandler {
 		screens.put(ScreenType.SETTINGS, new SettingsController(game, loadSettingsView()));
 		screens.put(ScreenType.RACE_SELECT, new RaceSelectController(game, loadRaceSelectView()));
 		screens.put(ScreenType.PLAYER_SCREEN, new PlayerController(game, loadPlayerView()));
+		screens.put(ScreenType.LAND_SELECT, new LandSelectController(game, loadLandSelectView()));
 		screens.put(ScreenType.GAME_SCREEN, new GameplayController(game, loadGameplayView()));
 		setScreen(ScreenType.START);
 	}
@@ -39,12 +40,13 @@ public abstract class ScreenHandler {
 	protected abstract ScreenView loadSettingsView();
 	protected abstract ScreenView loadRaceSelectView();
 	protected abstract ScreenView loadPlayerView();
-	protected abstract ScreenView loadGameplayView();
+	protected abstract MapView loadGameplayView();
+	protected abstract MapView loadLandSelectView();
 
 
-	public abstract void setScreen(ScreenType type);// {
-//		screens.get(type).display();
-//	};
+	public void setScreen(ScreenType type) {
+		screens.get(type).load();
+	};
 		
 	
 	public abstract void start();

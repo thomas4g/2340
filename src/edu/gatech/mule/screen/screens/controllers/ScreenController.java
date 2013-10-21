@@ -10,7 +10,10 @@ public abstract class ScreenController {
 	public ScreenController(GameEngine game, ScreenView view) {
 		this.game = game;
 		this.view = view;
-		view.setController(this);
+	}
+	
+	public void load() {
+		view.setController(this);		
 	}
 	
 	public abstract void dispose();
@@ -18,4 +21,6 @@ public abstract class ScreenController {
 	public ScreenView getView() {
 		return view;
 	}
+
+	public void move(int i, int j) {}
 }

@@ -2,19 +2,20 @@ package edu.gatech.mule.fx.screens.views;
 
 import java.awt.Point;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import tiled.core.Map;
+import tiled.core.Tile;
 import javafx.event.EventHandler;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.controllers.*;
+import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
  * 
@@ -23,11 +24,12 @@ import edu.gatech.mule.screen.screens.controllers.*;
  * @version 1.0
  *
  */
-public class FXMapView extends FXView {
+public class FXMapView extends FXView implements MapView {
 	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
-	private GameplayController controller;
+	private Map gameMap;
+	private List<Entity> gameEntities;
 	/**
 	 * ???
 	 * 
@@ -48,11 +50,6 @@ public class FXMapView extends FXView {
 		graphics.drawSelector(new Point(0,0));
 	}
 	
-	@Override
-	public void setController(ScreenController controller) {
-		super.setController(controller);
-		this.controller = (GameplayController)controller;
-	}
 	
 	private void wireKeyboard(){
 		canvas.setFocusTraversable(true);
@@ -84,15 +81,29 @@ public class FXMapView extends FXView {
 
 	public void render() {
 		if(null == mapRenderer) {
-			mapRenderer = new OrthogonalMapRenderer(controller.getGameMap());
+			mapRenderer = new OrthogonalMapRenderer(gameMap);
 		}
 		mapRenderer.render(graphics);
 //		}
 		
-		for(Entity entity : controller.getEntities()) {
+		for(Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 			System.out.println("drawing");
 		}
+	}
+
+	public void drawSelector(Point location) {
+		graphics.drawSelector(location);
+	}
+	
+	@Override
+	public void setGameMap(Map gameMap) {
+		this.gameMap = gameMap;
+	}
+
+	@Override
+	public void setGameEntities(List<Entity> gameEntities) {
+		this.gameEntities = gameEntities;
 	}
 
 }

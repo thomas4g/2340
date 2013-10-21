@@ -47,6 +47,7 @@ public class FXScreenHandler extends ScreenHandler {
 	 * TODO Move all of this to the display method
 	 */
 	public void setScreen(ScreenType type) {
+		super.setScreen(type);
 		FXView scr = (FXView)screens.get(type).getView();
 		scr.load();
 		Node node = scr.getNode();
@@ -79,7 +80,14 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	protected ScreenView loadGameplayView() {
+	protected MapView loadGameplayView() {
+		if(null == mainMapView)
+			mainMapView = new FXMapView();
+		return mainMapView;
+	}
+
+	@Override
+	protected MapView loadLandSelectView() {
 		if(null == mainMapView)
 			mainMapView = new FXMapView();
 		return mainMapView;

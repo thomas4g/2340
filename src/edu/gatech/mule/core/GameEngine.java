@@ -93,7 +93,7 @@ public class GameEngine {
 		} else if(settings.getMapType().equals(MapType.RANDOM)) {
 			gameMap = new RandomGameMap();
 		}
-		screenHandler.setScreen(ScreenType.GAME_SCREEN);
+		screenHandler.setScreen(ScreenType.LAND_SELECT);
 	}
 	
 	/**
