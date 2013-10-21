@@ -36,7 +36,7 @@ public class Player extends Entity {
 	@Override
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
-		this.stillFrame = new Image(type.getStillSprite(direction));
+		setStillSprite();
 	}
 	
 	public void setName(String name) {
@@ -60,11 +60,11 @@ public class Player extends Entity {
 	}
 	
 	public void setStillSprite(){
-		stillFrame=new Image(type.getStillSprite(currentDir));
+		stillFrame=new Image(type.getStillSprite(direction));
 	}
 	
 	public void setDirectionalFrames(){
-		setFrames(type.getDirectionalSprites(currentDir));
+		setFrames(type.getDirectionalSprites(direction));
 	}
 	
 }
