@@ -22,8 +22,6 @@ public class Player extends Entity {
 	private String name;
 	private GameTile currentTile;
 	
-
-	
 	/**
 	 * Constructor for player based on player type
 	 * 
@@ -32,6 +30,12 @@ public class Player extends Entity {
 	public Player(CharacterType type) {
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
+	}
+	
+	@Override
+	public void setDirection(Direction direction) {
+		super.setDirection(direction);
+		this.image = new Image(type.getStillSprite(direction));
 	}
 	
 	public void setName(String name) {

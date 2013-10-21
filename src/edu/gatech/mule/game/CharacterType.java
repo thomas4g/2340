@@ -53,7 +53,7 @@ public enum CharacterType {
 	
 	
 	public static final String IMAGE_EXT = ".png";
-	public enum Direction{DOWN,UP,RIGHT,LEFT};
+	public enum Direction{UP,DOWN,RIGHT,LEFT};
 	
 	private static final double MONEY = 1000;
 	private static final String IMAGE_PATH = "/assets";
