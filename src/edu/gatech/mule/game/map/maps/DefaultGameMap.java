@@ -10,6 +10,9 @@ import tiled.core.TileLayer;
 import tiled.core.TileSet;
 import tiled.io.TMXMapReader;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * 
@@ -37,14 +40,14 @@ public class DefaultGameMap extends GameMap {
 		
 		TileLayer layer = (TileLayer)map.getLayer(0);
 
-//		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
-//		for(int x=0; x<layer.getWidth(); x++) {
-//			for(int y=0; y<layer.getHeight(); y++) {
-//				Tile tile = layer.getTileAt(x, y);
-//				String type = (String)tile.getProperties().get("type");
-//				tiles[x][y] = new GameTile(tile, TileType.valueOf(type.toUpperCase()));
-//			}
-//		}
+		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
+		for(int x=0; x<layer.getWidth(); x++) {
+			for(int y=0; y<layer.getHeight(); y++) {
+				Tile tile = layer.getTileAt(x, y);
+				String type = (String)tile.getProperties().get("type");
+				tiles[x][y] = new PropertyTile(tile, TileType.valueOf(type.toUpperCase()));
+			}
+		}
 		
 		//generate animated tiles from river tileset
 		TileSet riverset = map.getTileSets().get(1);
