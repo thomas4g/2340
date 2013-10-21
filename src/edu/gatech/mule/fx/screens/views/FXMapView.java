@@ -52,7 +52,6 @@ public class FXMapView extends FXView implements MapView {
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
-		graphics.drawSelector(new Point(0,0),null);
 	}
 	
 	
@@ -103,7 +102,7 @@ public class FXMapView extends FXView implements MapView {
 	}
 
 	public void drawSelector(Point location, Color color) {
-		graphics.drawSelector(location,new javafx.scene.paint.Color(color.red, color.green, color.blue, 1));
+		graphics.drawSelector(location, new javafx.scene.paint.Color(color.red/255.0, color.green/255.0, color.blue/255.0, 1));
 	}
 	
 	private void drawCurrentPlayer() {
