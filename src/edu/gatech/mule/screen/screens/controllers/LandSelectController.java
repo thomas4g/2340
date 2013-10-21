@@ -19,35 +19,35 @@ public class LandSelectController extends ScreenController {
 	private MapView view;
 	private GameMap map;
 	private Settings settings;
-	private boolean playersLoaded;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
 		this.view = view;
 		location = new Point(0,0);
-		map=game.getGameMap();
 		settings=game.getSettings();
-		playersLoaded=false;
 	}
 	
 	@Override
 	public void load() {
 		super.load();
+		map=game.getGameMap();
 		view.setGameEntities(new ArrayList<Entity>());
-		view.setGameMap(game.getGameMap());
+		view.setGameMap(map);
+		settings.resetPlayers();
 	}
 	
 	public final void move(int x, int y) {
-		
-		if (!settings.playersLoaded()) {
-			x = x == 0 ? 0 : x / Math.abs(x);
-			y = y == 0 ? 0 : y / Math.abs(y);
-			location.translate(x, y);
-			((FXMapView) view).render();
-			((FXMapView) view).drawSelector(location);
-		}else{
-			view.setController(new GameplayController(game, view));
-		}
+
+			if (!settings.playersLoaded()) {
+				x = x == 0 ? 0 : x / Math.abs(x);
+				y = y == 0 ? 0 : y / Math.abs(y);
+				location.translate(x, y);
+				((FXMapView) view).render();
+				((FXMapView) view).drawSelector(location);
+			}else{
+				view.setController(new GameplayController(game, view));
+			}
+
 	}
 
 	@Override
@@ -59,7 +59,10 @@ public class LandSelectController extends ScreenController {
 		game.getSettings().nextPlayer();
 	}
 	
-	public void updateSelection(){
+	@Override
+	public void action(){
+		System.out.println(settings.getCurrentPlayer());
+		System.out.println(map);
 		settings.getCurrentPlayer().addLand(map.getTile(location.x, location.y));
 		nextPlayer();
 	}

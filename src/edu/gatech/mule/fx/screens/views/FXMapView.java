@@ -64,7 +64,7 @@ public class FXMapView extends FXView implements MapView {
 							k.getCode() == KeyCode.DOWN ? 1 : k.getCode() == KeyCode.UP ? -1 : 0);
 				}
 				else if(k.getCode().equals(KeyCode.ENTER)){
-					controller.updateSelection();
+					controller.action();
 				}
 			}
 		});

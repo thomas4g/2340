@@ -25,7 +25,6 @@ public abstract class ScreenController {
 	public void move(int i, int j) {}
 
 	//Method to be implemented when the user selects enter
-	public void updateSelection() {
-		// TODO Auto-generated method stub	
-	}
+	public void action() {}
+
 }

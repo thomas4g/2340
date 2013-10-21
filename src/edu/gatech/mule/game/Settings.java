@@ -130,8 +130,12 @@ public class Settings {
 		if(currentPlayer>=playerCount) {
 			System.out.println("max players");
 			playersLoaded=true;
-			currentPlayer=0;
 		}
+	}
+	
+	public void resetPlayers(){
+		playersLoaded=false;
+		currentPlayer=0;
 	}
 	
 	public boolean playersLoaded(){
