@@ -1,13 +1,18 @@
 package edu.gatech.mule.fx.graphics;
 
+import java.awt.Point;
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import tiled.core.Tile;
 import tiled.util.ImageHelper;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.graphics.Renderer;
 
 /**
@@ -48,6 +53,13 @@ public class FXGraphics implements Renderer {
 	@Override
 	public void drawEntity(Entity entity) {
 		gc.drawImage(entity.getImage(), entity.getPosition().getX(), entity.getPosition().getY());
+		
+	}
+	
+	public void drawSelector(Point location){
+		gc.setFill(Color.RED);
+		gc.setLineWidth(5);
+		gc.strokeRect(location.getX(), location.getY(), OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_HEIGHT);
 		
 	}
 

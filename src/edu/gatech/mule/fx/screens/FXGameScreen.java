@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx.screens;
 
+import java.awt.Point;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,6 +43,7 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
+		graphics.drawSelector(new Point(0,0));
 	}
 	
 	private void wireKeyboard(){

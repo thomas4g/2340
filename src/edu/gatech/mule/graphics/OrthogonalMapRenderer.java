@@ -10,10 +10,15 @@ import tiled.core.TileLayer;
 public class OrthogonalMapRenderer {
 
 	private final Map map;
+	public static int TILE_WIDTH;
+	public static int TILE_HEIGHT;
 	
 	public OrthogonalMapRenderer(Map map) {
+		TILE_WIDTH=map.getTileWidth();
+		TILE_HEIGHT=map.getTileHeight();
 		this.map = map;
 	}
+	
 	
 	public void render(Renderer graphics) {
 		Rectangle mapBounds = map.getBounds();
