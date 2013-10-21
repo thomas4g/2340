@@ -50,7 +50,6 @@ public class FXRaceSelectView extends FXView {
 			c = CharacterType.HUMANOID;
 		
 		Player p = new Player(c);
-		controller.getSettings().setCurrentPlayer(p);
 		controller.getSettings().addPlayer(p);
 		controller.dispose();
 	}

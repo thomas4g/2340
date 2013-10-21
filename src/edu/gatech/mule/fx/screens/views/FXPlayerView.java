@@ -90,11 +90,7 @@ public class FXPlayerView extends FXView {
 	private void OnAdd(ActionEvent event){
 		controller.getSettings().getCurrentPlayer().setColor(currentColor);
 		controller.getSettings().getCurrentPlayer().setName(field.getText());
-		if(controller.getSettings().getPlayerCount() == controller.getSettings().getPlayers().size()) {
-			controller.dispose();
-		} else {
-			controller.nextPlayer();
-		}
+		controller.nextPlayer();
 	}
 	
 	/**

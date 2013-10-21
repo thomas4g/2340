@@ -42,12 +42,12 @@ public class GameEngine {
 		screenHandler.start();
 	}
 	
-	public Map getGameMap() {
-		return gameMap.getMap();
+	public GameMap getGameMap() {
+		return gameMap;
 	}
 	
-	public Map getTownMap() {
-		return townMap.getMap();
+	public GameMap getTownMap() {
+		return townMap;
 	}
 	
 //	public void disposeScreen(ScreenType type) {

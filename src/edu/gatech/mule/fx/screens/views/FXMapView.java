@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.controllers.*;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -28,7 +29,7 @@ public class FXMapView extends FXView implements MapView {
 	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
-	private Map gameMap;
+	private GameMap gameMap;
 	private List<Entity> gameEntities;
 	/**
 	 * ???
@@ -62,6 +63,9 @@ public class FXMapView extends FXView implements MapView {
 							k.getCode() == KeyCode.LEFT ? -1 : k.getCode() == KeyCode.RIGHT ? 1 : 0,
 							k.getCode() == KeyCode.DOWN ? 1 : k.getCode() == KeyCode.UP ? -1 : 0);
 				}
+				else if(k.getCode().equals(KeyCode.ENTER)){
+					controller.updateSelection();
+				}
 			}
 		});
 	}
@@ -81,7 +85,7 @@ public class FXMapView extends FXView implements MapView {
 
 	public void render() {
 		if(null == mapRenderer) {
-			mapRenderer = new OrthogonalMapRenderer(gameMap);
+			mapRenderer = new OrthogonalMapRenderer(gameMap.getMap());
 		}
 		mapRenderer.render(graphics);
 //		}
@@ -97,8 +101,8 @@ public class FXMapView extends FXView implements MapView {
 	}
 	
 	@Override
-	public void setGameMap(Map gameMap) {
-		this.gameMap = gameMap;
+	public void setGameMap(GameMap gameMap) {
+		this.gameMap =gameMap;
 	}
 
 	@Override

@@ -30,13 +30,16 @@ public class Settings {
 	private MapType mapType;
 	private List<Player> players;
 	private int playerCount;
-	private Player currentPlayer;
+	private int currentPlayer;
+	private boolean playersLoaded;
 	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
 		players = new ArrayList<Player>();
+		currentPlayer=0;
+		playersLoaded=false;
 	}
 	
 	/**
@@ -90,6 +93,7 @@ public class Settings {
 	 * @param type, a character type
 	 */
 	public void addPlayer(Player player) {
+		System.out.println(currentPlayer);
 		players.add(player);
 	}
 	
@@ -110,15 +114,28 @@ public class Settings {
 	/**
 	 * ???
 	 */
-	public void setCurrentPlayer(Player player){
-		currentPlayer = player;
+	public void setCurrentPlayer(int playerIndex){
+		currentPlayer=playerIndex;
 	}
 	
 	/**
 	 * ???
 	 */
 	public Player getCurrentPlayer(){
-		return currentPlayer;
+		return players.get(currentPlayer);
+	}
+	
+	public void nextPlayer(){
+		currentPlayer++;
+		if(currentPlayer>=playerCount) {
+			System.out.println("max players");
+			playersLoaded=true;
+			currentPlayer=0;
+		}
+	}
+	
+	public boolean playersLoaded(){
+		return playersLoaded;
 	}
 	
 	/**

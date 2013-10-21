@@ -1,7 +1,9 @@
 package edu.gatech.mule.game;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
+import tiled.core.Tile;
 import javafx.scene.image.Image;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
@@ -21,6 +23,7 @@ public class Player extends Entity {
 	private Color color;
 	private String name;
 	private GameTile currentTile;
+	private ArrayList<Tile> ownedLands;
 	
 	/**
 	 * Constructor for player based on player type
@@ -31,6 +34,7 @@ public class Player extends Entity {
 		//Add color later
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
+		ownedLands=new ArrayList<>();
 		setDirectionalFrames();
 	}
 	
@@ -66,6 +70,14 @@ public class Player extends Entity {
 	
 	public void setDirectionalFrames(){
 		setFrames(type.getDirectionalSprites(direction));
+	}
+	
+	public void addLand(Tile tile){
+		ownedLands.add(tile);
+	}
+	
+	public ArrayList<Tile> getLands(){
+		return ownedLands;
 	}
 	
 }

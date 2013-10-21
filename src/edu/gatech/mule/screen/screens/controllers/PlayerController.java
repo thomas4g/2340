@@ -15,7 +15,9 @@ public class PlayerController extends ScreenController {
 	}
 	
 	public void nextPlayer(){
-		game.chooseRace();
+		game.getSettings().nextPlayer();
+		if(game.getSettings().playersLoaded()) dispose();
+		else game.chooseRace();
 	}
 	
 	public void dispose(){
