@@ -78,6 +78,7 @@ public class FXPlayerView extends FXView implements SettingsView {
 	@FXML
 	private void OnBack(ActionEvent event) {
 		settings.getPlayers().remove(settings.getCurrentPlayer());
+		settings.setCurrentPlayer(settings.getPlayers().size() - 1);
 		controller.dispose();
 	}
 	
