@@ -96,6 +96,10 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.LAND_SELECT);
 	}
 	
+	public void gameplay() {
+		screenHandler.setScreen(ScreenType.GAME_SCREEN);
+	}
+	
 	/**
 	 * Gets the settings
 	 */

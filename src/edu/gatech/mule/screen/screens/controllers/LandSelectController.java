@@ -41,11 +41,17 @@ public class LandSelectController extends ScreenController {
 	
 	@Override
 	public final void move(int x, int y) {
-		x = x == 0 ? 0 : x / Math.abs(x);
-		y = y == 0 ? 0 : y / Math.abs(y);
-		location.translate(x, y);
-		((FXMapView) view).render();
-		((FXMapView) view).drawSelector(location);
+		if (!settings.playersLoaded()) {
+			x = x == 0 ? 0 : x / Math.abs(x);
+			y = y == 0 ? 0 : y / Math.abs(y);
+			location.translate(x, y);
+			((FXMapView) view).render();
+			((FXMapView) view).drawSelector(location);
+		}
+		else{
+			game.gameplay();
+//			view.setController(new GameplayController(game, view));
+		}
 	}
 
 	@Override
