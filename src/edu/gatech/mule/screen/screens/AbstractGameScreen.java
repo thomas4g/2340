@@ -1,5 +1,6 @@
 package edu.gatech.mule.screen.screens;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
@@ -20,6 +21,7 @@ public abstract class AbstractGameScreen implements IScreen {
 	public AbstractGameScreen(GameEngine game){
 		this.game = game;
 		this.settings = game.getSettings();
+		this.entities = new ArrayList<Entity>();
 	}
 	
 	public final void done() {
@@ -35,7 +37,7 @@ public abstract class AbstractGameScreen implements IScreen {
 		x = x == 0 ? 0 : x/x;
 		y = y == 0 ? 0 : y/y;
 		currentPlayer.move(25*x, 25*y);
-		System.out.println("moving player");
+		render();
 	}
 	
 	public abstract void render();

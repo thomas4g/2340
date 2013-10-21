@@ -106,6 +106,7 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 		
 		for(Entity entity : entities) {
 			graphics.drawEntity(entity);
+			System.out.println("drawing");
 		}
 	}
 
