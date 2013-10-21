@@ -30,7 +30,7 @@ public class SettingsController extends ScreenController {
 	}
 	
 	@Override
-	public void dispose() {
+	public void done() {
 		game.chooseRace();
 	}
 

@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.screen.screens.controllers.RaceSelectController;
-import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
@@ -50,8 +48,9 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 			c = CharacterType.HUMANOID;
 		
 		Player p = new Player(c);
+		settings.setCurrentPlayer(p);
 		settings.addPlayer(p);
-		controller.dispose();
+		controller.done();
 	}
 	
 	/**

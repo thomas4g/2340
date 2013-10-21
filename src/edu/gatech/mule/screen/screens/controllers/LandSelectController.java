@@ -2,7 +2,8 @@ package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import tiled.core.Tile;
+import java.util.Iterator;
+
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
@@ -18,10 +19,13 @@ import edu.gatech.mule.screen.screens.views.MapView;
  * @version 1.0
  */
 public class LandSelectController extends ScreenController {
+	
 	private Point location;
 	private MapView view;
 	private GameMap map;
 	private Settings settings;
+	private Player current;
+	private Iterator<Player> iterator;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
@@ -33,49 +37,35 @@ public class LandSelectController extends ScreenController {
 	@Override
 	public void load() {
 		super.load();
-		map=game.getGameMap();
+		map = game.getGameMap();
 		view.setGameEntities(new ArrayList<Entity>());
 		view.setGameMap(map);
-		settings.resetPlayers();
+		iterator = settings.playerIterator();
+		current = iterator.next();
 	}
 	
 	@Override
 	public final void move(int x, int y) {
-		if (!settings.playersLoaded()) {
-			x = x == 0 ? 0 : x / Math.abs(x);
-			y = y == 0 ? 0 : y / Math.abs(y);
-			location.translate(x, y);
-			((FXMapView) view).render();
-			((FXMapView) view).drawSelector(location);
-		}
-		else{
-			game.gameplay();
-//			view.setController(new GameplayController(game, view));
-		}
+		x = x == 0 ? 0 : x / Math.abs(x);
+		y = y == 0 ? 0 : y / Math.abs(y);
+		location.translate(x, y);
+		((FXMapView) view).render();
+		((FXMapView) view).drawSelector(location);
 	}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-	}
-	
-	private void nextPlayer(){
-		game.getSettings().nextPlayer();
+	public void done() {
+		game.gameplay();
 	}
 	
 	@Override
-	public void action(){
-		System.out.println(settings.getCurrentPlayer());
-		System.out.println(map);
-		settings.getCurrentPlayer().addLand(map.getTile(location.x, location.y));
-		nextPlayer();
-	}
-	
-	private void printPlayerStuff(){
-		for(Player p: settings.getPlayers()){
-			for(Tile t: p.getLands()){
-				System.out.println(t);
-			}
+	public void action() {
+		System.out.println(map.getTiles()[location.x][location.y]);
+		current.addLand(map.getTile(location.x, location.y));
+		if(iterator.hasNext()) {
+			current = iterator.next();
+		} else {
+			done();
 		}
 	}
 

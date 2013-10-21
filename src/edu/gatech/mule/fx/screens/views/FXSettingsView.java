@@ -73,6 +73,6 @@ public class FXSettingsView extends FXView implements SettingsView {
 			settings.setDifficulty(Difficulty.ADVANCED);
 		
 		settings.setPlayerCount(playerCount);		
-		controller.dispose();
+		controller.done();
 	}
 }

@@ -49,7 +49,7 @@ public class GameplayController extends ScreenController {
 	
 
 	@Override
-	public void dispose() {
+	public void done() {
 		// TODO Auto-generated method stub
 		
 	}

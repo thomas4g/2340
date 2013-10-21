@@ -9,7 +9,7 @@ public class StartController extends ScreenController {
 		super(game, view);
 	}
 	
-	public final void dispose() {
+	public final void done() {
 		game.chooseSettings();
 	}
 	

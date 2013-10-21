@@ -1,8 +1,6 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class PlayerController extends ScreenController {
@@ -20,12 +18,12 @@ public class PlayerController extends ScreenController {
 		view.setSettings(game.getSettings());
 	}
 
-	public void dispose(){
-		game.getSettings().nextPlayer();
-		if(game.getSettings().playersLoaded())
+	public void done(){
+		if(game.getSettings().getPlayerCount() == game.getSettings().getPlayers().size()) {
 			game.playGame();
-		else 
+		} else {
 			game.chooseRace();
+		}
 	}
 	
 	
