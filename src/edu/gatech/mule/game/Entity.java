@@ -9,17 +9,19 @@ import javafx.scene.image.Image;
 
 public abstract class Entity {
 
-	protected Image image;
+	protected Image[] frames;
+	protected Image stillFrame;
 	protected Point location;
 	protected Direction direction;
 	protected GameTile tile;
 	
 	public Entity(String imgPath,Point location,GameTile tile){
-		this.image = new Image(imgPath);
 		this.location = location;
 		this.tile = tile;
 		this.direction = Direction.DOWN;
+		stillFrame=new Image(imgPath);
 	}
+	
 	
 	public void move(int deltaX,int deltaY){
 		location.x += deltaX;
@@ -54,10 +56,18 @@ public abstract class Entity {
 	}
 	
 	public Image getImage(){
-		return image;
+		return stillFrame;
+	}
+	
+	public void setFrames(String[] srcFrames){
+		frames=new Image[srcFrames.length];
+		for(int i=0;i<frames.length;i++){
+			frames[i]=new Image(srcFrames[i]);
+		}
 	}
 	
 	public Point getPosition(){
 		return location;
 	}
+
 }

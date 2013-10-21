@@ -28,6 +28,7 @@ public class Player extends Entity {
 	 * @param type, the character type of the player
 	 */
 	public Player(CharacterType type) {
+		//Add color later
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
 	}
@@ -35,7 +36,7 @@ public class Player extends Entity {
 	@Override
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
-		this.image = new Image(type.getStillSprite(direction));
+		this.stillFrame = new Image(type.getStillSprite(direction));
 	}
 	
 	public void setName(String name) {
