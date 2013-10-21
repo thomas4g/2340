@@ -1,16 +1,11 @@
 package edu.gatech.mule.fx;
 
-import java.lang.reflect.Constructor;
-import java.util.HashMap;
-
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.*;
-import edu.gatech.mule.screen.screens.*;
-import edu.gatech.mule.fx.screens.*;
+import edu.gatech.mule.screen.screens.views.*;
+import edu.gatech.mule.fx.screens.views.*;
 
 /**
  * 
@@ -21,9 +16,8 @@ import edu.gatech.mule.fx.screens.*;
  */
 public class FXScreenHandler extends ScreenHandler {
 	
-	private static final String FXML_DIR = "/format/";
-	
 	private StackPane stack;
+	private FXMapView mainMapView;
 
 	public FXScreenHandler(GameEngine game) {
 		super(game);
@@ -53,45 +47,42 @@ public class FXScreenHandler extends ScreenHandler {
 	 * TODO Move all of this to the display method
 	 */
 	public void setScreen(ScreenType type) {
-		FXScreen scr = (FXScreen)screens.get(type);
+		FXView scr = (FXView)screens.get(type).getView();
 		scr.load();
 		Node node = scr.getNode();
 
 		if(!stack.getChildren().isEmpty()){
 	    	stack.getChildren().remove(0);    
-//			stack.getChildren().clear();
 	        stack.getChildren().add(0, node);
 	    } else {
 	    	stack.getChildren().add(node);
 	    }
-		
-		super.setScreen(type);
 	}
 
-	
-	@Override
-	protected AbstractStartScreen loadStartScreen() {
-		return new FXStartScreen(game);
+	protected ScreenView loadStartView() {
+		return new FXStartView();
 	}
 
 	@Override
-	protected AbstractSettingsScreen loadSettingsScreen() {
-		return new FXSettingsScreen(game);
+	protected ScreenView loadSettingsView() {
+		return new FXSettingsView();
 	}
 
 	@Override
-	protected AbstractRaceSelectScreen loadRaceSelectScreen() {
-		return new FXRaceSelectScreen(game);
+	protected ScreenView loadRaceSelectView() {
+		return new FXRaceSelectView();
 	}
 
 	@Override
-	protected AbstractPlayerScreen loadPlayerScreen() {
-		return new FXPlayerScreen(game);
+	protected ScreenView loadPlayerView() {
+		return new FXPlayerView();
 	}
 
 	@Override
-	protected AbstractGameScreen loadGameScreen() {
-		return new FXGameScreen(game);
+	protected ScreenView loadGameplayView() {
+		if(null == mainMapView)
+			mainMapView = new FXMapView();
+		return mainMapView;
 	}
 
 }

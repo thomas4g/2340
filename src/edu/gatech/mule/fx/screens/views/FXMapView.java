@@ -1,4 +1,4 @@
-package edu.gatech.mule.fx.screens;
+package edu.gatech.mule.fx.screens.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,11 +10,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.FXScreen;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
-import edu.gatech.mule.screen.screens.AbstractGameScreen;
+import edu.gatech.mule.screen.screens.controllers.*;
 
 /**
  * 
@@ -23,25 +22,34 @@ import edu.gatech.mule.screen.screens.AbstractGameScreen;
  * @version 1.0
  *
  */
-public class FXGameScreen extends AbstractGameScreen implements Initializable, FXScreen {
+public class FXMapView extends FXView {
 	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
+	private GameplayController controller;
 	/**
 	 * ???
 	 * 
 	 * @param game
 	 * @param settings
 	 */
-	public FXGameScreen(GameEngine game) {
-		super(game);
+	public FXMapView() {
+		super("");
 	}
 	
+	@Override
 	public void load() {
 		canvas = new Canvas(720, 400);
+		node = canvas;
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
 		render();
+	}
+	
+	@Override
+	public void setController(ScreenController controller) {
+		super.setController(controller);
+		this.controller = (GameplayController)controller;
 	}
 	
 	private void wireKeyboard(){
@@ -51,7 +59,7 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 			@Override
 			public void handle(KeyEvent k) {
 				if(k.getCode().isArrowKey()) {
-					move(
+					controller.move(
 							k.getCode() == KeyCode.LEFT ? -1 : k.getCode() == KeyCode.RIGHT ? 1 : 0,
 							k.getCode() == KeyCode.DOWN ? 1 : k.getCode() == KeyCode.UP ? -1 : 0);
 				}
@@ -72,41 +80,14 @@ public class FXGameScreen extends AbstractGameScreen implements Initializable, F
 		
 	}
 
-
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public Node getNode() {
-		// TODO Auto-generated method stub
-		return canvas;
-	}
-
-
-
-	@Override
 	public void render() {
 		if(null == mapRenderer) {
-			mapRenderer = new OrthogonalMapRenderer(game.getGameMap());
+			mapRenderer = new OrthogonalMapRenderer(controller.getGameMap());
 		}
 		mapRenderer.render(graphics);
 //		}
 		
-		for(Entity entity : entities) {
+		for(Entity entity : controller.getEntities()) {
 			graphics.drawEntity(entity);
 			System.out.println("drawing");
 		}

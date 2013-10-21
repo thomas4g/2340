@@ -28,7 +28,6 @@ public class OrthogonalMapRenderer {
 
 	        		int tileWidth = map.getTileWidth();
 	        		int tileHeight = map.getTileHeight();
-	                
 	                graphics.drawTile(tile, x*tileWidth, y*tileHeight, tileWidth, tileHeight);
 				}
 			}
