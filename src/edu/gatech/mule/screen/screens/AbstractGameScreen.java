@@ -11,6 +11,7 @@ import edu.gatech.mule.screen.IScreen;
 
 public abstract class AbstractGameScreen implements IScreen {
 
+	public final int MOVEMENT = 5;
 	protected GameEngine game;
 	protected Settings settings;
 	private List<Player> players;
@@ -36,7 +37,7 @@ public abstract class AbstractGameScreen implements IScreen {
 		}
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
-		currentPlayer.move(25*x, 25*y);
+		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		render();
 	}
 	
