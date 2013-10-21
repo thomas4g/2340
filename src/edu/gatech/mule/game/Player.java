@@ -82,6 +82,7 @@ public class Player extends Entity {
 		return ownedLands;
 	}
 	
+	
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
 			this.headshot = loadImage(type.getHeadshot(1));
