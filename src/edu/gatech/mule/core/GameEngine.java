@@ -33,7 +33,7 @@ public class GameEngine {
 	 * 
 	 */
 	public GameEngine() {
-		this.settings = new Settings();		
+		this.settings = new Settings();
 	}
 	
 	public void load(ScreenHandler handler) {

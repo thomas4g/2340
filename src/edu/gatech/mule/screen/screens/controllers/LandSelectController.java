@@ -24,15 +24,15 @@ public class LandSelectController extends ScreenController {
 		super(game, view);
 		this.view = view;
 		location = new Point(0,0);
-		map=game.getGameMap();
 		settings=game.getSettings();
 	}
 	
 	@Override
 	public void load() {
 		super.load();
+		map=game.getGameMap();
 		view.setGameEntities(new ArrayList<Entity>());
-		view.setGameMap(game.getGameMap());
+		view.setGameMap(map);
 		settings.resetPlayers();
 	}
 	
@@ -55,7 +55,10 @@ public class LandSelectController extends ScreenController {
 		game.getSettings().nextPlayer();
 	}
 	
-	public void updateSelection(){
+	@Override
+	public void action(){
+		System.out.println(settings.getCurrentPlayer());
+		System.out.println(map);
 		settings.getCurrentPlayer().addLand(map.getTile(location.x, location.y));
 		nextPlayer();
 	}
