@@ -13,7 +13,8 @@ public abstract class GameMap {
 
 	protected GameTile[][] tiles;
 	protected Map map;
-	
+	private int tileWidth; //Set tileWidth in here somewhere
+	private int tileHeight; //Set this one as well
 	/**
 	 * Constructor for the map
 	 */
@@ -30,8 +31,20 @@ public abstract class GameMap {
 		return tiles;
 	}
 	
+	public GameTile getTile(int xPos,int yPos){
+		return tiles[xPos][yPos];
+	}
+	
 	public Map getMap() {
 		return map;
+	}
+	
+	public int getTileWidth(){
+		return tileWidth;
+	}
+	
+	public int getTileHeight(){
+		return tileHeight;
 	}
 	
 	/**

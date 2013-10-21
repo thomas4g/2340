@@ -15,7 +15,6 @@ import edu.gatech.mule.game.Player;
 public class GameTile extends Tile {
 
 	protected TileType type;
-	protected Player player; //might not need this reference
 	
 	/**
 	 * Constructor for a tile
