@@ -9,6 +9,7 @@ import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
+import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 
@@ -44,13 +45,15 @@ public class GameplayController extends ScreenController {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
+		currentPlayer.setTile(game.getGameMap());
+		if(currentPlayer.getTileType().equals("entertown")) done();
 		((FXMapView)view).render();
 	}
 	
 
 	@Override
 	public void done() {
-		// TODO Auto-generated method stub
+		System.out.println("entered town");
 		
 	}
 	

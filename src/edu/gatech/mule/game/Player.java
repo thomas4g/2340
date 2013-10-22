@@ -85,16 +85,13 @@ public class Player extends Entity {
 		return ownedLands;
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	public BufferedImage getTotem() {
 		if(this.totem == null) {
 			this.totem = loadImage(type.getTotem(color.ordinal()+1));
 		}
 		return this.totem;
 	}
->>>>>>> cef9e7d4758acab23773465a7f384e905bd8173b
+
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
 			this.headshot = loadImage(type.getHeadshot(color.ordinal()+1));

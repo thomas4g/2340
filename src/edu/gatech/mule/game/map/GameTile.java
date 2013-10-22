@@ -16,6 +16,7 @@ public abstract class GameTile extends Tile {
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
+	private Tile tile;
 	
 	/**
 	 * Constructor for a tile
@@ -25,8 +26,13 @@ public abstract class GameTile extends Tile {
 	 */
 	public GameTile(Tile t, TileType type) {
 		super(t);
+		this.tile=t;
 		this.type = type;
 		this.cost = DEFAULT_COST;
+	}
+	
+	public Tile getTile(){
+		return tile;
 	}
 	
 	public void setOwner(Player player) {
