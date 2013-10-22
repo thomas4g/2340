@@ -1,7 +1,11 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
@@ -25,6 +29,7 @@ public class LandSelectController extends ScreenController {
 	
 	private int currentPlayer;
 	private int round = 1;
+	private boolean skipped = false;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
@@ -51,26 +56,45 @@ public class LandSelectController extends ScreenController {
 		x = location.x + x < 0 ? 0 : x;
 		y = location.y + y < 0 ? 0 : y;
 		location.translate(x, y);
-		((FXMapView) view).render();
-		((FXMapView) view).drawSelector(location,game.getPlayers().get(currentPlayer).getColor());
+		view.setSelector(location);
+		view.render();
 	}
 
 	@Override
-	public void action(){		
+	public void action(){	
 		GameTile tile = map.getTile(location.x, location.y);
 		if(tile.getOwner() == null) {
 			game.getPlayers().get(currentPlayer).addLand(tile);
-			currentPlayer++;
-			if(currentPlayer >= game.getPlayers().size()) {
-				round++;
-				currentPlayer = 0;
-			}
-			setPlayer();
+			view.render();
+			skipped = false;
+			nextPlayer();
 		}
-		if(round > FREE_ROUNDS) {
-			//for now, we're just moving straight to gameplay
-			//TODO implement paid land buying and a timer to detect a "pass"
+	}
+	
+	private void nextPlayer() {
+		currentPlayer++;
+		if(currentPlayer >= game.getPlayers().size()) {
+			round++;
+			currentPlayer = 0;
+			if(round > FREE_ROUNDS) {
+				if(skipped) {
+					view.setSelector(null);
+					game.gameplay();
+				}
+				else {
+					skipped = false;
+				}
+			}
+		}
+		setPlayer();
+		view.render();
+	}
+	
+	private void paidRound() {
+		if(skipped && currentPlayer == 0)
 			game.gameplay();
+		else {
+			view.render();
 		}
 	}
 
@@ -81,7 +105,7 @@ public class LandSelectController extends ScreenController {
 
 	@Override
 	public void done() {
-		// TODO Auto-generated method stub
-		
+		skipped = true;
+		nextPlayer();
 	}
 }

@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
@@ -46,9 +47,9 @@ public class FXScreenHandler extends ScreenHandler {
 	/**
 	 * TODO Move all of this to the display method
 	 */
-	public void setScreen(ScreenType type) {
+	public void setScreen(final ScreenType type) {
 		super.setScreen(type);
-		FXView scr = (FXView)screens.get(type).getView();
+    	FXView scr = (FXView)screens.get(type).getView();
 		scr.load();
 		Node node = scr.getNode();
 
