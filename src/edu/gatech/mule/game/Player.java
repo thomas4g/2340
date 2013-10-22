@@ -25,6 +25,7 @@ public class Player extends Entity {
 	private CharacterType type;
 	private Color color;
 	private String name;
+	private double money;
 	private GameTile currentTile;
 	private ArrayList<GameTile> ownedLands;
 	
@@ -36,6 +37,7 @@ public class Player extends Entity {
 	public Player(CharacterType type) {
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
+		this.money = type.getMoney();
 		this.ownedLands=new ArrayList<>();
 		//TODO: make this better
 		
@@ -76,9 +78,17 @@ public class Player extends Entity {
 		setFrames(type.getDirectionalSprites(direction));
 	}
 	
-	public void addLand(GameTile tile){
+	public boolean addLand(GameTile tile, boolean free){
+		if(!free) {
+			this.money -= tile.getCost();
+			if(this.money < 0) {
+				this.money += tile.getCost();
+				return false;
+			}
+		}
 		ownedLands.add(tile);
 		tile.setOwner(this);
+		return true;
 	}
 	
 	public ArrayList<GameTile> getLands(){
