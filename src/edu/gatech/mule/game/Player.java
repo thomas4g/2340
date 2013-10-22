@@ -20,6 +20,8 @@ import edu.gatech.mule.game.map.tiles.PropertyTile;
 public class Player extends Entity {
 	
 	private BufferedImage headshot;
+	private BufferedImage totem;
+	
 	private CharacterType type;
 	private Color color;
 	private String name;
@@ -35,6 +37,7 @@ public class Player extends Entity {
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
 		this.ownedLands=new ArrayList<>();
+		//TODO: make this better
 		
 		setDirectionalFrames();
 	}
@@ -82,10 +85,19 @@ public class Player extends Entity {
 		return ownedLands;
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	public BufferedImage getTotem() {
+		if(this.totem == null) {
+			this.totem = loadImage(type.getTotem(color.ordinal()+1));
+		}
+		return this.totem;
+	}
+>>>>>>> cef9e7d4758acab23773465a7f384e905bd8173b
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
-			this.headshot = loadImage(type.getHeadshot(1));
+			this.headshot = loadImage(type.getHeadshot(color.ordinal()+1));
 		}
 		return this.headshot;
 	}

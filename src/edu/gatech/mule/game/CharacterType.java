@@ -58,9 +58,11 @@ public enum CharacterType {
 	private static final double MONEY = 1000;
 	private static final String IMAGE_PATH = "/assets";
 	private static final String SPRITES = "/overmap walksprites/";
+	private static final String INDICATORS = "/color indicators/";
 	
 	private final String sprites;
 	private final String headshot;
+	private final String totem;
 	private final double money;
 	private final String type;
 	private final String name;
@@ -87,7 +89,7 @@ public enum CharacterType {
 		//need to add color here instead of + "1"
 		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0) + "1f";
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
-		
+		this.totem = IMAGE_PATH + INDICATORS;
 	}
 	
 	/**
@@ -115,6 +117,9 @@ public enum CharacterType {
 
 	public String getHeadshot(int color) {
 		return headshot + color + IMAGE_EXT;
+	}
+	public String getTotem(int color) {
+		return totem + color + IMAGE_EXT;
 	}
 
 	public double getMoney() {

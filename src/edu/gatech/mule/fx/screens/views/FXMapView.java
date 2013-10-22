@@ -100,10 +100,19 @@ public class FXMapView extends FXView implements MapView {
 		for(int x=0;x<gameMap.getTiles().length;x++) {
 			for(int y=0;y<gameMap.getTiles()[x].length;y++) {
 				if(gameMap.getTiles()[x][y].getOwner() != null) {
-					Color indicator = gameMap.getTiles()[x][y].getOwner().getColor();
-					graphics.getGraphicsContext().setFill(fxColor(indicator));
-					graphics.getGraphicsContext().fillOval(x*OrthogonalMapRenderer.TILE_WIDTH, y*OrthogonalMapRenderer.TILE_HEIGHT, OrthogonalMapRenderer.TILE_WIDTH/8, OrthogonalMapRenderer.TILE_HEIGHT/8);
+					graphics.drawImage(
+							gameMap.getTiles()[x][y].getOwner().getTotem(),
+							new Point(x*OrthogonalMapRenderer.TILE_WIDTH+5,
+							y*OrthogonalMapRenderer.TILE_HEIGHT+5)); 
 				}
+				
+				graphics.getGraphicsContext().setLineWidth(1);
+				graphics.getGraphicsContext().setStroke(new javafx.scene.paint.Color(0,0,0,.5));
+				graphics.getGraphicsContext().strokeRect(
+						x*OrthogonalMapRenderer.TILE_WIDTH, 
+						y*OrthogonalMapRenderer.TILE_HEIGHT,
+						OrthogonalMapRenderer.TILE_WIDTH, 
+						OrthogonalMapRenderer.TILE_HEIGHT);
 			}
 		}
 		
