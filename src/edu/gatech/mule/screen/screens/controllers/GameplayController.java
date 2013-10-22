@@ -46,7 +46,7 @@ public class GameplayController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		currentPlayer.setTile(game.getGameMap());
-		if(currentPlayer.getTileType().equals("entertown")) done();
+		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN)) done();
 		((FXMapView)view).render();
 	}
 	

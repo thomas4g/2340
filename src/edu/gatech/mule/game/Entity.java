@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 
 public abstract class Entity {
@@ -59,8 +60,8 @@ public abstract class Entity {
 		tile=map.getTile(xTilePos, yTilePos);
 	}
 	
-	public String getTileType(){
-		return tile.getTile().getProperties().getProperty("type");
+	public TileType getTileType(){
+		return tile.getType();
 	}
 	
 	public BufferedImage getImage(){
