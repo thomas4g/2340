@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import tiled.core.Tile;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -38,6 +39,8 @@ public class FXMapView extends FXView implements MapView {
 	private GameMap gameMap;
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
+	private Point selectorLocation;
+	private boolean interrupt = false;
 	/**
 	 * ???
 	 * 
@@ -54,6 +57,10 @@ public class FXMapView extends FXView implements MapView {
 		node = canvas;
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		wireKeyboard();
+		
+//		Task<Void> t = new RenderTask<Void>(this);
+//		new Thread(t).start();
+
 		render();
 	}
 	
@@ -72,6 +79,9 @@ public class FXMapView extends FXView implements MapView {
 				else if(k.getCode().equals(KeyCode.ENTER)){
 					controller.action();
 				}
+				else if(k.getCode() == KeyCode.S) {
+					controller.done();
+				}
 			}
 		});
 	}
@@ -85,11 +95,9 @@ public class FXMapView extends FXView implements MapView {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	public void render() {
+	public synchronized void render() {
 		graphics.getGraphicsContext().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		
 		if(null == mapRenderer) {
@@ -116,15 +124,23 @@ public class FXMapView extends FXView implements MapView {
 			}
 		}
 		
+		drawSelector();
+		
 		for(Entity entity : gameEntities) {
 			graphics.drawImage(entity.getImage(), entity.getPosition());
 		}
 		
 		drawCurrentPlayer();
 	}
-
-	public void drawSelector(Point location, Color color) {
-		graphics.drawSelector(location, fxColor(color));
+	
+	@Override
+	public void setSelector(Point location) {
+		selectorLocation = location;
+	}
+	
+	private void drawSelector() {
+		if(selectorLocation != null && currentPlayer != null)
+			graphics.drawSelector(selectorLocation, fxColor(currentPlayer.getColor()));
 	}
 	
 	private javafx.scene.paint.Color fxColor(Color color) {
@@ -157,4 +173,32 @@ public class FXMapView extends FXView implements MapView {
 		this.currentPlayer = currentPlayer;		
 	}
 
+}
+
+class RenderTask<Void> extends Task<Void> {
+	public MapView view;
+	public boolean interrupt;
+	public RenderTask(MapView view) {
+		this.view = view;
+	}
+	@Override
+	protected Void call() throws Exception {
+		while(true) {
+			try {
+				view.render();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(interrupt)
+				break;
+		}
+		return null;
+	}
 }
