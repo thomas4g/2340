@@ -1,5 +1,6 @@
 package edu.gatech.mule.game.map;
 
+import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import tiled.core.Map;
 
 /**
@@ -20,8 +21,10 @@ public abstract class GameMap {
 	 */
 	public GameMap() {
 		generateMap();
+		tileWidth=OrthogonalMapRenderer.TILE_WIDTH;
+		tileHeight=OrthogonalMapRenderer.TILE_WIDTH;
 	}
-	
+
 	/**
 	 * Gets the tiles in the map
 	 * 
