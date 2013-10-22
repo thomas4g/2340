@@ -7,7 +7,7 @@
 		<property name="lib.dir" value="lib" />
 		<property name="main.class" value="edu.gatech.mule.core.AtariMule" />
 		<path id="classpath">
-			<fileset dir="lib" includes="jfxrt.jar" />
+			<fileset dir="lib" includes="**/*.jar" />
 		</path>
 	</target>
 	
