@@ -93,4 +93,10 @@ public class FXScreenHandler extends ScreenHandler {
 		return mainMapView;
 	}
 
+	@Override
+	protected MapView loadTownView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
