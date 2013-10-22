@@ -64,10 +64,11 @@ public class LandSelectController extends ScreenController {
 	public void action(){	
 		GameTile tile = map.getTile(location.x, location.y);
 		if(tile.getOwner() == null) {
-			game.getPlayers().get(currentPlayer).addLand(tile);
-			view.render();
-			skipped = false;
-			nextPlayer();
+			if(game.getPlayers().get(currentPlayer).addLand(tile, round <= FREE_ROUNDS)) {
+				view.render();
+				skipped = false;
+				nextPlayer();
+			}
 		}
 	}
 	
