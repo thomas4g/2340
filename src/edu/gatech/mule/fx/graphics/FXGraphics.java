@@ -72,7 +72,6 @@ public class FXGraphics implements Renderer {
 		gc.setLineWidth(3);
 		gc.setStroke(color);
 		gc.strokeRect(location.getX()*OrthogonalMapRenderer.TILE_WIDTH, location.getY()*OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_HEIGHT);
-		
 	}
 	
 	public GraphicsContext getGraphicsContext() {

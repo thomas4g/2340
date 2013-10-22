@@ -93,7 +93,7 @@ public class Player extends Entity {
 	}
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
-			this.headshot = loadImage(type.getHeadshot(1));
+			this.headshot = loadImage(type.getHeadshot(color.ordinal()+1));
 		}
 		return this.headshot;
 	}
