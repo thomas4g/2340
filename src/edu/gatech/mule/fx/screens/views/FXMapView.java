@@ -101,7 +101,7 @@ public class FXMapView extends FXView implements MapView {
 			for(int y=0;y<gameMap.getTiles()[x].length;y++) {
 				if(gameMap.getTiles()[x][y].getOwner() != null) {
 					graphics.drawImage(
-							gameMap.getTiles()[x][y].getOwner().getTotem(),
+							gameMap.getTile(x, y).getOwner().getTotem(),
 							new Point(x*OrthogonalMapRenderer.TILE_WIDTH+5,
 							y*OrthogonalMapRenderer.TILE_HEIGHT+5)); 
 				}
