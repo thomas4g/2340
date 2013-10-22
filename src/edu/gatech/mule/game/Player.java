@@ -108,4 +108,9 @@ public class Player extends Entity {
 		}
 		return this.headshot;
 	}
+	
+	public String toString() {
+		return "Name: "+name+" | Money: "+money+
+				" | Color: "+color+" | Race: "+type.getName();
+	}
 }

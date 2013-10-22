@@ -107,6 +107,10 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
+	public void enterTown() {
+		screenHandler.setScreen(ScreenType.TOWN_SCREEN);
+	}
+	
 	/**
 	 * Gets the settings
 	 */
