@@ -46,15 +46,15 @@ public class GameplayController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		currentPlayer.setTile(game.getGameMap());
-		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN)) done();
+		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN))
+			game.enterTown();
+
 		((FXMapView)view).render();
 	}
 	
 
 	@Override
 	public void done() {
-		System.out.println("entered town");
-		game.enterTown();
 	}
 	
 }
