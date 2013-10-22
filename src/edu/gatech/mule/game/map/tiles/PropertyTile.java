@@ -1,6 +1,7 @@
 package edu.gatech.mule.game.map.tiles;
 
 import tiled.core.Tile;
+import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import tiled.core.Tile;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -18,6 +19,8 @@ import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.PropertyTile;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -94,6 +97,25 @@ public class FXMapView extends FXView implements MapView {
 		}
 		mapRenderer.render(graphics);
 		
+		for(int x=0;x<gameMap.getTiles().length;x++) {
+			for(int y=0;y<gameMap.getTiles()[x].length;y++) {
+				if(gameMap.getTiles()[x][y].getOwner() != null) {
+					graphics.drawImage(
+							gameMap.getTile(x, y).getOwner().getTotem(),
+							new Point(x*OrthogonalMapRenderer.TILE_WIDTH+5,
+							y*OrthogonalMapRenderer.TILE_HEIGHT+5)); 
+				}
+				
+				graphics.getGraphicsContext().setLineWidth(1);
+				graphics.getGraphicsContext().setStroke(new javafx.scene.paint.Color(0,0,0,.5));
+				graphics.getGraphicsContext().strokeRect(
+						x*OrthogonalMapRenderer.TILE_WIDTH, 
+						y*OrthogonalMapRenderer.TILE_HEIGHT,
+						OrthogonalMapRenderer.TILE_WIDTH, 
+						OrthogonalMapRenderer.TILE_HEIGHT);
+			}
+		}
+		
 		for(Entity entity : gameEntities) {
 			graphics.drawImage(entity.getImage(), entity.getPosition());
 		}
@@ -102,7 +124,11 @@ public class FXMapView extends FXView implements MapView {
 	}
 
 	public void drawSelector(Point location, Color color) {
-		graphics.drawSelector(location, new javafx.scene.paint.Color(color.red/255.0, color.green/255.0, color.blue/255.0, 1));
+		graphics.drawSelector(location, fxColor(color));
+	}
+	
+	private javafx.scene.paint.Color fxColor(Color color) {
+		return new javafx.scene.paint.Color(color.red/255.0, color.green/255.0, color.blue/255.0, 1);
 	}
 	
 	private void drawCurrentPlayer() {

@@ -7,6 +7,7 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 
@@ -23,7 +24,7 @@ public class LandSelectController extends ScreenController {
 	private GameMap map;
 	
 	private int currentPlayer;
-	private int round;
+	private int round = 1;
 	
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
@@ -44,24 +45,32 @@ public class LandSelectController extends ScreenController {
 	public final void move(int x, int y) {
 
 		x = x == 0 ? 0 : x / Math.abs(x);
-		y = y == 0 ? 0 : y / Math.abs(y);
+		y = y == 0 ? 0 : y / Math.abs(y);		
+		x = location.x + x >= game.getGameMap().getTiles().length ? 0 : x;
+		y = location.y + y >= game.getGameMap().getTiles()[0].length ? 0 : y;
+		x = location.x + x < 0 ? 0 : x;
+		y = location.y + y < 0 ? 0 : y;
 		location.translate(x, y);
 		((FXMapView) view).render();
 		((FXMapView) view).drawSelector(location,game.getPlayers().get(currentPlayer).getColor());
 	}
 
 	@Override
-	public void action(){
+	public void action(){		
+		GameTile tile = map.getTile(location.x, location.y);
+		if(tile.getOwner() == null) {
+			game.getPlayers().get(currentPlayer).addLand(tile);
+			currentPlayer++;
+			if(currentPlayer >= game.getPlayers().size()) {
+				round++;
+				currentPlayer = 0;
+			}
+			setPlayer();
+		}
 		if(round > FREE_ROUNDS) {
 			//for now, we're just moving straight to gameplay
 			//TODO implement paid land buying and a timer to detect a "pass"
 			game.gameplay();
-		}
-		else {
-			game.getPlayers().get(currentPlayer).addLand(map.getTile(location.x, location.y));
-			currentPlayer = ++currentPlayer % game.getPlayers().size();
-			setPlayer();
-			round++;
 		}
 	}
 

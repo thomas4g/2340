@@ -8,6 +8,7 @@ import tiled.core.Tile;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.*;
+import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * 
@@ -19,11 +20,13 @@ import edu.gatech.mule.game.map.*;
 public class Player extends Entity {
 	
 	private BufferedImage headshot;
+	private BufferedImage totem;
+	
 	private CharacterType type;
 	private Color color;
 	private String name;
 	private GameTile currentTile;
-	private ArrayList<Tile> ownedLands;
+	private ArrayList<GameTile> ownedLands;
 	
 	/**
 	 * Constructor for player based on player type
@@ -34,6 +37,7 @@ public class Player extends Entity {
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
 		this.ownedLands=new ArrayList<>();
+		//TODO: make this better
 		
 		setDirectionalFrames();
 	}
@@ -72,17 +76,24 @@ public class Player extends Entity {
 		setFrames(type.getDirectionalSprites(direction));
 	}
 	
-	public void addLand(Tile tile){
+	public void addLand(GameTile tile){
 		ownedLands.add(tile);
+		tile.setOwner(this);
 	}
 	
-	public ArrayList<Tile> getLands(){
+	public ArrayList<GameTile> getLands(){
 		return ownedLands;
 	}
 	
+	public BufferedImage getTotem() {
+		if(this.totem == null) {
+			this.totem = loadImage(type.getTotem(color.ordinal()+1));
+		}
+		return this.totem;
+	}
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
-			this.headshot = loadImage(type.getHeadshot(1));
+			this.headshot = loadImage(type.getHeadshot(color.ordinal()+1));
 		}
 		return this.headshot;
 	}
