@@ -111,6 +111,6 @@ public class Player extends Entity {
 	
 	public String toString() {
 		return "Name: "+name+" | Money: "+money+
-				" | Color: "+color+" | Race: "+type.getName();
+				" | Color: "+color+" | Race: "+type.name();
 	}
 }

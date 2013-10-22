@@ -84,4 +84,11 @@ public class FXGraphics implements Renderer {
 		//NOT USING THIS BEAR WITH ME
 	}
 
+
+	public void drawText(String text, Point point) {
+		gc.setLineWidth(.75);
+		gc.setStroke(new Color(0,0,0,1));
+		gc.strokeText(text, point.x, point.y);
+	}
+
 }

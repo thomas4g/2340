@@ -35,6 +35,7 @@ public class LandSelectController extends ScreenController {
 		super(game, view);
 		this.view = view;
 		location = new Point(0,0);
+		round = 1;
 	}
 	
 	@Override
@@ -91,14 +92,6 @@ public class LandSelectController extends ScreenController {
 		view.render();
 	}
 	
-	private void paidRound() {
-		if(skipped && currentPlayer == 0)
-			game.gameplay();
-		else {
-			view.render();
-		}
-	}
-
 	private void setPlayer() {
 		view.setCurrentPlayer(game.getPlayers().get(currentPlayer));
 	}

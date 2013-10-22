@@ -153,7 +153,10 @@ public class FXMapView extends FXView implements MapView {
 			float ratio = (float)hs.getHeight()/hs.getWidth();
 			int newWidth = 75;
 			int newHeight = (int)(newWidth*ratio);
-			graphics.drawImage(currentPlayer.getHeadshot(), new Point(15, 400), newWidth, newHeight);
+			int y = (int)(canvas.getHeight()-2*newHeight);
+			System.out.println(y);
+			graphics.drawImage(currentPlayer.getHeadshot(), new Point(15, 450), newWidth, newHeight);
+			graphics.drawText(currentPlayer.toString(), new Point(100, 500));
 		}
 	}
 	
