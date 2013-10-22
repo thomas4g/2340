@@ -54,7 +54,7 @@ public class GameplayController extends ScreenController {
 	@Override
 	public void done() {
 		System.out.println("entered town");
-		
+		game.enterTown();
 	}
 	
 }

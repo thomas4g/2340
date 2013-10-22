@@ -28,7 +28,7 @@ public class TownController extends ScreenController {
 	public void load() {
 		super.load();
 		view.setGameEntities(entities);
-		view.setGameMap(game.getGameMap());
+		view.setGameMap(game.getTownMap());
 	}
 	
 	public final void move(int x, int y) {
@@ -41,7 +41,7 @@ public class TownController extends ScreenController {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
-		((FXMapView)view).render();
+		view.render();
 	}
 	
 

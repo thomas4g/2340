@@ -27,8 +27,7 @@ public abstract class GameTile extends Tile {
 	public GameTile(Tile t, TileType type) {
 		super(t);
 		this.tile=t;
-		String temp = (String)tile.getProperties().get("type");
-		this.type =TileType.valueOf(temp.toUpperCase());
+		this.type = type;
 		this.cost = DEFAULT_COST;
 	}
 	

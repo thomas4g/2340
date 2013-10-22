@@ -9,6 +9,7 @@ import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.maps.DefaultGameMap;
 import edu.gatech.mule.game.map.maps.RandomGameMap;
+import edu.gatech.mule.game.map.maps.TownMap;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
@@ -91,7 +92,7 @@ public class GameEngine {
 	 */
 	public void playGame() {
 		settings.printSettings();
-//		townMap = new TownMap();
+		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
 		} else if(settings.getMapType().equals(MapType.RANDOM)) {

@@ -21,14 +21,14 @@ public class TownMap extends GameMap {
 	/**
 	 * Generates the town map
 	 */
-	//final String tmx = "res/tiles/town.tmx";
+	final String tmx = "res/tiles/town.tmx";
 	@Override
 	protected void generateMap() {
 		// TODO Auto-generated method stub
 		map=null;
 		try {
 			TMXMapReader mapReader = new TMXMapReader();
-			//map = mapReader.readMap(tmx);
+			map = mapReader.readMap(tmx);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,8 @@ public class TownMap extends GameMap {
 			for(int j=0;j<layer.getHeight();j++){
 				
 				Tile tile = layer.getTileAt(i, j);
-				String type = (String)tile.getProperties().get("type");
+				System.out.println(tile.getProperties());
+				String type = "TOWNTILE";//(String)tile.getProperties().get("type");
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type.toUpperCase()));
 				
 			}

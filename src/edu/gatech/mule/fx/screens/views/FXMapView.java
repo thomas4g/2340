@@ -100,10 +100,9 @@ public class FXMapView extends FXView implements MapView {
 	public synchronized void render() {
 		graphics.getGraphicsContext().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		
-		if(null == mapRenderer) {
-			mapRenderer = new OrthogonalMapRenderer(gameMap.getMap());
+		if(null != mapRenderer) {
+			mapRenderer.render(graphics);
 		}
-		mapRenderer.render(graphics);
 		
 		for(int x=0;x<gameMap.getTiles().length;x++) {
 			for(int y=0;y<gameMap.getTiles()[x].length;y++) {
@@ -164,6 +163,7 @@ public class FXMapView extends FXView implements MapView {
 	@Override
 	public void setGameMap(GameMap gameMap) {
 		this.gameMap =gameMap;
+		mapRenderer = new OrthogonalMapRenderer(gameMap.getMap());
 	}
 
 	@Override
