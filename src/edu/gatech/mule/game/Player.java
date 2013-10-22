@@ -91,6 +91,7 @@ public class Player extends Entity {
 		}
 		return this.totem;
 	}
+
 	public BufferedImage getHeadshot() {
 		if(this.headshot == null) {
 			this.headshot = loadImage(type.getHeadshot(color.ordinal()+1));
