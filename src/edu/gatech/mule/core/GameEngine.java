@@ -16,7 +16,6 @@ import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 /**
  * Game engine sets up and runs the MULE game.
  * Has the ability to change the screen view based on game flow.
- * 
  * @version 0.1
  */
 public class GameEngine {

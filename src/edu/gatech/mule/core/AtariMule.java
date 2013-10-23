@@ -5,7 +5,6 @@ import edu.gatech.mule.screen.ScreenHandler;
 
 /**
  * Driver for the Atari game M.U.L.E.
- * 
  * @version 0.1
  */
 public class AtariMule {
