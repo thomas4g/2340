@@ -5,19 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 
  * Settings for the game
- * 
- * @version 1.0
- *
+ * @version 0.1
  */
 public class Settings {
 	
-	/**
-	 * Difficulty of the game
-	 */
 	public enum Difficulty { BEGINNER, STANDARD, ADVANCED };
+	
 	public enum MapType { DEFAULT, RANDOM };
+	
 	public enum Color { 
 		PURPLE(145,85,134),
 		BLUE(83,99,141), 
@@ -40,13 +36,6 @@ public class Settings {
 		
 	};
 	
-	/**
-	 * Map type
-	 * 
-	 * Default is a predefined map
-	 * Random is a randomly-generated map
-	 */
-	
 	private Difficulty difficulty;
 	private MapType mapType;
 	private List<Player> players;
@@ -61,97 +50,102 @@ public class Settings {
 	}
 	
 	/**
-	 * Get the difficulty of the game
-	 * 
-	 * @return difficulty of the game
+	 * Get difficulty of game
+	 * @return difficulty of game
 	 */
 	public Difficulty getDifficulty() {
 		return difficulty;
 	}
 	
 	/**
-	 * Set the difficulty of the game
-	 * 
-	 * @param difficulty, difficulty of the game
+	 * Set up difficulty of game
+	 * @param difficulty, difficulty of game
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 	
 	/**
-	 * Get the map type of the game
-	 * 
-	 * @return map type of the game
+	 * Get map type of game
+	 * @return map type of game
 	 */
 	public MapType getMapType(){
 		return mapType;
 	}
 	
 	/**
-	 * Set the map type of the game
-	 * 
-	 * @param type, map type of the game
+	 * Set up map type of game
+	 * @param type, map type of game
 	 */
 	public void setMapType(MapType type){
 		this.mapType=type;
 	}
 	
 	/**
-	 * Get the list of players in the game
-	 * 
-	 * @param list of players in the game
+	 * Get list of players in game
+	 * @return list of players in game
 	 */
 	public List<Player> getPlayers() {
 		return players;
 	}
 	
 	/**
-	 * Adds a player in the game
-	 * 
-	 * @param type, a character type
+	 * Adds a player into the game
+	 * @param player, player in the game
 	 */
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
 	
 	/**
-	 * ???
+	 * Set the count of number of players
+	 * @param count, number of players
 	 */
 	public void setPlayerCount(int count){
 		playerCount=count;
 	}
 	
 	/**
-	 * ???
+	 * Get number of players in game
+	 * @return number of players in game
 	 */
 	public int getPlayerCount(){
 		return playerCount;
 	}
 	
 	/**
-	 * ???
+	 * Set the current player of the game
+	 * @param player, current player of the game
 	 */
 	public void setCurrentPlayer(Player player){
 		currentPlayer = player;
 	}
 	
 	/**
-	 * ???
+	 * Get the current player of the game
+	 * @return current player of the game
 	 */
 	public Player getCurrentPlayer(){
 		return currentPlayer;
 	}
-		
+	
+	/**
+	 * Move on to the next player
+	 */
 	public void nextPlayer(){
 		
 	}
 	
+	/**
+	 * Gets the iterator of players
+	 * @return iterator of players
+	 */
 	public Iterator<Player> playerIterator() {
 		return players.iterator();
 	}
 	
 	/**
-	 * Print settings for debugging purposes
+	 * Print settings (for debugging purposes)
 	 */
 	public void printSettings() {
 		System.out.println("Players: " + playerCount + ", Difficulty: " + difficulty + ", MapType: " + mapType);

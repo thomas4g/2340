@@ -15,12 +15,9 @@ import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 /**
  * Game engine sets up and runs the MULE game.
+ * Has the ability to change the screen view based on game flow.
  * 
- * Sets up the screen handler and game settings.
- * Has the ability to change the screen view.
- * 
- * @version 1.0
- *
+ * @version 0.1
  */
 public class GameEngine {
 	
@@ -31,26 +28,35 @@ public class GameEngine {
 	private List<Player> players;
 	
 	/**
-	 * Sets up the screen handler and instantiates the settings.
-	 * Also loads the main screen by default.
-	 * 
-	 * @param screenHandler, the screen handler of the program.
-	 * 
+	 * Constructor for the game engine
+	 * Loads new settings
 	 */
 	public GameEngine() {
 		this.settings = new Settings();
 	}
 	
+	/**
+	 * Loads the screens to start screen
+	 * @param handler, screen handler
+	 */
 	public void load(ScreenHandler handler) {
 		this.screenHandler = handler;
 		screenHandler.load();
 		screenHandler.start();
 	}
 	
+	/**
+	 * Get game map
+	 * @return game map
+	 */
 	public GameMap getGameMap() {
 		return gameMap;
 	}
 	
+	/**
+	 * Gets town map
+	 * @return town map
+	 */
 	public GameMap getTownMap() {
 		return townMap;
 	}
@@ -60,7 +66,7 @@ public class GameEngine {
 //	}
 	
 	/**
-	 * Shows the main screen
+	 * Shows the start screen
 	 */
 	public void start() {
 		screenHandler.setScreen(ScreenType.START);
@@ -81,14 +87,14 @@ public class GameEngine {
 	}
 	
 	/**
-	 * Shows the screen for
+	 * Shows the screen for player config
 	 */
 	public void choosePlayer() {
 		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
 	}
 	
 	/**
-	 * Shows the screen of the main map
+	 * Sets up map based on configurations and begins land selection
 	 */
 	public void playGame() {
 		settings.printSettings();
@@ -104,25 +110,39 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.LAND_SELECT);
 	}
 	
+	/**
+	 * Shows screen of game map in general gameplay
+	 */
 	public void gameplay() {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
+	/**
+	 * Shows screen of town map when entering town
+	 */
 	public void enterTown() {
 		screenHandler.setScreen(ScreenType.TOWN_SCREEN);
 	}
 	
+	/**
+	 * Shows screen of game map when exiting town
+	 */
 	public void exitTown(){
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	/**
-	 * Gets the settings
+	 * Gets settings
+	 * @return settings
 	 */
 	public Settings getSettings() {
 		return settings;
 	}
 	
+	/**
+	 * Gets list of plays
+	 * @return list of players
+	 */
 	public List<Player> getPlayers() {
 		return players;
 	}

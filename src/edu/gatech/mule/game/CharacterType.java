@@ -1,20 +1,14 @@
 package edu.gatech.mule.game;
 
 /**
- * 
  * Library of character types
- * 
  * Contains listings of races with corresponding name, description, and images
- * 
- * @version 1.0
- *
+ * @version 0.1
  */
 public enum CharacterType {
 
 	/**
-	 * Humanoid
-	 * 
-	 * Only race where starting money is lower than the default
+	 * Humanoid:only race where starting money is lower than the default
 	 */
 	HUMANOID("Humanoid", 
 		"Though the empress herself is said to be a \n" 
@@ -22,19 +16,15 @@ public enum CharacterType {
 		+ "Most humanoids work as farmers, servants,\nor men-for-hire.\n", 
 		600, "Jimbo"),
 	
-	/**z
-	 * Bonzoid
-	 * 
-	 * The monkey race that apparently reminds someone of Colonel Mustard.
+	/**
+	 * Bonzoid:the monkey race that apparently reminds someone of Colonel Mustard.
 	 */
 	BONZOID("Bonzoid", 
 			"Despite their bulky size, Bonzoids are a peaceful race. \n"
 			+ "Many work as tailors, blacksmiths, carpenters,  \nand shopowners.", 
 			"Colonel Mustard"),
 	/**
-	 * Mechtron
-	 * 
-	 * Playable only for AI
+	 * Mechtron:playable only for AI
 	 */
 	AUTOMATON("Automaton", 
 			"Mechtrons are machines created to do the will of the empress. \n" 
@@ -42,9 +32,7 @@ public enum CharacterType {
 			+ "Players cannot control Mechtrons; selecting one creates an npc.", ""),
 	
 	/**
-	 * Flapper
-	 * 
-	 * Only race where starting money is higher than the default
+	 * Flapper:only race where starting money is higher than the default
 	 */
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed\nof Flappers. " 
@@ -67,18 +55,13 @@ public enum CharacterType {
 	private final String type;
 	private final String name;
 	private final String description;
-
 	
 	/**
-	 * 
 	 * Constructor of a character type
-	 * 
-	 * @param name, name of the race
+	 * @param type, a character's race
 	 * @param description, short description of the race
 	 * @param money, starting money in the game
-	 * @param sprite, world sprite filename
-	 * @param headshot, headshot filename
-	 * 
+	 * @param name, name of the player
 	 */
 	CharacterType(String type, String description, double money, String name) {
 		this.type = type.toLowerCase();
@@ -94,42 +77,71 @@ public enum CharacterType {
 	
 	/**
 	 * Constructor of a character type with default money
-	 *  
-	 * @param name, name of the race
+	 * @param type, name of the race
 	 * @param description, short description of the race
-	 * @param money, starting money in the game
-	 * @param sprite, world sprite filename
-	 * @param headshot, headshot filename
-	 * 
+	 * @param defaultName, a default name for the player
 	 */
-	CharacterType(String name, String description, String defaultName) {
-		this(name, description, MONEY, defaultName);
+	CharacterType(String type, String description, String defaultName) {
+		this(type, description, MONEY, defaultName);
 	}
 
+	/**
+	 * Get the still/idle sprite based on facing direction
+	 * @param direction, direction the sprite is facing
+	 * @return the filename of the corresponding still sprite
+	 */
 	public String getStillSprite(Direction direction) {
 		return sprites + (3*direction.ordinal() + 1) + IMAGE_EXT;
 	}
 	
+	/**
+	 * Get the directional/walking sprite based on facing direction
+	 * @param direction, direction the sprite is facing
+	 * @return the filename of the corresponding directional sprite
+	 */
 	public String[] getDirectionalSprites(Direction direction) {
 		int base = 3*direction.ordinal() + 1;
 		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
 	}
 
+	/**
+	 * Get the headshot of a character based on color
+	 * @param color, the color of the headshot
+	 * @return the filename of the corresponding headshot
+	 */
 	public String getHeadshot(int color) {
 		return headshot + color + IMAGE_EXT;
 	}
+	
+	/**
+	 * Get the totem of a character based on color
+	 * @param color, the color of the totem
+	 * @return the filename of the corresponding totem
+	 */
 	public String getTotem(int color) {
 		return totem + color + IMAGE_EXT;
 	}
 
+	/**
+	 * Get the money blingbling
+	 * @return the money
+	 */
 	public double getMoney() {
 		return money;
 	}
 
+	/**
+	 * Get the name of the player
+	 * @return name of the player
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Get the description
+	 * @return description
+	 */
 	public String getDescripion() {
 		return description;
 	}
