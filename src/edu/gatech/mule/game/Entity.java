@@ -79,6 +79,10 @@ public abstract class Entity {
 	public Point getPosition(){
 		return location;
 	}
+	
+	public void setPosition(Point pos){
+		location=pos;
+	}
 
 	private void updateFrame(){
 		frameIndex=(frameIndex+1)%frames.length;

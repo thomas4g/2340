@@ -1,5 +1,6 @@
 package edu.gatech.mule.screen.screens.controllers;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,11 @@ public class TownController extends ScreenController {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
+		if(currentPlayer.getPosition().getX()<0){
+			//hard coded position I know :( I'll fix it later
+			game.exitTown();
+			currentPlayer.setPosition(new Point(290, 180));
+		}
 		view.render();
 	}
 	

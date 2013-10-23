@@ -11,6 +11,7 @@ import tiled.core.Map;
 
 public interface MapView extends ScreenView {
 	public void setGameMap(GameMap gameMap);
+	public GameMap getGameMap();
 	public void setGameEntities(List<Entity> gameEntities);
 	public void setCurrentPlayer(Player player);
 	public void setSelector(Point location);

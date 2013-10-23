@@ -176,6 +176,11 @@ public class FXMapView extends FXView implements MapView {
 		this.currentPlayer = currentPlayer;		
 	}
 
+	@Override
+	public GameMap getGameMap() {
+		return gameMap;
+	}
+
 }
 
 class RenderTask<Void> extends Task<Void> {

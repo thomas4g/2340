@@ -1,5 +1,6 @@
 package edu.gatech.mule.screen.screens.controllers;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +47,11 @@ public class GameplayController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		currentPlayer.setTile(game.getGameMap());
-		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN))
+		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN)){
 			game.enterTown();
+			currentPlayer.setPosition(new Point(40,180));
+		}
+	
 
 		((FXMapView)view).render();
 	}

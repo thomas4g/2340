@@ -81,7 +81,7 @@ public class FXGraphics implements Renderer {
 	@Override
 	public void drawEntity(Entity entity) {
 		// TODO Auto-generated method stub
-		//NOT USING THIS BEAR WITH ME
+		//NOT USING THIS |__BEAR__| WITH ME
 	}
 
 
