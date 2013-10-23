@@ -35,7 +35,7 @@ public class LandSelectController extends ScreenController {
 	 * @param view, map view
 	 */
 	public LandSelectController(GameEngine game, MapView view) {
-		super(game, view);
+		super(game,view);
 		this.view = view;
 		location = new Point(0,0);
 		round = 1;

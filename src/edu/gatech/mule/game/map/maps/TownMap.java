@@ -42,9 +42,8 @@ public class TownMap extends GameMap {
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type.toUpperCase()));
 				
 			}
-			
 		}
+		
 	}
 	
-
 }

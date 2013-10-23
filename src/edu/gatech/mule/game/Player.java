@@ -155,4 +155,5 @@ public class Player extends Entity {
 		return "Name: "+name+" | Money: "+money+
 				" | Color: "+color+" | Race: "+type.name();
 	}
+	
 }

@@ -76,22 +76,3 @@ public class DefaultGameMap extends GameMap {
 //		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

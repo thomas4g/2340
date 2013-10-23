@@ -47,9 +47,7 @@ public class OrthogonalMapRenderer {
 	                graphics.drawTile(tile, x*tileWidth, y*tileHeight, tileWidth, tileHeight);
 				}
 			}
-			
 		}
 	}
-	
 	
 }
