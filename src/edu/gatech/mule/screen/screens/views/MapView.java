@@ -9,6 +9,10 @@ import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
 import tiled.core.Map;
 
+/**
+ * Map view
+ * @version 0.1
+ */
 public interface MapView extends ScreenView {
 	public void setGameMap(GameMap gameMap);
 	public GameMap getGameMap();

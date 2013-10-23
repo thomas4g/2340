@@ -12,16 +12,16 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
- * 
- * FX race select screen
- * 
- * @version 1.0
- *
+ * View for race select config
+ * @version 0.1
  */
 public class FXRaceSelectView extends FXView implements SettingsView {
 
 	protected Settings settings;
 	
+	/**
+	 * Constructor for race select screen
+	 */
 	public FXRaceSelectView() {
 		super("race_select");
 	}
@@ -30,13 +30,7 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	public void setSettings(Settings settings) {
 		this.settings = settings;
 	}
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param event
-	 * 
-	 */
+	
 	@FXML
 	private void OnChoice(ActionEvent event){
 		CharacterType c = null;
@@ -53,14 +47,6 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 		controller.done();
 	}
 	
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param location
-	 * @param resources
-	 * 
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

@@ -21,13 +21,10 @@ import edu.gatech.mule.screen.screens.controllers.SettingsController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
- * 
- * FX settings screen
- * 
- * @version 1.0
- *
+ * View for settings config
  */
 public class FXSettingsView extends FXView implements SettingsView {
+	
 	@FXML
 	private ComboBox<String> combo;
 	@FXML
@@ -35,6 +32,9 @@ public class FXSettingsView extends FXView implements SettingsView {
 	private int playerCount;
 	private Settings settings;
 	
+	/**
+	 * Constructor for settings config screen
+	 */
 	public FXSettingsView() {
 		super("settings");
 	}
@@ -44,11 +44,6 @@ public class FXSettingsView extends FXView implements SettingsView {
 		this.settings = settings;
 	}
 	
-	/**
-	 * initializes view
-	 * @param location
-	 * @param resources
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		playerCount = 2;

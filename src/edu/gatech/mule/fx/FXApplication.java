@@ -11,32 +11,21 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * Graphics ???
- *
- * @author dengel6
- * @version 1.0
+ * FX application ???
+ * @version 0.1
  */
 public class FXApplication extends Application {
     
 	public static StackPane view;
 
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param stage
-	 * 
-	 */
     @Override
     public void start(Stage stage) throws Exception {
-          
         Group root = new Group();
         root.getChildren().addAll(view);
         Scene scene = new Scene(root, 720, 550);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();
-        
     }
     
     

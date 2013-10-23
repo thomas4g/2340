@@ -14,6 +14,10 @@ import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 
+/**
+ * Controller for main map screen
+ * @version 0.1
+ */
 public class GameplayController extends ScreenController {
 
 	public final int MOVEMENT = 2;
@@ -23,6 +27,11 @@ public class GameplayController extends ScreenController {
 	private Player currentPlayer;
 	protected List<Entity> entities;
 	
+	/**
+	 * Constructor for game controller
+	 * @param game, game engine
+	 * @param view, map view
+	 */
 	public GameplayController(GameEngine game, MapView view){
 		super(game, view);
 		this.view = view;
@@ -36,6 +45,9 @@ public class GameplayController extends ScreenController {
 		view.setGameMap(game.getGameMap());
 	}
 	
+	/**
+	 * Moves player around the main map
+	 */
 	public final void move(int x, int y) {
 		if(null == players) {
 			players = game.getSettings().getPlayers();
@@ -56,7 +68,6 @@ public class GameplayController extends ScreenController {
 		((FXMapView)view).render();
 	}
 	
-
 	@Override
 	public void done() {
 	}

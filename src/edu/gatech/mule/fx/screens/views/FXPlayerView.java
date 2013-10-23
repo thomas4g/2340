@@ -17,11 +17,8 @@ import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
- * 
- * FX player screen
- * 
- * @version 1.0
- *
+ * View for player config
+ * @version 0.1
  */
 public class FXPlayerView extends FXView implements SettingsView {
 	@FXML
@@ -39,6 +36,9 @@ public class FXPlayerView extends FXView implements SettingsView {
 	private Color currentColor = Color.PURPLE;
 	private Settings settings;
 
+	/**
+	 * Constructor for player screen
+	 */
 	public FXPlayerView() {
 		super("player_screen");
 	}
@@ -49,7 +49,8 @@ public class FXPlayerView extends FXView implements SettingsView {
 	}
 	
 	/**
-	 * ???
+	 * Change headshot image
+	 * @return next headshot image
 	 */
 	private Image changeImage(){
 		return new Image(settings.getCurrentPlayer().getType().getHeadshot(currentColor.ordinal()+1));
@@ -63,12 +64,6 @@ public class FXPlayerView extends FXView implements SettingsView {
 		}
 	}
 	
-	/**
-	 * ???
-	 * 
-	 * @param event
-	 * 
-	 */
 	@FXML
 	private void OnBack(ActionEvent event) {
 		settings.getPlayers().remove(settings.getCurrentPlayer());
@@ -76,12 +71,6 @@ public class FXPlayerView extends FXView implements SettingsView {
 		controller.done();
 	}
 	
-	/**
-	 * ???
-	 * 
-	 * @param event
-	 * 
-	 */
 	@FXML
 	private void OnAdd(ActionEvent event){
 		settings.getCurrentPlayer().setColor(currentColor);
@@ -89,13 +78,6 @@ public class FXPlayerView extends FXView implements SettingsView {
 		controller.done();
 	}
 	
-	/**
-	 * ???
-	 * 
-	 * @param location
-	 * @param resources
-	 * 
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		imgView.setImage(changeImage());

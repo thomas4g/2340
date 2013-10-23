@@ -14,11 +14,9 @@ import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.screen.screens.views.MapView;
 
-
 /**
- * Controls the land selection phase
- * @author Thomas Shields
- * @version 1.0
+ * Controller for land selection
+ * @version 0.1
  */
 public class LandSelectController extends ScreenController {
 	private final static int FREE_ROUNDS = 2;
@@ -31,6 +29,11 @@ public class LandSelectController extends ScreenController {
 	private int round = 1;
 	private boolean skipped = false;
 	
+	/**
+	 * Constructor for land selection controller
+	 * @param game, game engine
+	 * @param view, map view
+	 */
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game, view);
 		this.view = view;
@@ -49,7 +52,6 @@ public class LandSelectController extends ScreenController {
 	
 	@Override
 	public final void move(int x, int y) {
-
 		x = x == 0 ? 0 : x / Math.abs(x);
 		y = y == 0 ? 0 : y / Math.abs(y);		
 		x = location.x + x >= game.getGameMap().getTiles().length ? 0 : x;
@@ -95,7 +97,6 @@ public class LandSelectController extends ScreenController {
 	private void setPlayer() {
 		view.setCurrentPlayer(game.getPlayers().get(currentPlayer));
 	}
-
 
 	@Override
 	public void done() {
