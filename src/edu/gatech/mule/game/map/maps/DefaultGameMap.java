@@ -15,16 +15,13 @@ import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
- * 
- * Representation of the main game map
- * 
+ * Representation of the default main game map
  * @version 1.0
- *
  */
 public class DefaultGameMap extends GameMap {
 	
 	/**
-	 * Generates the game map
+	 * Generates the default game map
 	 */
 	@Override
 	protected void generateMap() {
@@ -79,22 +76,3 @@ public class DefaultGameMap extends GameMap {
 //		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

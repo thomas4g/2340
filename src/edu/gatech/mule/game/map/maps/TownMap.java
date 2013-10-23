@@ -10,18 +10,16 @@ import edu.gatech.mule.game.map.TownTile;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
- * 
  * Generates the town map
- * 
  * @version 1.0
- *
  */
 public class TownMap extends GameMap {
 
+	final String tmx = "res/tiles/town.tmx";
+	
 	/**
 	 * Generates the town map
 	 */
-	final String tmx = "res/tiles/town.tmx";
 	@Override
 	protected void generateMap() {
 		// TODO Auto-generated method stub
@@ -44,9 +42,8 @@ public class TownMap extends GameMap {
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type.toUpperCase()));
 				
 			}
-			
 		}
+		
 	}
 	
-
 }

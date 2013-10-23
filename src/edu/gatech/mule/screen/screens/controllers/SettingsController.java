@@ -8,27 +8,35 @@ import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
- * 
- * Set up for settings screen
- * 
- * @version 1.0
- *
+ * Controller for settings config
+ * @version 0.1
  */
 public class SettingsController extends ScreenController {
 
 	protected SettingsView view;
 	
+	/**
+	 * Constructor for settings controller
+	 * @param game, game engine
+	 * @param view, map view
+	 */
 	public SettingsController(GameEngine game, SettingsView view) {
 		super(game, view);
 		this.view = view;
 	}
 
+	/**
+	 * Loads game settings
+	 */
 	@Override
 	public void load() {
 		super.load();
 		view.setSettings(game.getSettings());
 	}
 	
+	/**
+	 * Goes to race select screen
+	 */
 	@Override
 	public void done() {
 		game.chooseRace();

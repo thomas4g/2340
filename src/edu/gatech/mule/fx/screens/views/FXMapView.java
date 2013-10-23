@@ -26,11 +26,8 @@ import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
- * 
- * FX game screen ???
- * 
+ * View for main map
  * @version 1.0
- *
  */
 public class FXMapView extends FXView implements MapView {
 	private Canvas canvas;
@@ -41,11 +38,9 @@ public class FXMapView extends FXView implements MapView {
 	private Player currentPlayer;
 	private Point selectorLocation;
 	private boolean interrupt = false;
+
 	/**
-	 * ???
-	 * 
-	 * @param game
-	 * @param settings
+	 * Constructor for map view
 	 */
 	public FXMapView() {
 		super("");
@@ -64,7 +59,9 @@ public class FXMapView extends FXView implements MapView {
 		render();
 	}
 	
-	
+	/**
+	 * Wires the key board onto the game
+	 */
 	private void wireKeyboard(){
 		canvas.setFocusTraversable(true);
 		canvas.requestFocus();
@@ -86,17 +83,13 @@ public class FXMapView extends FXView implements MapView {
 		});
 	}
 
-	/**
-	 * 
-	 * ???
-	 * 
-	 * @param location
-	 * @param resource
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
+	/**
+	 * Renders graphics
+	 */
 	public synchronized void render() {
 		graphics.getGraphicsContext().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		
@@ -137,6 +130,9 @@ public class FXMapView extends FXView implements MapView {
 		selectorLocation = location;
 	}
 	
+	/**
+	 * Draws selector ???
+	 */
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null)
 			graphics.drawSelector(selectorLocation, fxColor(currentPlayer.getColor()));
@@ -146,6 +142,9 @@ public class FXMapView extends FXView implements MapView {
 		return new javafx.scene.paint.Color(color.red/255.0, color.green/255.0, color.blue/255.0, 1);
 	}
 	
+	/**
+	 * Draws the current player's sprite
+	 */
 	private void drawCurrentPlayer() {
 		if(currentPlayer != null) {
 			BufferedImage hs = currentPlayer.getHeadshot();
@@ -158,7 +157,6 @@ public class FXMapView extends FXView implements MapView {
 			graphics.drawText(currentPlayer.toString(), new Point(100, 500));
 		}
 	}
-	
 	
 	@Override
 	public void setGameMap(GameMap gameMap) {

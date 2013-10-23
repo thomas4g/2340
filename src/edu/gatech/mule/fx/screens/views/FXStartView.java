@@ -23,14 +23,14 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.screen.screens.*;
 
 /**
- *
- * FX start screen sets up the graphics for the start screen
- *
- * @version 1.0
- * 
+ * View for start screen
+ * @version 0.1
  */
 public class FXStartView extends FXView {
 	
+	/**
+	 * Constructor for start screen
+	 */
 	public FXStartView() {
 		super("start");
 	}

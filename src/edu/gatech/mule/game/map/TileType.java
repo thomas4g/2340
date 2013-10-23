@@ -1,11 +1,8 @@
 package edu.gatech.mule.game.map;
 
 /**
- * 
  * Library of tile types
- * 
- * @version 1.0
- *
+ * @version 0.1
  */
 public enum TileType {
 
@@ -41,35 +38,40 @@ public enum TileType {
 	}
 	
 	/**
-	 * ???
+	 * Get whether tile is purchasable
+	 * @return true if purchasable, false otherwise
 	 */
 	public boolean isPurchasable() {
 		return this.purchasable;
 	}
 	
 	/**
-	 * ???
+	 * Get the food rate of the tile
+	 * @return food rate
 	 */
 	public int getFoodRate() {
 		return this.foodRate;
 	}
 	
 	/**
-	 * ???
+	 * Get the energy rate of the tile
+	 * @return energy rate
 	 */
 	public int getEnergyRate() {
 		return this.energyRate;
 	}
 	
 	/**
-	 * ???
+	 * Get the ore rate of the tile
+	 * @return ore rate
 	 */
 	public int getOreRate() {
 		return this.oreRate;
 	}
 	
 	/**
-	 * ???
+	 * Get the image filename
+	 * @return image filename
 	 */
 	public String getFileName() {
 		return this.fileName;

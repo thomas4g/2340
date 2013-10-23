@@ -9,17 +9,18 @@ import edu.gatech.mule.screen.screens.views.*;
 import edu.gatech.mule.fx.screens.views.*;
 
 /**
- * 
  * FX screen handler
- * 
- * @version 1.0
- *
+ * @version 0.1
  */
 public class FXScreenHandler extends ScreenHandler {
 	
 	private StackPane stack;
 	private FXMapView mainMapView;
 
+	/**
+	 * Constructor for FX screen handler
+	 * @param game, game engine
+	 */
 	public FXScreenHandler(GameEngine game) {
 		super(game);
 		stack = new StackPane();
@@ -27,7 +28,7 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	/**
-	 * starts the javafx stage
+	 * Starts the javafx stage
 	 */
 	@Override
 	public void start() {
@@ -61,6 +62,7 @@ public class FXScreenHandler extends ScreenHandler {
 	    }
 	}
 
+	@Override
 	protected ScreenView loadStartView() {
 		return new FXStartView();
 	}
