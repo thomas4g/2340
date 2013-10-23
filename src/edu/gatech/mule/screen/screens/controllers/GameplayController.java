@@ -47,9 +47,17 @@ public class GameplayController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		currentPlayer.setTile(game.getGameMap());
+		System.out.println("X: "+currentPlayer.getPosition().getX()+" Y: "+currentPlayer.getPosition().getY());
 		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN)){
+			//Nasty hardcode still but it works until the tiles are being 
 			game.enterTown();
-			currentPlayer.setPosition(new Point(40,180));
+			if(currentPlayer.getPosition().getX()>395 && currentPlayer.getPosition().getX()<400){
+				currentPlayer.setPosition(new Point(530,180));
+			}else{
+				currentPlayer.setPosition(new Point(40,180));
+			}
+			
+		
 		}
 	
 
