@@ -11,8 +11,13 @@ public class StoreResources extends ResourcePack {
         super();
     }
     
-    public int getMules() {
-        return resources[3];
+    public int getResources(ResourceType resource) {
+        int index = super.getResource(resource);
+        switch(resource) {
+        case MULE:
+            index = 3;
+        }
+        return index;
     }
     
 }
