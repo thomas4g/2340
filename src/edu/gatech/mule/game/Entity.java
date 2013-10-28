@@ -136,7 +136,6 @@ public abstract class Entity {
 	 */
 	private void updateFrame(){
 		frameIndex=(frameIndex+1)%frames.length;
-		System.out.println(frameIndex);
 		image=frames[frameIndex];
 	}
 	

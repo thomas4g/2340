@@ -24,14 +24,14 @@ public class Settings {
 		ORANGE(157,108,56), 
 		MAROON(123,63,59); 
 		
-		public final int red;
-		public final int green;
-		public final int blue;
+		private java.awt.Color color;
 	
-		Color(int red,int green,int blue){
-			this.red=red;
-			this.green=green;
-			this.blue=blue;
+		private Color(int red, int green, int blue){
+			this.color = new java.awt.Color(red, green, blue);
+		}
+		
+		public java.awt.Color getRGB() {
+			return this.color;
 		}
 		
 	};

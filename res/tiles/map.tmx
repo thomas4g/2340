@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="9" height="5" tilewidth="80" tileheight="80">
  <tileset firstgid="1" name="tiles" tilewidth="80" tileheight="80">
-  <image source="tileset.png" width="400" height="80"/>
+  <image source="res/tiles/tileset.png" width="400" height="80"/>
   <tile id="0">
    <properties>
     <property name="type" value="plain"/>
@@ -24,7 +24,7 @@
   </tile>
  </tileset>
  <tileset firstgid="6" name="rivertiles" tilewidth="80" tileheight="80">
-  <image source="rivertileset.png" width="240" height="400"/>
+  <image source="res/tiles/rivertileset.png" width="240" height="400"/>
   <tile id="0">
    <properties>
     <property name="animated" value="r1f1"/>

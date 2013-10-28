@@ -54,7 +54,7 @@ public class TownController extends ScreenController {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
-		System.out.println("X: "+currentPlayer.getPosition().getX()+" Y: "+currentPlayer.getPosition().getX());
+
 		if(currentPlayer.getPosition().getX()<0){
 			//hard coded position I know :( I'll fix it later
 			game.exitTown();

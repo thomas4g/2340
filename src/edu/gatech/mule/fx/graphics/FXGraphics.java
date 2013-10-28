@@ -1,22 +1,15 @@
 package edu.gatech.mule.fx.graphics;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.BoxBlur;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import tiled.core.Tile;
-import tiled.util.ImageHelper;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.graphics.Renderer;
 
 /**
@@ -37,74 +30,46 @@ public class FXGraphics implements Renderer {
 		convertedImages = new HashMap<java.awt.Image, Image>();
 	}
 	
+	//Inherited methods
+	
 	@Override
-	public void translate(int x, int y) {
-		gc.translate(x, y);
+	public void drawEntity(Entity entity) {
 	}
-
+	
+	@Override
+	public void drawHollowRect(int x, int y, int width, int height, double lineWidth, Color color) {
+		gc.setLineWidth(lineWidth);
+		gc.setStroke(fxColor(color));
+		gc.strokeRect(x, y, width, height);
+	}
+	
+	@Override
+	public void clear(int x, int y, int width, int height) {
+		gc.clearRect(x, y, width, height);
+	}
+	
 	@Override
 	public void drawTile(Tile tile, int x, int y, int width, int height) {
 		gc.drawImage(createImage((BufferedImage)tile.getImage()), x, y, width, height);
 	}
 	
-//	public Image createImage(java.awt.Image image) {
-//		return createImage(ImageIO.)
-//	}
+	@Override
+	public void drawImage(BufferedImage image, int x, int y, int width, int height) {
+		gc.drawImage(createImage(image), x, y, width, height);	
+	}
+	
+	//JavaFX helper methods
+	
+	private javafx.scene.paint.Color fxColor(Color color) {
+		return new javafx.scene.paint.Color(color.getRed() / 255.0, color.getGreen() / 255.0, color.getBlue() / 255.0, 1);
+	}	
 	
 	public Image createImage(BufferedImage image) {
 		if(!convertedImages.containsKey(image)) {
 			Image fxImage = SwingFXUtils.toFXImage(image, null);
-//			ByteArrayInputStream in = new ByteArrayInputStream(ImageHelper.imageToPNG(image));
-//			convertedImages.put(image, new Image(in));
 			convertedImages.put(image, fxImage);
 		}
 		return convertedImages.get(image);		
-	}
-
-	/**
-	 * Draws image
-	 * @param image, image to be drawn
-	 * @param position, position of image
-	 * @param width, width of image
-	 * @param height, height of image
-	 */
-	public void drawImage(BufferedImage image, Point position, int width, int height) {
-		gc.drawImage(createImage(image), position.x, position.y, width, height);	
-	}
-	
-	/**
-	 * Draws image
-	 * @param image, image to be drawn
-	 * @param position, position of image
-	 */
-	public void drawImage(BufferedImage image, Point position) {
-		drawImage(image, position, image.getWidth(), image.getHeight());
-	}
-	
-	/**
-	 * Draws the tile selector
-	 * @param location, location of the selector
-	 * @param color, color of the selector
-	 */
-	public void drawSelector(Point location,Color color){
-		gc.setLineWidth(3);
-		gc.setStroke(color);
-		gc.strokeRect(location.getX()*OrthogonalMapRenderer.TILE_WIDTH, location.getY()*OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_WIDTH, OrthogonalMapRenderer.TILE_HEIGHT);
-	}
-	
-	/**
-	 * get the graphics context ???
-	 * @return graphics context
-	 */
-	public GraphicsContext getGraphicsContext() {
-		return gc;
-	}
-
-	@Override
-	public void drawEntity(Entity entity) {
-		// TODO Auto-generated method stub
-		//NOT USING THIS |__BEAR__| WITH ME
-		// omg what is this i don't even
 	}
 
 	/**
@@ -114,7 +79,7 @@ public class FXGraphics implements Renderer {
 	 */
 	public void drawText(String text, Point point) {
 		gc.setLineWidth(.75);
-		gc.setStroke(new Color(0,0,0,1));
+		gc.setStroke(new javafx.scene.paint.Color(0, 0, 0, 1));
 		gc.strokeText(text, point.x, point.y);
 	}
 
