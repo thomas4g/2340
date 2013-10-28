@@ -31,7 +31,6 @@ public class Player extends Entity {
 	private PlayerResources resources;
 
     private int score;
-	private int food;
 	
 	/**
 	 * Constructor for a player
@@ -63,7 +62,7 @@ public class Player extends Entity {
 	}
 	
 	public int getFood() {
-		return food;
+		return getResourceAmt(ResourceType.FOOD);
 	}
 	
 	/**
@@ -176,7 +175,7 @@ public class Player extends Entity {
 				" | Color: "+color+" | Race: "+type.name();
 	}
 	
-	/////
+	///// working on transactions
 	
 	public boolean canAfford(int purchase) {
         return purchase <= money;
@@ -212,4 +211,8 @@ public class Player extends Entity {
 	    }
 	}
 	
+	
+	public int getResourceAmt(ResourceType resource) {
+	    return resources.getResource(resource);
+	}
 }
