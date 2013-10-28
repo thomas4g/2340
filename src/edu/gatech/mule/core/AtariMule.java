@@ -8,7 +8,7 @@ import edu.gatech.mule.screen.ScreenHandler;
  * @version 0.1
  */
 public class AtariMule {
-	public static void main(String... args) {
+	public static void main(String[] args) {
 		GameEngine game = new GameEngine();
 		ScreenHandler handler = new FXScreenHandler(game);
 		game.load(handler);
