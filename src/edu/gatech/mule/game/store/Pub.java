@@ -11,14 +11,26 @@ import edu.gatech.mule.game.Player;
  */
 public class Pub extends Store {
     
+    private int round;
+    private int sec;
+    
     private final static Random randy = new Random();
     
-    public void exchange(Player player) {
-        /*
-         * process the gambling formula
-         * give the player the money the gambling formula processed
-         * end the player's turn
-         */
+    public Pub(int round, int sec) {
+        this.round = round;
+        this.sec = sec;
+    }
+    
+    public void setRound(int round) {
+        this.round = round;
+    }
+    
+    public void setSec(int sec) {
+        this.sec = sec;
+    }
+    
+    public boolean exchange(Player player) {
+        return transaction(player,0,gamble(round,sec));
     }
     
     private static int gamble(int round, int sec) {

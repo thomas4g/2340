@@ -8,6 +8,10 @@ import edu.gatech.mule.game.Player;
  */
 public abstract class Store {
 
-    public abstract void exchange(Player player);
+    public abstract boolean exchange(Player player);
+    
+    public boolean transaction(Player player, int purchase, int receive) {
+        return player.purchase(purchase) && player.receive(receive);
+    }
     
 }

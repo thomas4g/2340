@@ -9,6 +9,8 @@ import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.*;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
+import edu.gatech.mule.game.resources.PlayerResources;
+import edu.gatech.mule.game.resources.ResourceType;
 
 /**
  * Representation of a player in the game
@@ -26,6 +28,7 @@ public class Player extends Entity {
 	private double money;
 	private GameTile currentTile;
 	private ArrayList<GameTile> ownedLands;
+	private PlayerResources resources;
 	
 	/**
 	 * Constructor for a player
@@ -36,6 +39,7 @@ public class Player extends Entity {
 		this.type = type;
 		this.money = type.getMoney();
 		this.ownedLands=new ArrayList<>();
+		resources = new PlayerResources();
 		//TODO: make this better
 		
 		setDirectionalFrames();
@@ -154,6 +158,42 @@ public class Player extends Entity {
 	public String toString() {
 		return "Name: "+name+" | Money: "+money+
 				" | Color: "+color+" | Race: "+type.name();
+	}
+	
+	/////
+	
+	public boolean canAfford(int purchase) {
+        return purchase <= money;
+    }
+	
+	public boolean purchase(int purchase) {
+	    if(!canAfford(purchase)) {
+	        return false;
+	    } else {
+	        money -= purchase;
+	        return true;
+	    }
+	}
+	
+	public boolean receive(int receive) {
+	    money += receive;
+	    return true;
+	}
+	
+	public boolean resourceExchange(ResourceType resource,
+	                                int money,
+	                                boolean isPurchasing) {
+	    if(isPurchasing) {
+	        if(purchase(money)) {
+	            resources.setResource(resource, isPurchasing);
+	            return true;
+	        }
+	        return false;
+	    } else {
+	        receive(money);
+	        resources.setResource(resource, isPurchasing);
+	        return true;
+	    }
 	}
 	
 }

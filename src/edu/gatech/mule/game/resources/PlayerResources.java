@@ -11,8 +11,14 @@ public class PlayerResources extends ResourcePack {
         super();
     }
     
-    public int getCrystite() {
-        return resources[3];
+    protected int getResourceIndex(ResourceType resource) {
+        int index = super.getResource(resource);
+        switch(resource) {
+        case CRYSTITE:
+            index = 3;
+            break;
+        }
+        return index;
     }
     
 }
