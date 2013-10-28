@@ -4,15 +4,12 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import tiled.core.Map;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 
 /**
  * Controller for main map screen
@@ -65,7 +62,7 @@ public class GameplayController extends ScreenController {
 			game.enterTown();
 			if(currentPlayer.getPosition().getX()>395 && currentPlayer.getPosition().getX()<400){
 				currentPlayer.setPosition(new Point(530,180));
-			}else{
+			} else {
 				currentPlayer.setPosition(new Point(40,180));
 			}
 			

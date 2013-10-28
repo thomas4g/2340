@@ -4,13 +4,13 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import tiled.core.Tile;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.*;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
 import edu.gatech.mule.game.resources.PlayerResources;
 import edu.gatech.mule.game.resources.ResourceType;
+import edu.gatech.mule.game.map.GameTile;
 
 /**
  * Representation of a player in the game
@@ -26,9 +26,12 @@ public class Player extends Entity {
 	private Color color;
 	private String name;
 	private double money;
-	private GameTile currentTile;
 	private ArrayList<GameTile> ownedLands;
+
 	private PlayerResources resources;
+
+    private int score;
+	private int food;
 	
 	/**
 	 * Constructor for a player
@@ -49,6 +52,18 @@ public class Player extends Entity {
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
 		setDirectionalFrames();
+	}
+	
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public int getFood() {
+		return food;
 	}
 	
 	/**
@@ -153,6 +168,7 @@ public class Player extends Entity {
 		}
 		return this.headshot;
 	}
+	
 	
 	@Override
 	public String toString() {
