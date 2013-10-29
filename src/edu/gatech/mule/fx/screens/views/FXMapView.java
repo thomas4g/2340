@@ -2,10 +2,9 @@ package edu.gatech.mule.fx.screens.views;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -30,7 +29,10 @@ public class FXMapView extends FXView implements MapView {
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
 	private Point selectorLocation;
-	private boolean interrupt = false;
+	private Thread renderThread;
+	private Task<Void> renderTask;
+	
+	private boolean paused = false;
 
 	/**
 	 * Constructor for map view
@@ -47,10 +49,10 @@ public class FXMapView extends FXView implements MapView {
 		mapRenderer = new OrthogonalMapRenderer(gameMap.getMap(), graphics);
 		wireKeyboard();
 		
-//		Task<Void> t = new RenderTask<Void>(this);
-//		new Thread(t).start();
-
-		render();
+		renderTask = new RenderTask();
+		renderThread = new Thread(renderTask);
+		renderThread.setDaemon(true);
+		renderThread.start();
 	}
 	
 	/**
@@ -77,14 +79,11 @@ public class FXMapView extends FXView implements MapView {
 		});
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	}
-
 	/**
 	 * Renders graphics
 	 */
-	public synchronized void render() {
+	public void render() {
+
 		graphics.clear(0, 0, (int)canvas.getWidth(), (int)canvas.getHeight());
 		
 		if(null != mapRenderer) {
@@ -107,7 +106,7 @@ public class FXMapView extends FXView implements MapView {
 	}
 	
 	/**
-	 * Draws selector ???
+	 * Draws selector
 	 */
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null) {
@@ -155,32 +154,28 @@ public class FXMapView extends FXView implements MapView {
 		return gameMap;
 	}
 
-}
+	
+	class RenderTask extends Task<Void> {
 
-class RenderTask<Void> extends Task<Void> {
-	public MapView view;
-	public boolean interrupt;
-	public RenderTask(MapView view) {
-		this.view = view;
-	}
-	@Override
-	protected Void call() throws Exception {
-		while(true) {
-			try {
-				view.render();
+		private static final long FPS = 30;
+		
+		@Override
+		protected Void call() throws Exception {
+			while(!paused) {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						render();
+					}
+				});
+				try {
+					Thread.sleep(1000 / FPS);
+				} catch(InterruptedException ie) {
+					if(!paused)
+						ie.printStackTrace();
+				}
 			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(interrupt)
-				break;
+			return null;
 		}
-		return null;
+		
 	}
 }

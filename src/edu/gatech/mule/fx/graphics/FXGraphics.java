@@ -19,7 +19,7 @@ import edu.gatech.mule.graphics.Renderer;
 public class FXGraphics implements Renderer {
 
 	private GraphicsContext gc;
-	private HashMap<java.awt.Image, Image> convertedImages;
+	private static HashMap<java.awt.Image, Image> convertedImages = new HashMap<>();
 
 	/**
 	 * Constructor for FX graphics
@@ -27,7 +27,6 @@ public class FXGraphics implements Renderer {
 	 */
 	public FXGraphics(GraphicsContext gc) {
 		this.gc = gc;
-		convertedImages = new HashMap<java.awt.Image, Image>();
 	}
 	
 	//Inherited methods

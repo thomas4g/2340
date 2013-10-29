@@ -10,19 +10,40 @@ import java.util.List;
  */
 public class Settings {
 	
-	public enum Difficulty { BEGINNER, STANDARD, ADVANCED };
+	public enum Difficulty { 
+		
+							//food, energy, ore, crystite, mules
+		BEGINNER (new int[] {8, 4, 0, 0, 0}, new int[] {16, 16, 0, 0, 25}), 
+		STANDARD (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14}), 
+		ADVANCED (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14});
+		
+		private int[] playerResources, storeResources;
+		
+		private Difficulty(int[] playerResources, int[] storeResources) {
+			this.playerResources = playerResources;
+			this.storeResources = storeResources;
+		}
+		
+		public int[] getPlayerResources() {
+			return this.playerResources;
+		}
+		
+		public int[] getStoreResources() {
+			return this.storeResources;
+		}
+	}
 	
 	public enum MapType { DEFAULT, RANDOM };
 	
 	public enum Color { 
-		PURPLE(145,85,134),
-		BLUE(83,99,141), 
-		TEAL(66,110,125), 
-		SEAFOAM(86,136,126), 
-		GREEN(97,149,75), 
-		GOLD(143,142,74), 
-		ORANGE(157,108,56), 
-		MAROON(123,63,59); 
+		PURPLE (145,85,134),
+		BLUE (83,99,141), 
+		TEAL (66,110,125), 
+		SEAFOAM (86,136,126), 
+		GREEN (97,149,75), 
+		GOLD (143,142,74), 
+		ORANGE (157,108,56), 
+		MAROON (123,63,59); 
 		
 		private java.awt.Color color;
 	

@@ -4,8 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.concurrent.Task;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Round;
@@ -26,6 +26,7 @@ public class GameplayController extends ScreenController {
 	private List<Player> players;
 	private Player currentPlayer;
 	protected List<Entity> entities;
+	private Thread roundController;
 	
 	/**
 	 * Constructor for game controller
@@ -43,7 +44,9 @@ public class GameplayController extends ScreenController {
 		super.load();
 		view.setGameEntities(entities);
 		view.setGameMap(game.getGameMap());
-		Thread rounds = new RoundController();
+		roundController = new Thread(new RoundControllerTask());
+		roundController.setDaemon(true);
+		roundController.start();
 	}
 	
 	/**
@@ -72,8 +75,7 @@ public class GameplayController extends ScreenController {
 				}
 				
 			
-			}	
-			((FXMapView)view).render();
+			}
 		}
 	}
 	
@@ -82,44 +84,66 @@ public class GameplayController extends ScreenController {
 		this.paused = false;
 	}
 	
-	class RoundController extends Thread {
+	class RoundControllerTask extends Task<Void> {
 		
 		private int roundNum;
 		private Round currentRound;
 		
-		public RoundController() {
+		public RoundControllerTask() {
 			roundNum = 1;
 			currentRound = new Round(game, roundNum);
-			this.start();
 		}
-		
-		public void run() {
+
+		@Override
+		protected Void call() throws Exception {
 			paused = true;
-			System.out.println("start");
+			System.out.println("Start");
 			try {
-				for(final Turn turn : currentRound.getTurns()) {
+				for(Turn turn : currentRound.getTurns()) {
 					currentPlayer = turn.getPlayer();
-					java.awt.EventQueue.invokeAndWait(new Runnable() {
-						public void run() {
-							((FXMapView)view).render();
-						}
-					});
 					paused = true;
-					
 					while(paused) {
 						Thread.sleep(10);
 					}
-					
-					System.out.println("turn start: " + currentPlayer.getName());
-//					long time = turn.getLength();
+					System.out.println("Turn start: " + currentPlayer.getName());
+					//long time = turn.getLength();
 					long time = 10000;
-					Thread.sleep(time);
-					System.out.println("turn done");
+					for(long t = time; t > 0; t -= 1000L) {
+						Thread.sleep(1000L);
+						System.out.println(t / 1000);
+						//draw timer on screen
+					}
+					System.out.println("Turn done");
 				}
-			} catch(Exception e) {
-				e.printStackTrace();
+			} catch(InterruptedException ie) {
+				if(!paused)
+					ie.printStackTrace();
 			}
+			return null;
 		}
+		
+		
+		
+//		public void run() {
+//			paused = true;
+//			System.out.println("start");
+//			try {
+//				for(final Turn turn : currentRound.getTurns()) {
+//					currentPlayer = turn.getPlayer();
+//					paused = true;					
+//					while(paused) {
+//						Thread.sleep(10);
+//					}					
+//					System.out.println("turn start: " + currentPlayer.getName());
+////					long time = turn.getLength();
+//					long time = 10000;
+//					Thread.sleep(time);
+//					System.out.println("turn done");
+//				}
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 	
 }

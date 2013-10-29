@@ -1,5 +1,7 @@
 package edu.gatech.mule.game;
 
+import edu.gatech.mule.game.resources.ResourceType;
+
 public class Turn {
 
 	private Round round;
@@ -21,7 +23,7 @@ public class Turn {
 	}
 	
 	public void genTurnLength() {
-		int playerFood = player.getFood();
+		int playerFood = player.getResourceAmt(ResourceType.FOOD);
 		int foodReq = round.getFoodReq();
 		if(playerFood == 0) {
 			this.length = 5000L;

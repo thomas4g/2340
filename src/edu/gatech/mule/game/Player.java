@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
-import edu.gatech.mule.game.map.*;
-import edu.gatech.mule.game.map.tiles.PropertyTile;
-import edu.gatech.mule.game.resources.PlayerResources;
-import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.resources.Mule;
+import edu.gatech.mule.game.resources.ResourceType;
+import edu.gatech.mule.game.store.Transaction;
+import edu.gatech.mule.game.store.Transactor;
 
 /**
  * Representation of a player in the game
  * Specifications of the player in the game depends on character type
  * @version 0.1
  */
-public class Player extends Entity {
+public class Player extends Entity implements Transactor {
 	
 	private BufferedImage headshot;
 	private BufferedImage totem;
@@ -27,8 +27,8 @@ public class Player extends Entity {
 	private String name;
 	private double money;
 	private ArrayList<GameTile> ownedLands;
-
-	private PlayerResources resources;
+	private int[] resources;
+	private Mule mule;
 
     private int score;
 	
@@ -40,8 +40,7 @@ public class Player extends Entity {
 		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
 		this.type = type;
 		this.money = type.getMoney();
-		this.ownedLands=new ArrayList<>();
-		resources = new PlayerResources();
+		this.ownedLands = new ArrayList<>();
 		//TODO: make this better
 		
 		setDirectionalFrames();
@@ -59,10 +58,6 @@ public class Player extends Entity {
 	
 	public int getScore() {
 		return score;
-	}
-	
-	public int getFood() {
-		return getResourceAmt(ResourceType.FOOD);
 	}
 	
 	/**
@@ -177,42 +172,53 @@ public class Player extends Entity {
 	
 	///// working on transactions
 	
-	public boolean canAfford(int purchase) {
-        return purchase <= money;
-    }
-	
-	public boolean purchase(int purchase) {
-	    if(!canAfford(purchase)) {
-	        return false;
-	    } else {
-	        money -= purchase;
-	        return true;
-	    }
+	@Override
+	public boolean sell(Transaction transaction, Transactor buyer) {
+		if(!buyer.canAfford(transaction))
+			return false;
+		
+		int total = transaction.getTotal();
+		buyer.subtractMoney(total);
+		this.subtractResources(transaction.getResources());
+		buyer.addResources(transaction.getResources());
+		return true;
 	}
 	
-	public boolean receive(int receive) {
-	    money += receive;
-	    return true;
+	@Override
+	public boolean canAfford(Transaction transaction) {		
+		return transaction.getTotal() < this.money;
 	}
 	
-	public boolean resourceExchange(ResourceType resource,
-	                                int money,
-	                                boolean isPurchasing) {
-	    if(isPurchasing) {
-	        if(purchase(money)) {
-	            resources.setResource(resource, isPurchasing);
-	            return true;
-	        }
-	        return false;
-	    } else {
-	        receive(money);
-	        resources.setResource(resource, isPurchasing);
-	        return true;
-	    }
+	@Override
+	public void addMoney(int money) {
+		this.money += money;
+	}
+	
+	@Override
+	public void subtractMoney(int money) {
+		this.money -= money;
+	}
+	
+	@Override
+	public void addResources(int[] resources) {
+		for(int i=0; i < this.resources.length; i++) {
+			this.resources[i] += resources[i];
+		}
+	}
+	
+	@Override
+	public void subtractResources(int[] resources) {
+		for(int i=0; i < this.resources.length; i++) {
+			this.resources[i] -= resources[i];
+		}
+	}
+	
+	public void setResources(int[] resources) {
+		this.resources = resources;
 	}
 	
 	
 	public int getResourceAmt(ResourceType resource) {
-	    return resources.getResource(resource);
+	    return resources[resource.getIndex()];
 	}
 }

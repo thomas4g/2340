@@ -1,14 +1,9 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Timer;
-
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
@@ -60,7 +55,6 @@ public class LandSelectController extends ScreenController {
 		y = location.y + y < 0 ? 0 : y;
 		location.translate(x, y);
 		view.setSelector(location);
-		view.render();
 	}
 
 	@Override
