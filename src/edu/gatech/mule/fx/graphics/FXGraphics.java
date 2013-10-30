@@ -33,6 +33,10 @@ public class FXGraphics implements Renderer {
 	
 	@Override
 	public void drawEntity(Entity entity) {
+		if(entity != null) {
+			BufferedImage image = entity.getImage();
+			drawImage(image, entity.getPosition().x, entity.getPosition().y, image.getWidth(), image.getHeight());
+		}
 	}
 	
 	@Override

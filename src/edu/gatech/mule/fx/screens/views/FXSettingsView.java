@@ -5,19 +5,12 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
-import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Difficulty;
 import edu.gatech.mule.game.Settings.MapType;
-import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.controllers.SettingsController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
@@ -69,5 +62,11 @@ public class FXSettingsView extends FXView implements SettingsView {
 		
 		settings.setPlayerCount(playerCount);		
 		controller.done();
+	}
+
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
 	}
 }

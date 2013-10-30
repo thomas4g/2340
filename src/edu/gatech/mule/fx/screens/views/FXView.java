@@ -57,6 +57,8 @@ public abstract class FXView implements ScreenView, Initializable {
 		
 	}  
 	
+	public abstract void render();
+	
 	@Override
 	public void setController(ScreenController controller) {
 		this.controller = controller;

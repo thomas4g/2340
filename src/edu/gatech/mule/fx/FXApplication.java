@@ -9,6 +9,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.fx.graphics.RenderTask;
+import edu.gatech.mule.screen.ScreenHandler;
 
 /**
  * FX application ???
@@ -17,15 +20,23 @@ import javafx.stage.Stage;
 public class FXApplication extends Application {
     
 	public static StackPane view;
-
+	
     @Override
     public void start(Stage stage) throws Exception {
+    	GameEngine game = new GameEngine();
+    	FXScreenHandler handler = new FXScreenHandler(game);
+    	game.load(handler);
+    	
         Group root = new Group();
         root.getChildren().addAll(view);
         Scene scene = new Scene(root, 720, 550);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();
+
+    	Thread renderThread = new Thread(new RenderTask(handler));
+    	renderThread.setDaemon(true);
+    	renderThread.start();
     }
     
     

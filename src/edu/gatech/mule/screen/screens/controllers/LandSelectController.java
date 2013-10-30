@@ -62,7 +62,6 @@ public class LandSelectController extends ScreenController {
 		GameTile tile = map.getTile(location.x, location.y);
 		if(tile.getOwner() == null) {
 			if(game.getPlayers().get(currentPlayer).addLand(tile, round <= FREE_ROUNDS)) {
-				view.render();
 				skipped = false;
 				nextPlayer();
 			}
@@ -85,7 +84,6 @@ public class LandSelectController extends ScreenController {
 			}
 		}
 		setPlayer();
-		view.render();
 	}
 	
 	private void setPlayer() {

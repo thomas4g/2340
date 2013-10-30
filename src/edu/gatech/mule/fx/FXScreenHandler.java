@@ -1,12 +1,20 @@
 package edu.gatech.mule.fx;
 
-import javafx.application.Platform;
-import javafx.scene.Node;
+import java.util.HashMap;
+
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.*;
-import edu.gatech.mule.screen.screens.views.*;
-import edu.gatech.mule.fx.screens.views.*;
+import edu.gatech.mule.fx.graphics.RenderTask;
+import edu.gatech.mule.fx.screens.views.FXMapView;
+import edu.gatech.mule.fx.screens.views.FXPlayerView;
+import edu.gatech.mule.fx.screens.views.FXRaceSelectView;
+import edu.gatech.mule.fx.screens.views.FXSettingsView;
+import edu.gatech.mule.fx.screens.views.FXStartView;
+import edu.gatech.mule.fx.screens.views.FXView;
+import edu.gatech.mule.screen.ScreenHandler;
+import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.ScreenView;
+import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * FX screen handler
@@ -16,7 +24,10 @@ public class FXScreenHandler extends ScreenHandler {
 	
 	private StackPane stack;
 	private FXMapView mainMapView;
-
+	private HashMap<ScreenType, FXView> loadedScreens;
+	private FXView currentView;
+	private Thread renderThread;
+	
 	/**
 	 * Constructor for FX screen handler
 	 * @param game, game engine
@@ -24,41 +35,44 @@ public class FXScreenHandler extends ScreenHandler {
 	public FXScreenHandler(GameEngine game) {
 		super(game);
 		stack = new StackPane();
+		loadedScreens = new HashMap<>();
 		FXApplication.view = stack; //TODO this is bad
 	}
+	
+	
 
 	/**
 	 * Starts the javafx stage
 	 */
 	@Override
 	public void start() {
-		javafx.application.Application.launch(FXApplication.class);
+//		javafx.application.Application.launch(FXApplication.class);
 	}
 	
-	    
-//	/**
-//	 * Removes the screen from the screen stack
-//	 */
-//	public void disposeScreen(ScreenType type) {
-//		if(!screens.containsKey(type))
-//			return;					
-//		screens.remove(type);
-//	}
+	public FXView getCurrentView() {
+		return this.currentView;
+	}
 	
 	/**
 	 * TODO Move all of this to the display method
 	 */
 	public void setScreen(final ScreenType type) {
-		super.setScreen(type);
-    	FXView scr = (FXView)screens.get(type).getView();
-		scr.load();
-		Node node = scr.getNode();
+		FXView view = null;
+		if(!loadedScreens.containsKey(type)) {
+			super.setScreen(type);
+	    	view = (FXView)screens.get(type).getView();
+			view.load();
+			loadedScreens.put(type, view);
+		} else {
+			view = loadedScreens.get(type);
+		}
+		this.currentView = view;
 
 		if(!stack.getChildren().isEmpty()){
-	    	stack.getChildren().remove(0);    
-	        stack.getChildren().add(0, node);
+	    	stack.getChildren().remove(0);
+	        stack.getChildren().add(0, view.getNode());
 	    } else {
-	    	stack.getChildren().add(node);
+	    	stack.getChildren().add(view.getNode());
 	    }
 	}
 

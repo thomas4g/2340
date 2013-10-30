@@ -52,5 +52,11 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
 	}	
 }

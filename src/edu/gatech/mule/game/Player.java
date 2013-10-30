@@ -41,9 +41,7 @@ public class Player extends Entity implements Transactor {
 		this.type = type;
 		this.money = type.getMoney();
 		this.ownedLands = new ArrayList<>();
-		//TODO: make this better
-		
-		setDirectionalFrames();
+		this.setDirection(Direction.DOWN);
 	}
 	
 	@Override

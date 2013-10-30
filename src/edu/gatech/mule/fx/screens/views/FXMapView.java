@@ -4,8 +4,6 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
@@ -29,10 +27,6 @@ public class FXMapView extends FXView implements MapView {
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
 	private Point selectorLocation;
-	private Thread renderThread;
-	private Task<Void> renderTask;
-	
-	private boolean paused = false;
 
 	/**
 	 * Constructor for map view
@@ -48,11 +42,6 @@ public class FXMapView extends FXView implements MapView {
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap.getMap(), graphics);
 		wireKeyboard();
-		
-		renderTask = new RenderTask();
-		renderThread = new Thread(renderTask);
-		renderThread.setDaemon(true);
-		renderThread.start();
 	}
 	
 	/**
@@ -86,15 +75,14 @@ public class FXMapView extends FXView implements MapView {
 
 		graphics.clear(0, 0, (int)canvas.getWidth(), (int)canvas.getHeight());
 		
-		if(null != mapRenderer) {
+		if(mapRenderer != null) {
 			mapRenderer.render(true);
 		}
 		
 		drawSelector();
 		
 		for(Entity entity : gameEntities) {
-			BufferedImage image = entity.getImage();
-			graphics.drawImage(image, entity.getPosition().x, entity.getPosition().y, image.getWidth(), image.getHeight());
+			graphics.drawEntity(entity);
 		}
 		
 		drawCurrentPlayer();
@@ -152,30 +140,5 @@ public class FXMapView extends FXView implements MapView {
 	@Override
 	public GameMap getGameMap() {
 		return gameMap;
-	}
-
-	
-	class RenderTask extends Task<Void> {
-
-		private static final long FPS = 30;
-		
-		@Override
-		protected Void call() throws Exception {
-			while(!paused) {
-				Platform.runLater(new Runnable() {
-					public void run() {
-						render();
-					}
-				});
-				try {
-					Thread.sleep(1000 / FPS);
-				} catch(InterruptedException ie) {
-					if(!paused)
-						ie.printStackTrace();
-				}
-			}
-			return null;
-		}
-		
 	}
 }

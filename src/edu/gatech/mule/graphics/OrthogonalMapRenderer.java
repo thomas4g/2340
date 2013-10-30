@@ -46,7 +46,7 @@ public class OrthogonalMapRenderer {
 	        		int tileHeight = map.getTileHeight();
 	                graphics.drawTile(tile, x*tileWidth, y*tileHeight, tileWidth, tileHeight);
 	                if(outlined) {
-	                	graphics.drawHollowRect(x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT, 1.0, new Color(0, 0, 0));
+	                	graphics.drawHollowRect(x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT, 1.0, new Color(0, 0, 0, .25F));
 	                }
 				}
 			}

@@ -2,8 +2,8 @@ package edu.gatech.mule.core;
 
 import java.util.List;
 
-import tiled.core.Map;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.RoundController;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
@@ -25,6 +25,7 @@ public class GameEngine {
 	private GameMap gameMap;
 	private GameMap townMap;
 	private List<Player> players;
+	private RoundController roundController;
 	
 	/**
 	 * Constructor for the game engine
@@ -59,10 +60,6 @@ public class GameEngine {
 	public GameMap getTownMap() {
 		return townMap;
 	}
-	
-//	public void disposeScreen(ScreenType type) {
-//		screenHandler.disposeScreen(type);
-//	}
 	
 	/**
 	 * Shows the start screen
@@ -105,7 +102,6 @@ public class GameEngine {
 		}
 
 		players = settings.getPlayers();
-		
 		screenHandler.setScreen(ScreenType.LAND_SELECT);
 	}
 	
@@ -126,7 +122,7 @@ public class GameEngine {
 	/**
 	 * Shows screen of game map when exiting town
 	 */
-	public void exitTown(){
+	public void exitTown() {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
@@ -146,4 +142,8 @@ public class GameEngine {
 		return players;
 	}
 
+	public Player getCurrentPlayer() {
+		return roundController.getCurrentPlayer();
+	}
+	
 }

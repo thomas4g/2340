@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.screen.screens.views.SettingsView;
@@ -83,5 +82,11 @@ public class FXPlayerView extends FXView implements SettingsView {
 		imgView.setImage(changeImage());
 		charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
 		field.setText(settings.getCurrentPlayer().getType().getName());
+	}
+
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
 	}
 }
