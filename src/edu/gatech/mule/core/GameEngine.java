@@ -111,14 +111,14 @@ public class GameEngine {
 	 * Shows screen of town map when entering town
 	 */
 	public void enterTown() {
-		screenHandler.setScreen(ScreenType.TOWN_SCREEN);
+		screenHandler.setScreen(ScreenType.TOWN_SCREEN, true);
 	}
 	
 	/**
 	 * Shows screen of game map when exiting town
 	 */
 	public void exitTown() {
-		screenHandler.setScreen(ScreenType.GAME_SCREEN);
+		screenHandler.setScreen(ScreenType.GAME_SCREEN, true);
 	}
 	
 	public void end() {
