@@ -54,9 +54,9 @@ public abstract class Entity {
 			setDirection(Direction.LEFT);
 		
 		if(deltaY > 0)
-			setDirection(Direction.UP);
-		else if(deltaY < 0)
 			setDirection(Direction.DOWN);
+		else if(deltaY < 0)
+			setDirection(Direction.UP);
 	}
 	
 	/**

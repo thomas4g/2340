@@ -32,6 +32,7 @@ public class TownController extends MapController {
 	public void load() {
 		super.load();
 		view.setGameMap(game.getTownMap());
+		currentPlayer.useBigSprites(true);
 	}
 	
 	/**

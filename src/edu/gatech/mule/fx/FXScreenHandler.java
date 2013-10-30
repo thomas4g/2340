@@ -58,13 +58,14 @@ public class FXScreenHandler extends ScreenHandler {
 		FXView view = null;
 		super.setScreen(type, forceReload);
 
-		if(!loadedScreens.containsKey(type) || forceReload) {
+		if(!loadedScreens.containsKey(type)) {
 	    	view = (FXView)screens.get(type).getView();
-			view.load();
 			loadedScreens.put(type, view);
 		} else {
 			view = loadedScreens.get(type);
 		}
+		
+		view.load();
 		this.currentView = view;
 
 		if(!stack.getChildren().isEmpty()){

@@ -29,6 +29,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	private ArrayList<GameTile> ownedLands;
 	private int[] resources;
 	private Mule mule;
+	private boolean big;
 
     private int score;
 	
@@ -48,6 +49,10 @@ public class Player extends Entity implements Transactor, Comparable {
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
 		setDirectionalFrames();
+	}
+	
+	public void useBigSprites(boolean big) {
+		this.big = big;
 	}
 	
 	public void setScore(int score) {
@@ -109,7 +114,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * Set the directional frames ???
 	 */
 	public void setDirectionalFrames(){
-		setFrames(type.getDirectionalSprites(direction));
+		setFrames(type.getDirectionalSprites(direction, big));
 	}
 	
 	/**
