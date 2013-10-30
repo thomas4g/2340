@@ -22,6 +22,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	private BufferedImage headshot;
 	private BufferedImage totem;
 	
+	private Turn currentTurn;
 	private CharacterType type;
 	private Color color;
 	private String name;
@@ -101,6 +102,14 @@ public class Player extends Entity implements Transactor, Comparable {
 	 */
 	public CharacterType getType() {
 		return type;
+	}
+	
+	public void setCurrentTurn(Turn turn) {
+		this.currentTurn = turn;
+	}
+	
+	public Turn getCurrentTurn() {
+		return this.currentTurn;
 	}
 	
 	/**

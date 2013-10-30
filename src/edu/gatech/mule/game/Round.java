@@ -2,27 +2,23 @@ package edu.gatech.mule.game;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public class Round {
 
 	private GameEngine game;
-	private ScreenHandler screenHandler;
 	private RoundController roundController;
 	private List<Turn> turns;
 	private Iterator<Turn> iter;
 	private Turn turn;
 	private RoundInfo rInfo;
 	
-	public Round(GameEngine game, RoundController roundController, int roundNumber, ScreenHandler screenHandler) {
+	public Round(GameEngine game, RoundController roundController, int roundNumber) {
 		this.game = game;
-		this.screenHandler = screenHandler;
 		this.roundController = roundController;	
 		this.rInfo = RoundInfo.valueOf("ROUND" + (roundNumber));
 		
@@ -31,14 +27,14 @@ public class Round {
 	}
 	
 	public void start() {
-		screenHandler.setScreen(ScreenType.LAND_SELECT);
+		game.setScreen(ScreenType.LAND_SELECT);
 	}
 	
 	public void turn() {
 		if(iter.hasNext()) {
 			turn = iter.next();
 			turn.start();
-			screenHandler.setScreen(ScreenType.GAME_SCREEN);
+			game.setScreen(ScreenType.GAME_SCREEN);
 		}
 		else {
 			System.out.println("Round Over");

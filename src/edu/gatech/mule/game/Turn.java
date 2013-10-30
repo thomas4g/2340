@@ -7,25 +7,24 @@ public class Turn {
 
 	private Round round;
 	private Player player;
-	private long length;
+	private int length;
 	private Timer timer;
 	
 	public Turn(Round round, Player player) {
 		this.round = round;
 		this.player = player;
+		this.player.setCurrentTurn(this);
 		genTurnLength();
 	}
 	
 	public void start() {
 		timer = new Timer(true);
-		timer.schedule(new TimerTask() {
-			private int time = 0;
-			
+		timer.schedule(new TimerTask() {			
 			@Override
 			public void run() {
-				time += 1;
-				System.out.println(time);
-				if(time >= length) {
+				length -= 1;
+				System.out.println(length);
+				if(length <= 0) {
 					done();
 				}
 			}
@@ -36,7 +35,7 @@ public class Turn {
 		return player;
 	}
 	
-	public long getLength() {
+	public int getLength() {
 		return length;
 	}
 	

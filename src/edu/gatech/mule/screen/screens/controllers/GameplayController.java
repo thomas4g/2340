@@ -33,6 +33,7 @@ public class GameplayController extends MapController {
 		super.load();
 		view.setGameMap(game.getGameMap());
 		currentPlayer.useBigSprites(false);
+		view.setCurrentPlayer(currentPlayer);
 	}
 		
 	

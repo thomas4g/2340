@@ -1,6 +1,5 @@
 package edu.gatech.mule.fx.screens.views;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -13,7 +12,6 @@ import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -85,6 +83,8 @@ public class FXMapView extends FXView implements MapView {
 		for(Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
+		
+		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
 		
 		drawCurrentPlayer();
 	}
