@@ -3,6 +3,8 @@ package edu.gatech.mule.game;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.gatech.mule.game.resources.ResourceType;
+
 public class Turn {
 
 	private Round round;
@@ -40,19 +42,19 @@ public class Turn {
 	}
 	
 	public void genTurnLength() {
-//		int playerFood = player.getResourceAmt(ResourceType.FOOD);
-//		int foodReq = round.getFoodReq();
-//		if(playerFood == 0) {
-//			this.length = 5;
-//		} else if(playerFood < foodReq) {
-//			this.length = 30;
-//		} else if(playerFood >= foodReq) {
-//			this.length = 50;
-//		}
-		this.length = 10;
+		int playerFood = player.getResourceAmt(ResourceType.FOOD);
+		int foodReq = round.getFoodReq();
+		if(playerFood == 0) {
+			this.length = 5;
+		} else if(playerFood < foodReq) {
+			this.length = 30;
+		} else if(playerFood >= foodReq) {
+			this.length = 50;
+		}
 	}
 	
 	public void done() {
+		player.addMoney(GamblingFormula.gamble(round.getNum(), length));
 		timer.cancel();
 		round.turn();
 	}

@@ -70,4 +70,8 @@ public class Round {
 	public Turn getTurn() {
 		return turn;
 	}
+	
+	public int getNum() {
+		return rInfo.ordinal() + 1;
+	}
 }

@@ -98,7 +98,7 @@ public class GameEngine {
 	 * Sets up map based on configurations and begins land selection
 	 */
 	public void playGame() {
-		roundController = new RoundController(this, 2);
+		roundController = new RoundController(this, 5);
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();

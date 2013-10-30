@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.GamblingFormula;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.TileType;
@@ -17,7 +18,7 @@ import edu.gatech.mule.screen.screens.views.MapView;
  */
 public class TownController extends MapController {
 	
-	public final int MOVEMENT = 20;
+	public final int MOVEMENT = 10;
 	
 	/**
 	 * Constructor for town controller
