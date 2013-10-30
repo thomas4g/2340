@@ -38,7 +38,7 @@ public class Round {
 		if(iter.hasNext()) {
 			turn = iter.next();
 			turn.start();
-			screenHandler.setScreen(ScreenType.GAME_SCREEN, true);
+			screenHandler.setScreen(ScreenType.GAME_SCREEN);
 		}
 		else {
 			System.out.println("Round Over");

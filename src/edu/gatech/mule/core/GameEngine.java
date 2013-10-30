@@ -87,7 +87,7 @@ public class GameEngine {
 	 * Shows the screen for player config
 	 */
 	public void choosePlayer() {
-		screenHandler.setScreen(ScreenType.PLAYER_SCREEN, true);
+		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
 	}
 	
 	/**
@@ -111,14 +111,14 @@ public class GameEngine {
 	 * Shows screen of town map when entering town
 	 */
 	public void enterTown() {
-		screenHandler.setScreen(ScreenType.TOWN_SCREEN, true);
+		screenHandler.setScreen(ScreenType.TOWN_SCREEN);
 	}
 	
 	/**
 	 * Shows screen of game map when exiting town
 	 */
 	public void exitTown() {
-		screenHandler.setScreen(ScreenType.GAME_SCREEN, true);
+		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	public void end() {

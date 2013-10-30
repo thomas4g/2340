@@ -2,7 +2,6 @@ package edu.gatech.mule.game;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.ScreenHandler;
-import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public class RoundController {
 

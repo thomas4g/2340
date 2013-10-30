@@ -227,6 +227,6 @@ public class Player extends Entity implements Transactor, Comparable {
 
 	@Override
 	public int compareTo(Object other) {
-		return (int) (this.money - ((Player)other).money);
+		return (int) (this.score - ((Player)other).score);
 	}
 }

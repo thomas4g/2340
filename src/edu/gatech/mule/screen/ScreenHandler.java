@@ -60,10 +60,6 @@ public abstract class ScreenHandler {
 	 * @param type, type of screen
 	 */
 	public void setScreen(ScreenType type) {
-		setScreen(type, false);
-	};
-	
-	public void setScreen(ScreenType type, boolean forceReload) {
 		screens.get(type).load();		
 	}
 		

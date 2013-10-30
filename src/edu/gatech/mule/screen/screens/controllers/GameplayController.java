@@ -17,7 +17,7 @@ import edu.gatech.mule.screen.screens.views.MapView;
  */
 public class GameplayController extends MapController {
 
-	public final int MOVEMENT = 10;
+	public final int MOVEMENT = 5;
 	
 	/**
 	 * Constructor for game controller
