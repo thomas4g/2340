@@ -12,6 +12,7 @@ import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -40,7 +41,7 @@ public class FXMapView extends FXView implements MapView {
 		canvas = new Canvas(720, 700);
 		node = canvas;
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
-		mapRenderer = new OrthogonalMapRenderer(gameMap.getMap(), graphics);
+		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
 	}
 	
@@ -78,7 +79,6 @@ public class FXMapView extends FXView implements MapView {
 		if(mapRenderer != null) {
 			mapRenderer.render(true);
 		}
-		
 		drawSelector();
 		
 		for(Entity entity : gameEntities) {
