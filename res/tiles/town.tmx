@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="5" height="5" tilewidth="112" tileheight="80">
- <tileset firstgid="1" name="town" tilewidth="112" tileheight="80">
-  <properties>
-   <property name="type" value="test"/>
-  </properties>
-  <image source="res/tiles/storetake1.png" width="560" height="400"/>
+<map version="1.0" orientation="orthogonal" width="7" height="5" tilewidth="102" tileheight="80">
+ <tileset firstgid="1" name="town" tilewidth="102" tileheight="80">
+  <image source="res/tiles/town_tileset.png" width="720" height="400"/>
+  <tile id="25">
+     	<properties>
+   			<property name="type" value="pub"/>
+   		</properties>
+   </tile>
  </tileset>
- <layer name="Tile Layer 1" width="5" height="5">
+ <layer name="Tile Layer 1" width="7" height="5">
   <data>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -33,6 +35,17 @@
    <tile gid="23"/>
    <tile gid="24"/>
    <tile gid="25"/>
+   <tile gid="26"/>
+   <tile gid="27"/>
+   <tile gid="28"/>
+   <tile gid="29"/>
+   <tile gid="30"/>
+   <tile gid="31"/>
+   <tile gid="32"/>
+   <tile gid="33"/>
+   <tile gid="34"/>
+   <tile gid="35"/>
+   <tile gid="36"/>
   </data>
  </layer>
 </map>
