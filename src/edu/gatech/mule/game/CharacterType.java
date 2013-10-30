@@ -41,14 +41,16 @@ public enum CharacterType {
 	
 	
 	public static final String IMAGE_EXT = ".png";
-	public enum Direction{UP,DOWN,RIGHT,LEFT};
+	public enum Direction{DOWN,UP,RIGHT,LEFT};
 	
 	private static final double MONEY = 1000;
 	private static final String IMAGE_PATH = "/assets";
 	private static final String SPRITES = "/overmap walksprites/";
+	private static final String BIG_SPRITES = "/town walksprites/";
 	private static final String INDICATORS = "/color indicators/";
 	
 	private final String sprites;
+	private final String big_sprites;
 	private final String headshot;
 	private final String totem;
 	private final double money;
@@ -71,6 +73,7 @@ public enum CharacterType {
 		
 		//need to add color here instead of + "1"
 		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0) + "1f";
+		this.big_sprites = IMAGE_PATH + BIG_SPRITES + this.type + "/" + this.type.charAt(0) + "1s";
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
 		this.totem = IMAGE_PATH + INDICATORS;
 	}
@@ -99,9 +102,25 @@ public enum CharacterType {
 	 * @param direction, direction the sprite is facing
 	 * @return the filename of the corresponding directional sprite
 	 */
-	public String[] getDirectionalSprites(Direction direction) {
+	public String[] getDirectionalSprites(Direction direction, boolean big) {
+		if(big) return getBigDirectionalSprites(direction);
 		int base = 3*direction.ordinal() + 1;
 		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
+	}
+	
+	private String[] getBigDirectionalSprites(Direction direction) {
+		String dir = 
+				direction == Direction.DOWN  ? "f" :
+				direction == Direction.UP    ? "b" :
+				direction == Direction.RIGHT ? "r" :
+				direction == Direction.LEFT  ? "l" :
+				"";
+		String[] res = new String[5];
+		for(int i=0;i<5;i++) {
+			res[i] = big_sprites + dir + "f" + (i+1) + IMAGE_EXT;
+			System.out.println(res[i]);
+		}
+		return res;
 	}
 
 	/**
