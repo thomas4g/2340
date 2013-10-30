@@ -7,7 +7,7 @@ import edu.gatech.mule.fx.FXScreenHandler;
 public class RenderTask extends Thread {
 
 	public static boolean paused = false;
-	private static final long FPS = 30;
+	private static final long FPS = 15;
 	
 	private FXScreenHandler handler;
 	

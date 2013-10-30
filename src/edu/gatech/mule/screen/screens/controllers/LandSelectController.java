@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Round;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -17,6 +18,7 @@ public class LandSelectController extends ScreenController {
 	private final static int FREE_ROUNDS = 2;
 	
 	private Point location;
+	
 	private MapView view;
 	private GameMap map;
 	
@@ -32,8 +34,8 @@ public class LandSelectController extends ScreenController {
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game,view);
 		this.view = view;
-		location = new Point(0,0);
-		round = 1;
+		this.location = new Point(0,0);
+		this.round = 1;
 	}
 	
 	@Override
@@ -76,7 +78,7 @@ public class LandSelectController extends ScreenController {
 			if(round > FREE_ROUNDS) {
 				if(skipped) {
 					view.setSelector(null);
-					game.gameplay();
+					game.getRound().turn();
 				}
 				else {
 					skipped = false;

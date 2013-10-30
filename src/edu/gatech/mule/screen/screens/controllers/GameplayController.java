@@ -7,6 +7,7 @@ import java.util.List;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -14,12 +15,9 @@ import edu.gatech.mule.screen.screens.views.MapView;
  * Controller for main map screen
  * @version 0.1
  */
-public class GameplayController extends ScreenController {
+public class GameplayController extends MapController {
 
-	public final int MOVEMENT = 2;
-	
-	private MapView view;
-	protected List<Entity> entities;
+	public final int MOVEMENT = 10;
 	
 	/**
 	 * Constructor for game controller
@@ -28,16 +26,14 @@ public class GameplayController extends ScreenController {
 	 */
 	public GameplayController(GameEngine game, MapView view) {
 		super(game, view);
-		this.view = view;
-		this.entities = new ArrayList<Entity>();
 	}
 	
 	@Override
 	public void load() {
 		super.load();
-		view.setGameEntities(entities);
 		view.setGameMap(game.getGameMap());
 	}
+		
 	
 	/**
 	 * Moves player around the main map
@@ -45,7 +41,7 @@ public class GameplayController extends ScreenController {
 	public final void move(int x, int y) {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
-		Player currentPlayer = game.getCurrentPlayer();
+		
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
 		currentPlayer.setTile(game.getGameMap());
 

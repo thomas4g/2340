@@ -17,7 +17,7 @@ import edu.gatech.mule.game.store.Transactor;
  * Specifications of the player in the game depends on character type
  * @version 0.1
  */
-public class Player extends Entity implements Transactor {
+public class Player extends Entity implements Transactor, Comparable {
 	
 	private BufferedImage headshot;
 	private BufferedImage totem;
@@ -218,5 +218,10 @@ public class Player extends Entity implements Transactor {
 	
 	public int getResourceAmt(ResourceType resource) {
 	    return resources[resource.getIndex()];
+	}
+
+	@Override
+	public int compareTo(Object other) {
+		return (int) (this.money - ((Player)other).money);
 	}
 }

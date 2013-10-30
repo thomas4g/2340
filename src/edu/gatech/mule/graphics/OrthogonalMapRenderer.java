@@ -1,6 +1,7 @@
 package edu.gatech.mule.graphics;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
@@ -26,8 +27,8 @@ public class OrthogonalMapRenderer {
 	 * @param map, map
 	 */
 	public OrthogonalMapRenderer(GameMap map, Renderer graphics) {
-		TILE_WIDTH = map.getTileWidth();
-		TILE_HEIGHT = map.getTileHeight();
+		TILE_WIDTH = map.getMap().getTileWidth();
+		TILE_HEIGHT = map.getMap().getTileHeight();
 		this.map = map;
 		this.graphics = graphics;
 	}
@@ -44,14 +45,14 @@ public class OrthogonalMapRenderer {
 					GameTile tile = map.getTile(x, y);
 	                if (tile == null) continue;	                
 
-	        		int tileWidth = map.getTileWidth();
-	        		int tileHeight = map.getTileHeight();
-	                graphics.drawTile(tile, x*tileWidth, y*tileHeight, tileWidth, tileHeight);
+	                graphics.drawTile(tile, x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+	                
 	                if(outlined) {
 	                	graphics.drawHollowRect(x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT, 1.0, new Color(0, 0, 0, .25F));
 	                }
 	                if(tile.getOwner() != null) {
-	                	graphics.drawImage(tile.getOwner().getTotem(), x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+	                	BufferedImage totem = tile.getOwner().getTotem();
+	                	graphics.drawImage(totem, x * TILE_WIDTH, y * TILE_HEIGHT, totem.getWidth() , totem.getHeight());
 	                }
 				}
 			}

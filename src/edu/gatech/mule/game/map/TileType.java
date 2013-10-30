@@ -12,9 +12,10 @@ public enum TileType {
 	MOUNTAIN2(true, 1, 1, 3),
 	MOUNTAIN3(true, 1, 1, 4),
 	
-	TOWNTILE(false, 0, 0, 0),
+	TOWN(false, 0, 0, 0),
 	EXITTOWN(false, 0, 0, 0),
-	ENTERTOWN(false, 0, 0, 0);
+	ENTERTOWN(false, 0, 0, 0),
+	PUB(false, 0, 0, 0);
 	
 	private boolean purchasable;
 	private int foodRate, energyRate, oreRate;

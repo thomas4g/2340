@@ -1,5 +1,8 @@
 package edu.gatech.mule.game;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import edu.gatech.mule.game.resources.ResourceType;
 
 public class Turn {
@@ -7,11 +10,28 @@ public class Turn {
 	private Round round;
 	private Player player;
 	private long length;
+	private Timer timer;
 	
 	public Turn(Round round, Player player) {
 		this.round = round;
 		this.player = player;
 		genTurnLength();
+	}
+	
+	public void start() {
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			private int time = 0;
+			
+			@Override
+			public void run() {
+				time += 1;
+				System.out.println(time);
+				if(time >= length) {
+					done();
+				}
+			}
+		}, 0, 1000);
 	}
 	
 	public Player getPlayer() {
@@ -26,11 +46,16 @@ public class Turn {
 		int playerFood = player.getResourceAmt(ResourceType.FOOD);
 		int foodReq = round.getFoodReq();
 		if(playerFood == 0) {
-			this.length = 5000L;
+			this.length = 5;
 		} else if(playerFood < foodReq) {
-			this.length = 30000L;
+			this.length = 30;
 		} else if(playerFood >= foodReq) {
-			this.length = 50000L;
+			this.length = 50;
 		}
+	}
+	
+	public void done() {
+		timer.cancel();
+		round.turn();
 	}
 }

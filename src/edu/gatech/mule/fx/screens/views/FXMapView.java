@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx.screens.views;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;

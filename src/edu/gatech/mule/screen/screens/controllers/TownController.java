@@ -7,18 +7,17 @@ import java.util.List;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Turn;
+import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
  * Controller for town map
  * @version 0.1
  */
-public class TownController extends ScreenController {
+public class TownController extends MapController {
 	
-	public final int MOVEMENT = 2;
-	
-	private MapView view;
-	private List<Entity> entities;
+	public final int MOVEMENT = 20;
 	
 	/**
 	 * Constructor for town controller
@@ -27,15 +26,12 @@ public class TownController extends ScreenController {
 	 */
 	public TownController(GameEngine game, MapView view){
 		super(game, view);
-		this.view = view;
-		this.entities = new ArrayList<>();
 	}
 	
 	@Override
 	public void load() {
 		super.load();
 		view.setGameMap(game.getTownMap());
-		view.setGameEntities(entities);
 	}
 	
 	/**
@@ -44,9 +40,15 @@ public class TownController extends ScreenController {
 	public final void move(int x, int y) {
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
-		Player currentPlayer = game.getCurrentPlayer();
+		Player currentPlayer = turn.getPlayer();
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
+		currentPlayer.setTile(game.getTownMap());
 
+		System.out.println(currentPlayer.getTileType());
+		if(currentPlayer.getTileType() == TileType.PUB) {
+			done();
+		}
+		
 		if(currentPlayer.getPosition().getX()<0){
 			//hard coded position I know :( I'll fix it later
 			game.exitTown();
@@ -60,7 +62,7 @@ public class TownController extends ScreenController {
 	
 	@Override
 	public void done() {
-
+		turn.done();
 	}
 
 }

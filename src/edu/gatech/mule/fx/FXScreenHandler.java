@@ -53,13 +53,12 @@ public class FXScreenHandler extends ScreenHandler {
 		return this.currentView;
 	}
 	
-	/**
-	 * TODO Move all of this to the display method
-	 */
-	public void setScreen(final ScreenType type) {
+	@Override
+	public void setScreen(ScreenType type, boolean forceReload) {
 		FXView view = null;
-		if(!loadedScreens.containsKey(type)) {
-			super.setScreen(type);
+		super.setScreen(type, forceReload);
+
+		if(!loadedScreens.containsKey(type) || forceReload) {
 	    	view = (FXView)screens.get(type).getView();
 			view.load();
 			loadedScreens.put(type, view);
