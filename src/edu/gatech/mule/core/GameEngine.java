@@ -2,8 +2,9 @@ package edu.gatech.mule.core;
 
 import java.util.List;
 
-import tiled.core.Map;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Round;
+import edu.gatech.mule.game.RoundController;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
@@ -25,6 +26,7 @@ public class GameEngine {
 	private GameMap gameMap;
 	private GameMap townMap;
 	private List<Player> players;
+	private RoundController roundController;
 	
 	/**
 	 * Constructor for the game engine
@@ -60,10 +62,6 @@ public class GameEngine {
 		return townMap;
 	}
 	
-//	public void disposeScreen(ScreenType type) {
-//		screenHandler.disposeScreen(type);
-//	}
-	
 	/**
 	 * Shows the start screen
 	 */
@@ -89,14 +87,14 @@ public class GameEngine {
 	 * Shows the screen for player config
 	 */
 	public void choosePlayer() {
-		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
+		screenHandler.setScreen(ScreenType.PLAYER_SCREEN, true);
 	}
 	
 	/**
 	 * Sets up map based on configurations and begins land selection
 	 */
 	public void playGame() {
-		settings.printSettings();
+		roundController = new RoundController(this, screenHandler, 1);
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
@@ -106,16 +104,9 @@ public class GameEngine {
 
 		players = settings.getPlayers();
 		
-		screenHandler.setScreen(ScreenType.LAND_SELECT);
+		roundController.round();
 	}
-	
-	/**
-	 * Shows screen of game map in general gameplay
-	 */
-	public void gameplay() {
-		screenHandler.setScreen(ScreenType.GAME_SCREEN);
-	}
-	
+
 	/**
 	 * Shows screen of town map when entering town
 	 */
@@ -126,8 +117,13 @@ public class GameEngine {
 	/**
 	 * Shows screen of game map when exiting town
 	 */
-	public void exitTown(){
+	public void exitTown() {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
+	}
+	
+	public void end() {
+		System.out.println("That's all, folks!");
+		System.exit(0);
 	}
 	
 	/**
@@ -146,4 +142,8 @@ public class GameEngine {
 		return players;
 	}
 
+	public Round getRound() {
+		return roundController.getRound();
+	}
+	
 }

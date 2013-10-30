@@ -3,9 +3,17 @@ package edu.gatech.mule.screen;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.screens.*;
-import edu.gatech.mule.screen.screens.controllers.*;
-import edu.gatech.mule.screen.screens.views.*;
+import edu.gatech.mule.screen.screens.controllers.GameplayController;
+import edu.gatech.mule.screen.screens.controllers.LandSelectController;
+import edu.gatech.mule.screen.screens.controllers.PlayerController;
+import edu.gatech.mule.screen.screens.controllers.RaceSelectController;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
+import edu.gatech.mule.screen.screens.controllers.SettingsController;
+import edu.gatech.mule.screen.screens.controllers.StartController;
+import edu.gatech.mule.screen.screens.controllers.TownController;
+import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.ScreenView;
+import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * Screen handler structures for other screen subclasses
@@ -13,7 +21,6 @@ import edu.gatech.mule.screen.screens.views.*;
  */
 public abstract class ScreenHandler {
 	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, LAND_SELECT, GAME_SCREEN, TOWN_SCREEN };
-//	protected HashMap<ScreenType, IScreen> screens;
 	protected HashMap<ScreenType, ScreenController> screens;
 	protected GameEngine game;
 	
@@ -23,7 +30,6 @@ public abstract class ScreenHandler {
 	 */
 	public ScreenHandler(GameEngine game) {
 		this.game = game;
-//		this.screens = new HashMap<ScreenType, IScreen>();
 		this.screens = new HashMap<ScreenType, ScreenController>();
 	}
 	
@@ -54,8 +60,12 @@ public abstract class ScreenHandler {
 	 * @param type, type of screen
 	 */
 	public void setScreen(ScreenType type) {
-		screens.get(type).load();
+		setScreen(type, false);
 	};
+	
+	public void setScreen(ScreenType type, boolean forceReload) {
+		screens.get(type).load();		
+	}
 		
 	public abstract void start();
 }

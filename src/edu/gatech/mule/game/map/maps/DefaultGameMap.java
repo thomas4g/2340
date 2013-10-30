@@ -43,6 +43,7 @@ public class DefaultGameMap extends GameMap {
 				Tile tile = layer.getTileAt(x, y);
 				String type = (String)tile.getProperties().get("type");
 				tiles[x][y] = new PropertyTile(tile, TileType.valueOf(type.toUpperCase()));
+				tiles[x][y].setImage(tile.getImage());
 			}
 		}
 		

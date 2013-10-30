@@ -6,19 +6,19 @@ package edu.gatech.mule.game.map;
  */
 public enum TileType {
 
-	RIVER(true, 4, 2, 0, ""),
-	PLAIN(true, 2, 3, 1, ""),
-	MOUNTAIN1(true, 1, 1, 2, ""),
-	MOUNTAIN2(true, 1, 1, 3, ""),
-	MOUNTAIN3(true, 1, 1, 4, ""),
+	RIVER(true, 4, 2, 0),
+	PLAIN(true, 2, 3, 1),
+	MOUNTAIN1(true, 1, 1, 2),
+	MOUNTAIN2(true, 1, 1, 3),
+	MOUNTAIN3(true, 1, 1, 4),
 	
-	TOWNTILE(false, 0, 0, 0, ""),
-	EXITTOWN(false, 0, 0, 0, ""),
-	ENTERTOWN(false, 0, 0, 0, "");
+	TOWN(false, 0, 0, 0),
+	EXITTOWN(false, 0, 0, 0),
+	ENTERTOWN(false, 0, 0, 0),
+	PUB(false, 0, 0, 0);
 	
 	private boolean purchasable;
 	private int foodRate, energyRate, oreRate;
-	private String fileName;
 	
 	/**
 	 * Constructor for the tile type
@@ -29,12 +29,11 @@ public enum TileType {
 	 * @param oreRate, the rate of ore to be produced
 	 * @param fileName, the filename of the tile picture
 	 */
-	private TileType(boolean purchasable, int foodRate, int energyRate, int oreRate, String fileName) {
+	private TileType(boolean purchasable, int foodRate, int energyRate, int oreRate) {
 		this.purchasable = purchasable;
 		this.foodRate = foodRate;
 		this.energyRate = energyRate;
 		this.oreRate = oreRate;
-		this.fileName = fileName;
 	}
 	
 	/**
@@ -67,13 +66,5 @@ public enum TileType {
 	 */
 	public int getOreRate() {
 		return this.oreRate;
-	}
-	
-	/**
-	 * Get the image filename
-	 * @return image filename
-	 */
-	public String getFileName() {
-		return this.fileName;
 	}
 }

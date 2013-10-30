@@ -5,23 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.Turn;
+import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
  * Controller for town map
  * @version 0.1
  */
-public class TownController extends ScreenController {
+public class TownController extends MapController {
 	
-	public final int MOVEMENT = 2;
-	
-	private MapView view;
-	private List<Player> players;
-	private Player currentPlayer;
-	protected List<Entity> entities;
+	public final int MOVEMENT = 20;
 	
 	/**
 	 * Constructor for town controller
@@ -30,14 +26,11 @@ public class TownController extends ScreenController {
 	 */
 	public TownController(GameEngine game, MapView view){
 		super(game, view);
-		this.view = view;
-		this.entities = new ArrayList<Entity>();
 	}
 	
 	@Override
 	public void load() {
 		super.load();
-		view.setGameEntities(entities);
 		view.setGameMap(game.getTownMap());
 	}
 	
@@ -45,16 +38,17 @@ public class TownController extends ScreenController {
 	 * Moves player around the town map
 	 */
 	public final void move(int x, int y) {
-		if(null == players) {
-			players = game.getSettings().getPlayers();
-			currentPlayer = players.get(0); 
-			entities.add(currentPlayer);
-			view.setGameEntities(entities);
-		}
 		x = x == 0 ? 0 : x/Math.abs(x);
 		y = y == 0 ? 0 : y/Math.abs(y);
+		Player currentPlayer = turn.getPlayer();
 		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
-		System.out.println("X: "+currentPlayer.getPosition().getX()+" Y: "+currentPlayer.getPosition().getX());
+		currentPlayer.setTile(game.getTownMap());
+
+		System.out.println(currentPlayer.getTileType());
+		if(currentPlayer.getTileType() == TileType.PUB) {
+			done();
+		}
+		
 		if(currentPlayer.getPosition().getX()<0){
 			//hard coded position I know :( I'll fix it later
 			game.exitTown();
@@ -64,13 +58,11 @@ public class TownController extends ScreenController {
 			game.exitTown();
 			currentPlayer.setPosition(new Point(400,180));
 		}
-		view.render();
 	}
 	
 	@Override
 	public void done() {
-		// TODO Auto-generated method stub
-		
+		turn.done();
 	}
 
 }

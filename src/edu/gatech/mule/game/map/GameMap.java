@@ -65,6 +65,7 @@ public abstract class GameMap {
 		return tileHeight;
 	}
 	
+	
 	/**
 	 * Generates map based on specifications
 	 */

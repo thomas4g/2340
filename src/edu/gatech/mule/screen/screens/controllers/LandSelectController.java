@@ -1,15 +1,11 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Timer;
-
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Round;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -22,6 +18,7 @@ public class LandSelectController extends ScreenController {
 	private final static int FREE_ROUNDS = 2;
 	
 	private Point location;
+	
 	private MapView view;
 	private GameMap map;
 	
@@ -37,8 +34,8 @@ public class LandSelectController extends ScreenController {
 	public LandSelectController(GameEngine game, MapView view) {
 		super(game,view);
 		this.view = view;
-		location = new Point(0,0);
-		round = 1;
+		this.location = new Point(0,0);
+		this.round = 1;
 	}
 	
 	@Override
@@ -60,7 +57,6 @@ public class LandSelectController extends ScreenController {
 		y = location.y + y < 0 ? 0 : y;
 		location.translate(x, y);
 		view.setSelector(location);
-		view.render();
 	}
 
 	@Override
@@ -68,7 +64,6 @@ public class LandSelectController extends ScreenController {
 		GameTile tile = map.getTile(location.x, location.y);
 		if(tile.getOwner() == null) {
 			if(game.getPlayers().get(currentPlayer).addLand(tile, round <= FREE_ROUNDS)) {
-				view.render();
 				skipped = false;
 				nextPlayer();
 			}
@@ -83,7 +78,7 @@ public class LandSelectController extends ScreenController {
 			if(round > FREE_ROUNDS) {
 				if(skipped) {
 					view.setSelector(null);
-					game.gameplay();
+					game.getRound().turn();
 				}
 				else {
 					skipped = false;
@@ -91,7 +86,6 @@ public class LandSelectController extends ScreenController {
 			}
 		}
 		setPlayer();
-		view.render();
 	}
 	
 	private void setPlayer() {

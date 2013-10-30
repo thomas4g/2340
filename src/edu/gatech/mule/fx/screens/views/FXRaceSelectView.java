@@ -42,6 +42,7 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 			c = CharacterType.HUMANOID;
 		
 		Player p = new Player(c);
+		p.setResources(settings.getDifficulty().getPlayerResources());
 		settings.setCurrentPlayer(p);
 		settings.addPlayer(p);
 		controller.done();
@@ -49,6 +50,12 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render() {
 		// TODO Auto-generated method stub
 		
 	}	
