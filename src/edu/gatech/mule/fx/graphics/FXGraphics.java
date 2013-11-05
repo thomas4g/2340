@@ -58,7 +58,7 @@ public class FXGraphics implements Renderer {
 	
 	@Override
 	public void drawImage(BufferedImage image, int x, int y, int width, int height) {
-		gc.drawImage(createImage(image), x, y, width, height);	
+		gc.drawImage(createImage(image), x-width, y-height, width, height);	
 	}
 	
 	//JavaFX helper methods

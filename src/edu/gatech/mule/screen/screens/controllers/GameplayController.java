@@ -27,6 +27,11 @@ public class GameplayController extends MapController {
 	@Override
 	public void move(int x, int y) {
 		super.move(x, y);
+		
+		if(!currentPlayer.getTile().hasOwner() && currentPlayer.hasMule()){
+			//addd tile
+		}
+		
 		if(currentPlayer.getTileType() == TileType.ENTERTOWN) {
 			game.setScreen(ScreenType.TOWN_SCREEN);
 			currentPlayer.setPosition(new Point(map.getTileWidth()/7,map.getTileHeight()/2));
