@@ -1,15 +1,11 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.GamblingFormula;
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Turn;
+import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
@@ -18,7 +14,7 @@ import edu.gatech.mule.screen.screens.views.MapView;
  */
 public class TownController extends MapController {
 	
-	public final int MOVEMENT = 10;
+	public final static int MOVEMENT = 10;
 	
 	/**
 	 * Constructor for town controller
@@ -26,40 +22,51 @@ public class TownController extends MapController {
 	 * @param view, map view
 	 */
 	public TownController(GameEngine game, MapView view){
-		super(game, view);
+		super(game, view, MOVEMENT);
+	}
+	
+	@Override
+	public void move(int x, int y) {
+		super.move(x, y);
+		System.out.println(currentPlayer.getTileType());
+		if(
+			(currentPlayer.getTileType() == TileType.EXITTOWN_LEFT && currentPlayer.getDirection() == Direction.LEFT)
+			||
+			(currentPlayer.getTileType() == TileType.EXITTOWN_RIGHT && currentPlayer.getDirection() == Direction.RIGHT)) {
+			game.setScreen(ScreenType.GAME_SCREEN);
+		}
+		
+		System.out.println(currentPlayer.getTile().getWidth());
 	}
 	
 	@Override
 	public void load() {
+		this.map = game.getTownMap();
 		super.load();
-		view.setGameMap(game.getTownMap());
 		currentPlayer.useBigSprites(true);
-	}
-	
-	/**
-	 * Moves player around the town map
-	 */
-	public final void move(int x, int y) {
-		x = x == 0 ? 0 : x/Math.abs(x);
-		y = y == 0 ? 0 : y/Math.abs(y);
-		Player currentPlayer = turn.getPlayer();
-		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
-		currentPlayer.setTile(game.getTownMap());
-
-		System.out.println(currentPlayer.getTileType());
-		if(currentPlayer.getTileType() == TileType.PUB) {
-			done();
+		Point p = new Point(0, 0);
+		switch(currentPlayer.getDirection()) {
+		case DOWN:
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.y = 0;
+			break;
+		case LEFT:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth();
+			break;
+		case RIGHT:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
+			p.x = 0;
+			break;
+		case UP:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight();
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			break;
+		default:
+			break;
 		}
 		
-		if(currentPlayer.getPosition().getX()<0){
-			//hard coded position I know :( I'll fix it later
-			game.exitTown();
-			currentPlayer.setPosition(new Point(290, 180));
-		}
-		if(currentPlayer.getPosition().getX()>view.getGameMap().getMap().getLayer(0).getWidth()*107){
-			game.exitTown();
-			currentPlayer.setPosition(new Point(400,180));
-		}
+		currentPlayer.setPosition(p);
 	}
 	
 	@Override

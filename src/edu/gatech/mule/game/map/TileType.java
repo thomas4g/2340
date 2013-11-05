@@ -13,7 +13,8 @@ public enum TileType {
 	MOUNTAIN3(true, 1, 1, 4),
 	
 	TOWN(false, 0, 0, 0),
-	EXITTOWN(false, 0, 0, 0),
+	EXITTOWN_LEFT(false, 0, 0, 0),
+	EXITTOWN_RIGHT(false, 0, 0, 0),
 	ENTERTOWN(false, 0, 0, 0),
 	PUB(false, 0, 0, 0);
 	

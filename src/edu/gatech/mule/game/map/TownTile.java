@@ -1,5 +1,6 @@
 package edu.gatech.mule.game.map;
 
+import edu.gatech.mule.game.Player;
 import tiled.core.Tile;
 
 /**
@@ -11,15 +12,23 @@ public class TownTile extends GameTile {
 	public TownTile(Tile t, TileType type){
 		super(t,type);
 	}
-	
-	@Override
-	public void action() {
-		// TODO Auto-generated method stub
 
-	}
 	@Override
-	public void onEnter() {
-		//adjust roof image
+	public void action(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enter(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exit(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

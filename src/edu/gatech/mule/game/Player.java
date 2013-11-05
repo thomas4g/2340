@@ -54,6 +54,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	public void useBigSprites(boolean big) {
 		this.big = big;
+		setDirectionalFrames();
 	}
 	
 	public void setScore(int score) {

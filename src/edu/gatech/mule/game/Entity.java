@@ -75,16 +75,14 @@ public abstract class Entity {
 		return direction;
 	}
 	
-	/**
-	 * Set the tile of the map based on the location of the entity
-	 * @param map, the map the entity is traversing upon
-	 */
-	public void setTile(GameMap map){
-		int xTilePos=(int)(location.getX()/OrthogonalMapRenderer.TILE_WIDTH);
-		int yTilePos=(int)(location.getY()/OrthogonalMapRenderer.TILE_HEIGHT);
-		tile=map.getTile(xTilePos, yTilePos);
+
+	public void setTile(GameTile tile) {
+		this.tile = tile;
 	}
-	
+	public GameTile getTile() {
+		return tile;
+	}
+
 	/**
 	 * Get the tile type
 	 * @return tile type

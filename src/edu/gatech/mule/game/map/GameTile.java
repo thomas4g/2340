@@ -25,6 +25,7 @@ public abstract class GameTile extends Tile {
 		this.tile=t;
 		this.type = type;
 		this.cost = DEFAULT_COST;
+		this.setImage(tile.getImage());
 	}
 	
 	/**
@@ -67,11 +68,19 @@ public abstract class GameTile extends Tile {
 		return type;
 	}
 	
+	public int getHeight() {
+		return tile.getHeight();
+	}
+	public int getWidth() {
+		return tile.getWidth();
+	}
+	
 	@Override
 	public String toString() {
 		return type.toString();
 	}
 	
-	public abstract void action();
-	public abstract void onEnter();
+	public abstract void action(Player player);
+	public abstract void enter(Player player);
+	public abstract void exit(Player player);
 }

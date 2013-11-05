@@ -1,14 +1,10 @@
 package edu.gatech.mule.screen.screens.controllers;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**
@@ -17,7 +13,7 @@ import edu.gatech.mule.screen.screens.views.MapView;
  */
 public class GameplayController extends MapController {
 
-	public final int MOVEMENT = 5;
+	public final static int MOVEMENT = 5;
 	
 	/**
 	 * Constructor for game controller
@@ -25,44 +21,46 @@ public class GameplayController extends MapController {
 	 * @param view, map view
 	 */
 	public GameplayController(GameEngine game, MapView view) {
-		super(game, view);
+		super(game, view, MOVEMENT);
+	}
+	
+	@Override
+	public void move(int x, int y) {
+		super.move(x, y);
+		if(currentPlayer.getTileType() == TileType.ENTERTOWN) {
+			game.setScreen(ScreenType.TOWN_SCREEN);
+			currentPlayer.setPosition(new Point(map.getTileWidth()/7,map.getTileHeight()/2));
+		}
 	}
 	
 	@Override
 	public void load() {
+		this.map = game.getGameMap();
 		super.load();
-		view.setGameMap(game.getGameMap());
 		currentPlayer.useBigSprites(false);
-		view.setCurrentPlayer(currentPlayer);
-	}
 		
-	
-	/**
-	 * Moves player around the main map
-	 */
-	public final void move(int x, int y) {
-		x = x == 0 ? 0 : x/Math.abs(x);
-		y = y == 0 ? 0 : y/Math.abs(y);
-		
-		currentPlayer.move(MOVEMENT*x, MOVEMENT*y);
-		currentPlayer.setTile(game.getGameMap());
-
-		if(currentPlayer.getTileType().equals(TileType.ENTERTOWN)){
-			//Nasty hardcode still but it works until the tiles are being 
-			game.enterTown();
-			if(currentPlayer.getPosition().getX()>395 && currentPlayer.getPosition().getX()<400){
-				currentPlayer.setPosition(new Point(530,180));
-			} else {
-				currentPlayer.setPosition(new Point(40,180));
-			}
-
-
+		Point p = new Point(0, 0);
+		switch(currentPlayer.getDirection()) {
+		case DOWN:
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 + map.getTileHeight()/2;
+			break;
+		case LEFT:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 - map.getTileWidth()/2;
+			break;
+		case RIGHT:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 + map.getTileWidth()/2;;
+			break;
+		case UP:
+			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 - map.getTileHeight()/2;
+			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			break;
+		default:
+			break;
 		}
+		
+		currentPlayer.setPosition(p);
 	}
-
-	@Override
-	public void done() {
-
-	}
-	
 }

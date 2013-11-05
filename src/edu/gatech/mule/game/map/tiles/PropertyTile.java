@@ -21,13 +21,18 @@ public class PropertyTile extends GameTile {
 	}
 
 	@Override
-	public void action() {
+	public void action(Player player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onEnter() {
+	public void enter(Player player) {
+
+	}
+
+	@Override
+	public void exit(Player player) {
 		// TODO Auto-generated method stub
 		
 	}
