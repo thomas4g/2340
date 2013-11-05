@@ -12,6 +12,7 @@ import tiled.io.TMXMapReader;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.AnimatedGameTile;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
@@ -36,20 +37,11 @@ public class DefaultGameMap extends GameMap {
 		}
 		
 		TileLayer layer = (TileLayer)map.getLayer(0);
-
-		tiles = new PropertyTile[layer.getWidth()][layer.getHeight()];
-		for(int x=0; x<layer.getWidth(); x++) {
-			for(int y=0; y<layer.getHeight(); y++) {
-				Tile tile = layer.getTileAt(x, y);
-				String type = (String)tile.getProperties().get("type");
-				
-				tiles[x][y] = new PropertyTile(tile, TileType.valueOf(type.toUpperCase()));
-			}
-		}
+		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
 		
 		//generate animated tiles from river tileset
 		TileSet riverset = map.getTileSets().get(1);
-		List<AnimatedTile> animatedTiles = new ArrayList<>();
+		List<AnimatedGameTile> animatedTiles = new ArrayList<>();
 		for(int i=0; i<5; i++) {
 			Tile[] frames = new Tile[3];
 			Iterator<Tile> iterator = riverset.iterator();
@@ -61,19 +53,22 @@ public class DefaultGameMap extends GameMap {
 					frames[frame-1] = tile;
 				}
 			}
-			AnimatedTile aTile = new AnimatedTile(frames);
+			AnimatedGameTile aTile = new AnimatedGameTile(new AnimatedTile(frames), TileType.RIVER, frames);
 			animatedTiles.add(aTile);
 		}
-
-		//replace tiles in map with animated tiles
-//		for(int x=0; x<layer.getWidth(); x++) {
-//			for(int y=0; y<layer.getHeight(); y++) {
-//				Tile tile = layer.getTileAt(x, y);
-//				if(tile.getProperties().containsKey("animated")) {
-//					int rtile = Integer.parseInt(tile.getProperties().getProperty("tile"));
-//					layer.setTileAt(x, y, animatedTiles.get(rtile-1));					
-//				}
-//			}
-//		}
+		
+		
+		for(int x=0; x<layer.getWidth(); x++) {
+			for(int y=0; y<layer.getHeight(); y++) {
+				Tile tile = layer.getTileAt(x, y);
+				String type = (String)tile.getProperties().get("type");
+				if(tile.getProperties().containsKey("animated")) {
+					int rtile = Integer.parseInt(tile.getProperties().getProperty("tile"));
+					tiles[x][y] = animatedTiles.get(rtile-1);
+				} else {
+					tiles[x][y] = new PropertyTile(tile, TileType.valueOf(type.toUpperCase()));
+				}
+			}
+		}
 	}
 }

@@ -13,7 +13,6 @@ public abstract class GameTile extends Tile {
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
-	private Tile tile;
 	
 	/**
 	 * Constructor for a game tile
@@ -22,18 +21,9 @@ public abstract class GameTile extends Tile {
 	 */
 	public GameTile(Tile t, TileType type) {
 		super(t);
-		this.tile=t;
 		this.type = type;
 		this.cost = DEFAULT_COST;
-		this.setImage(tile.getImage());
-	}
-	
-	/**
-	 * Get the tile ???
-	 * @return tile
-	 */
-	public Tile getTile(){
-		return tile;
+		this.setImage(t.getImage());
 	}
 	
 	/**
@@ -69,10 +59,10 @@ public abstract class GameTile extends Tile {
 	}
 	
 	public int getHeight() {
-		return tile.getHeight();
+		return getHeight();
 	}
 	public int getWidth() {
-		return tile.getWidth();
+		return getWidth();
 	}
 	
 	@Override

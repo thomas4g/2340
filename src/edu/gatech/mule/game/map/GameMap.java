@@ -1,6 +1,5 @@
 package edu.gatech.mule.game.map;
 
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import tiled.core.Map;
 
 /**
