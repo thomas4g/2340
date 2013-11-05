@@ -154,6 +154,18 @@ public class Player extends Entity implements Transactor, Comparable {
 		return ownedLands;
 	}
 	
+	public void setMule(Mule mule){
+		this.mule=mule;
+	}
+	
+	public Mule getMule(){
+		return mule;
+	}
+	
+	public boolean hasMule(){
+		return mule!=null;
+	}
+	
 	/**
 	 * Get image of totem
 	 * @return image of totem

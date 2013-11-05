@@ -44,6 +44,7 @@ public abstract class GameTile extends Tile {
 		this.owner = player;
 	}
 	
+	
 	/**
 	 * Get the owner of the tile
 	 * @return owner of the tile
@@ -78,6 +79,10 @@ public abstract class GameTile extends Tile {
 	@Override
 	public String toString() {
 		return type.toString();
+	}
+	
+	public boolean hasOwner(){
+		return owner!=null;
 	}
 	
 	public abstract void action(Player player);
