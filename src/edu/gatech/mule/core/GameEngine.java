@@ -77,7 +77,19 @@ public class GameEngine {
 	 * Shows the config settings
 	 */
 	public void chooseSettings() {
-		screenHandler.setScreen(ScreenType.SETTINGS);
+		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
+	}
+	
+	public void chooseDifficulty() {
+		screenHandler.setScreen(ScreenType.DIFFICULTY);
+	}
+	
+	public void chooseMapType() {
+		screenHandler.setScreen(ScreenType.MAP_TYPE);
+	}
+	
+	public void chooseNumPlayers() {
+		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
 	/**

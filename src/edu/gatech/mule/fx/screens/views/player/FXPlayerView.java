@@ -1,4 +1,4 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.player;
 
 
 import java.net.URL;
@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.screen.screens.views.SettingsView;
@@ -74,6 +75,7 @@ public class FXPlayerView extends FXView implements SettingsView {
 	private void OnAdd(ActionEvent event){
 		settings.getCurrentPlayer().setColor(currentColor);
 		settings.getCurrentPlayer().setName(field.getText());
+		settings.nextPlayer();
 		controller.done();
 	}
 	

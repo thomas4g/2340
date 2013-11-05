@@ -62,12 +62,14 @@ public class Settings {
 	private List<Player> players;
 	private int playerCount;
 	private Player currentPlayer;
+	private int playerIndex;
 	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
 		players = new ArrayList<Player>();
+		playerIndex = 1;
 	}
 	
 	/**
@@ -123,7 +125,7 @@ public class Settings {
 	 * @param count, number of players
 	 */
 	public void setPlayerCount(int count){
-		playerCount=count;
+        playerCount=count;
 	}
 	
 	/**
@@ -154,7 +156,11 @@ public class Settings {
 	 * Move on to the next player
 	 */
 	public void nextPlayer(){
-		
+		playerIndex++;
+	}
+	
+	public int getPlayerIndex(){
+		return playerIndex;
 	}
 	
 	/**

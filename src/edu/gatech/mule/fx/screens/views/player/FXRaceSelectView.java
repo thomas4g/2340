@@ -1,4 +1,4 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.player;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
@@ -18,12 +20,16 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
 public class FXRaceSelectView extends FXView implements SettingsView {
 
 	protected Settings settings;
+	private CharacterType[] raceScroll;
+	private int pointer;
 	
 	/**
 	 * Constructor for race select screen
 	 */
 	public FXRaceSelectView() {
 		super("race_select");
+		raceScroll = new CharacterType[]{CharacterType.HUMANOID,CharacterType.FLAPPER, CharacterType.BONZOID};
+		pointer = 0;
 	}
 	
 	@Override
@@ -31,17 +37,34 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 		this.settings = settings;
 	}
 	
+	private int mod(int cheese, int knife) {
+		int mod = cheese % knife;
+		if(mod < 0) {
+			mod += knife;
+		}
+		return mod;
+	}
+	
+	@FXML
+	private void scrollLeft(ActionEvent event) {
+		pointer = mod(--pointer,raceScroll.length);
+		update(event);
+	}
+	
+	@FXML
+	private void scrollRight(ActionEvent event) {
+		pointer = mod(++pointer,raceScroll.length);
+		update(event);
+	}
+	
+	private void update(ActionEvent event) {
+		if(((Label)event.getSource()).getId().equals("PlayerAnnouncer"))
+			System.out.println("blah");
+	}
+	
 	@FXML
 	private void OnChoice(ActionEvent event){
-		CharacterType c = null;
-		if(((Button)event.getSource()).getId().equals("flapper"))
-			c = CharacterType.FLAPPER;
-		if(((Button)event.getSource()).getId().equals("bonzoid"))
-			c = CharacterType.BONZOID;
-		if(((Button)event.getSource()).getId().equals("humanoid"))
-			c = CharacterType.HUMANOID;
-		
-		Player p = new Player(c);
+		Player p = new Player(raceScroll[pointer]);
 		p.setResources(settings.getDifficulty().getPlayerResources());
 		settings.setCurrentPlayer(p);
 		settings.addPlayer(p);

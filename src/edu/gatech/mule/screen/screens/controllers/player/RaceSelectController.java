@@ -1,6 +1,7 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.player;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**

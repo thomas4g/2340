@@ -5,12 +5,14 @@ import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXMapView;
-import edu.gatech.mule.fx.screens.views.FXPlayerView;
-import edu.gatech.mule.fx.screens.views.FXRaceSelectView;
-import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.fx.screens.views.FXStartView;
 import edu.gatech.mule.fx.screens.views.FXView;
+import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
+import edu.gatech.mule.fx.screens.views.player.FXPlayerView;
+import edu.gatech.mule.fx.screens.views.player.FXRaceSelectView;
+import edu.gatech.mule.fx.screens.views.settings.FXDifficultyView;
+import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
+import edu.gatech.mule.fx.screens.views.settings.FXNumPlayersView;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
@@ -87,10 +89,20 @@ public class FXScreenHandler extends ScreenHandler {
 	protected ScreenView loadStartView() {
 		return new FXStartView();
 	}
+	
+	@Override
+	protected SettingsView loadDifficultyView() {
+		return new FXDifficultyView();
+	}
 
 	@Override
-	protected SettingsView loadSettingsView() {
-		return new FXSettingsView();
+	protected SettingsView loadMapTypeView() {
+		return new FXMapTypeView();
+	}
+
+	@Override
+	protected SettingsView loadNumPlayersView() {
+		return new FXNumPlayersView();
 	}
 
 	@Override

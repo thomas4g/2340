@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
-import edu.gatech.mule.screen.ScreenHandler;
 
 /**
  * FX application ???
@@ -29,7 +28,7 @@ public class FXApplication extends Application {
     	
         Group root = new Group();
         root.getChildren().addAll(view);
-        Scene scene = new Scene(root, 720, 550);
+        Scene scene = new Scene(root, 720, 520);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();

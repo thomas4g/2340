@@ -1,4 +1,4 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.gameplay;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.graphics.FXGraphics;
+import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;

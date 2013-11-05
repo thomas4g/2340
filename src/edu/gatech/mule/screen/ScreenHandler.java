@@ -3,14 +3,16 @@ package edu.gatech.mule.screen;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.screens.controllers.GameplayController;
-import edu.gatech.mule.screen.screens.controllers.LandSelectController;
-import edu.gatech.mule.screen.screens.controllers.PlayerController;
-import edu.gatech.mule.screen.screens.controllers.RaceSelectController;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.controllers.SettingsController;
 import edu.gatech.mule.screen.screens.controllers.StartController;
-import edu.gatech.mule.screen.screens.controllers.TownController;
+import edu.gatech.mule.screen.screens.controllers.gameplay.GameplayController;
+import edu.gatech.mule.screen.screens.controllers.gameplay.LandSelectController;
+import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
+import edu.gatech.mule.screen.screens.controllers.player.PlayerController;
+import edu.gatech.mule.screen.screens.controllers.player.RaceSelectController;
+import edu.gatech.mule.screen.screens.controllers.settings.DifficultyController;
+import edu.gatech.mule.screen.screens.controllers.settings.MapTypeController;
+import edu.gatech.mule.screen.screens.controllers.settings.NumPlayersController;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
@@ -20,7 +22,8 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * @version 1.0
  */
 public abstract class ScreenHandler {
-	public enum ScreenType { START, SETTINGS, RACE_SELECT, PLAYER_SCREEN, LAND_SELECT, GAME_SCREEN, TOWN_SCREEN };
+	public enum ScreenType { START, DIFFICULTY, MAP_TYPE, NUM_PLAYERS, RACE_SELECT, PLAYER_SCREEN,
+							LAND_SELECT, GAME_SCREEN, TOWN_SCREEN };
 	protected HashMap<ScreenType, ScreenController> screens;
 	protected GameEngine game;
 	
@@ -38,7 +41,9 @@ public abstract class ScreenHandler {
 	 */
 	public final void load() {
 		screens.put(ScreenType.START, new StartController(game, loadStartView()));
-		screens.put(ScreenType.SETTINGS, new SettingsController(game, loadSettingsView()));
+		screens.put(ScreenType.DIFFICULTY, new DifficultyController(game, loadDifficultyView()));
+		screens.put(ScreenType.MAP_TYPE, new MapTypeController(game, loadMapTypeView()));
+		screens.put(ScreenType.NUM_PLAYERS, new NumPlayersController(game, loadNumPlayersView()));
 		screens.put(ScreenType.RACE_SELECT, new RaceSelectController(game, loadRaceSelectView()));
 		screens.put(ScreenType.PLAYER_SCREEN, new PlayerController(game, loadPlayerView()));
 		screens.put(ScreenType.LAND_SELECT, new LandSelectController(game, loadLandSelectView()));
@@ -48,7 +53,9 @@ public abstract class ScreenHandler {
 	}
 
 	protected abstract ScreenView loadStartView();
-	protected abstract SettingsView loadSettingsView();
+	protected abstract SettingsView loadDifficultyView();
+	protected abstract SettingsView loadMapTypeView();
+	protected abstract SettingsView loadNumPlayersView();
 	protected abstract SettingsView loadRaceSelectView();
 	protected abstract SettingsView loadPlayerView();
 	protected abstract MapView loadGameplayView();

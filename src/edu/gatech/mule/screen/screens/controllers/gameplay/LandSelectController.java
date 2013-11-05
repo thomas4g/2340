@@ -1,4 +1,4 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Round;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**

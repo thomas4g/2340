@@ -1,4 +1,4 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
 import java.util.ArrayList;
