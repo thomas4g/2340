@@ -35,6 +35,9 @@ public class TownController extends MapController {
 			(currentPlayer.getTileType() == TileType.EXITTOWN_RIGHT && currentPlayer.getDirection() == Direction.RIGHT)) {
 			game.setScreen(ScreenType.GAME_SCREEN);
 		}
+		else if(currentPlayer.getTileType() == TileType.PUB){
+			done();
+		}
 		
 		System.out.println(currentPlayer.getTile().getWidth());
 	}
