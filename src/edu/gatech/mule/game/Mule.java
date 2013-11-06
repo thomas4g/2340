@@ -22,28 +22,35 @@ public class Mule extends Entity {
 		this.owner = owner;
 	}
 	
-	public void move(Player player){
+	public void move(){
 		
-		switch(player.getDirection()){
+		switch(owner.getDirection()){
 			case DOWN:
-				location.x=player.getPosition().x;
-				location.y=player.getPosition().y-2*player.getImage().getHeight();
+				location.setLocation(
+						owner.getPosition().getX(),
+						owner.getPosition().getY() - 2*owner.getImage().getHeight());
 				break;
 			case RIGHT:
-				location.x=player.getPosition().x-2*player.getImage().getWidth();
-				location.y=player.getPosition().y;
+				location.setLocation(
+						owner.getPosition().getX() - 2*owner.getImage().getWidth(),
+						owner.getPosition().getY());
 				break;
 			case LEFT:
-				location.x=player.getPosition().x+2*player.getImage().getWidth();
-				location.y=player.getPosition().y;
+				location.setLocation(
+						owner.getPosition().getX() + 2*owner.getImage().getWidth(),
+						owner.getPosition().getY());
 				break;
 			case UP:
-				location.x=player.getPosition().x;
-				location.y=player.getPosition().y+2*player.getImage().getHeight();
+				location.setLocation(
+						owner.getPosition().getX(),
+						owner.getPosition().getY() + 2*owner.getImage().getHeight());
+				break;
+			
+			default:
 				break;
 		
 		}
-		setDirection(player.getDirection());
+		setDirection(owner.getDirection());
 		
 	}
 	
@@ -91,5 +98,9 @@ public class Mule extends Entity {
 		}
 		resources[type.ordinal()] = production;
 		owner.addResources(resources);
+	}
+
+	public void setType(ResourceType type) {
+		resourceType = type;
 	}
 }

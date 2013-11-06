@@ -12,10 +12,7 @@ import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 
 public abstract class MapController extends ScreenController {
 
@@ -39,9 +36,12 @@ public abstract class MapController extends ScreenController {
 		turn = game.getRound().getTurn();
 		currentPlayer = turn.getPlayer();
 		entities.clear();
-		currentPlayer.setMule(new Mule(currentPlayer, CharacterType.MULE));
+//		currentPlayer.setMule(new Mule(currentPlayer, CharacterType.MULE));
 		entities.add(currentPlayer);
-		entities.add(currentPlayer.getMule());
+		
+		if(currentPlayer.getMule() != null)
+			entities.add(currentPlayer.getMule());
+		
 		view.setGameMap(map);
 		view.setGameEntities(entities);
 		view.setCurrentPlayer(currentPlayer);
@@ -53,7 +53,10 @@ public abstract class MapController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		
 		currentPlayer.move(moveRate*x, moveRate*y);
-		currentPlayer.getMule().move(currentPlayer);
+		
+		if(currentPlayer.getMule() != null) {
+			currentPlayer.getMule().move();
+		}	
 		
 		int xTilePos=(int)(currentPlayer.getPosition().x/map.getTileWidth());
 		int yTilePos=(int)(currentPlayer.getPosition().y/map.getTileHeight());

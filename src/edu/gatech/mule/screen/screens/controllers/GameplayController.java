@@ -93,6 +93,7 @@ public class GameplayController extends MapController {
 		}
 		
 		currentPlayer.setPosition(p);
-		currentPlayer.getMule().setPosition(new Point(m.x,m.y));
+		if(currentPlayer.getMule() != null)
+			currentPlayer.getMule().setPosition(new Point(m.x,m.y));
 	}
 }

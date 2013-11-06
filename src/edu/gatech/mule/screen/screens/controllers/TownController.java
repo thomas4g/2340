@@ -3,7 +3,9 @@ package edu.gatech.mule.screen.screens.controllers;
 import java.awt.Point;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.CharacterType.Direction;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Store;
@@ -43,8 +45,12 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.PUB){
 			done();
 		}
-		else if(currentPlayer.getTileType() == TileType.STORE) {
+		else if(currentPlayer.getTileType() == TileType.RESOURCE_STORE) {
 			view.displayStoreMenu();
+		}
+		else if(currentPlayer.getTileType() == TileType.MULE_STORE){
+//			setMuleType(ResourceType.CRYSTITE);
+			view.displayMuleOptions();
 		}
 	}
 	
@@ -101,5 +107,14 @@ public class TownController extends MapController {
 		} else {
 			currentPlayer.sell(transaction, store);
 		}
+	}
+
+	public void setMuleType(ResourceType type) {
+		if(currentPlayer.getMule() != null) return;
+		
+		Mule m = new Mule(currentPlayer, CharacterType.MULE);
+		m.setType(type);
+		this.entities.add(m);
+		currentPlayer.setMule(m);
 	}
 }

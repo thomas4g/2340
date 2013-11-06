@@ -12,7 +12,8 @@ public enum TileType {
 	MOUNTAIN2(true, 1, 1, 3),
 	MOUNTAIN3(true, 1, 1, 4),
 	
-	STORE(false, 0, 0, 0),
+	RESOURCE_STORE(false, 0, 0, 0),
+	MULE_STORE(false, 0, 0, 0),
 	TOWN(false, 0, 0, 0),
 	EXITTOWN_LEFT(false, 0, 0, 0),
 	EXITTOWN_RIGHT(false, 0, 0, 0),

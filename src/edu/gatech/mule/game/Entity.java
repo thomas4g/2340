@@ -113,7 +113,10 @@ public abstract class Entity {
 	 * @return position of the entity
 	 */
 	public Point getPosition(){
-		return location;
+		//DO NOT REMOVE THE .getLocation() UNLESS YOU WANT THE 4AM BUG OF 11/6 TO RETURN
+		//THIS IS A TERRIBLE TERRIBLE BUG IT WILL HAUNT YOUR DREAMS AND MAKE YOU FEAR ALL CODE
+		//TREAD CAREFULLY
+		return location.getLocation();
 	}
 	
 	/**

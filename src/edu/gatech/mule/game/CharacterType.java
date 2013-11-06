@@ -121,7 +121,6 @@ public enum CharacterType {
 		String[] res = new String[5];
 		for(int i=0;i<5;i++) {
 			res[i] = big_sprites + dir + "f" + (i+1) + IMAGE_EXT;
-			System.out.println(res[i]);
 		}
 		return res;
 	}

@@ -218,7 +218,7 @@ public class FXMapView extends FXView implements TownMapView {
 			
 		});
 		flow.getChildren().add(cb);
-		stack.getChildren().add(cb);		
+		stack.getChildren().add(flow);		
 	}
 
 	@Override
@@ -252,5 +252,25 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void setStoreResourceAmounts(int[] resources) {
 		storeResources = resources;
+	}
+
+	@Override
+	public void displayMuleOptions() {
+		final FlowPane flow = new FlowPane();
+		final ObservableList<ResourceType> resourceTypes = FXCollections.observableArrayList(ResourceType.values());
+		final ComboBox<ResourceType> cb = new ComboBox<ResourceType>(resourceTypes);
+		
+		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ResourceType>() {
+			@Override
+			public void changed(ObservableValue<? extends ResourceType> arg0,
+					ResourceType arg1, ResourceType arg2) {
+				if(arg2 != null) {
+					stack.getChildren().remove(flow);
+					townController.setMuleType(arg2);
+				}
+			}
+		});
+		flow.getChildren().add(cb);
+		stack.getChildren().add(flow);		
 	}
 }
