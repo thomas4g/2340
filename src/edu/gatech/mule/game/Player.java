@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.resources.Mule;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Transaction;
 import edu.gatech.mule.game.store.Transactor;
@@ -39,7 +38,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * @param type, type of character
 	 */
 	public Player(CharacterType type) {
-		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
+		super(type.getStillSprite(Direction.RIGHT), new Point(0,0));
 		this.type = type;
 		this.money = type.getMoney();
 		this.ownedLands = new ArrayList<>();

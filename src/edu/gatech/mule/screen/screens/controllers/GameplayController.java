@@ -3,6 +3,8 @@ package edu.gatech.mule.screen.screens.controllers;
 import java.awt.Point;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -28,13 +30,27 @@ public class GameplayController extends MapController {
 	public void move(int x, int y) {
 		super.move(x, y);
 		
-		if(!currentPlayer.getTile().hasOwner() && currentPlayer.hasMule()){
-			//addd tile
-		}
-		
+
 		if(currentPlayer.getTileType() == TileType.ENTERTOWN) {
 			game.setScreen(ScreenType.TOWN_SCREEN);
 		}
+	}
+	
+	public void action(){
+		
+		GameTile tile=currentPlayer.getTile();
+		
+		if (currentPlayer.getMule()==null) {
+			if (tile.hasOwner() && tile.getOwner() == currentPlayer) {
+				System.out.println("your tile");
+			} else {
+				//Make the mule run
+				System.out.println("not your tile");
+			}
+		}else{
+			System.out.println("tastless fool!s");
+		}
+		
 	}
 	
 	@Override

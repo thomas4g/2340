@@ -29,10 +29,9 @@ public abstract class Entity {
 	 * @param location, location on a map
 	 * @param tile, the tile where the entity is positioned
 	 */
-	public Entity(String imgPath,Point location,GameTile tile){
+	public Entity(String imgPath,Point location){
 		frameIndex=0;
 		this.location = location;
-		this.tile = tile;
 		this.direction = Direction.DOWN;
 		this.image = loadImage(imgPath);
 	}
