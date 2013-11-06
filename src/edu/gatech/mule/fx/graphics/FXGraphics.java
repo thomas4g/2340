@@ -35,7 +35,7 @@ public class FXGraphics implements Renderer {
 	public void drawEntity(Entity entity) {
 		if(entity != null) {
 			BufferedImage image = entity.getImage();
-			drawImage(image, entity.getPosition().x, entity.getPosition().y, image.getWidth(), image.getHeight());
+			drawImage(image, entity.getPosition().x - image.getWidth() / 2, entity.getPosition().y - image.getHeight() / 2, image.getWidth(), image.getHeight());
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class FXGraphics implements Renderer {
 	
 	@Override
 	public void drawImage(BufferedImage image, int x, int y, int width, int height) {
-		gc.drawImage(createImage(image), x-width, y-height, width, height);	
+		gc.drawImage(createImage(image), x, y, width, height);	
 	}
 	
 	//JavaFX helper methods

@@ -34,7 +34,6 @@ public class GameplayController extends MapController {
 		
 		if(currentPlayer.getTileType() == TileType.ENTERTOWN) {
 			game.setScreen(ScreenType.TOWN_SCREEN);
-			currentPlayer.setPosition(new Point(map.getTileWidth()/7,map.getTileHeight()/2));
 		}
 	}
 	

@@ -7,10 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import edu.gatech.mule.game.CharacterType.Direction;
-import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 
 /**
  * Representation of an entity that can move around a map

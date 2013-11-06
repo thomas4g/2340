@@ -7,7 +7,6 @@ import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.map.TownTile;
-import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * Generates the town map
@@ -40,7 +39,6 @@ public class TownMap extends GameMap {
 				System.out.println(tile.getProperties());
 				String type = ((String) tile.getProperties().getProperty("type", "town")).toUpperCase();
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type));
-				tiles[i][j].setImage(tile.getImage());
 				
 			}
 		}

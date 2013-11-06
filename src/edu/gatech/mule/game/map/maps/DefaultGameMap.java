@@ -53,7 +53,8 @@ public class DefaultGameMap extends GameMap {
 					frames[frame-1] = tile;
 				}
 			}
-			AnimatedGameTile aTile = new AnimatedGameTile(new AnimatedTile(frames), TileType.RIVER, frames);
+			String type = frames[0].getProperties().getProperty("type").toString();
+			AnimatedGameTile aTile = new AnimatedGameTile(new AnimatedTile(frames), TileType.valueOf(type.toUpperCase()), frames);
 			animatedTiles.add(aTile);
 		}
 		
@@ -61,7 +62,7 @@ public class DefaultGameMap extends GameMap {
 		for(int x=0; x<layer.getWidth(); x++) {
 			for(int y=0; y<layer.getHeight(); y++) {
 				Tile tile = layer.getTileAt(x, y);
-				String type = (String)tile.getProperties().get("type");
+				String type = tile.getProperties().get("type").toString();
 				if(tile.getProperties().containsKey("animated")) {
 					int rtile = Integer.parseInt(tile.getProperties().getProperty("tile"));
 					tiles[x][y] = animatedTiles.get(rtile-1);
