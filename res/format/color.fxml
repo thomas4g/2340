@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView fitHeight="257.20644149780276" fitWidth="274.0" layoutX="142.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@b3.png" />
+      </image>
+    </ImageView>
+    <Label alignment="CENTER" layoutX="173.0" layoutY="59.0" prefWidth="455.0" text="Player #, Choose your color" textAlignment="CENTER">
+      <font>
+        <Font size="32.0" />
+      </font>
+    </Label>
+    <RadioButton layoutX="500.0" layoutY="230.0" mnemonicParsing="false" text="RadioButton">
+      <font>
+        <Font size="18.0" fx:id="x1" />
+      </font>
+    </RadioButton>
+    <RadioButton font="$x1" layoutX="500.0" layoutY="262.0" mnemonicParsing="false" text="RadioButton" onKeyPressed="#transition">
+      <toggleGroup>
+        <ToggleGroup fx:id="color" />
+      </toggleGroup>
+    </RadioButton>
+    <RadioButton font="$x1" layoutX="500.0" layoutY="328.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+    <RadioButton font="$x1" layoutX="500.0" layoutY="360.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+    <RadioButton font="$x1" layoutX="500.0" layoutY="393.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+    <RadioButton font="$x1" layoutX="500.0" layoutY="295.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+    <RadioButton font="$x1" layoutX="500.0" layoutY="197.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+    <RadioButton font="$x1" layoutX="500.0" layoutY="164.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$color" onKeyPressed="#transition" />
+  </children>
+</AnchorPane>

@@ -8,7 +8,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * Controller for player config
  * @version 0.1
  */
-public class PlayerController extends ScreenController {
+public class ColorController extends ScreenController {
 	
 	protected SettingsView view;
 	
@@ -17,7 +17,7 @@ public class PlayerController extends ScreenController {
 	 * @param game, game engine
 	 * @param view, settings view
 	 */
-	public PlayerController(GameEngine game, SettingsView view) {
+	public ColorController(GameEngine game, SettingsView view) {
 		super(game,  view);
 		this.view = view;
 	}
@@ -33,13 +33,7 @@ public class PlayerController extends ScreenController {
 	 * Otherwise, next player chooses race and other config.
 	 */
 	public void done(){
-		System.out.println("player count: "+game.getSettings().getPlayerCount());
-		System.out.println("number of players: "+game.getSettings().getPlayers().size());
-		if(game.getSettings().getPlayerCount() == game.getSettings().getPlayers().size()) {
-			game.playGame();
-		} else {
-			game.chooseRace();
-		}
+		game.chooseName();
 	}
 	
 }

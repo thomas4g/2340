@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Color;
@@ -20,7 +21,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * View for player config
  * @version 0.1
  */
-public class FXPlayerView extends FXView implements SettingsView {
+public class FXColorView extends FXView implements SettingsView {
 	@FXML
 	private ComboBox<String> combo;
 	
@@ -30,17 +31,14 @@ public class FXPlayerView extends FXView implements SettingsView {
 	@FXML
 	private Label charDescrip;
 	
-	@FXML
-	private TextField field;
-	
 	private Color currentColor = Color.PURPLE;
 	private Settings settings;
 
 	/**
 	 * Constructor for player screen
 	 */
-	public FXPlayerView() {
-		super("player_screen");
+	public FXColorView() {
+		super("color");
 	}
 
 	@Override
@@ -72,18 +70,16 @@ public class FXPlayerView extends FXView implements SettingsView {
 	}
 	
 	@FXML
-	private void OnAdd(ActionEvent event){
+	private void transition(KeyEvent event){
 		settings.getCurrentPlayer().setColor(currentColor);
-		settings.getCurrentPlayer().setName(field.getText());
 		settings.nextPlayer();
 		controller.done();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		imgView.setImage(changeImage());
-		charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
-		field.setText(settings.getCurrentPlayer().getType().getName());
+		//imgView.setImage(changeImage());
+		//charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
 	}
 
 	@Override

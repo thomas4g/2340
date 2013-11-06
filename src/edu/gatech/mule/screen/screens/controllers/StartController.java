@@ -22,7 +22,7 @@ public class StartController extends ScreenController {
 	 * Goes to settings config
 	 */
 	public final void done() {
-		game.chooseSettings();
+		game.chooseDifficulty();
 	}
 	
 }

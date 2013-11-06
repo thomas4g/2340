@@ -26,7 +26,7 @@ public class FXNumPlayersView extends FXView implements SettingsView {
 	@FXML
 	private ComboBox<String> combo;
 	@FXML
-	private ToggleGroup mapType, difficulty, numPlayers;
+	private ToggleGroup mapType, numPlayers;
 	private int playerCount;
 	private Settings settings;
 		
@@ -49,10 +49,8 @@ public class FXNumPlayersView extends FXView implements SettingsView {
 	
 	@FXML
 	public void transition(KeyEvent event){
-		if (event.getCode() == KeyCode.SPACE) {
-			if(numPlayers.getSelectedToggle() == null) {
-				playerCount = 3;
-			} else if(((RadioButton)numPlayers.getSelectedToggle()).getId().equals("2")) {
+		if (numPlayers.getSelectedToggle() != null && event.getCode() == KeyCode.SPACE) {
+			if(((RadioButton)numPlayers.getSelectedToggle()).getId().equals("2")) {
 				playerCount = 2;
 			} else if(((RadioButton)numPlayers.getSelectedToggle()).getId().equals("3")) {
 				playerCount = 3;
@@ -61,7 +59,6 @@ public class FXNumPlayersView extends FXView implements SettingsView {
 			}
 			
 			settings.setMapType(MapType.DEFAULT);
-			settings.setDifficulty(Difficulty.BEGINNER);
 			settings.setPlayerCount(playerCount);
 			
 			controller.done();

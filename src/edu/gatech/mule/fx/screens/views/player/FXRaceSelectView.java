@@ -7,6 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Player;
@@ -18,6 +22,12 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * @version 0.1
  */
 public class FXRaceSelectView extends FXView implements SettingsView {
+	
+	@FXML
+	private ImageView headshot;
+	
+	@FXML
+	private Label description;
 
 	protected Settings settings;
 	private CharacterType[] raceScroll;
@@ -46,35 +56,42 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	}
 	
 	@FXML
-	private void scrollLeft(ActionEvent event) {
+	private void scrollLeft() {
 		pointer = mod(--pointer,raceScroll.length);
-		update(event);
+		update();
 	}
 	
 	@FXML
-	private void scrollRight(ActionEvent event) {
+	private void scrollRight() {
 		pointer = mod(++pointer,raceScroll.length);
-		update(event);
+		update();
 	}
 	
-	private void update(ActionEvent event) {
-		if(((Label)event.getSource()).getId().equals("PlayerAnnouncer"))
-			System.out.println("blah");
+	private void update() {
+		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
+		description.setText(raceScroll[pointer].getDescripion());
+		System.out.println(raceScroll[pointer].getName());
 	}
 	
 	@FXML
-	private void OnChoice(ActionEvent event){
-		Player p = new Player(raceScroll[pointer]);
-		p.setResources(settings.getDifficulty().getPlayerResources());
-		settings.setCurrentPlayer(p);
-		settings.addPlayer(p);
-		controller.done();
+	private void transition(KeyEvent event) {
+		if(event.getCode() == KeyCode.LEFT) {
+			scrollLeft();
+		} else if(event.getCode() == KeyCode.RIGHT) {
+			scrollRight();
+		} else if(event.getCode() == KeyCode.SPACE) {
+			Player p = new Player(raceScroll[pointer]);
+			p.setResources(settings.getDifficulty().getPlayerResources());
+			settings.setCurrentPlayer(p);
+			settings.addPlayer(p);
+			controller.done();	
+		}
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
+		description.setText(raceScroll[pointer].getDescripion());
 	}
 
 	@Override
