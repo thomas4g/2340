@@ -37,7 +37,10 @@ public enum CharacterType {
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed\nof Flappers. " 
 			+ "Their race has accumulated vast riches by\nestablishing trade with far-off lands.", 
-			1600, "Samantha");
+			1600, "Samantha"),
+	
+	MULE("Mules",
+		"The labor force of the empire", 0, "The Garbage Man");
 	
 	
 	public static final String IMAGE_EXT = ".png";
@@ -118,7 +121,6 @@ public enum CharacterType {
 		String[] res = new String[5];
 		for(int i=0;i<5;i++) {
 			res[i] = big_sprites + dir + "f" + (i+1) + IMAGE_EXT;
-			System.out.println(res[i]);
 		}
 		return res;
 	}
@@ -163,6 +165,10 @@ public enum CharacterType {
 	 */
 	public String getDescripion() {
 		return description;
+	}
+	
+	public String getType() {
+		return type.substring(0,1).toUpperCase()+type.substring(1);
 	}
 
 }

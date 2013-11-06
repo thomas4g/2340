@@ -1,19 +1,19 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 
 public abstract class MapController extends ScreenController {
 
@@ -36,9 +36,12 @@ public abstract class MapController extends ScreenController {
 		super.load();
 		turn = game.getRound().getTurn();
 		currentPlayer = turn.getPlayer();
-		
 		entities.clear();
+//		currentPlayer.setMule(new Mule(currentPlayer, CharacterType.MULE));
 		entities.add(currentPlayer);
+		
+		if(currentPlayer.getMule() != null)
+			entities.add(currentPlayer.getMule());
 		
 		view.setGameMap(map);
 		view.setGameEntities(entities);
@@ -51,7 +54,11 @@ public abstract class MapController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		
 		currentPlayer.move(moveRate*x, moveRate*y);
-
+		
+		if(currentPlayer.getMule() != null) {
+			currentPlayer.getMule().move();
+		}	
+		
 		int xTilePos=(int)(currentPlayer.getPosition().x/map.getTileWidth());
 		int yTilePos=(int)(currentPlayer.getPosition().y/map.getTileHeight());
 		

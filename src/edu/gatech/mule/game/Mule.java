@@ -2,26 +2,69 @@ package edu.gatech.mule.game;
 
 import java.awt.Point;
 
+import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.resources.ResourceType;
-import edu.gatech.mule.game.store.Transactor;
+
 
 public class Mule extends Entity {
 
-	public ResourceType type;
+	public CharacterType type;
 	public GameTile tile;
-	public Transactor owner;
 	public boolean placed;
+	private Player owner;
+	private ResourceType resourceType;
+	private boolean big;
 	
-	
-	public Mule(ResourceType type, Transactor owner,Point location) {
-		super("img_path",location);
+	public Mule(Player owner, CharacterType type) {
+		super(type.getStillSprite(owner.getDirection()),owner.getPosition());
 		this.type = type;
 		this.owner = owner;
 	}
 	
+	public void move(){
+		
+		switch(owner.getDirection()){
+			case DOWN:
+				location.setLocation(
+						owner.getPosition().getX(),
+						owner.getPosition().getY() - 2*owner.getImage().getHeight());
+				break;
+			case RIGHT:
+				location.setLocation(
+						owner.getPosition().getX() - 2*owner.getImage().getWidth(),
+						owner.getPosition().getY());
+				break;
+			case LEFT:
+				location.setLocation(
+						owner.getPosition().getX() + 2*owner.getImage().getWidth(),
+						owner.getPosition().getY());
+				break;
+			case UP:
+				location.setLocation(
+						owner.getPosition().getX(),
+						owner.getPosition().getY() + 2*owner.getImage().getHeight());
+				break;
+			
+			default:
+				break;
+		
+		}
+		setDirection(owner.getDirection());
+		
+	}
+	
+	public void setDirection(Direction direction) {
+		super.setDirection(direction);
+		setDirectionalFrames();
+	}
+	
+	public void setDirectionalFrames(){
+		setFrames(type.getDirectionalSprites(direction, big));
+	}
+	
 	public ResourceType getType() {
-		return type;
+		return resourceType;
 	}
 	
 	public void emplace(GameTile tile) {
@@ -40,7 +83,7 @@ public class Mule extends Entity {
 				
 		int[] resources = new int[5];
 		int production = 0;
-		switch(type) {
+		switch(resourceType) {
 		case FOOD:
 			production = tile.getType().getFoodRate();
 			break;
@@ -55,5 +98,9 @@ public class Mule extends Entity {
 		}
 		resources[type.ordinal()] = production;
 		owner.addResources(resources);
+	}
+
+	public void setType(ResourceType type) {
+		resourceType = type;
 	}
 }

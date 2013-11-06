@@ -1,35 +1,34 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.gameplay;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import tiled.core.Tile;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
+import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
-import edu.gatech.mule.screen.screens.controllers.TownController;
-import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
 import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
@@ -45,7 +44,7 @@ public class FXMapView extends FXView implements TownMapView {
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
 	private Point selectorLocation;
-	
+	private int[] storeResources;
 	private TownController townController;
 
 	/**
@@ -109,6 +108,32 @@ public class FXMapView extends FXView implements TownMapView {
 		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
 		
 		drawCurrentPlayer();
+		
+		if(storeResources != null) {
+			drawStoreResources();
+		}
+	}
+	
+	// THIS IS BAD UGLY TERRIBLE FIX FIX FIX
+	// TODO FIX FIX FIX
+	private void drawStoreResources() {
+		for(int i=0;i<gameMap.getTiles().length;i++) {
+			for(int j=0;j<gameMap.getTiles()[0].length;j++) {
+				GameTile t = gameMap.getTiles()[i][j];
+				String tt = t.getProperties().getProperty("resource_type");
+
+				for(int k=0;k<storeResources.length;k++) {
+					String rt = ResourceType.values()[k].name();
+					
+					if(rt.equalsIgnoreCase(tt)) {
+						graphics.drawText(Integer.toString(storeResources[k]), 
+								new Point(t.getWidth()*i + t.getWidth()/2, 45),
+								Color.BLUE,
+								16);
+					}					
+				}
+			}
+		}
 	}
 	
 	@Override
@@ -148,6 +173,7 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void setGameMap(GameMap gameMap) {
 		this.gameMap = gameMap;
+		storeResources = null;
 	}
 
 	@Override
@@ -183,21 +209,21 @@ public class FXMapView extends FXView implements TownMapView {
 					String arg1, String selected) {
 				if(selected.equals(buySell.get(0))){
 					stack.getChildren().remove(flow);
-					townController.storeBuy();
+					displayStoreAmountMenu(true);
 				}
 				else if(selected.equals(buySell.get(1))) {
 					stack.getChildren().remove(flow);
-					townController.storeSell();
+					displayStoreAmountMenu(false);
 				}
 			}
 			
 		});
 		flow.getChildren().add(cb);
-		stack.getChildren().add(cb);		
+		stack.getChildren().add(flow);		
 	}
 
 	@Override
-	public void displayStoreAmountMenu() {
+	public void displayStoreAmountMenu(final boolean buying) {
 		final FlowPane flow = new FlowPane();
 		final TextField amount = new TextField();
 		Button done = new Button("Confirm");
@@ -207,14 +233,14 @@ public class FXMapView extends FXView implements TownMapView {
 			public void handle(ActionEvent arg0) {
 				stack.getChildren().remove(flow);
 				
-				int money = 0;
+				int count = 0;
 				try {
-					money = Integer.parseInt(amount.getText());
+					count = Integer.parseInt(amount.getText());
 				}
 				catch(NumberFormatException ex) {
 					
 				}
-				townController.storeComplete(money);
+				townController.storeComplete(count, buying);
 			}
 			
 		});
@@ -222,5 +248,30 @@ public class FXMapView extends FXView implements TownMapView {
 		flow.getChildren().add(amount);
 		flow.getChildren().add(done);
 		stack.getChildren().add(flow);
+	}
+
+	@Override
+	public void setStoreResourceAmounts(int[] resources) {
+		storeResources = resources;
+	}
+
+	@Override
+	public void displayMuleOptions() {
+		final FlowPane flow = new FlowPane();
+		final ObservableList<ResourceType> resourceTypes = FXCollections.observableArrayList(ResourceType.values());
+		final ComboBox<ResourceType> cb = new ComboBox<ResourceType>(resourceTypes);
+		
+		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ResourceType>() {
+			@Override
+			public void changed(ObservableValue<? extends ResourceType> arg0,
+					ResourceType arg1, ResourceType arg2) {
+				if(arg2 != null) {
+					stack.getChildren().remove(flow);
+					townController.setMuleType(arg2);
+				}
+			}
+		});
+		flow.getChildren().add(cb);
+		stack.getChildren().add(flow);		
 	}
 }

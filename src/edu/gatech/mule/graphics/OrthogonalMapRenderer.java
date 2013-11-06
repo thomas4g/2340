@@ -3,8 +3,10 @@ package edu.gatech.mule.graphics;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * Representation of a renderer for an orthogonal map
@@ -49,6 +51,15 @@ public class OrthogonalMapRenderer {
 	                if(tile.getOwner() != null) {
 	                	BufferedImage totem = tile.getOwner().getTotem();
 	                	graphics.drawImage(totem, x * TILE_WIDTH, y * TILE_HEIGHT, totem.getWidth() , totem.getHeight());
+	                }
+	                
+	                if(tile instanceof PropertyTile && tile.hasOwner()) {
+	                	BufferedImage totem = tile.getOwner().getTotem();
+	                	PropertyTile t = (PropertyTile)tile;
+	                	
+	                	for(int i=0;i<t.getMules().size();i++) {
+	                		graphics.drawImage(totem, x * TILE_WIDTH + i*totem.getWidth(), y * TILE_HEIGHT + TILE_HEIGHT - 10, totem.getWidth(), totem.getHeight());
+	                	}
 	                }
 				}
 			}

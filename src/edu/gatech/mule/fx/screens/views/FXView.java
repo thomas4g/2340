@@ -63,4 +63,13 @@ public abstract class FXView implements ScreenView, Initializable {
 	public void setController(ScreenController controller) {
 		this.controller = controller;
 	}
+	
+	protected int mod(int cheese, int knife) {
+		int mod = cheese % knife;
+		if(mod < 0) {
+			mod += knife;
+		}
+		return mod;
+	}
+	
 }

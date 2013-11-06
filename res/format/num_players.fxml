@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Label alignment="CENTER_LEFT" layoutX="144.0" layoutY="268.0" minHeight="16.0" prefHeight="31.0" prefWidth="157.0" text="Number of Players">
+      <font>
+        <Font size="18.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label fx:id="two" font="$x1" layoutX="341.0" layoutY="272.0" mnemonicParsing="false" text="2" />
+    <Label fx:id="three" font="$x1" layoutX="415.0" layoutY="272.0" mnemonicParsing="false" text="3" />
+    <Label fx:id="four" font="$x1" layoutX="479.0" layoutY="272.0" mnemonicParsing="false" text="4" />
+    <Button layoutX="372.0" layoutY="419.0" mnemonicParsing="false" onKeyPressed="#transition" text="OK" />
+  </children>
+</AnchorPane>

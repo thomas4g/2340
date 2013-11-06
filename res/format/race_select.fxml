@@ -8,34 +8,28 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="533.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <Text layoutX="113.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Character">
+    <ImageView fx:id="headshot" fitHeight="257.20644149780276" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@b3.png" />
+      </image>
+    </ImageView>
+    <Label fx:id="playerAnnouncer" alignment="CENTER" layoutX="133.0" layoutY="59.0" prefWidth="455.0" text="Player #, Choose your race" textAlignment="CENTER">
       <font>
-        <Font name="Tlwg Typo Bold" size="32.0" />
+        <Font size="32.0" />
       </font>
-    </Text>
-    <Separator layoutX="155.0" layoutY="94.0" prefWidth="200.0" />
-    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="32.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="/assets/h1.png" />
-      </image>
-    </ImageView>
-    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="217.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fitHeight="118.50007709503132" fitWidth="158.00010681152344" layoutX="398.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="/assets/f1.png" />
-      </image>
-    </ImageView>
-    <Separator layoutX="161.0" layoutY="167.0" orientation="VERTICAL" prefHeight="87.0" prefWidth="30.0" />
-    <ImageView fitHeight="110.25007730483955" fitWidth="147.00010681152344" layoutX="214.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="/assets/b1.png" />
-      </image>
-    </ImageView>
-    <Separator layoutX="374.0" layoutY="163.0" orientation="VERTICAL" prefHeight="87.0" />
-    <Button id="humanoid" fx:id="humanoid" layoutX="37.0" layoutY="269.0" mnemonicParsing="false" onAction="#OnChoice" text="Humanoid" />
-    <Button id="bonzoid" fx:id="bonzoid" layoutX="225.0" layoutY="269.0" mnemonicParsing="false" onAction="#OnChoice" text="Bonzoid" />
-    <Button fx:id="flapper" layoutX="403.0" layoutY="269.0" mnemonicParsing="false" onAction="#OnChoice" text="Flapper" />
+    </Label>
+    <Label fx:id="description" alignment="TOP_LEFT" layoutX="401.0" layoutY="180.0" prefHeight="203.0" prefWidth="229.0" text="&quot;Despite their bulky size, Bonzoids are a peaceful race. \n&quot;+ &quot;Many work as tailors, blacksmiths, carpenters,  \nand shopowners.&quot;" wrapText="true">
+      <font>
+        <Font size="18.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label fx:id="raceName" layoutX="401.0" layoutY="139.0" prefHeight="32.0" prefWidth="153.0" text="Bonzoid">
+      <font>
+        <Font size="24.0" />
+      </font>
+    </Label>
+    <Button font="$x1" layoutX="333.0" layoutY="429.0" mnemonicParsing="false" onKeyPressed="#transition" style="-fx-background-color:#00FF00;" text="OK" />
   </children>
 </AnchorPane>

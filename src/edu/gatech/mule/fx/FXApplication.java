@@ -28,7 +28,7 @@ public class FXApplication extends Application {
     	
         Group root = new Group();
         root.getChildren().addAll(view);
-        Scene scene = new Scene(root, 720, 550);
+        Scene scene = new Scene(root, 720, 520);
         stage.setScene(scene);
         stage.setTitle("Mule");
         stage.show();

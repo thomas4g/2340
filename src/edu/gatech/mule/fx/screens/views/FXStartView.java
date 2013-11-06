@@ -4,8 +4,9 @@
  */
 package edu.gatech.mule.fx.screens.views;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * View for start screen
@@ -20,10 +21,12 @@ public class FXStartView extends FXView {
 		super("start");
 	}
 	
-    @FXML
-    private void OnPress(ActionEvent event){
-    	controller.done();
-    }
+	@FXML
+    public void startGame(KeyEvent event) {
+	    if (event.getCode() == KeyCode.SPACE) {
+	        controller.done();
+	    }
+	}
 
 	@Override
 	public void render() {

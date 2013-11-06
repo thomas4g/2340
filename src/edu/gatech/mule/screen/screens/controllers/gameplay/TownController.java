@@ -1,13 +1,16 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.CharacterType.Direction;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Store;
+import edu.gatech.mule.game.store.Transaction;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
-import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
@@ -33,7 +36,6 @@ public class TownController extends MapController {
 	@Override
 	public void move(int x, int y) {
 		super.move(x, y);
-		System.out.println(currentPlayer.getTileType());
 		if(
 			(currentPlayer.getTileType() == TileType.EXITTOWN_LEFT && currentPlayer.getDirection() == Direction.LEFT)
 			||
@@ -43,20 +45,24 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.PUB){
 			done();
 		}
-		else if(currentPlayer.getTileType() == TileType.STORE) {
+		else if(currentPlayer.getTileType() == TileType.RESOURCE_STORE) {
 			view.displayStoreMenu();
 		}
-		
-		System.out.println(currentPlayer.getTile().getWidth());
+		else if(currentPlayer.getTileType() == TileType.MULE_STORE){
+//			setMuleType(ResourceType.CRYSTITE);
+			view.displayMuleOptions();
+		}
 	}
 	
 	@Override
 	public void load() {
 		//this override
-		this.view.setController(this);
+		view.setController(this);
 		this.map = game.getTownMap();
 		super.load();
+		
 		currentPlayer.useBigSprites(true);
+		
 		Point p = new Point(0, 0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
@@ -78,8 +84,12 @@ public class TownController extends MapController {
 		default:
 			break;
 		}
-		
 		currentPlayer.setPosition(p);
+		
+		if(store == null) {
+			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
+		}
+		view.setStoreResourceAmounts(store.getResources());
 	}
 	
 	@Override
@@ -87,17 +97,24 @@ public class TownController extends MapController {
 		turn.done();
 	}
 
-	
-	public void storeBuy() {
-		//set to buy
-		view.displayStoreAmountMenu();
-	}
-	public void storeSell() {
-		//set to sell
-		view.displayStoreAmountMenu();
+	public void storeComplete(int count, boolean buying) {
+		int[] rDeltas = new int[5];
+		ResourceType type = ResourceType.valueOf(currentPlayer.getTile().getProperties().getProperty("resource_type").toUpperCase());
+		rDeltas[type.ordinal()] = count;
+		Transaction transaction = new Transaction(rDeltas, store.getPrices());
+		if(buying) {
+			store.sell(transaction, currentPlayer);
+		} else {
+			currentPlayer.sell(transaction, store);
+		}
 	}
 
-	public void storeComplete(int money) {
-		//complete the transaction
+	public void setMuleType(ResourceType type) {
+		if(currentPlayer.getMule() != null) return;
+		
+		Mule m = new Mule(currentPlayer, CharacterType.MULE);
+		m.setType(type);
+		this.entities.add(m);
+		currentPlayer.setMule(m);
 	}
 }
