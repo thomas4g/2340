@@ -5,17 +5,12 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Difficulty;
-import edu.gatech.mule.game.Settings.MapType;
-import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class FXDifficultyView extends FXView implements SettingsView {
@@ -54,21 +49,18 @@ public class FXDifficultyView extends FXView implements SettingsView {
 	}
 	
 	private void update() {
+		beginner.setTextFill(Color.web(SettingsView.NORMAL));
+		standard.setTextFill(Color.web(SettingsView.NORMAL));
+		advanced.setTextFill(Color.web(SettingsView.NORMAL));
 		switch(toggle) {
 		case 0:
-			beginner.setTextFill(Color.web("#0076a3"));
-			standard.setTextFill(Color.web("#2F2F2F"));
-			advanced.setTextFill(Color.web("#2F2F2F"));
+			beginner.setTextFill(Color.web(SettingsView.SELECTED));
 			break;
 		case 1:
-			standard.setTextFill(Color.web("#0076a3"));
-			beginner.setTextFill(Color.web("#2F2F2F"));
-			advanced.setTextFill(Color.web("#2F2F2F"));
+			standard.setTextFill(Color.web(SettingsView.SELECTED));
 			break;
 		case 2:
-			advanced.setTextFill(Color.web("#0076a3"));
-			beginner.setTextFill(Color.web("#2F2F2F"));
-			standard.setTextFill(Color.web("#2F2F2F"));
+			advanced.setTextFill(Color.web(SettingsView.SELECTED));
 			break;
 		}
 	}
@@ -81,14 +73,11 @@ public class FXDifficultyView extends FXView implements SettingsView {
 			scrollRight();
 		} else if (event.getCode() == KeyCode.SPACE) {
 			switch(toggle) {
-			case 0:
-				settings.setDifficulty(Difficulty.BEGINNER);
+			case 0: settings.setDifficulty(Difficulty.BEGINNER);
 				break;
-			case 1:
-				settings.setDifficulty(Difficulty.STANDARD);
+			case 1: settings.setDifficulty(Difficulty.STANDARD);
 				break;
-			case 2:
-				settings.setDifficulty(Difficulty.ADVANCED);
+			case 2: settings.setDifficulty(Difficulty.ADVANCED);
 				break;
 			}
 			controller.done();
@@ -97,13 +86,10 @@ public class FXDifficultyView extends FXView implements SettingsView {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		beginner.setTextFill(Color.web("#0076a3"));
+		beginner.setTextFill(Color.web(SettingsView.SELECTED));
 	}
 
 	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void render() {}
 
 }

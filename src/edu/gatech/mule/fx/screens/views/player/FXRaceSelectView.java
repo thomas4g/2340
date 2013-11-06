@@ -8,9 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import edu.gatech.mule.fx.screens.views.FXView;
+import javafx.scene.paint.Color;
+import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Settings;
@@ -20,12 +19,19 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * View for race select config
  * @version 0.1
  */
-public class FXRaceSelectView extends FXView implements SettingsView {
+public class FXRaceSelectView extends FXSettingsView {
 	
 	private static Random randy = new Random();
 	
 	@FXML
 	private ImageView headshot;
+	
+	@FXML
+	private Label humanoid;
+	@FXML
+	private Label flapper;
+	@FXML
+	private Label bonzoid;
 	
 	@FXML
 	private Label playerAnnouncer;
@@ -44,7 +50,6 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	public FXRaceSelectView() {
 		super("race_select");
 		raceScroll = new CharacterType[]{CharacterType.HUMANOID,CharacterType.FLAPPER, CharacterType.BONZOID};
-		pointer = randy.nextInt(raceScroll.length);
 	}
 	
 	@Override
@@ -53,50 +58,67 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	}
 	
 	@FXML
-	private void scrollLeft() {
+	protected void scrollLeft() {
 		pointer = mod(--pointer,raceScroll.length);
 		update();
 	}
 	
 	@FXML
-	private void scrollRight() {
+	protected void scrollRight() {
 		pointer = mod(++pointer,raceScroll.length);
 		update();
 	}
 	
-	private void update() {
+	protected void update() {
 		raceName.setText(raceScroll[pointer].getType());
 		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
 		description.setText(raceScroll[pointer].getDescripion());
+		
+		humanoid.setTextFill(Color.web(SettingsView.NORMAL));
+		flapper.setTextFill(Color.web(SettingsView.NORMAL));
+		bonzoid.setTextFill(Color.web(SettingsView.NORMAL));
+		
+		switch(pointer) {
+		case 0: humanoid.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		case 1: flapper.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		case 2: bonzoid.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		}
 	}
 	
-	@FXML
-	private void transition(KeyEvent event) {
-		if(event.getCode()==KeyCode.LEFT || event.getCode()==KeyCode.UP) {
-			scrollLeft();
-		} else if(event.getCode() == KeyCode.RIGHT || event.getCode()==KeyCode.DOWN) {
-			scrollRight();
-		} else if(event.getCode() == KeyCode.SPACE) {
-			Player p = new Player(raceScroll[pointer]);
-			pointer = randy.nextInt(raceScroll.length);
-			p.setResources(settings.getDifficulty().getPlayerResources());
-			settings.setCurrentPlayer(p);
-			settings.addPlayer(p);
-			controller.done();	
-		}
+	protected void done() {
+		Player p = new Player(raceScroll[pointer]);
+		pointer = randy.nextInt(raceScroll.length);
+		p.setResources(settings.getDifficulty().getPlayerResources());
+		settings.setCurrentPlayer(p);
+		settings.addPlayer(p);
+		controller.done();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		pointer = randy.nextInt(raceScroll.length);
+		
 		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your race");
 		raceName.setText(raceScroll[pointer].getType());
 		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
 		description.setText(raceScroll[pointer].getDescripion());
+		
+		switch(pointer) {
+		case 0:
+			humanoid.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		case 1:
+			flapper.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		case 2:
+			bonzoid.setTextFill(Color.web(SettingsView.SELECTED));
+			break;
+		}
 	}
 
 	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}	
+	public void render() {}	
 }

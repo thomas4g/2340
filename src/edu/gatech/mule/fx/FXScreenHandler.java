@@ -8,8 +8,8 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.screens.views.FXStartView;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
-import edu.gatech.mule.fx.screens.views.player.FXColorView;
-import edu.gatech.mule.fx.screens.views.player.FXNameView;
+import edu.gatech.mule.fx.screens.views.player.FXColorSelectView;
+import edu.gatech.mule.fx.screens.views.player.FXNameChooseView;
 import edu.gatech.mule.fx.screens.views.player.FXRaceSelectView;
 import edu.gatech.mule.fx.screens.views.settings.FXDifficultyView;
 import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
@@ -113,12 +113,12 @@ public class FXScreenHandler extends ScreenHandler {
 
 	@Override
 	protected SettingsView loadColorView() {
-		return new FXColorView();
+		return new FXColorSelectView();
 	}
 
 	@Override
 	protected SettingsView loadNameView() {
-		return new FXNameView();
+		return new FXNameChooseView();
 	}
 
 	@Override

@@ -8,8 +8,8 @@ import edu.gatech.mule.screen.screens.controllers.StartController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.GameplayController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.LandSelectController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
-import edu.gatech.mule.screen.screens.controllers.player.ColorController;
-import edu.gatech.mule.screen.screens.controllers.player.NameController;
+import edu.gatech.mule.screen.screens.controllers.player.ColorSelectController;
+import edu.gatech.mule.screen.screens.controllers.player.NameChooseController;
 import edu.gatech.mule.screen.screens.controllers.player.RaceSelectController;
 import edu.gatech.mule.screen.screens.controllers.settings.DifficultyController;
 import edu.gatech.mule.screen.screens.controllers.settings.MapTypeController;
@@ -50,8 +50,8 @@ public abstract class ScreenHandler {
 		screens.put(ScreenType.NUM_PLAYERS, new NumPlayersController(game, loadNumPlayersView()));
 		
 		screens.put(ScreenType.RACE_SELECT, new RaceSelectController(game, loadRaceSelectView()));
-		screens.put(ScreenType.COLOR, new ColorController(game, loadColorView()));
-		screens.put(ScreenType.NAME, new NameController(game, loadNameView()));
+		screens.put(ScreenType.COLOR, new ColorSelectController(game, loadColorView()));
+		screens.put(ScreenType.NAME, new NameChooseController(game, loadNameView()));
 		
 		screens.put(ScreenType.LAND_SELECT, new LandSelectController(game, loadLandSelectView()));
 		screens.put(ScreenType.GAME_SCREEN, new GameplayController(game, loadGameplayView()));

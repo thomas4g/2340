@@ -5,11 +5,11 @@ import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
-public class NameController extends ScreenController {
+public class NameChooseController extends ScreenController {
 	
 	protected SettingsView view;
 
-	public NameController(GameEngine game, SettingsView view) {
+	public NameChooseController(GameEngine game, SettingsView view) {
 		super(game, view);
 		this.view = view;
 	}

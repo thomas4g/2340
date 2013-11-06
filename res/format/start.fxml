@@ -10,14 +10,14 @@
 
 <AnchorPane id="AnchorPane" onKeyReleased="#startGame" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fitHeight="519.9999694824219" fitWidth="719.9999133770268" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="520" fitWidth="720" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../assets/start.png" />
       </image>
     </ImageView>
-    <Button id="" layoutX="282.0" layoutY="337.0" mnemonicParsing="false" onKeyPressed="#startGame" opacity="1.0" prefHeight="42.0" prefWidth="135.0" style="-fx-background-color:#DDEEDD;" text="&lt;SPACE&gt;" textFill="BLACK" visible="true">
+    <Button id="" layoutX="274.0" layoutY="396.0" mnemonicParsing="false" onKeyPressed="#startGame" opacity="1.0" prefHeight="42.0" prefWidth="135.0" style="-fx-background-color:#DDEEDD;" text="&lt;SPACE&gt;" textFill="BLACK" visible="true">
       <font>
-        <Font size="22.0" />
+        <Font name="Arial Bold" size="18.0" />
       </font>
     </Button>
   </children>

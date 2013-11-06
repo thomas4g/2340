@@ -8,28 +8,31 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#FFFFFF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fx:id="headshot" fitHeight="257.20644149780276" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="headshot" fitHeight="257.0" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@b3.png" />
       </image>
     </ImageView>
-    <Label fx:id="playerAnnouncer" alignment="CENTER" layoutX="133.0" layoutY="59.0" prefWidth="455.0" text="Player #, Choose your race" textAlignment="CENTER">
+    <Label fx:id="playerAnnouncer" alignment="CENTER" layoutX="133.0" layoutY="43.0" prefWidth="455.0" text="Player #, Choose your race" textAlignment="CENTER">
       <font>
         <Font size="32.0" />
       </font>
     </Label>
-    <Label fx:id="description" alignment="TOP_LEFT" layoutX="401.0" layoutY="180.0" prefHeight="203.0" prefWidth="229.0" text="&quot;Despite their bulky size, Bonzoids are a peaceful race. \n&quot;+ &quot;Many work as tailors, blacksmiths, carpenters,  \nand shopowners.&quot;" wrapText="true">
+    <Label fx:id="description" alignment="TOP_LEFT" layoutX="374.0" layoutY="193.0" prefHeight="203.0" prefWidth="256.0" text="&quot;Despite their bulky size, Bonzoids are a peaceful race. \n&quot;+ &quot;Many work as tailors, blacksmiths, carpenters,  \nand shopowners.&quot;" wrapText="true">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label fx:id="raceName" layoutX="401.0" layoutY="139.0" prefHeight="32.0" prefWidth="153.0" text="Bonzoid">
+    <Label fx:id="raceName" layoutX="374.0" layoutY="152.0" prefHeight="32.0" prefWidth="180.0" text="Bonzoid">
       <font>
         <Font size="24.0" />
       </font>
     </Label>
-    <Button font="$x1" layoutX="333.0" layoutY="429.0" mnemonicParsing="false" onKeyPressed="#transition" style="-fx-background-color:#00FF00;" text="OK" />
+    <Button font="$x1" layoutX="333.0" layoutY="429.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="0.0" style="-fx-background-color:#00FF00;" text="OK" />
+    <Label fx:id="humanoid" font="$x1" layoutX="223.0" layoutY="102.0" text="Humanoid" />
+    <Label fx:id="flapper" font="$x1" layoutX="331.0" layoutY="102.0" text="Flapper" />
+    <Label fx:id="bonzoid" font="$x1" layoutX="419.0" layoutY="102.0" text="Bonzoid" />
   </children>
 </AnchorPane>

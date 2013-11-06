@@ -171,6 +171,15 @@ public class Settings {
 		return players.iterator();
 	}
 	
+	public boolean colorUsed(int color) {
+		for(Player player : players) {
+			if(player.getColor()!=null && (player.getColor().ordinal()+1) == color) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Print settings (for debugging purposes)
 	 */
