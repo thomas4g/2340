@@ -34,7 +34,6 @@ public class TownController extends MapController {
 	@Override
 	public void move(int x, int y) {
 		super.move(x, y);
-		System.out.println(currentPlayer.getTileType());
 		if(
 			(currentPlayer.getTileType() == TileType.EXITTOWN_LEFT && currentPlayer.getDirection() == Direction.LEFT)
 			||
@@ -47,19 +46,17 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.STORE) {
 			view.displayStoreMenu();
 		}
-		if(store == null) {
-			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
-		}
-		System.out.println(currentPlayer.getTile().getWidth());
 	}
 	
 	@Override
 	public void load() {
 		//this override
-		this.view.setController(this);
+		view.setController(this);
 		this.map = game.getTownMap();
 		super.load();
+		
 		currentPlayer.useBigSprites(true);
+		
 		Point p = new Point(0, 0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
@@ -82,6 +79,11 @@ public class TownController extends MapController {
 			break;
 		}
 		currentPlayer.setPosition(p);
+		
+		if(store == null) {
+			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
+		}
+		view.setStoreResourceAmounts(store.getResources());
 	}
 	
 	@Override

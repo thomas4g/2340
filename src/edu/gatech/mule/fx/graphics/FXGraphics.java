@@ -8,6 +8,7 @@ import java.util.HashMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.graphics.Renderer;
@@ -81,9 +82,14 @@ public class FXGraphics implements Renderer {
 	 * @param point, location where text starts
 	 */
 	public void drawText(String text, Point point) {
-		gc.setLineWidth(.75);
-		gc.setStroke(new javafx.scene.paint.Color(0, 0, 0, 1));
-		gc.strokeText(text, point.x, point.y);
+		drawText(text, point, Color.BLACK, 12);
 	}
 
+	public void drawText(String text, Point point, Color color, double fontSize) {
+		gc.setLineWidth(.75);
+		gc.setFont(new Font(fontSize));
+		gc.setStroke(fxColor(color));
+		gc.strokeText(text, point.x, point.y);
+	}
+	
 }

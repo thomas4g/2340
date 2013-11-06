@@ -25,7 +25,6 @@ public class Turn {
 			@Override
 			public void run() {
 				length -= 1;
-				System.out.println(length);
 				if(length <= 0) {
 					done();
 				}

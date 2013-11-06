@@ -36,7 +36,6 @@ public class TownMap extends GameMap {
 			for(int j=0;j<layer.getHeight();j++){
 				
 				Tile tile = layer.getTileAt(i, j);
-				System.out.println(tile.getProperties());
 				String type = ((String) tile.getProperties().getProperty("type", "town")).toUpperCase();
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type));
 				

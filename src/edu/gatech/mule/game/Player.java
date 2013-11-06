@@ -190,8 +190,15 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	@Override
 	public String toString() {
-		return "Name: "+name+" | Money: "+money+
-				" | Color: "+color+" | Race: "+type.name();
+		String resourcesString = "\n";
+		
+		for(int i = 0; i < resources.length; i++) {
+			resourcesString += ResourceType.values()[i].toString() + ": " + resources[i] + "\n";
+		}
+		
+		return "Name: " + name + " | Money: " + money
+			+ " | Color: "+color+" | Race: " + type.name()
+			+ resourcesString;
 	}
 	
 	///// working on transactions
@@ -209,7 +216,7 @@ public class Player extends Entity implements Transactor, Comparable {
 		return true;
 	}
 	
-	public boolean hasResources(int[] transactionResources) {
+	private boolean hasResources(int[] transactionResources) {
 		for(int i=0; i<resources.length; i++) {
 			if(resources[i] - transactionResources[i] < 0)
 				return false;

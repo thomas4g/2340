@@ -17,7 +17,7 @@ public class Store implements Transactor {
 	
 	@Override
 	public boolean sell(Transaction transaction, Transactor buyer) {
-		if(!buyer.canAfford(transaction))
+		if(!buyer.canAfford(transaction) || !hasResources(transaction.getResources()))
 			return false;
 		
 		int total = transaction.getTotal();
@@ -26,6 +26,15 @@ public class Store implements Transactor {
 		buyer.addResources(transaction.getResources());
 		return true;
 	}
+	
+	private boolean hasResources(int[] transactionResources) {
+		for(int i=0; i<resources.length; i++) {
+			if(resources[i] - transactionResources[i] < 0)
+				return false;
+		}
+		return true;
+	}
+	
 	
 	@Override
 	public boolean canAfford(Transaction transaction) {
