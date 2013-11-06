@@ -2,26 +2,62 @@ package edu.gatech.mule.game;
 
 import java.awt.Point;
 
+import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.resources.ResourceType;
-import edu.gatech.mule.game.store.Transactor;
+
 
 public class Mule extends Entity {
 
-	public ResourceType type;
+	public CharacterType type;
 	public GameTile tile;
-	public Transactor owner;
 	public boolean placed;
+	private Player owner;
+	private ResourceType resourceType;
+	private boolean big;
 	
-	
-	public Mule(ResourceType type, Transactor owner,Point location) {
-		super("img_path",location);
+	public Mule(Player owner, CharacterType type) {
+		super(type.getStillSprite(owner.getDirection()),owner.getPosition());
 		this.type = type;
 		this.owner = owner;
 	}
 	
+	public void move(Player player){
+		
+		switch(player.getDirection()){
+			case DOWN:
+				location.x=player.getPosition().x;
+				location.y=player.getPosition().y-2*player.getImage().getHeight();
+				break;
+			case RIGHT:
+				location.x=player.getPosition().x-2*player.getImage().getWidth();
+				location.y=player.getPosition().y;
+				break;
+			case LEFT:
+				location.x=player.getPosition().x+2*player.getImage().getWidth();
+				location.y=player.getPosition().y;
+				break;
+			case UP:
+				location.x=player.getPosition().x;
+				location.y=player.getPosition().y+2*player.getImage().getHeight();
+				break;
+		
+		}
+		setDirection(player.getDirection());
+		
+	}
+	
+	public void setDirection(Direction direction) {
+		super.setDirection(direction);
+		setDirectionalFrames();
+	}
+	
+	public void setDirectionalFrames(){
+		setFrames(type.getDirectionalSprites(direction, big));
+	}
+	
 	public ResourceType getType() {
-		return type;
+		return resourceType;
 	}
 	
 	public void emplace(GameTile tile) {
@@ -40,7 +76,7 @@ public class Mule extends Entity {
 				
 		int[] resources = new int[5];
 		int production = 0;
-		switch(type) {
+		switch(resourceType) {
 		case FOOD:
 			production = tile.getType().getFoodRate();
 			break;

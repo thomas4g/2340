@@ -37,7 +37,10 @@ public enum CharacterType {
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed\nof Flappers. " 
 			+ "Their race has accumulated vast riches by\nestablishing trade with far-off lands.", 
-			1600, "Samantha");
+			1600, "Samantha"),
+	
+	MULE("Mules",
+		"The labor force of the empire", 0, "The Garbage Man");
 	
 	
 	public static final String IMAGE_EXT = ".png";

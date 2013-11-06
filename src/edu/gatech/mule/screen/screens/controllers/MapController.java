@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.CharacterType;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.game.map.GameMap;
@@ -36,10 +38,10 @@ public abstract class MapController extends ScreenController {
 		super.load();
 		turn = game.getRound().getTurn();
 		currentPlayer = turn.getPlayer();
-		
 		entities.clear();
+		currentPlayer.setMule(new Mule(currentPlayer, CharacterType.MULE));
 		entities.add(currentPlayer);
-		
+		entities.add(currentPlayer.getMule());
 		view.setGameMap(map);
 		view.setGameEntities(entities);
 		view.setCurrentPlayer(currentPlayer);
@@ -51,7 +53,8 @@ public abstract class MapController extends ScreenController {
 		y = y == 0 ? 0 : y/Math.abs(y);
 		
 		currentPlayer.move(moveRate*x, moveRate*y);
-
+		currentPlayer.getMule().move(currentPlayer);
+		
 		int xTilePos=(int)(currentPlayer.getPosition().x/map.getTileWidth());
 		int yTilePos=(int)(currentPlayer.getPosition().y/map.getTileHeight());
 		
