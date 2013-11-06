@@ -1,9 +1,10 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.settings;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.Difficulty;
 import edu.gatech.mule.game.Settings.MapType;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
@@ -11,7 +12,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * Controller for settings config
  * @version 0.1
  */
-public class SettingsController extends ScreenController {
+public class NumPlayersController extends ScreenController {
 
 	protected SettingsView view;
 	
@@ -20,7 +21,7 @@ public class SettingsController extends ScreenController {
 	 * @param game, game engine
 	 * @param view, map view
 	 */
-	public SettingsController(GameEngine game, SettingsView view) {
+	public NumPlayersController(GameEngine game, SettingsView view) {
 		super(game, view);
 		this.view = view;
 	}

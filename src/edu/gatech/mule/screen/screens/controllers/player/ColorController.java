@@ -1,13 +1,14 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.player;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * Controller for player config
  * @version 0.1
  */
-public class PlayerController extends ScreenController {
+public class ColorController extends ScreenController {
 	
 	protected SettingsView view;
 	
@@ -16,7 +17,7 @@ public class PlayerController extends ScreenController {
 	 * @param game, game engine
 	 * @param view, settings view
 	 */
-	public PlayerController(GameEngine game, SettingsView view) {
+	public ColorController(GameEngine game, SettingsView view) {
 		super(game,  view);
 		this.view = view;
 	}
@@ -32,11 +33,7 @@ public class PlayerController extends ScreenController {
 	 * Otherwise, next player chooses race and other config.
 	 */
 	public void done(){
-		if(game.getSettings().getPlayerCount() == game.getSettings().getPlayers().size()) {
-			game.playGame();
-		} else {
-			game.chooseRace();
-		}
+		game.chooseName();
 	}
 	
 }

@@ -1,13 +1,14 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.player;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * Controller for race selection
  * @version 0.1
  */
-public class RaceSelectController extends ScreenController{
+public class RaceSelectController extends ScreenController {
 
 	protected SettingsView view;
 	
@@ -32,7 +33,7 @@ public class RaceSelectController extends ScreenController{
 	 */
 	@Override
 	public void done(){
-		game.choosePlayer();
+		game.chooseColor();
 	}
 	
 }

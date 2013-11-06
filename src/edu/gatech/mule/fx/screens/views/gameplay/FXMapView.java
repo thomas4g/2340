@@ -1,4 +1,4 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.gameplay;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -21,13 +21,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
+import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
-import edu.gatech.mule.screen.screens.controllers.TownController;
+import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
 import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**

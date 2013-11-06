@@ -75,9 +75,17 @@ public class GameEngine {
 	
 	/**
 	 * Shows the config settings
-	 */
-	public void chooseSettings() {
-		screenHandler.setScreen(ScreenType.SETTINGS);
+	 */	
+	public void chooseDifficulty() {
+		screenHandler.setScreen(ScreenType.DIFFICULTY);
+	}
+	
+	public void chooseMapType() {
+		screenHandler.setScreen(ScreenType.MAP_TYPE);
+	}
+	
+	public void chooseNumPlayers() {
+		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
 	/**
@@ -87,11 +95,15 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.RACE_SELECT);
 	}
 	
+	public void chooseColor() {
+		screenHandler.setScreen(ScreenType.COLOR);
+	}
+	
 	/**
 	 * Shows the screen for player config
 	 */
-	public void choosePlayer() {
-		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
+	public void chooseName() {
+		screenHandler.setScreen(ScreenType.NAME);
 	}
 	
 	/**

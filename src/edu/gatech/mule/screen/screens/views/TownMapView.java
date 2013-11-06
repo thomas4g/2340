@@ -1,6 +1,7 @@
 package edu.gatech.mule.screen.screens.views;
 
-import edu.gatech.mule.screen.screens.controllers.TownController;
+import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
+
 
 public interface TownMapView extends MapView {
 	public void setController(TownController controller);
