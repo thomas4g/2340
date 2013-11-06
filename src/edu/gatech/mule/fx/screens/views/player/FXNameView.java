@@ -48,7 +48,7 @@ public class FXNameView extends FXView implements SettingsView {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", enter your name");
-		headshot.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(1)));
+		headshot.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(settings.getCurrentPlayer().getColor().ordinal()+1)));
 		nameField.setText(settings.getCurrentPlayer().getType().getName());
 	}
 
