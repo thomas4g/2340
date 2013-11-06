@@ -13,38 +13,24 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class FXMapTypeView extends FXSettingsView {
 	
+	private static MapType[] mapTypes = Settings.MapType.values();
+	
 	@FXML
 	private Label defaultMap;
 	@FXML
 	private Label randomMap;
-	
-	private Settings settings;
-	
-	private int toggle;
-	
+			
 	public FXMapTypeView() {
 		super("map_type");
+		toggleMod = mapTypes.length;
 	}
-
+	
 	@Override
-	public void setSettings(Settings settings) {
-		this.settings = settings;
-		toggle = 0;
+	public void initialize(URL location, ResourceBundle resources) {
+		toggleSelected();
 	}
 	
-	@FXML
-	protected void scrollLeft() {
-		toggle = mod(--toggle,2);
-		update();
-	}
-	
-	@FXML
-	protected void scrollRight() {
-		toggle = mod(++toggle,2);
-		update();
-	}
-	
-	protected void update() {
+	protected void toggleSelected() {
 		switch(toggle) {
 		case 0:
 			defaultMap.setTextFill(Color.web(SettingsView.SELECTED));
@@ -58,20 +44,8 @@ public class FXMapTypeView extends FXSettingsView {
 	}
 	
 	protected void done() {
-		switch(toggle) {
-		case 0:
-			settings.setMapType(MapType.DEFAULT);
-			break;
-		case 1:
-			settings.setMapType(MapType.RANDOM);
-			break;
-		}
+		settings.setMapType(mapTypes[toggle]);
 		controller.done();
-	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		defaultMap.setTextFill(Color.web(SettingsView.SELECTED));
 	}
 
 	@Override

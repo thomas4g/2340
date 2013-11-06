@@ -20,6 +20,8 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  */
 public class FXColorSelectView extends FXSettingsView {
 	
+	private final static Settings.Color[] colors = Settings.Color.values();
+	
 	@FXML
 	private Label playerAnnouncer;
 	@FXML
@@ -41,94 +43,36 @@ public class FXColorSelectView extends FXSettingsView {
 	private Label orange;
 	@FXML
 	private Label maroon;
+	
+	@FXML
+	private Label[] colorLabels;
 		
-	private Settings settings;
-	private int toggle;
-	private final static int NUM_COLORS = 8;
-
 	/**
 	 * Constructor for player screen
 	 */
 	public FXColorSelectView() {
 		super("color_select");
+		toggleMod = colors.length;
 	}
-
+	
 	@Override
-	public void setSettings(Settings settings) {
-		this.settings = settings;
-		toggle = 0;
+	public void initialize(URL location, ResourceBundle resources) {
+		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
+		imgView.setImage(changeImage());
+		colorLabels = new Label[]{purple,blue,teal,seafoam,green,gold,orange,maroon};
+		
+		toggleSelected();
 	}
 	
-	@FXML
-	private void OnBack(ActionEvent event) {
-		settings.getPlayers().remove(settings.getCurrentPlayer());
-
-		controller.done();
-	}
-	
-	@FXML
-	protected void scrollLeft() {
-		toggle = mod(--toggle,NUM_COLORS);
-		update();
-	}
-	
-	@FXML
-	protected void scrollRight() {
-		toggle = mod(++toggle,NUM_COLORS);
-		update();
-	}
-	
-	protected void update() {
+	protected void toggleSelected() {
 		greyedOrNotAll();
-		switch(toggle) {
-		case 0:
-			purple.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 1:
-			blue.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 2:
-			teal.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 3:
-			seafoam.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 4:
-			green.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 5:
-			gold.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 6:
-			orange.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		case 7:
-			maroon.setTextFill(Color.web(SettingsView.SELECTED));
-			break;
-		}
+		colorLabels[toggle].setTextFill(Color.web(SettingsView.SELECTED));
 		imgView.setImage(changeImage());
 	}
 	
 	protected void done() {
 		if(!settings.colorUsed(toggle+1)) {
-			switch(toggle) {
-			case 0: settings.getCurrentPlayer().setColor(Settings.Color.PURPLE);
-				break;
-			case 1: settings.getCurrentPlayer().setColor(Settings.Color.BLUE);
-				break;
-			case 2: settings.getCurrentPlayer().setColor(Settings.Color.TEAL);
-				break;
-			case 3: settings.getCurrentPlayer().setColor(Settings.Color.SEAFOAM);
-				break;
-			case 4: settings.getCurrentPlayer().setColor(Settings.Color.GREEN);
-				break;
-			case 5: settings.getCurrentPlayer().setColor(Settings.Color.GOLD);
-				break;
-			case 6: settings.getCurrentPlayer().setColor(Settings.Color.ORANGE);
-				break;
-			case 7: settings.getCurrentPlayer().setColor(Settings.Color.MAROON);
-				break;
-			}
+			settings.getCurrentPlayer().setColor(colors[toggle]);
 			controller.done();
 		}
 	}
@@ -141,24 +85,10 @@ public class FXColorSelectView extends FXSettingsView {
 	}
 	
 	private void greyedOrNotAll() {
-		purple.setTextFill(Color.web(grayedOrNot(Settings.Color.PURPLE.ordinal()+1)));
-		blue.setTextFill(Color.web(grayedOrNot(Settings.Color.BLUE.ordinal()+1)));
-		teal.setTextFill(Color.web(grayedOrNot(Settings.Color.TEAL.ordinal()+1)));
-		seafoam.setTextFill(Color.web(grayedOrNot(Settings.Color.SEAFOAM.ordinal()+1)));
-		green.setTextFill(Color.web(grayedOrNot(Settings.Color.GREEN.ordinal()+1)));
-		gold.setTextFill(Color.web(grayedOrNot(Settings.Color.GOLD.ordinal()+1)));
-		orange.setTextFill(Color.web(grayedOrNot(Settings.Color.ORANGE.ordinal()+1)));
-		maroon.setTextFill(Color.web(grayedOrNot(Settings.Color.MAROON.ordinal()+1)));
-	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
-		imgView.setImage(changeImage());
-		
-		greyedOrNotAll();
-		
-		purple.setTextFill(Color.web(SettingsView.SELECTED));
+		int i = 0;
+		for(Label label : colorLabels) {
+			label.setTextFill(Color.web(grayedOrNot(colors[i++].ordinal()+1)));
+		}
 	}
 
 	private Image changeImage() {
