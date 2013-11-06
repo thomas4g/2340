@@ -8,9 +8,11 @@ package edu.gatech.mule.game.store;
 public class Store implements Transactor {
 	
 	private int[] resources;
+	private int[] prices;
 	
-	public Store(int[] resources) {
+	public Store(int[] resources, int[] prices) {
 		this.resources = resources;
+		this.prices = prices;
 	}
 	
 	@Override
@@ -47,6 +49,14 @@ public class Store implements Transactor {
     public int[] getResources() {
     	return this.resources;
     }    
+    
+    public int[] getPrices() {
+    	return this.prices;
+    }
+    
+    public void setPrice(int index, int price) {
+    	prices[index] = price;
+    }
 	
 	@Override
 	public void addMoney(int money) {}
