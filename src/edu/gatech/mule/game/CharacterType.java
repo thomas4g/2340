@@ -164,5 +164,9 @@ public enum CharacterType {
 	public String getDescripion() {
 		return description;
 	}
+	
+	public String getType() {
+		return type.substring(0,1).toUpperCase()+type.substring(1);
+	}
 
 }

@@ -15,11 +15,9 @@
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <RadioButton fx:id="beginner" font="$x1" layoutX="310.0" layoutY="281.0" mnemonicParsing="false" text="Beginner" onKeyPressed="#transition">
-      <toggleGroup>
-        <ToggleGroup fx:id="difficulty" />
-      </toggleGroup>
-    </RadioButton>
-    <RadioButton fx:id="standard" font="$x1" layoutX="448.0" layoutY="281.0" mnemonicParsing="false" text="standard" toggleGroup="$difficulty"  onKeyPressed="#transition" />
+    <Label fx:id="beginner" font="$x1" layoutX="243.0" layoutY="281.0" mnemonicParsing="false" text="Beginner" />
+    <Label fx:id="standard" font="$x1" layoutX="360.0" layoutY="281.0" mnemonicParsing="false" text="Standard" />
+    <Label fx:id="advanced" font="$x1" layoutX="484.0" layoutY="281.0" mnemonicParsing="false" text="Advanced" />
+    <Button layoutX="332.0" layoutY="414.0" mnemonicParsing="false" text="OK" onKeyPressed="#transition" />
   </children>
 </AnchorPane>

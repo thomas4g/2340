@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Settings;
@@ -25,6 +26,8 @@ public class FXColorView extends FXView implements SettingsView {
 	@FXML
 	private ComboBox<String> combo;
 	
+	@FXML
+	private Label playerAnnouncer;
 	@FXML
 	private ImageView imgView;
 	
@@ -70,14 +73,21 @@ public class FXColorView extends FXView implements SettingsView {
 	}
 	
 	@FXML
+	private void colorSwitch(ActionEvent event) {
+		
+	}
+	
+	@FXML
 	private void transition(KeyEvent event){
-		settings.getCurrentPlayer().setColor(currentColor);
-		settings.nextPlayer();
-		controller.done();
+		if(event.getCode() == KeyCode.SPACE) {
+			settings.getCurrentPlayer().setColor(currentColor);
+			controller.done();
+		}
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
 		//imgView.setImage(changeImage());
 		//charDescrip.setText(settings.getCurrentPlayer().getType().getDescripion());
 	}

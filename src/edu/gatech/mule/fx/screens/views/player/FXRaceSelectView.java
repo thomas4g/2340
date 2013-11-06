@@ -1,11 +1,10 @@
 package edu.gatech.mule.fx.screens.views.player;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,11 +22,17 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  */
 public class FXRaceSelectView extends FXView implements SettingsView {
 	
+	private static Random randy = new Random();
+	
 	@FXML
 	private ImageView headshot;
 	
 	@FXML
+	private Label playerAnnouncer;
+	@FXML
 	private Label description;
+	@FXML
+	private Label raceName;
 
 	protected Settings settings;
 	private CharacterType[] raceScroll;
@@ -39,20 +44,12 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	public FXRaceSelectView() {
 		super("race_select");
 		raceScroll = new CharacterType[]{CharacterType.HUMANOID,CharacterType.FLAPPER, CharacterType.BONZOID};
-		pointer = 0;
+		pointer = randy.nextInt(raceScroll.length);
 	}
 	
 	@Override
 	public void setSettings(Settings settings) {
 		this.settings = settings;
-	}
-	
-	private int mod(int cheese, int knife) {
-		int mod = cheese % knife;
-		if(mod < 0) {
-			mod += knife;
-		}
-		return mod;
 	}
 	
 	@FXML
@@ -68,19 +65,20 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	}
 	
 	private void update() {
+		raceName.setText(raceScroll[pointer].getType());
 		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
 		description.setText(raceScroll[pointer].getDescripion());
-		System.out.println(raceScroll[pointer].getName());
 	}
 	
 	@FXML
 	private void transition(KeyEvent event) {
-		if(event.getCode() == KeyCode.LEFT) {
+		if(event.getCode()==KeyCode.LEFT || event.getCode()==KeyCode.UP) {
 			scrollLeft();
-		} else if(event.getCode() == KeyCode.RIGHT) {
+		} else if(event.getCode() == KeyCode.RIGHT || event.getCode()==KeyCode.DOWN) {
 			scrollRight();
 		} else if(event.getCode() == KeyCode.SPACE) {
 			Player p = new Player(raceScroll[pointer]);
+			pointer = randy.nextInt(raceScroll.length);
 			p.setResources(settings.getDifficulty().getPlayerResources());
 			settings.setCurrentPlayer(p);
 			settings.addPlayer(p);
@@ -90,6 +88,8 @@ public class FXRaceSelectView extends FXView implements SettingsView {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your race");
+		raceName.setText(raceScroll[pointer].getType());
 		headshot.setImage(new Image(raceScroll[pointer].getHeadshot(1)));
 		description.setText(raceScroll[pointer].getDescripion());
 	}

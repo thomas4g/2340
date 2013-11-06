@@ -8,9 +8,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fx:id="headshot" fitHeight="257.20644149780276" fitWidth="274.0" layoutX="87.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="headshot" fitHeight="257.20644149780276" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@b3.png" />
       </image>
@@ -20,16 +20,16 @@
         <Font size="32.0" />
       </font>
     </Label>
-    <Label fx:id="description" alignment="TOP_LEFT" layoutX="401.0" layoutY="205.0" prefHeight="203.0" prefWidth="229.0" text="&quot;Despite their bulky size, Bonzoids are a peaceful race. \n&quot;+ &quot;Many work as tailors, blacksmiths, carpenters,  \nand shopowners.&quot;" wrapText="true">
+    <Label fx:id="description" alignment="TOP_LEFT" layoutX="401.0" layoutY="180.0" prefHeight="203.0" prefWidth="229.0" text="&quot;Despite their bulky size, Bonzoids are a peaceful race. \n&quot;+ &quot;Many work as tailors, blacksmiths, carpenters,  \nand shopowners.&quot;" wrapText="true">
       <font>
-        <Font size="18.0" />
+        <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label layoutX="401.0" layoutY="164.0" prefHeight="32.0" prefWidth="107.0" text="Bonzoid">
+    <Label fx:id="raceName" layoutX="401.0" layoutY="139.0" prefHeight="32.0" prefWidth="153.0" text="Bonzoid">
       <font>
         <Font size="24.0" />
       </font>
     </Label>
-    <Button layoutX="332.0" layoutY="430.0" mnemonicParsing="false" onKeyPressed="#transition" text="Button" />
+    <Button font="$x1" layoutX="333.0" layoutY="429.0" mnemonicParsing="false" onKeyPressed="#transition" style="-fx-background-color:#00FF00;" text="OK" />
   </children>
 </AnchorPane>

@@ -49,7 +49,7 @@ public class Turn {
 //		} else if(playerFood >= foodReq) {
 //			this.length = 50;
 //		}
-		this.length = 10;
+		this.length = 30;
 	}
 	
 	public void done() {

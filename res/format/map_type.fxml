@@ -8,18 +8,15 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="800.0" style="-fx-background-color:#9999FF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="800.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Label alignment="CENTER_LEFT" layoutX="103.0" layoutY="263.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Map Type">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <RadioButton fx:id="default" font="$x1" layoutX="300.0" layoutY="269.0" mnemonicParsing="false" text="Default" onKeyPressed="#transition">
-      <toggleGroup>
-        <ToggleGroup fx:id="mapType" />
-      </toggleGroup>
-    </RadioButton>
-    <RadioButton fx:id="random" font="$x1" layoutX="438.0" layoutY="269.0" mnemonicParsing="false" text="Random" toggleGroup="$mapType" onKeyPressed="#transition" />
+    <Label fx:id="defaultMap" font="$x1" layoutX="300.0" layoutY="269.0" mnemonicParsing="false" text="Default" />
+    <Label fx:id="randomMap" font="$x1" layoutX="438.0" layoutY="269.0" mnemonicParsing="false" text="Random" />
+    <Button layoutX="372.0" layoutY="419.0" mnemonicParsing="false" text="OK" onKeyPressed="#transition" />
   </children>
 </AnchorPane>
