@@ -1,6 +1,7 @@
 package edu.gatech.mule.game.map;
 
 import java.awt.Image;
+import java.util.Properties;
 
 import tiled.core.Tile;
 import edu.gatech.mule.game.Player;
@@ -26,6 +27,10 @@ public abstract class GameTile {
 		this.tile = t;
 		this.type = type;
 		this.cost = DEFAULT_COST;
+	}
+	
+	public Properties getProperties() {
+		return tile.getProperties();
 	}
 	
 	public Image getImage() {

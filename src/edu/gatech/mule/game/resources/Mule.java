@@ -48,7 +48,7 @@ public class Mule {
 		default:
 			break;
 		}
-		resources[type.getIndex()] = production;
+		resources[type.ordinal()] = production;
 		owner.addResources(resources);
 	}
 }
