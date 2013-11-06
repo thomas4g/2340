@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.fx.screens.views.FXPersistenceView;
 import edu.gatech.mule.fx.screens.views.FXStartView;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
@@ -41,11 +42,6 @@ public class FXScreenHandler extends ScreenHandler {
 		FXApplication.view = stack; //TODO this is bad
 	}
 	
-	
-
-	/**
-	 * Starts the javafx stage
-	 */
 	@Override
 	public void start() {
 //		javafx.application.Application.launch(FXApplication.class);
@@ -89,6 +85,11 @@ public class FXScreenHandler extends ScreenHandler {
 	@Override
 	protected ScreenView loadStartView() {
 		return new FXStartView();
+	}
+	
+	@Override
+	protected ScreenView loadPersistenceView() {
+		return new FXPersistenceView();
 	}
 	
 	@Override

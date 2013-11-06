@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView fitHeight="520.0" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../assets/start.png" />
+      </image>
+    </ImageView>
+    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="297.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Game">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <Label fx:id="newGame" layoutX="243.0" layoutY="300.0" mnemonicParsing="false" text="New game">
+      <font>
+        <Font size="18.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label fx:id="loadGame" font="$x1" layoutX="360.0" layoutY="300.0" mnemonicParsing="false" text="Load game" />
+    <Label fx:id="help" font="$x1" layoutX="484.0" layoutY="300.0" mnemonicParsing="false" text="Help" />
+    <Button layoutX="332.0" layoutY="414.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="0.0" text="OK" />
+  </children>
+</AnchorPane>

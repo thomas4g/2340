@@ -66,16 +66,14 @@ public class GameEngine {
 		return townMap;
 	}
 	
-	/**
-	 * Shows the start screen
-	 */
 	public void start() {
 		screenHandler.setScreen(ScreenType.START);
 	}
 	
-	/**
-	 * Shows the config settings
-	 */	
+	public void persistence() {
+		screenHandler.setScreen(ScreenType.PERSISTENCE);
+	}
+	
 	public void chooseDifficulty() {
 		screenHandler.setScreen(ScreenType.DIFFICULTY);
 	}
@@ -88,9 +86,6 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
-	/**
-	 * Shows the screen for choosing race
-	 */
 	public void chooseRace() {
 		screenHandler.setScreen(ScreenType.RACE_SELECT);
 	}
@@ -99,9 +94,6 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.COLOR);
 	}
 	
-	/**
-	 * Shows the screen for player config
-	 */
 	public void chooseName() {
 		screenHandler.setScreen(ScreenType.NAME);
 	}
