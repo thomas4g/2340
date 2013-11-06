@@ -53,7 +53,7 @@ public class Mule extends Entity {
 		default:
 			break;
 		}
-		resources[type.getIndex()] = production;
+		resources[type.ordinal()] = production;
 		owner.addResources(resources);
 	}
 }

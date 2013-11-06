@@ -5,8 +5,10 @@ import java.awt.Point;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.store.Store;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
  * Controller for town map
@@ -15,14 +17,17 @@ import edu.gatech.mule.screen.screens.views.MapView;
 public class TownController extends MapController {
 	
 	public final static int MOVEMENT = 10;
+	private TownMapView view;
+	private Store store;	
 	
 	/**
 	 * Constructor for town controller
 	 * @param game, game engine
 	 * @param view, map view
 	 */
-	public TownController(GameEngine game, MapView view){
+	public TownController(GameEngine game, TownMapView view){
 		super(game, view, MOVEMENT);
+		this.view = view;
 	}
 	
 	@Override
@@ -38,12 +43,17 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.PUB){
 			done();
 		}
+		else if(currentPlayer.getTileType() == TileType.STORE) {
+			view.displayStoreMenu();
+		}
 		
 		System.out.println(currentPlayer.getTile().getWidth());
 	}
 	
 	@Override
 	public void load() {
+		//this override
+		this.view.setController(this);
 		this.map = game.getTownMap();
 		super.load();
 		currentPlayer.useBigSprites(true);
@@ -77,4 +87,17 @@ public class TownController extends MapController {
 		turn.done();
 	}
 
+	
+	public void storeBuy() {
+		//set to buy
+		view.displayStoreAmountMenu();
+	}
+	public void storeSell() {
+		//set to sell
+		view.displayStoreAmountMenu();
+	}
+
+	public void storeComplete(int money) {
+		//complete the transaction
+	}
 }

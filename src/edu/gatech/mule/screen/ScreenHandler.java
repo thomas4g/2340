@@ -14,6 +14,7 @@ import edu.gatech.mule.screen.screens.controllers.TownController;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
  * Screen handler structures for other screen subclasses
@@ -53,7 +54,7 @@ public abstract class ScreenHandler {
 	protected abstract SettingsView loadPlayerView();
 	protected abstract MapView loadGameplayView();
 	protected abstract MapView loadLandSelectView();
-	protected abstract MapView loadTownView();
+	protected abstract TownMapView loadTownView();
 
 	/**
 	 * Set up screen based on type

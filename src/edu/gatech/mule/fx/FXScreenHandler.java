@@ -15,6 +15,7 @@ import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
  * FX screen handler
@@ -118,7 +119,7 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	protected MapView loadTownView() {
+	protected TownMapView loadTownView() {
 		if(null == mainMapView)
 			mainMapView = new FXMapView();
 		return mainMapView;

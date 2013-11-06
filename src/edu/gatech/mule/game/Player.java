@@ -243,7 +243,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	
 	public int getResourceAmt(ResourceType resource) {
-	    return resources[resource.getIndex()];
+	    return resources[resource.ordinal()];
 	}
 
 	@Override
