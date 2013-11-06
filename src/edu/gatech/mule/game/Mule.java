@@ -1,21 +1,21 @@
-package edu.gatech.mule.game.resources;
+package edu.gatech.mule.game;
+
+import java.awt.Point;
 
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Transactor;
 
-public class Mule {
+public class Mule extends Entity {
 
 	public ResourceType type;
 	public GameTile tile;
 	public Transactor owner;
-	public boolean emplaced;
+	public boolean placed;
 	
-	public Mule() {
-		emplaced = false;
-	}
 	
-	public Mule(ResourceType type, Transactor owner) {
-		this();
+	public Mule(ResourceType type, Transactor owner,Point location) {
+		super("img_path",location);
 		this.type = type;
 		this.owner = owner;
 	}
@@ -25,8 +25,13 @@ public class Mule {
 	}
 	
 	public void emplace(GameTile tile) {
-		emplaced = true;
+		placed = true;
 		this.tile = tile;
+	}
+	
+	public void FREEDOM(){
+		
+		//Run away skipper!
 	}
 	
 	public void produce() {
@@ -48,7 +53,7 @@ public class Mule {
 		default:
 			break;
 		}
-		resources[type.getIndex()] = production;
+		resources[type.ordinal()] = production;
 		owner.addResources(resources);
 	}
 }

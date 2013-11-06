@@ -8,8 +8,8 @@ import java.util.HashMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import tiled.core.Tile;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.graphics.Renderer;
 
 /**
@@ -35,7 +35,7 @@ public class FXGraphics implements Renderer {
 	public void drawEntity(Entity entity) {
 		if(entity != null) {
 			BufferedImage image = entity.getImage();
-			drawImage(image, entity.getPosition().x, entity.getPosition().y, image.getWidth(), image.getHeight());
+			drawImage(image, entity.getPosition().x - image.getWidth() / 2, entity.getPosition().y - image.getHeight() / 2, image.getWidth(), image.getHeight());
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class FXGraphics implements Renderer {
 	}
 	
 	@Override
-	public void drawTile(Tile tile, int x, int y, int width, int height) {
+	public void drawTile(GameTile tile, int x, int y, int width, int height) {
 		gc.drawImage(createImage((BufferedImage)tile.getImage()), x, y, width, height);
 	}
 	

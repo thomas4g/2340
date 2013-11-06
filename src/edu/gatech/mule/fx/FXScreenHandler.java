@@ -2,9 +2,9 @@ package edu.gatech.mule.fx;
 
 import java.util.HashMap;
 
+import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.graphics.RenderTask;
 import edu.gatech.mule.fx.screens.views.FXMapView;
 import edu.gatech.mule.fx.screens.views.FXPlayerView;
 import edu.gatech.mule.fx.screens.views.FXRaceSelectView;
@@ -15,6 +15,7 @@ import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
  * FX screen handler
@@ -26,7 +27,6 @@ public class FXScreenHandler extends ScreenHandler {
 	private FXMapView mainMapView;
 	private HashMap<ScreenType, FXView> loadedScreens;
 	private FXView currentView;
-	private Thread renderThread;
 	
 	/**
 	 * Constructor for FX screen handler
@@ -54,9 +54,17 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void setScreen(ScreenType type, boolean forceReload) {
+	public void setScreen(final ScreenType type) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				setFXScreen(type);
+			}
+		});
+	}
+	
+	private void setFXScreen(ScreenType type) {
 		FXView view = null;
-		super.setScreen(type, forceReload);
+		super.setScreen(type);
 
 		if(!loadedScreens.containsKey(type)) {
 	    	view = (FXView)screens.get(type).getView();
@@ -111,7 +119,7 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	protected MapView loadTownView() {
+	protected TownMapView loadTownView() {
 		if(null == mainMapView)
 			mainMapView = new FXMapView();
 		return mainMapView;

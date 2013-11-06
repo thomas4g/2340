@@ -1,19 +1,22 @@
 package edu.gatech.mule.game.map;
 
-import edu.gatech.mule.game.Player;
+import java.awt.Image;
+import java.util.Properties;
+
 import tiled.core.Tile;
+import edu.gatech.mule.game.Player;
 
 /**
  * Representation of a tile in the game map
  * @version 0.1
  */
-public abstract class GameTile extends Tile {
+public abstract class GameTile {
 
 	public static final int DEFAULT_COST = 300;
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
-	private Tile tile;
+	protected Tile tile;
 	
 	/**
 	 * Constructor for a game tile
@@ -21,18 +24,25 @@ public abstract class GameTile extends Tile {
 	 * @param type, type of tile
 	 */
 	public GameTile(Tile t, TileType type) {
-		super(t);
-		this.tile=t;
+		this.tile = t;
 		this.type = type;
 		this.cost = DEFAULT_COST;
 	}
 	
-	/**
-	 * Get the tile ???
-	 * @return tile
-	 */
-	public Tile getTile(){
-		return tile;
+	public Properties getProperties() {
+		return tile.getProperties();
+	}
+	
+	public Image getImage() {
+		return tile.getImage();
+	}
+	
+	public int getWidth() {
+		return tile.getWidth();
+	}
+	
+	public int getHeight() {
+		return tile.getHeight();
 	}
 	
 	/**
@@ -41,7 +51,7 @@ public abstract class GameTile extends Tile {
 	 */
 	public void setOwner(Player player) {
 		this.owner = player;
-	}
+	}	
 	
 	/**
 	 * Get the owner of the tile
@@ -72,6 +82,11 @@ public abstract class GameTile extends Tile {
 		return type.toString();
 	}
 	
-	public abstract void action();
-	public abstract void onEnter();
+	public boolean hasOwner(){
+		return owner!=null;
+	}
+	
+	public abstract void action(Player player);
+	public abstract void enter(Player player);
+	public abstract void exit(Player player);
 }

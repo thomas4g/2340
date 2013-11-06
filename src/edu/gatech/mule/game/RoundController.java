@@ -2,7 +2,6 @@ package edu.gatech.mule.game;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.ScreenHandler;
-import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public class RoundController {
 
@@ -13,16 +12,15 @@ public class RoundController {
 	private int rounds;
 	private Round currentRound;
 	
-	public RoundController(GameEngine game, ScreenHandler screenHandler, int rounds) {
+	public RoundController(GameEngine game, int rounds) {
 		this.game = game;
-		this.screenHandler = screenHandler;
 		this.rounds = rounds;
 		this.roundNumber = 1;
 	}
 	
 	public void round() {
 		if(roundNumber <= rounds) {
-			currentRound = new Round(game, this, roundNumber++, screenHandler);
+			currentRound = new Round(game, this, roundNumber++);
 			currentRound.start();
 		}
 		else

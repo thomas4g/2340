@@ -11,6 +11,7 @@ public class GamblingFormula {
     private final static Random randy = new Random();
     
     public static int gamble(int round, int sec) {
+    	if(sec == 0) return 0;
         int moneyBonus, roundBonus, timeBonus = 0;
         
         if(round<0 || round>12) {

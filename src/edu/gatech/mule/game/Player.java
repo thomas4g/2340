@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.resources.Mule;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Transaction;
 import edu.gatech.mule.game.store.Transactor;
@@ -22,6 +21,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	private BufferedImage headshot;
 	private BufferedImage totem;
 	
+	private Turn currentTurn;
 	private CharacterType type;
 	private Color color;
 	private String name;
@@ -38,7 +38,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * @param type, type of character
 	 */
 	public Player(CharacterType type) {
-		super(type.getStillSprite(Direction.RIGHT), new Point(0,0),null);
+		super(type.getStillSprite(Direction.RIGHT), new Point(0,0));
 		this.type = type;
 		this.money = type.getMoney();
 		this.ownedLands = new ArrayList<>();
@@ -53,6 +53,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	public void useBigSprites(boolean big) {
 		this.big = big;
+		setDirectionalFrames();
 	}
 	
 	public void setScore(int score) {
@@ -103,6 +104,14 @@ public class Player extends Entity implements Transactor, Comparable {
 		return type;
 	}
 	
+	public void setCurrentTurn(Turn turn) {
+		this.currentTurn = turn;
+	}
+	
+	public Turn getCurrentTurn() {
+		return this.currentTurn;
+	}
+	
 	/**
 	 * Set the still sprite
 	 */
@@ -142,6 +151,18 @@ public class Player extends Entity implements Transactor, Comparable {
 	 */
 	public ArrayList<GameTile> getLands(){
 		return ownedLands;
+	}
+	
+	public void setMule(Mule mule){
+		this.mule=mule;
+	}
+	
+	public Mule getMule(){
+		return mule;
+	}
+	
+	public boolean hasMule(){
+		return mule!=null;
 	}
 	
 	/**
@@ -222,11 +243,11 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	
 	public int getResourceAmt(ResourceType resource) {
-	    return resources[resource.getIndex()];
+	    return resources[resource.ordinal()];
 	}
 
 	@Override
 	public int compareTo(Object other) {
-		return (int) (this.money - ((Player)other).money);
+		return (int) (this.score - ((Player)other).score);
 	}
 }

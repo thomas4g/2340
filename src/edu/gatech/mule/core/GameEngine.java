@@ -46,6 +46,10 @@ public class GameEngine {
 		screenHandler.start();
 	}
 	
+	public void setScreen(ScreenType type) {
+		screenHandler.setScreen(type);
+	}
+	
 	/**
 	 * Get game map
 	 * @return game map
@@ -87,14 +91,14 @@ public class GameEngine {
 	 * Shows the screen for player config
 	 */
 	public void choosePlayer() {
-		screenHandler.setScreen(ScreenType.PLAYER_SCREEN, true);
+		screenHandler.setScreen(ScreenType.PLAYER_SCREEN);
 	}
 	
 	/**
 	 * Sets up map based on configurations and begins land selection
 	 */
 	public void playGame() {
-		roundController = new RoundController(this, screenHandler, 1);
+		roundController = new RoundController(this, 1);
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
@@ -111,18 +115,18 @@ public class GameEngine {
 	 * Shows screen of town map when entering town
 	 */
 	public void enterTown() {
-		screenHandler.setScreen(ScreenType.TOWN_SCREEN, true);
+		screenHandler.setScreen(ScreenType.TOWN_SCREEN);
 	}
 	
 	/**
 	 * Shows screen of game map when exiting town
 	 */
 	public void exitTown() {
-		screenHandler.setScreen(ScreenType.GAME_SCREEN, true);
+		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
 	public void end() {
-		System.out.println("That's all, folks!");
+		System.out.println("That's all, folks! (thanks for bearing with us)");
 		System.exit(0);
 	}
 	

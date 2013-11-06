@@ -1,23 +1,29 @@
 package edu.gatech.mule.game.map.tiles;
 
+import java.awt.Image;
+
 import tiled.core.Tile;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 
-/**
- * Representation of a property tile
- * @version 0.1
- */
-public class PropertyTile extends GameTile {
+public class AnimatedGameTile extends GameTile {
+
+	private Tile[] frames;
+	private int frameIndex;
 	
-	/**
-	 * Constructor for a property tile
-	 * @param t, tile config ???
-	 * @param type, type of tile
-	 */
-	public PropertyTile(Tile t, TileType type) {
+	public AnimatedGameTile(Tile t, TileType type, Tile[] frames) {
 		super(t, type);
+		frameIndex = 0;
+		this.frames = frames;
+	}
+	
+	@Override
+	public Image getImage() {
+		if(frameIndex >= frames.length * 2) {
+			frameIndex = 0;
+		}
+		return frames[frameIndex++ / 2].getImage();
 	}
 
 	@Override
@@ -28,7 +34,8 @@ public class PropertyTile extends GameTile {
 
 	@Override
 	public void enter(Player player) {
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -36,5 +43,4 @@ public class PropertyTile extends GameTile {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

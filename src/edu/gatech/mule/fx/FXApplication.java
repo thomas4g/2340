@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
-import edu.gatech.mule.screen.ScreenHandler;
 
 /**
  * FX application ???

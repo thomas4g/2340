@@ -1,6 +1,5 @@
 package edu.gatech.mule.game.map;
 
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import tiled.core.Map;
 
 /**
@@ -11,16 +10,16 @@ public abstract class GameMap {
 
 	protected GameTile[][] tiles;
 	protected Map map;
-	private int tileWidth; //Set tileWidth in here somewhere
-	private int tileHeight; //Set this one as well
+//	private int tileWidth; //Set tileWidth in here somewhere
+//	private int tileHeight; //Set this one as well
 	
 	/**
 	 * Constructor for the map
 	 */
 	public GameMap() {
 		generateMap();
-		tileWidth=OrthogonalMapRenderer.TILE_WIDTH;
-		tileHeight=OrthogonalMapRenderer.TILE_WIDTH;
+//		tileWidth=OrthogonalMapRenderer.TILE_WIDTH;
+//		tileHeight=OrthogonalMapRenderer.TILE_WIDTH;
 	}
 
 	/**
@@ -54,7 +53,7 @@ public abstract class GameMap {
 	 * @return tile width of the map
 	 */
 	public int getTileWidth(){
-		return tileWidth;
+		return map.getTileWidth(); 
 	}
 	
 	/**
@@ -62,7 +61,7 @@ public abstract class GameMap {
 	 * @return tile height of the map
 	 */
 	public int getTileHeight(){
-		return tileHeight;
+		return map.getTileHeight(); 
 	}
 	
 	

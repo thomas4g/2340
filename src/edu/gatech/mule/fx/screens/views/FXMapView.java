@@ -1,27 +1,43 @@
 package edu.gatech.mule.fx.screens.views;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
+import edu.gatech.mule.screen.screens.controllers.TownController;
 import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
  * View for main map
  * @version 1.0
  */
-public class FXMapView extends FXView implements MapView {
+public class FXMapView extends FXView implements TownMapView {
+	private StackPane stack; //add stuff to me!
 	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
@@ -29,6 +45,8 @@ public class FXMapView extends FXView implements MapView {
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
 	private Point selectorLocation;
+	
+	private TownController townController;
 
 	/**
 	 * Constructor for map view
@@ -39,8 +57,10 @@ public class FXMapView extends FXView implements MapView {
 	
 	@Override
 	public void load() {
+		stack = new StackPane();
 		canvas = new Canvas(720, 700);
-		node = canvas;
+		stack.getChildren().add(canvas);
+		node = stack;
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
@@ -85,6 +105,8 @@ public class FXMapView extends FXView implements MapView {
 		for(Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
+		
+		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
 		
 		drawCurrentPlayer();
 	}
@@ -141,5 +163,64 @@ public class FXMapView extends FXView implements MapView {
 	@Override
 	public GameMap getGameMap() {
 		return gameMap;
+	}
+
+	@Override
+	public void setController(TownController controller) {
+		townController = controller;
+	}
+
+	@Override
+	public void displayStoreMenu() {
+		final FlowPane flow = new FlowPane();
+		final ObservableList<String> buySell = FXCollections.observableArrayList("Buy", "Sell");
+		final ComboBox<String> cb = new ComboBox<String>(buySell);
+		
+		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> arg0,
+					String arg1, String selected) {
+				if(selected.equals(buySell.get(0))){
+					stack.getChildren().remove(flow);
+					townController.storeBuy();
+				}
+				else if(selected.equals(buySell.get(1))) {
+					stack.getChildren().remove(flow);
+					townController.storeSell();
+				}
+			}
+			
+		});
+		flow.getChildren().add(cb);
+		stack.getChildren().add(cb);		
+	}
+
+	@Override
+	public void displayStoreAmountMenu() {
+		final FlowPane flow = new FlowPane();
+		final TextField amount = new TextField();
+		Button done = new Button("Confirm");
+		done.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				stack.getChildren().remove(flow);
+				
+				int money = 0;
+				try {
+					money = Integer.parseInt(amount.getText());
+				}
+				catch(NumberFormatException ex) {
+					
+				}
+				townController.storeComplete(money);
+			}
+			
+		});
+		
+		flow.getChildren().add(amount);
+		flow.getChildren().add(done);
+		stack.getChildren().add(flow);
 	}
 }

@@ -7,10 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import edu.gatech.mule.game.CharacterType.Direction;
-import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 
 /**
  * Representation of an entity that can move around a map
@@ -31,10 +29,9 @@ public abstract class Entity {
 	 * @param location, location on a map
 	 * @param tile, the tile where the entity is positioned
 	 */
-	public Entity(String imgPath,Point location,GameTile tile){
+	public Entity(String imgPath,Point location){
 		frameIndex=0;
 		this.location = location;
-		this.tile = tile;
 		this.direction = Direction.DOWN;
 		this.image = loadImage(imgPath);
 	}
@@ -75,16 +72,14 @@ public abstract class Entity {
 		return direction;
 	}
 	
-	/**
-	 * Set the tile of the map based on the location of the entity
-	 * @param map, the map the entity is traversing upon
-	 */
-	public void setTile(GameMap map){
-		int xTilePos=(int)(location.getX()/OrthogonalMapRenderer.TILE_WIDTH);
-		int yTilePos=(int)(location.getY()/OrthogonalMapRenderer.TILE_HEIGHT);
-		tile=map.getTile(xTilePos, yTilePos);
+
+	public void setTile(GameTile tile) {
+		this.tile = tile;
 	}
-	
+	public GameTile getTile() {
+		return tile;
+	}
+
 	/**
 	 * Get the tile type
 	 * @return tile type

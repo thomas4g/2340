@@ -3,8 +3,8 @@ package edu.gatech.mule.graphics;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import tiled.core.Tile;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.map.GameTile;
 
 /**
  * Representation of a renderer that can render an entity on a tile
@@ -20,7 +20,7 @@ public interface Renderer {
 	 * @param width
 	 * @param height
 	 */
-	public void drawTile(Tile tile, int x, int y, int width, int height);
+	public void drawTile(GameTile tile, int x, int y, int width, int height);
 	public void drawEntity(Entity entity);
 	
 	/**
