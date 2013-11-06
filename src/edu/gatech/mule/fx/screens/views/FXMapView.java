@@ -10,18 +10,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.game.Entity;
@@ -29,7 +24,6 @@ import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.controllers.TownController;
-import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
@@ -183,11 +177,11 @@ public class FXMapView extends FXView implements TownMapView {
 					String arg1, String selected) {
 				if(selected.equals(buySell.get(0))){
 					stack.getChildren().remove(flow);
-					townController.storeBuy();
+					displayStoreAmountMenu(true);
 				}
 				else if(selected.equals(buySell.get(1))) {
 					stack.getChildren().remove(flow);
-					townController.storeSell();
+					displayStoreAmountMenu(false);
 				}
 			}
 			
@@ -197,7 +191,7 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	@Override
-	public void displayStoreAmountMenu() {
+	public void displayStoreAmountMenu(final boolean buying) {
 		final FlowPane flow = new FlowPane();
 		final TextField amount = new TextField();
 		Button done = new Button("Confirm");
@@ -207,14 +201,14 @@ public class FXMapView extends FXView implements TownMapView {
 			public void handle(ActionEvent arg0) {
 				stack.getChildren().remove(flow);
 				
-				int money = 0;
+				int count = 0;
 				try {
-					money = Integer.parseInt(amount.getText());
+					count = Integer.parseInt(amount.getText());
 				}
 				catch(NumberFormatException ex) {
 					
 				}
-				townController.storeComplete(money);
+				townController.storeComplete(count, buying);
 			}
 			
 		});

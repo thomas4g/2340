@@ -5,9 +5,10 @@ import java.awt.Point;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Store;
+import edu.gatech.mule.game.store.Transaction;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
-import edu.gatech.mule.screen.screens.views.MapView;
 import edu.gatech.mule.screen.screens.views.TownMapView;
 
 /**
@@ -46,7 +47,9 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.STORE) {
 			view.displayStoreMenu();
 		}
-		
+		if(store == null) {
+			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
+		}
 		System.out.println(currentPlayer.getTile().getWidth());
 	}
 	
@@ -78,7 +81,6 @@ public class TownController extends MapController {
 		default:
 			break;
 		}
-		
 		currentPlayer.setPosition(p);
 	}
 	
@@ -87,17 +89,15 @@ public class TownController extends MapController {
 		turn.done();
 	}
 
-	
-	public void storeBuy() {
-		//set to buy
-		view.displayStoreAmountMenu();
-	}
-	public void storeSell() {
-		//set to sell
-		view.displayStoreAmountMenu();
-	}
-
-	public void storeComplete(int money) {
-		//complete the transaction
+	public void storeComplete(int count, boolean buying) {
+		int[] rDeltas = new int[5];
+		ResourceType type = ResourceType.valueOf(currentPlayer.getTile().getProperties().getProperty("resource_type").toUpperCase());
+		rDeltas[type.ordinal()] = count;
+		Transaction transaction = new Transaction(rDeltas, store.getPrices());
+		if(buying) {
+			store.sell(transaction, currentPlayer);
+		} else {
+			currentPlayer.sell(transaction, store);
+		}
 	}
 }

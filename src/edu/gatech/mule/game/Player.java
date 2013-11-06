@@ -199,19 +199,28 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	@Override
 	public boolean sell(Transaction transaction, Transactor buyer) {
-		if(!buyer.canAfford(transaction))
+		if(!buyer.canAfford(transaction) || !this.hasResources(transaction.getResources()))
 			return false;
 		
 		int total = transaction.getTotal();
 		buyer.subtractMoney(total);
 		this.subtractResources(transaction.getResources());
 		buyer.addResources(transaction.getResources());
+		this.addMoney(total);
+		return true;
+	}
+	
+	public boolean hasResources(int[] transactionResources) {
+		for(int i=0; i<resources.length; i++) {
+			if(resources[i] - transactionResources[i] < 0)
+				return false;
+		}
 		return true;
 	}
 	
 	@Override
 	public boolean canAfford(Transaction transaction) {		
-		return transaction.getTotal() < this.money;
+		return transaction.getTotal() <= this.money;
 	}
 	
 	@Override
