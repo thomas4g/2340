@@ -2,6 +2,7 @@ package edu.gatech.mule.fx.screens.views.player;
 
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  */
 public class FXColorSelectView extends FXSettingsView {
 	
+	private final static Random randy = new Random();
 	private final static Settings.Color[] colors = Settings.Color.values();
 	
 	@FXML
@@ -57,8 +59,9 @@ public class FXColorSelectView extends FXSettingsView {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		toggle = randy.nextInt(colors.length);
 		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
-		imgView.setImage(changeImage());
+		imgView.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(toggle+1)));
 		colorLabels = new Label[]{purple,blue,teal,seafoam,green,gold,orange,maroon};
 		
 		toggleSelected();
@@ -67,7 +70,7 @@ public class FXColorSelectView extends FXSettingsView {
 	protected void toggleSelected() {
 		greyedOrNotAll();
 		colorLabels[toggle].setTextFill(Color.web(SettingsView.SELECTED));
-		imgView.setImage(changeImage());
+		imgView.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(toggle+1)));
 	}
 	
 	protected void done() {
@@ -89,10 +92,6 @@ public class FXColorSelectView extends FXSettingsView {
 		for(Label label : colorLabels) {
 			label.setTextFill(Color.web(grayedOrNot(colors[i++].ordinal()+1)));
 		}
-	}
-
-	private Image changeImage() {
-		return new Image(settings.getCurrentPlayer().getType().getHeadshot(toggle+1));
 	}
 
 	@Override
