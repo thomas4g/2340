@@ -23,7 +23,7 @@ public class FXStartView extends FXView {
 	
 	@FXML
     public void startGame(KeyEvent event) {
-	    if (event.getCode() == KeyCode.SPACE) {
+	    if (event.getCode() == KeyCode.ENTER) {
 	        controller.done();
 	    }
 	}

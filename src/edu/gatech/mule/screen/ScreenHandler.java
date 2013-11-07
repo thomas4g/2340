@@ -3,6 +3,7 @@ package edu.gatech.mule.screen;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.controllers.HelpController;
 import edu.gatech.mule.screen.screens.controllers.PersistenceController;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.controllers.StartController;
@@ -24,7 +25,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * @version 1.0
  */
 public abstract class ScreenHandler {
-	public enum ScreenType { START, PERSISTENCE,
+	public enum ScreenType { START, PERSISTENCE, HELP,
 							DIFFICULTY, MAP_TYPE, NUM_PLAYERS,
 							RACE_SELECT, COLOR, NAME,
 							LAND_SELECT, GAME_SCREEN, TOWN_SCREEN };
@@ -46,6 +47,7 @@ public abstract class ScreenHandler {
 	public final void load() {
 		screens.put(ScreenType.START, new StartController(game, loadStartView()));
 		screens.put(ScreenType.PERSISTENCE, new PersistenceController(game, loadPersistenceView()));
+		screens.put(ScreenType.HELP, new HelpController(game, loadHelpView()));
 		
 		screens.put(ScreenType.DIFFICULTY, new DifficultyController(game, loadDifficultyView()));
 		screens.put(ScreenType.MAP_TYPE, new MapTypeController(game, loadMapTypeView()));
@@ -64,6 +66,7 @@ public abstract class ScreenHandler {
 
 	protected abstract ScreenView loadStartView();
 	protected abstract ScreenView loadPersistenceView();
+	protected abstract ScreenView loadHelpView();
 	
 	protected abstract SettingsView loadDifficultyView();
 	protected abstract SettingsView loadMapTypeView();

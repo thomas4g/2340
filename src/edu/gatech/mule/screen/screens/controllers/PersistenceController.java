@@ -2,7 +2,6 @@ package edu.gatech.mule.screen.screens.controllers;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.screens.views.ScreenView;
-import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class PersistenceController extends ScreenController {
 	
@@ -15,8 +14,14 @@ public class PersistenceController extends ScreenController {
 
 	@Override
 	public void done() {
-		System.out.println("go to difficulty");
-		game.chooseDifficulty();
+		boolean awesomeness = true;
+		if(awesomeness) {
+			System.out.println("making a new game, so let's make the game!");
+			game.chooseDifficulty();
+		} else if(awesomeness) {
+			System.out.println("help if needed");
+			game.help();
+		}		
 	}
 
 }

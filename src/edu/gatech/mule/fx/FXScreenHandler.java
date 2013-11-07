@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.fx.screens.views.FXHelpView;
 import edu.gatech.mule.fx.screens.views.FXPersistenceView;
 import edu.gatech.mule.fx.screens.views.FXStartView;
 import edu.gatech.mule.fx.screens.views.FXView;
@@ -90,6 +91,11 @@ public class FXScreenHandler extends ScreenHandler {
 	@Override
 	protected ScreenView loadPersistenceView() {
 		return new FXPersistenceView();
+	}
+	
+	@Override
+	protected ScreenView loadHelpView() {
+		return new FXHelpView();
 	}
 	
 	@Override

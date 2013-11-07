@@ -33,7 +33,9 @@ public class FXNameChooseView extends FXSettingsView {
 	
 	@FXML
 	protected void transition(KeyEvent event){
-		if((event.getCode() == KeyCode.ENTER /*|| event.getCode() == KeyCode.SPACE*/)
+		if(event.getCode() == KeyCode.UP) {
+			nameField.setText(settings.getCurrentPlayer().getType().getName());
+		} else if((event.getCode() == KeyCode.ENTER /*|| event.getCode() == KeyCode.SPACE*/)
 				&& nameField.getText().matches(NAME_REGEX)) {
 			settings.getCurrentPlayer().setName(nameField.getText());
 			settings.nextPlayer();

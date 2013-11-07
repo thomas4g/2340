@@ -74,6 +74,10 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.PERSISTENCE);
 	}
 	
+	public void help() {
+		screenHandler.setScreen(ScreenType.HELP);
+	}
+	
 	public void chooseDifficulty() {
 		screenHandler.setScreen(ScreenType.DIFFICULTY);
 	}

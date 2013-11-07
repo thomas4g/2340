@@ -49,8 +49,9 @@ public class FXPersistenceView extends FXSettingsView {
 
 	@Override
 	protected void done() {
-		System.out.println("Done with persistence");
-		controller.done();
+		if(toggle==0) {
+			controller.done();
+		}
 	}
 
 }
