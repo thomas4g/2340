@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -61,7 +60,7 @@ public class FXColorSelectView extends FXSettingsView {
 	public void initialize(URL location, ResourceBundle resources) {
 		toggle = randy.nextInt(colors.length);
 		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
-		imgView.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(toggle+1)));
+		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
 		colorLabels = new Label[]{purple,blue,teal,seafoam,green,gold,orange,maroon};
 		
 		toggleSelected();
@@ -70,12 +69,12 @@ public class FXColorSelectView extends FXSettingsView {
 	protected void toggleSelected() {
 		greyedOrNotAll();
 		colorLabels[toggle].setTextFill(Color.web(SettingsView.SELECTED));
-		imgView.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(toggle+1)));
+		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
 	}
 	
 	protected void done() {
 		if(!settings.colorUsed(toggle+1)) {
-			settings.getCurrentPlayer().setColor(colors[toggle]);
+			settings.setCurrentPlayerColor(colors[toggle]);
 			controller.done();
 		}
 	}

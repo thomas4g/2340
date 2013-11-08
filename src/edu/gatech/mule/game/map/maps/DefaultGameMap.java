@@ -10,7 +10,6 @@ import tiled.core.TileLayer;
 import tiled.core.TileSet;
 import tiled.io.TMXMapReader;
 import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
 

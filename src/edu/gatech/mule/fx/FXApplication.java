@@ -13,7 +13,8 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
 
 /**
- * FX application ???
+ * Run this main method to start game
+ * 
  * @version 0.1
  */
 public class FXApplication extends Application {
@@ -37,8 +38,6 @@ public class FXApplication extends Application {
     	renderThread.setDaemon(true);
     	renderThread.start();
     }
-    
-    
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

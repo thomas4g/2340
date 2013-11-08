@@ -14,7 +14,7 @@ import edu.gatech.mule.fx.screens.views.FXSettingsView;
 
 public class FXNameChooseView extends FXSettingsView {
 	
-	private final static String NAME_REGEX = "^([A-Z][a-zA-Z]+)( [A-Z][a-zA-Z]+)*$";
+	private final static String NAME_REGEX = "^([A-Z][a-zA-Z]*)([.]{0,1} [A-Z][a-zA-Z]*)*$";
 	
 	@FXML
 	private TextField nameField;
@@ -34,10 +34,10 @@ public class FXNameChooseView extends FXSettingsView {
 	@FXML
 	protected void transition(KeyEvent event){
 		if(event.getCode() == KeyCode.UP) {
-			nameField.setText(settings.getCurrentPlayer().getType().getName());
+			nameField.setText(settings.getCurrentPlayerDefaultName());
 		} else if((event.getCode() == KeyCode.ENTER /*|| event.getCode() == KeyCode.SPACE*/)
 				&& nameField.getText().matches(NAME_REGEX)) {
-			settings.getCurrentPlayer().setName(nameField.getText());
+			settings.setCurrentPlayerName(nameField.getText());
 			settings.nextPlayer();
 			controller.done();
 		}
@@ -46,8 +46,8 @@ public class FXNameChooseView extends FXSettingsView {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", enter your name");
-		headshot.setImage(new Image(settings.getCurrentPlayer().getType().getHeadshot(settings.getCurrentPlayer().getColor().ordinal()+1)));
-		nameField.setText(settings.getCurrentPlayer().getType().getName());
+		headshot.setImage(new Image(settings.getCurrentPlayerHeadshot()));
+		nameField.setText(settings.getCurrentPlayerDefaultName());
 		instructions.setText("Proper names only.\n(i.e. Colonel Mustard Rawr)");
 	}
 

@@ -1,6 +1,5 @@
 package edu.gatech.mule.screen.screens.views;
 
-import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.game.Settings;
 
 /**

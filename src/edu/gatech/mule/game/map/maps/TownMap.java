@@ -7,7 +7,6 @@ import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.map.TownTile;
-import edu.gatech.mule.game.map.tiles.PropertyTile;
 
 /**
  * Generates the town map

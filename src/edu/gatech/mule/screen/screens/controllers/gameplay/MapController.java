@@ -9,7 +9,6 @@ import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.Turn;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 
 public abstract class MapController extends ScreenController {
 

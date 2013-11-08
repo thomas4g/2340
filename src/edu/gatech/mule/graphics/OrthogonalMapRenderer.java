@@ -5,10 +5,6 @@ import java.awt.image.BufferedImage;
 
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
-import tiled.core.Map;
-import tiled.core.MapLayer;
-import tiled.core.Tile;
-import tiled.core.TileLayer;
 
 /**
  * Representation of a renderer for an orthogonal map

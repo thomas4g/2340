@@ -1,7 +1,6 @@
 package edu.gatech.mule.fx.graphics;
 
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import edu.gatech.mule.fx.FXScreenHandler;
 
 public class RenderTask extends Thread {
