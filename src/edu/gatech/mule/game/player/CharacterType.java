@@ -1,4 +1,6 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.player;
+
+import java.util.Random;
 
 /**
  * Library of character types
@@ -11,37 +13,44 @@ public enum CharacterType {
 	 * Humanoid:only race where starting money is lower than the default
 	 */
 	HUMANOID("Humanoid", 
-		"Though the empress herself is said to be a \n" 
-		+ "humanoid, the rest of her assumed race lives in \npoverty. " 
-		+ "Most humanoids work as farmers, servants,\nor men-for-hire.\n", 
-		600, "Jimbo"),
+		"Though the empress herself is said to be a " 
+		+ "humanoid, the rest of her assumed race lives in poverty. " 
+		+ "Most humanoids work as farmers, servants, or men-for-hire.", 
+		600, new String[]{"Jimbo", "John", "Oswald", "Bob",
+			"Matthew", "Andrew", "Aiden", "Nathaniel", 
+			"Jacob", "Ryan", "Oliver", "Elliot", "Aaron", 
+			"Alexander", "Ian", "Nolan", "Henry", "Zachary",
+			"Xavier", "Elisha", "Christopher"}),
 	
 	/**
 	 * Bonzoid:the monkey race that apparently reminds someone of Colonel Mustard.
 	 */
 	BONZOID("Bonzoid", 
-			"Despite their bulky size, Bonzoids are a peaceful race. \n"
-			+ "Many work as tailors, blacksmiths, carpenters,  \nand shopowners.", 
-			"Colonel Mustard"),
+			"Despite their bulky size, Bonzoids are a peaceful race. "
+			+ "Many work as tailors, blacksmiths, carpenters, and shopowners.", 
+			new String[]{"Colonel Mustard", "George"}),
+	
 	/**
 	 * Mechtron:playable only for AI
 	 */
 	AUTOMATON("Automaton", 
-			"Mechtrons are machines created to do the will of the empress. \n" 
-			+ "They are stronger, faster, and more alter than any race in the empire. \n" 
-			+ "Players cannot control Mechtrons; selecting one creates an npc.", ""),
+			"Mechtrons are machines created to do the will of the empress. " 
+			+ "They are stronger, faster, and more alter than any race in the empire. " 
+			+ "Players cannot control Mechtrons; selecting one creates an npc.",
+			new String[]{"Tin Major", "Cyborg"}),
 	
 	/**
 	 * Flapper:only race where starting money is higher than the default
 	 */
 	FLAPPER("Flapper", 
-			"The aristocracy of the empire is primarily composed\nof Flappers. " 
-			+ "Their race has accumulated vast riches by\nestablishing trade with far-off lands.", 
-			1600, "Samantha"),
-	
+			"The aristocracy of the empire is primarily composed of Flappers. " 
+			+ "Their race has accumulated vast riches by establishing trade with far-off lands.", 
+			1600, new String[]{"Samantha", "Sally"}),
+			
 	MULE("Mules",
-		"The labor force of the empire", 0, "The Garbage Man");
+		"The labor force of the empire", 0, new String[]{"The Garbage Man"});
 	
+	private final static Random randy = new Random();
 	
 	public static final String IMAGE_EXT = ".png";
 	public enum Direction{DOWN,UP,RIGHT,LEFT};
@@ -58,7 +67,7 @@ public enum CharacterType {
 	private final String totem;
 	private final double money;
 	private final String type;
-	private final String name;
+	private final String[] names;
 	private final String description;
 	
 	/**
@@ -68,11 +77,11 @@ public enum CharacterType {
 	 * @param money, starting money in the game
 	 * @param name, name of the player
 	 */
-	CharacterType(String type, String description, double money, String name) {
+	CharacterType(String type, String description, double money, String[] names) {
 		this.type = type.toLowerCase();
 		this.description = description;
 		this.money = money;
-		this.name = name;
+		this.names = names;
 		
 		//need to add color here instead of + "1"
 		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0) + "1f";
@@ -87,8 +96,8 @@ public enum CharacterType {
 	 * @param description, short description of the race
 	 * @param defaultName, a default name for the player
 	 */
-	CharacterType(String type, String description, String defaultName) {
-		this(type, description, MONEY, defaultName);
+	CharacterType(String type, String description, String[] names) {
+		this(type, description, MONEY, names);
 	}
 
 	/**
@@ -156,7 +165,7 @@ public enum CharacterType {
 	 * @return name of the player
 	 */
 	public String getName() {
-		return name;
+		return names[randy.nextInt(names.length)];
 	}
 
 	/**

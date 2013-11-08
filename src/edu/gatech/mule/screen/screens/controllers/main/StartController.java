@@ -1,6 +1,7 @@
-package edu.gatech.mule.screen.screens.controllers;
+package edu.gatech.mule.screen.screens.controllers.main;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 
 /**
@@ -21,8 +22,8 @@ public class StartController extends ScreenController {
 	/**
 	 * Goes to settings config
 	 */
-	public final void done() {
-		game.chooseDifficulty();
+	public void done() {
+		game.persistence();
 	}
 	
 }

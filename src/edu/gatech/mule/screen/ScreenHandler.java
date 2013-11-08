@@ -4,12 +4,14 @@ import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.controllers.StartController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.GameplayController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.LandSelectController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
-import edu.gatech.mule.screen.screens.controllers.player.ColorController;
-import edu.gatech.mule.screen.screens.controllers.player.NameController;
+import edu.gatech.mule.screen.screens.controllers.main.HelpController;
+import edu.gatech.mule.screen.screens.controllers.main.PersistenceController;
+import edu.gatech.mule.screen.screens.controllers.main.StartController;
+import edu.gatech.mule.screen.screens.controllers.player.ColorSelectController;
+import edu.gatech.mule.screen.screens.controllers.player.NameChooseController;
 import edu.gatech.mule.screen.screens.controllers.player.RaceSelectController;
 import edu.gatech.mule.screen.screens.controllers.settings.DifficultyController;
 import edu.gatech.mule.screen.screens.controllers.settings.MapTypeController;
@@ -24,7 +26,7 @@ import edu.gatech.mule.screen.screens.views.TownMapView;
  * @version 1.0
  */
 public abstract class ScreenHandler {
-	public enum ScreenType { START,
+	public enum ScreenType { START, PERSISTENCE, HELP,
 							DIFFICULTY, MAP_TYPE, NUM_PLAYERS,
 							RACE_SELECT, COLOR, NAME,
 							LAND_SELECT, GAME_SCREEN, TOWN_SCREEN };
@@ -45,14 +47,16 @@ public abstract class ScreenHandler {
 	 */
 	public final void load() {
 		screens.put(ScreenType.START, new StartController(game, loadStartView()));
+		screens.put(ScreenType.PERSISTENCE, new PersistenceController(game, loadPersistenceView()));
+		screens.put(ScreenType.HELP, new HelpController(game, loadHelpView()));
 		
 		screens.put(ScreenType.DIFFICULTY, new DifficultyController(game, loadDifficultyView()));
 		screens.put(ScreenType.MAP_TYPE, new MapTypeController(game, loadMapTypeView()));
 		screens.put(ScreenType.NUM_PLAYERS, new NumPlayersController(game, loadNumPlayersView()));
 		
 		screens.put(ScreenType.RACE_SELECT, new RaceSelectController(game, loadRaceSelectView()));
-		screens.put(ScreenType.COLOR, new ColorController(game, loadColorView()));
-		screens.put(ScreenType.NAME, new NameController(game, loadNameView()));
+		screens.put(ScreenType.COLOR, new ColorSelectController(game, loadColorView()));
+		screens.put(ScreenType.NAME, new NameChooseController(game, loadNameView()));
 		
 		screens.put(ScreenType.LAND_SELECT, new LandSelectController(game, loadLandSelectView()));
 		screens.put(ScreenType.GAME_SCREEN, new GameplayController(game, loadGameplayView()));
@@ -62,12 +66,17 @@ public abstract class ScreenHandler {
 	}
 
 	protected abstract ScreenView loadStartView();
+	protected abstract ScreenView loadPersistenceView();
+	protected abstract ScreenView loadHelpView();
+	
 	protected abstract SettingsView loadDifficultyView();
 	protected abstract SettingsView loadMapTypeView();
 	protected abstract SettingsView loadNumPlayersView();
+	
 	protected abstract SettingsView loadRaceSelectView();
 	protected abstract SettingsView loadColorView();
 	protected abstract SettingsView loadNameView();
+	
 	protected abstract MapView loadGameplayView();
 	protected abstract MapView loadLandSelectView();
 	protected abstract TownMapView loadTownView();

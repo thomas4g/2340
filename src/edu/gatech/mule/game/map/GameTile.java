@@ -2,9 +2,8 @@ package edu.gatech.mule.game.map;
 
 import java.awt.Image;
 import java.util.Properties;
-
+import edu.gatech.mule.game.player.Player;
 import tiled.core.Tile;
-import edu.gatech.mule.game.Player;
 
 /**
  * Representation of a tile in the game map

@@ -6,9 +6,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.player.CharacterType.Direction;
 
 /**
  * Representation of an entity that can move around a map
@@ -41,7 +41,7 @@ public abstract class Entity {
 	 * @param deltaX, horizontal direction and rate of movement
 	 * @param deltaY, vertical direction and rate of movement
 	 */
-	public void move(int deltaX,int deltaY){
+	public void move(int deltaX,int deltaY) {
 		location.x += deltaX;
 		location.y += deltaY;
 		
@@ -60,7 +60,7 @@ public abstract class Entity {
 	 * Set the direction the entity is facing
 	 * @param dir, direction the entity is facing
 	 */
-	public void setDirection(Direction dir){
+	public void setDirection(Direction dir) {
 		direction = dir;
 	}
 	
@@ -72,10 +72,15 @@ public abstract class Entity {
 		return direction;
 	}
 	
+	/**
+	 * Set the tile of the map based on the location of the entity
+	 * @param map, the map the entity is traversing upon
+	 */
 
 	public void setTile(GameTile tile) {
 		this.tile = tile;
 	}
+	
 	public GameTile getTile() {
 		return tile;
 	}
@@ -84,7 +89,7 @@ public abstract class Entity {
 	 * Get the tile type
 	 * @return tile type
 	 */
-	public TileType getTileType(){
+	public TileType getTileType() {
 		return tile.getType();
 	}
 	
@@ -92,7 +97,7 @@ public abstract class Entity {
 	 * Get the image of the entity
 	 * @return image of the entity
 	 */
-	public BufferedImage getImage(){
+	public BufferedImage getImage() {
 		return image;
 	}
 	
@@ -100,9 +105,9 @@ public abstract class Entity {
 	 * Set up the frames for animation
 	 * @param srcFrames, array of frames for animation
 	 */
-	public void setFrames(String[] srcFrames){
-		frames=new BufferedImage[srcFrames.length];
-		for(int i=0;i<frames.length;i++){
+	public void setFrames(String[] srcFrames) {
+		frames = new BufferedImage[srcFrames.length];
+		for(int i=0;i<frames.length;i++) {
 			frames[i] = loadImage(srcFrames[i]);
 		}
 		updateFrame();
@@ -123,16 +128,16 @@ public abstract class Entity {
 	 * Set the position of the entity
 	 * @param pos, position to set entity to
 	 */
-	public void setPosition(Point pos){
+	public void setPosition(Point pos) {
 		location=pos;
 	}
 
 	/**
 	 * Updates the animation frame
 	 */
-	private void updateFrame(){
-		frameIndex=(frameIndex+1)%frames.length;
-		image=frames[frameIndex];
+	private void updateFrame() {
+		frameIndex = (frameIndex+1)%frames.length;
+		image = frames[frameIndex];
 	}
 	
 	/**

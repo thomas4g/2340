@@ -4,10 +4,8 @@ import java.awt.Point;
 import java.util.List;
 
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Settings.Color;
 import edu.gatech.mule.game.map.GameMap;
-import tiled.core.Map;
+import edu.gatech.mule.game.player.Player;
 
 /**
  * Map view

@@ -4,58 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.gatech.mule.game.player.Color;
+import edu.gatech.mule.game.player.Difficulty;
+import edu.gatech.mule.game.player.Player;
+
 /**
  * Settings for the game
  * @version 0.1
  */
 public class Settings {
 	
-	public enum Difficulty { 
-		
-							//food, energy, ore, crystite, mules
-		BEGINNER (new int[] {8, 4, 0, 0, 0}, new int[] {16, 16, 0, 0, 25}), 
-		STANDARD (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14}), 
-		ADVANCED (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14});
-		
-		private int[] playerResources, storeResources;
-		
-		private Difficulty(int[] playerResources, int[] storeResources) {
-			this.playerResources = playerResources;
-			this.storeResources = storeResources;
-		}
-		
-		public int[] getPlayerResources() {
-			return this.playerResources;
-		}
-		
-		public int[] getStoreResources() {
-			return this.storeResources;
-		}
-	}
-	
 	public enum MapType { DEFAULT, RANDOM };
-	
-	public enum Color { 
-		PURPLE (145,85,134),
-		BLUE (83,99,141), 
-		TEAL (66,110,125), 
-		SEAFOAM (86,136,126), 
-		GREEN (97,149,75), 
-		GOLD (143,142,74), 
-		ORANGE (157,108,56), 
-		MAROON (123,63,59); 
-		
-		private java.awt.Color color;
-	
-		private Color(int red, int green, int blue){
-			this.color = new java.awt.Color(red, green, blue);
-		}
-		
-		public java.awt.Color getRGB() {
-			return this.color;
-		}
-		
-	};
 	
 	private Difficulty difficulty;
 	private MapType mapType;
@@ -92,7 +51,7 @@ public class Settings {
 	 * Get map type of game
 	 * @return map type of game
 	 */
-	public MapType getMapType(){
+	public MapType getMapType() {
 		return mapType;
 	}
 	
@@ -100,8 +59,8 @@ public class Settings {
 	 * Set up map type of game
 	 * @param type, map type of game
 	 */
-	public void setMapType(MapType type){
-		this.mapType=type;
+	public void setMapType(MapType type) {
+		this.mapType = type;
 	}
 	
 	/**
@@ -124,15 +83,15 @@ public class Settings {
 	 * Set the count of number of players
 	 * @param count, number of players
 	 */
-	public void setPlayerCount(int count){
-        playerCount=count;
+	public void setPlayerCount(int count) {
+        playerCount = count;
 	}
 	
 	/**
 	 * Get number of players in game
 	 * @return number of players in game
 	 */
-	public int getPlayerCount(){
+	public int getPlayerCount() {
 		return playerCount;
 	}
 	
@@ -140,7 +99,7 @@ public class Settings {
 	 * Set the current player of the game
 	 * @param player, current player of the game
 	 */
-	public void setCurrentPlayer(Player player){
+	public void setCurrentPlayer(Player player) {
 		currentPlayer = player;
 	}
 	
@@ -148,13 +107,42 @@ public class Settings {
 	 * Get the current player of the game
 	 * @return current player of the game
 	 */
-	public Player getCurrentPlayer(){
+	private Player getCurrentPlayer() {
 		return currentPlayer;
 	}
 	
-	/**
-	 * Move on to the next player
-	 */
+	public String getCurrentPlayerName() {
+		return getCurrentPlayer().getName();
+	}
+	
+	public String getCurrentPlayerDefaultName() {
+		return getCurrentPlayer().getType().getName();
+	}
+	
+	public void setCurrentPlayerName(String name) {
+		getCurrentPlayer().setName(name);
+	}
+	
+	public int getCurrentPlayerColor() {
+		return getCurrentPlayer().getColor().ordinal()+1;
+	}
+	
+	public void setCurrentPlayerColor(Color color) {
+		getCurrentPlayer().setColor(color);
+	}
+	
+	public String getCurrentPlayerHeadshot(int color) {
+		return getCurrentPlayer().getType().getHeadshot(color);
+	}
+	
+	public String getCurrentPlayerHeadshot() {
+		return this.getCurrentPlayerHeadshot(getCurrentPlayerColor());
+	}
+	
+	public boolean allPlayersSet() {
+		return getPlayerCount() == getPlayers().size();
+	}
+	
 	public void nextPlayer(){
 		playerIndex++;
 	}
@@ -169,6 +157,15 @@ public class Settings {
 	 */
 	public Iterator<Player> playerIterator() {
 		return players.iterator();
+	}
+	
+	public boolean colorUsed(int color) {
+		for(Player player : players) {
+			if(player.getColor()!=null && (player.getColor().ordinal()+1) == color) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

@@ -1,13 +1,12 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.round;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.ScreenHandler;
+import edu.gatech.mule.game.player.Player;
 
 public class RoundController {
 
 	private Player currentPlayer;
 	private GameEngine game;
-	private ScreenHandler screenHandler;
 	private int roundNumber;
 	private int rounds;
 	private Round currentRound;
@@ -23,8 +22,9 @@ public class RoundController {
 			currentRound = new Round(game, this, roundNumber++);
 			currentRound.start();
 		}
-		else
+		else {
 			game.end();
+		}
 	}
 	
 	public Round getRound() {

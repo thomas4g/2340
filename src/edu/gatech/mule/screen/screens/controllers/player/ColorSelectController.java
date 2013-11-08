@@ -8,7 +8,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
  * Controller for player config
  * @version 0.1
  */
-public class ColorController extends ScreenController {
+public class ColorSelectController extends ScreenController {
 	
 	protected SettingsView view;
 	
@@ -17,7 +17,7 @@ public class ColorController extends ScreenController {
 	 * @param game, game engine
 	 * @param view, settings view
 	 */
-	public ColorController(GameEngine game, SettingsView view) {
+	public ColorSelectController(GameEngine game, SettingsView view) {
 		super(game,  view);
 		this.view = view;
 	}

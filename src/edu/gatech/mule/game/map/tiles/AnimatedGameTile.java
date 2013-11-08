@@ -1,9 +1,8 @@
 package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
-
 import tiled.core.Tile;
-import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 

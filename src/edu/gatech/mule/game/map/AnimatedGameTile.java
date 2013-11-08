@@ -1,8 +1,7 @@
 package edu.gatech.mule.game.map;
 
 import java.awt.Image;
-
-import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.player.Player;
 import tiled.core.AnimatedTile;
 import tiled.core.Tile;
 

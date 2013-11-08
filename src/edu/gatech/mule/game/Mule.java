@@ -2,7 +2,9 @@ package edu.gatech.mule.game;
 
 import java.awt.Point;
 
-import edu.gatech.mule.game.CharacterType.Direction;
+import edu.gatech.mule.game.player.CharacterType;
+import edu.gatech.mule.game.player.CharacterType.Direction;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.resources.ResourceType;
 

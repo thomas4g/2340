@@ -2,15 +2,15 @@ package edu.gatech.mule.core;
 
 import java.util.List;
 
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Round;
-import edu.gatech.mule.game.RoundController;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.maps.DefaultGameMap;
 import edu.gatech.mule.game.map.maps.RandomGameMap;
 import edu.gatech.mule.game.map.maps.TownMap;
+import edu.gatech.mule.game.player.Player;
+import edu.gatech.mule.game.round.Round;
+import edu.gatech.mule.game.round.RoundController;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
@@ -66,16 +66,18 @@ public class GameEngine {
 		return townMap;
 	}
 	
-	/**
-	 * Shows the start screen
-	 */
 	public void start() {
 		screenHandler.setScreen(ScreenType.START);
 	}
 	
-	/**
-	 * Shows the config settings
-	 */	
+	public void persistence() {
+		screenHandler.setScreen(ScreenType.PERSISTENCE);
+	}
+	
+	public void help() {
+		screenHandler.setScreen(ScreenType.HELP);
+	}
+	
 	public void chooseDifficulty() {
 		screenHandler.setScreen(ScreenType.DIFFICULTY);
 	}
@@ -88,9 +90,6 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
-	/**
-	 * Shows the screen for choosing race
-	 */
 	public void chooseRace() {
 		screenHandler.setScreen(ScreenType.RACE_SELECT);
 	}
@@ -99,9 +98,6 @@ public class GameEngine {
 		screenHandler.setScreen(ScreenType.COLOR);
 	}
 	
-	/**
-	 * Shows the screen for player config
-	 */
 	public void chooseName() {
 		screenHandler.setScreen(ScreenType.NAME);
 	}
@@ -160,6 +156,10 @@ public class GameEngine {
 
 	public Round getRound() {
 		return roundController.getRound();
+	}
+	
+	public boolean allPlayersSet() {
+		return settings.allPlayersSet();
 	}
 	
 }

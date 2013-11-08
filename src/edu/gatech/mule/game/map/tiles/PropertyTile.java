@@ -5,10 +5,9 @@ import java.util.List;
 
 import tiled.core.Tile;
 import edu.gatech.mule.game.Mule;
-import edu.gatech.mule.game.Player;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.game.resources.ResourceType;
 
 /**
  * Representation of a property tile

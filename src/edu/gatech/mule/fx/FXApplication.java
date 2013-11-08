@@ -13,10 +13,16 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
 
 /**
- * FX application ???
+ * Run this main method to start game
+ * 
  * @version 0.1
  */
 public class FXApplication extends Application {
+	
+	private final static String TITLE = "M.U.L.E. by 85% Wildebeests";
+	
+	private final static int WIDTH = 720;
+	private final static int HEIGHT = 520;
     
 	public static StackPane view;
 	
@@ -28,17 +34,15 @@ public class FXApplication extends Application {
     	
         Group root = new Group();
         root.getChildren().addAll(view);
-        Scene scene = new Scene(root, 720, 520);
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
-        stage.setTitle("Mule");
+        stage.setTitle(TITLE);
         stage.show();
 
     	Thread renderThread = new Thread(new RenderTask(handler));
     	renderThread.setDaemon(true);
     	renderThread.start();
     }
-    
-    
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

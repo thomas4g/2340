@@ -5,11 +5,13 @@ import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXStartView;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
-import edu.gatech.mule.fx.screens.views.player.FXColorView;
-import edu.gatech.mule.fx.screens.views.player.FXNameView;
+import edu.gatech.mule.fx.screens.views.main.FXHelpView;
+import edu.gatech.mule.fx.screens.views.main.FXPersistenceView;
+import edu.gatech.mule.fx.screens.views.main.FXStartView;
+import edu.gatech.mule.fx.screens.views.player.FXColorSelectView;
+import edu.gatech.mule.fx.screens.views.player.FXNameChooseView;
 import edu.gatech.mule.fx.screens.views.player.FXRaceSelectView;
 import edu.gatech.mule.fx.screens.views.settings.FXDifficultyView;
 import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
@@ -42,11 +44,6 @@ public class FXScreenHandler extends ScreenHandler {
 		FXApplication.view = stack; //TODO this is bad
 	}
 	
-	
-
-	/**
-	 * Starts the javafx stage
-	 */
 	@Override
 	public void start() {
 //		javafx.application.Application.launch(FXApplication.class);
@@ -93,6 +90,16 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
+	protected ScreenView loadPersistenceView() {
+		return new FXPersistenceView();
+	}
+	
+	@Override
+	protected ScreenView loadHelpView() {
+		return new FXHelpView();
+	}
+	
+	@Override
 	protected SettingsView loadDifficultyView() {
 		return new FXDifficultyView();
 	}
@@ -114,12 +121,12 @@ public class FXScreenHandler extends ScreenHandler {
 
 	@Override
 	protected SettingsView loadColorView() {
-		return new FXColorView();
+		return new FXColorSelectView();
 	}
 
 	@Override
 	protected SettingsView loadNameView() {
-		return new FXNameView();
+		return new FXNameChooseView();
 	}
 
 	@Override

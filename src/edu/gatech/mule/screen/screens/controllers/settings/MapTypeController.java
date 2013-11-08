@@ -2,7 +2,6 @@ package edu.gatech.mule.screen.screens.controllers.settings;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class MapTypeController extends ScreenController {
