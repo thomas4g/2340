@@ -45,16 +45,12 @@ public enum CharacterType {
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed of Flappers. " 
 			+ "Their race has accumulated vast riches by establishing trade with far-off lands.", 
-<<<<<<< HEAD
-			1600, new String[]{"Samantha", "Sally"}),
-			
-	MULE("Mules",
-		"The labor force of the empire", 0, new String[]{"The Garbage Man"});
-=======
+
 			1600, new String[]{"Samantha", "Sally", "Edna", "Susan B. Anthony",
 			"Betty Crocker", "Mary Antoinette", "Amelia Earhart", "Queen Elizabeth",
-			"Ida B. Wells", "Emma Goldman", "Margaret Fuller", "Betty Friedan"});
->>>>>>> ux
+			"Ida B. Wells", "Emma Goldman", "Margaret Fuller", "Betty Friedan"}),
+			
+	MULE("MULE","The labor force of the empire", 0, new String[]{"The Garbage Man"});
 	
 	private final static Random randy = new Random();
 	

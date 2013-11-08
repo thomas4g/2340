@@ -192,7 +192,6 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 		String resourcesString = "\n";
 		
 		for(int i = 0; i < resources.length; i++) {
@@ -202,10 +201,6 @@ public class Player extends Entity implements Transactor, Comparable {
 		return "Name: " + name + " | Money: " + money
 			+ " | Color: "+color+" | Race: " + type.name()
 			+ resourcesString;
-=======
-		return "Name: " + name + " | Money: " + money 
-				+ " | Color: " + color + " | Race: " + type.name();
->>>>>>> ux
 	}
 	
 	///// working on transactions
