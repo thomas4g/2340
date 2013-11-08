@@ -11,14 +11,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Popup;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
@@ -92,7 +96,6 @@ public class FXMapView extends FXView implements TownMapView {
 	 * Renders graphics
 	 */
 	public void render() {
-
 		graphics.clear(0, 0, (int)canvas.getWidth(), (int)canvas.getHeight());
 		
 		if(mapRenderer != null) {
@@ -256,7 +259,11 @@ public class FXMapView extends FXView implements TownMapView {
 
 	@Override
 	public void displayMuleOptions() {
-		final FlowPane flow = new FlowPane();
+		final BorderPane container = new BorderPane();
+		Pane pane = new Pane();
+		pane.setStyle("-fx-padding:15px; -fx-background-color:white");
+
+		
 		final ObservableList<ResourceType> resourceTypes = FXCollections.observableArrayList(ResourceType.values());
 		final ComboBox<ResourceType> cb = new ComboBox<ResourceType>(resourceTypes);
 		
@@ -265,12 +272,16 @@ public class FXMapView extends FXView implements TownMapView {
 			public void changed(ObservableValue<? extends ResourceType> arg0,
 					ResourceType arg1, ResourceType arg2) {
 				if(arg2 != null) {
-					stack.getChildren().remove(flow);
+					stack.getChildren().remove(container);
 					townController.setMuleType(arg2);
 				}
 			}
 		});
-		flow.getChildren().add(cb);
-		stack.getChildren().add(flow);		
+		
+//		flow.setPadding(new Insets(20, 20, 20, 20));
+		pane.getChildren().add(cb);
+		pane.setMaxSize(200, 200);
+		container.setCenter(pane);
+		stack.getChildren().add(container);
 	}
 }
