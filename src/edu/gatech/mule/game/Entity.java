@@ -32,7 +32,7 @@ public abstract class Entity {
 	 * @param tile, the tile where the entity is positioned
 	 */
 	public Entity(String imgPath,Point location,GameTile tile) {
-		frameIndex=0;
+		frameIndex = 0;
 		this.location = location;
 		this.tile = tile;
 		this.direction = Direction.DOWN;
@@ -126,7 +126,7 @@ public abstract class Entity {
 	 * @param pos, position to set entity to
 	 */
 	public void setPosition(Point pos) {
-		location=pos;
+		location = pos;
 	}
 
 	/**

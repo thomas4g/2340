@@ -179,8 +179,8 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	@Override
 	public String toString() {
-		return "Name: "+name+" | Money: "+money+
-				" | Color: "+color+" | Race: "+type.name();
+		return "Name: " + name + " | Money: " + money 
+				+ " | Color: " + color + " | Race: " + type.name();
 	}
 	
 	///// working on transactions
