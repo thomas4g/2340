@@ -8,11 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
-import edu.gatech.mule.game.CharacterType;
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.game.player.CharacterType;
+import edu.gatech.mule.game.player.Player;
 
 /**
  * View for race select config
@@ -62,16 +60,16 @@ public class FXRaceSelectView extends FXSettingsView {
 		headshot.setImage(new Image(raceScroll[toggle].getHeadshot(1)));
 		description.setText(raceScroll[toggle].getDescripion());
 		
-		humanoid.setTextFill(Color.web(SettingsView.NORMAL));
-		flapper.setTextFill(Color.web(SettingsView.NORMAL));
-		bonzoid.setTextFill(Color.web(SettingsView.NORMAL));
+		humanoid.setTextFill(FXSettingsView.NORMAL);
+		flapper.setTextFill(FXSettingsView.NORMAL);
+		bonzoid.setTextFill(FXSettingsView.NORMAL);
 		
 		switch(toggle) {
-		case 0: humanoid.setTextFill(Color.web(SettingsView.SELECTED));
+		case 0: humanoid.setTextFill(FXSettingsView.SELECTED);
 			break;
-		case 1: flapper.setTextFill(Color.web(SettingsView.SELECTED));
+		case 1: flapper.setTextFill(FXSettingsView.SELECTED);
 			break;
-		case 2: bonzoid.setTextFill(Color.web(SettingsView.SELECTED));
+		case 2: bonzoid.setTextFill(FXSettingsView.SELECTED);
 			break;
 		}
 	}

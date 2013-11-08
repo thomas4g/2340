@@ -1,4 +1,6 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.main;
+
+import edu.gatech.mule.fx.screens.views.FXSettingsView;
 
 public class FXHelpView extends FXSettingsView {
 

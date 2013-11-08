@@ -5,11 +5,9 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
-import edu.gatech.mule.screen.screens.views.SettingsView;
 
 public class FXMapTypeView extends FXSettingsView {
 	
@@ -33,12 +31,12 @@ public class FXMapTypeView extends FXSettingsView {
 	protected void toggleSelected() {
 		switch(toggle) {
 		case 0:
-			defaultMap.setTextFill(Color.web(SettingsView.SELECTED));
-			randomMap.setTextFill(Color.web(SettingsView.NORMAL));
+			defaultMap.setTextFill(FXSettingsView.SELECTED);
+			randomMap.setTextFill(FXSettingsView.NORMAL);
 			break;
 		case 1:
-			randomMap.setTextFill(Color.web(SettingsView.SELECTED));
-			defaultMap.setTextFill(Color.web(SettingsView.NORMAL));
+			randomMap.setTextFill(FXSettingsView.SELECTED);
+			defaultMap.setTextFill(FXSettingsView.NORMAL);
 			break;
 		}
 	}

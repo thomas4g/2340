@@ -1,4 +1,4 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.round;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 public class Round {

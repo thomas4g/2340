@@ -1,12 +1,11 @@
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 
 public class FXPersistenceView extends FXSettingsView {
 	
@@ -31,18 +30,18 @@ public class FXPersistenceView extends FXSettingsView {
 
 	@Override
 	protected void toggleSelected() {
-		newGame.setTextFill(Color.web(SettingsView.NORMAL));
-		loadGame.setTextFill(Color.web(SettingsView.GREYED));
-		help.setTextFill(Color.web(SettingsView.GREYED));
+		newGame.setTextFill(FXSettingsView.NORMAL);
+		loadGame.setTextFill(FXSettingsView.GREYED);
+		help.setTextFill(FXSettingsView.GREYED);
 		switch(toggle) {
 		case 0:
-			newGame.setTextFill(Color.web(SettingsView.SELECTED));
+			newGame.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 1:
-			loadGame.setTextFill(Color.web(SettingsView.SELECTED));
+			loadGame.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 2:
-			help.setTextFill(Color.web(SettingsView.SELECTED));
+			help.setTextFill(FXSettingsView.SELECTED);
 			break;
 		}
 	}

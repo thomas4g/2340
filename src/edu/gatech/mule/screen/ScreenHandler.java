@@ -3,13 +3,13 @@ package edu.gatech.mule.screen;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.screens.controllers.HelpController;
-import edu.gatech.mule.screen.screens.controllers.PersistenceController;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.controllers.StartController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.GameplayController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.LandSelectController;
 import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
+import edu.gatech.mule.screen.screens.controllers.main.HelpController;
+import edu.gatech.mule.screen.screens.controllers.main.PersistenceController;
+import edu.gatech.mule.screen.screens.controllers.main.StartController;
 import edu.gatech.mule.screen.screens.controllers.player.ColorSelectController;
 import edu.gatech.mule.screen.screens.controllers.player.NameChooseController;
 import edu.gatech.mule.screen.screens.controllers.player.RaceSelectController;

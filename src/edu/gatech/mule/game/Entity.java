@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import edu.gatech.mule.game.CharacterType.Direction;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 
 /**
@@ -31,7 +31,7 @@ public abstract class Entity {
 	 * @param location, location on a map
 	 * @param tile, the tile where the entity is positioned
 	 */
-	public Entity(String imgPath,Point location,GameTile tile){
+	public Entity(String imgPath,Point location,GameTile tile) {
 		frameIndex=0;
 		this.location = location;
 		this.tile = tile;
@@ -44,7 +44,7 @@ public abstract class Entity {
 	 * @param deltaX, horizontal direction and rate of movement
 	 * @param deltaY, vertical direction and rate of movement
 	 */
-	public void move(int deltaX,int deltaY){
+	public void move(int deltaX,int deltaY) {
 		location.x += deltaX;
 		location.y += deltaY;
 		
@@ -63,7 +63,7 @@ public abstract class Entity {
 	 * Set the direction the entity is facing
 	 * @param dir, direction the entity is facing
 	 */
-	public void setDirection(Direction dir){
+	public void setDirection(Direction dir) {
 		direction = dir;
 	}
 	
@@ -79,17 +79,17 @@ public abstract class Entity {
 	 * Set the tile of the map based on the location of the entity
 	 * @param map, the map the entity is traversing upon
 	 */
-	public void setTile(GameMap map){
-		int xTilePos=(int)(location.getX()/OrthogonalMapRenderer.TILE_WIDTH);
-		int yTilePos=(int)(location.getY()/OrthogonalMapRenderer.TILE_HEIGHT);
-		tile=map.getTile(xTilePos, yTilePos);
+	public void setTile(GameMap map) {
+		int xTilePos = (int)(location.getX()/OrthogonalMapRenderer.TILE_WIDTH);
+		int yTilePos = (int)(location.getY()/OrthogonalMapRenderer.TILE_HEIGHT);
+		tile = map.getTile(xTilePos, yTilePos);
 	}
 	
 	/**
 	 * Get the tile type
 	 * @return tile type
 	 */
-	public TileType getTileType(){
+	public TileType getTileType() {
 		return tile.getType();
 	}
 	
@@ -97,7 +97,7 @@ public abstract class Entity {
 	 * Get the image of the entity
 	 * @return image of the entity
 	 */
-	public BufferedImage getImage(){
+	public BufferedImage getImage() {
 		return image;
 	}
 	
@@ -105,9 +105,9 @@ public abstract class Entity {
 	 * Set up the frames for animation
 	 * @param srcFrames, array of frames for animation
 	 */
-	public void setFrames(String[] srcFrames){
-		frames=new BufferedImage[srcFrames.length];
-		for(int i=0;i<frames.length;i++){
+	public void setFrames(String[] srcFrames) {
+		frames = new BufferedImage[srcFrames.length];
+		for(int i=0;i<frames.length;i++) {
 			frames[i] = loadImage(srcFrames[i]);
 		}
 		updateFrame();
@@ -117,7 +117,7 @@ public abstract class Entity {
 	 * Get the position of the entity
 	 * @return position of the entity
 	 */
-	public Point getPosition(){
+	public Point getPosition() {
 		return location;
 	}
 	
@@ -125,16 +125,16 @@ public abstract class Entity {
 	 * Set the position of the entity
 	 * @param pos, position to set entity to
 	 */
-	public void setPosition(Point pos){
+	public void setPosition(Point pos) {
 		location=pos;
 	}
 
 	/**
 	 * Updates the animation frame
 	 */
-	private void updateFrame(){
-		frameIndex=(frameIndex+1)%frames.length;
-		image=frames[frameIndex];
+	private void updateFrame() {
+		frameIndex = (frameIndex+1)%frames.length;
+		image = frames[frameIndex];
 	}
 	
 	/**

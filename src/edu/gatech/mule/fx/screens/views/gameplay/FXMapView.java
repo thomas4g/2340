@@ -11,8 +11,8 @@ import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.screen.screens.views.MapView;
 

@@ -4,57 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.gatech.mule.game.player.Color;
+import edu.gatech.mule.game.player.Difficulty;
+import edu.gatech.mule.game.player.Player;
+
 /**
  * Settings for the game
  * @version 0.1
  */
 public class Settings {
 	
-	public enum Difficulty { 
-		
-		BEGINNER (new int[] {8, 4, 0, 0, 0}, new int[] {16, 16, 0, 0, 25}), 
-		STANDARD (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14}), 
-		ADVANCED (new int[] {4, 2, 0, 0, 0}, new int[] {8, 8, 8, 0, 14});
-		
-		private int[] playerResources, storeResources;
-		
-		private Difficulty(int[] playerResources, int[] storeResources) {
-			this.playerResources = playerResources;
-			this.storeResources = storeResources;
-		}
-		
-		public int[] getPlayerResources() {
-			return this.playerResources;
-		}
-		
-		public int[] getStoreResources() {
-			return this.storeResources;
-		}
-	}
-	
 	public enum MapType { DEFAULT, RANDOM };
-	
-	public enum Color { 
-		PURPLE (145,85,134),
-		BLUE (83,99,141), 
-		TEAL (66,110,125), 
-		SEAFOAM (86,136,126), 
-		GREEN (97,149,75), 
-		GOLD (143,142,74), 
-		ORANGE (157,108,56), 
-		MAROON (123,63,59); 
-		
-		private java.awt.Color color;
-	
-		private Color(int red, int green, int blue){
-			this.color = new java.awt.Color(red, green, blue);
-		}
-		
-		public java.awt.Color getRGB() {
-			return this.color;
-		}
-		
-	};
 	
 	private Difficulty difficulty;
 	private MapType mapType;
@@ -100,7 +60,7 @@ public class Settings {
 	 * @param type, map type of game
 	 */
 	public void setMapType(MapType type) {
-		this.mapType=type;
+		this.mapType = type;
 	}
 	
 	/**
@@ -124,7 +84,7 @@ public class Settings {
 	 * @param count, number of players
 	 */
 	public void setPlayerCount(int count) {
-        playerCount=count;
+        playerCount = count;
 	}
 	
 	/**
@@ -179,9 +139,10 @@ public class Settings {
 		return this.getCurrentPlayerHeadshot(getCurrentPlayerColor());
 	}
 	
-	/**
-	 * Move on to the next player
-	 */
+	public boolean allPlayersSet() {
+		return getPlayerCount() == getPlayers().size();
+	}
+	
 	public void nextPlayer(){
 		playerIndex++;
 	}

@@ -3,8 +3,8 @@ package edu.gatech.mule.screen.screens.controllers.gameplay;
 import java.awt.Point;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.Player;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.screen.screens.views.MapView;
 
 /**

@@ -5,9 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
-import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * View for settings config
@@ -37,16 +35,16 @@ public class FXNumPlayersView extends FXSettingsView {
 	}
 	
 	protected void toggleSelected() {
-		two.setTextFill(Color.web(SettingsView.NORMAL));
-		three.setTextFill(Color.web(SettingsView.NORMAL));
-		four.setTextFill(Color.web(SettingsView.NORMAL));
+		two.setTextFill(FXSettingsView.NORMAL);
+		three.setTextFill(FXSettingsView.NORMAL);
+		four.setTextFill(FXSettingsView.NORMAL);
 		
 		switch(toggle) {
-		case 0: two.setTextFill(Color.web(SettingsView.SELECTED));
+		case 0: two.setTextFill(FXSettingsView.SELECTED);
 			break;
-		case 1: three.setTextFill(Color.web(SettingsView.SELECTED));
+		case 1: three.setTextFill(FXSettingsView.SELECTED);
 			break;
-		case 2: four.setTextFill(Color.web(SettingsView.SELECTED));
+		case 2: four.setTextFill(FXSettingsView.SELECTED);
 			break;
 		}
 	}

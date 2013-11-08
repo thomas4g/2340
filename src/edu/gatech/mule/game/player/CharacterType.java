@@ -1,4 +1,4 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.player;
 
 import java.util.Random;
 

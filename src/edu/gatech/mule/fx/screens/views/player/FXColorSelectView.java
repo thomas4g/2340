@@ -9,10 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
+import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
-import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.screen.screens.views.SettingsView;
 
 /**
  * View for player config
@@ -21,7 +19,7 @@ import edu.gatech.mule.screen.screens.views.SettingsView;
 public class FXColorSelectView extends FXSettingsView {
 	
 	private final static Random randy = new Random();
-	private final static Settings.Color[] colors = Settings.Color.values();
+	private final static Color[] colors = Color.values();
 	
 	@FXML
 	private Label playerAnnouncer;
@@ -68,7 +66,7 @@ public class FXColorSelectView extends FXSettingsView {
 	
 	protected void toggleSelected() {
 		greyedOrNotAll();
-		colorLabels[toggle].setTextFill(Color.web(SettingsView.SELECTED));
+		colorLabels[toggle].setTextFill(FXSettingsView.SELECTED);
 		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
 	}
 	
@@ -79,17 +77,17 @@ public class FXColorSelectView extends FXSettingsView {
 		}
 	}
 	
-	private String grayedOrNot(int color) {
+	private javafx.scene.paint.Color grayedOrNot(int color) {
 		if(settings.colorUsed(color)) {
-			return SettingsView.GREYED;
+			return FXSettingsView.GREYED;
 		}
-		return SettingsView.NORMAL;
+		return FXSettingsView.NORMAL;
 	}
 	
 	private void greyedOrNotAll() {
 		int i = 0;
 		for(Label label : colorLabels) {
-			label.setTextFill(Color.web(grayedOrNot(colors[i++].ordinal()+1)));
+			label.setTextFill(grayedOrNot(colors[i++].ordinal()+1));
 		}
 	}
 

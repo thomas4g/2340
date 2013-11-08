@@ -5,15 +5,13 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.game.Settings;
-import edu.gatech.mule.game.Settings.Difficulty;
-import edu.gatech.mule.screen.screens.views.SettingsView;
+import edu.gatech.mule.game.player.Difficulty;
 
 public class FXDifficultyView extends FXSettingsView {
 	
-	private final static Difficulty[] difficulties = Settings.Difficulty.values();
+	private final static Difficulty[] difficulties = Difficulty.values();
 	
 	private Settings settings;
 	
@@ -35,18 +33,18 @@ public class FXDifficultyView extends FXSettingsView {
 	}
 	
 	protected void toggleSelected() {
-		beginner.setTextFill(Color.web(SettingsView.NORMAL));
-		standard.setTextFill(Color.web(SettingsView.NORMAL));
-		advanced.setTextFill(Color.web(SettingsView.NORMAL));
+		beginner.setTextFill(FXSettingsView.NORMAL);
+		standard.setTextFill(FXSettingsView.NORMAL);
+		advanced.setTextFill(FXSettingsView.NORMAL);
 		switch(toggle) {
 		case 0:
-			beginner.setTextFill(Color.web(SettingsView.SELECTED));
+			beginner.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 1:
-			standard.setTextFill(Color.web(SettingsView.SELECTED));
+			standard.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 2:
-			advanced.setTextFill(Color.web(SettingsView.SELECTED));
+			advanced.setTextFill(FXSettingsView.SELECTED);
 			break;
 		}
 	}

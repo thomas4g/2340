@@ -1,14 +1,15 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.player;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import edu.gatech.mule.game.CharacterType.Direction;
-import edu.gatech.mule.game.Settings.Color;
+import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.resources.Mule;
 import edu.gatech.mule.game.resources.ResourceType;
+import edu.gatech.mule.game.round.Turn;
 import edu.gatech.mule.game.store.Transaction;
 import edu.gatech.mule.game.store.Transactor;
 

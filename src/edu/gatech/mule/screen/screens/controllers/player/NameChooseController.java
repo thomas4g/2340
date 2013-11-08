@@ -21,9 +21,7 @@ public class NameChooseController extends ScreenController {
 
 	@Override
 	public void done() {
-		System.out.println("player count: "+game.getSettings().getPlayerCount());
-		System.out.println("number of players: "+game.getSettings().getPlayers().size());
-		if(game.getSettings().getPlayerCount() == game.getSettings().getPlayers().size()) {
+		if(game.allPlayersSet()) {
 			game.playGame();
 		} else {
 			game.chooseRace();

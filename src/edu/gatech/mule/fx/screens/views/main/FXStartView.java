@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.gatech.mule.fx.screens.views;
+package edu.gatech.mule.fx.screens.views.main;
 
+import edu.gatech.mule.fx.screens.views.FXView;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

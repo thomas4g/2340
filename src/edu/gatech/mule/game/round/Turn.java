@@ -1,7 +1,9 @@
-package edu.gatech.mule.game;
+package edu.gatech.mule.game.round;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import edu.gatech.mule.game.player.Player;
 
 public class Turn {
 

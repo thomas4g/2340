@@ -2,15 +2,15 @@ package edu.gatech.mule.core;
 
 import java.util.List;
 
-import edu.gatech.mule.game.Player;
-import edu.gatech.mule.game.Round;
-import edu.gatech.mule.game.RoundController;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.maps.DefaultGameMap;
 import edu.gatech.mule.game.map.maps.RandomGameMap;
 import edu.gatech.mule.game.map.maps.TownMap;
+import edu.gatech.mule.game.player.Player;
+import edu.gatech.mule.game.round.Round;
+import edu.gatech.mule.game.round.RoundController;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
@@ -156,6 +156,10 @@ public class GameEngine {
 
 	public Round getRound() {
 		return roundController.getRound();
+	}
+	
+	public boolean allPlayersSet() {
+		return settings.allPlayersSet();
 	}
 	
 }
