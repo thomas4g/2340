@@ -1,7 +1,12 @@
 package edu.gatech.mule.graphics;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.map.GameMap;
@@ -54,10 +59,16 @@ public class OrthogonalMapRenderer {
 	                }
 	                
 	                if(tile instanceof PropertyTile && tile.hasOwner()) {
-	                	BufferedImage totem = tile.getOwner().getTotem();
 	                	PropertyTile t = (PropertyTile)tile;
 	                	
 	                	for(int i=0;i<t.getMules().size();i++) {
+		                	BufferedImage totem = null;
+							try {
+								totem = ImageIO.read(new File("res/tiles/resource tiles/" + t.getMules().get(i).getType().name().toLowerCase() + "tile.png"));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} //tile.getOwner().getTotem();
 	                		graphics.drawImage(totem, x * TILE_WIDTH + i*totem.getWidth(), y * TILE_HEIGHT + TILE_HEIGHT - 10, totem.getWidth(), totem.getHeight());
 	                	}
 	                }
