@@ -28,12 +28,12 @@ public enum CharacterType {
 	BONZOID("Bonzoid", 
 			"Despite their bulky size, Bonzoids are a peaceful race. "
 			+ "Many work as tailors, blacksmiths, carpenters, and shopowners.", 
-			new String[]{"Colonel Mustard", "George"}),
+			new String[]{"Colonel Mustard", "George", "Brer Gorilla"}),
 	
 	/**
 	 * Mechtron:playable only for AI
 	 */
-	AUTOMATON("Automaton", 
+	MECHTRON("Mechtron", 
 			"Mechtrons are machines created to do the will of the empress. " 
 			+ "They are stronger, faster, and more alter than any race in the empire. " 
 			+ "Players cannot control Mechtrons; selecting one creates an npc.",
@@ -45,15 +45,21 @@ public enum CharacterType {
 	FLAPPER("Flapper", 
 			"The aristocracy of the empire is primarily composed of Flappers. " 
 			+ "Their race has accumulated vast riches by establishing trade with far-off lands.", 
+<<<<<<< HEAD
 			1600, new String[]{"Samantha", "Sally"}),
 			
 	MULE("Mules",
 		"The labor force of the empire", 0, new String[]{"The Garbage Man"});
+=======
+			1600, new String[]{"Samantha", "Sally", "Edna", "Susan B. Anthony",
+			"Betty Crocker", "Mary Antoinette", "Amelia Earhart", "Queen Elizabeth",
+			"Ida B. Wells", "Emma Goldman", "Margaret Fuller", "Betty Friedan"});
+>>>>>>> ux
 	
 	private final static Random randy = new Random();
 	
 	public static final String IMAGE_EXT = ".png";
-	public enum Direction{DOWN,UP,RIGHT,LEFT};
+	public enum Direction {DOWN, UP, RIGHT, LEFT};
 	
 	private static final double MONEY = 1000;
 	private static final String IMAGE_PATH = "/assets";
