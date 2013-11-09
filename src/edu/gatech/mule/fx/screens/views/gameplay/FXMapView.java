@@ -106,7 +106,7 @@ public class FXMapView extends FXView implements TownMapView {
 		
 		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
 		
-		drawCurrentPlayer();
+		drawPlayers();
 		
 		if(storeResources != null) {
 			drawStoreResources();
@@ -153,19 +153,35 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 	}
 	
+	private void drawPlayers() {
+		BufferedImage hs = currentPlayer.getHeadshot();
+		float ratio = (float)hs.getWidth()/hs.getHeight();
+		int newHeight = 100;
+		int newWidth = (int)(newHeight*ratio);
+		graphics.drawImage(currentPlayer.getHeadshot(), 20+80*0, 420, newWidth, newHeight);
+		for(int i=0; i<4; i++) {
+			if(currentPlayer != null) {
+				hs = currentPlayer.getHeadshot();
+				ratio = (float)hs.getWidth()/hs.getHeight();
+				newHeight = 100;
+				newWidth = (int)(newHeight*ratio);
+				if(i<1) {
+					graphics.drawText(currentPlayer.display(), new Point(160+120*i, 420));
+				} else {
+					graphics.drawGreyedText(currentPlayer.display(), new Point(160+120*i, 420));
+				}
+			}
+		}
+	}
 	
-	
-	/**
-	 * Draws the current player's sprite
-	 */
 	private void drawCurrentPlayer() {
 		if(currentPlayer != null) {
 			BufferedImage hs = currentPlayer.getHeadshot();
-			float ratio = (float)hs.getHeight()/hs.getWidth();
-			int newWidth = 75;
-			int newHeight = (int)(newWidth*ratio);
-			graphics.drawImage(currentPlayer.getHeadshot(), 15, 450, newWidth, newHeight);
-			graphics.drawText(currentPlayer.toString(), new Point(100, 500));
+			float ratio = (float)hs.getWidth()/hs.getHeight();
+			int newHeight = 100;
+			int newWidth = (int)(newHeight*ratio);
+			graphics.drawImage(currentPlayer.getHeadshot(), 30, 420, newWidth, newHeight);
+			graphics.drawText(currentPlayer.display(), new Point(150, 420));
 		}
 	}
 	

@@ -84,6 +84,10 @@ public class FXGraphics implements Renderer {
 	public void drawText(String text, Point point) {
 		drawText(text, point, Color.BLACK, 12);
 	}
+	
+	public void drawGreyedText(String text, Point point) {
+		drawText(text, point, Color.GRAY, 12);
+	}
 
 	public void drawText(String text, Point point, Color color, double fontSize) {
 		gc.setLineWidth(.75);
