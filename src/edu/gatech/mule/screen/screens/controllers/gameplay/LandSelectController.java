@@ -45,6 +45,7 @@ public class LandSelectController extends ScreenController {
 		view.setGameEntities(new ArrayList<Entity>());
 		view.setGameMap(map);
 		setPlayer();
+		view.setPlayers(game.getSettings().getPlayers());
 	}
 	
 	@Override

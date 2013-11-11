@@ -42,6 +42,7 @@ public class FXMapView extends FXView implements TownMapView {
 	private GameMap gameMap;
 	private List<Entity> gameEntities;
 	private Player currentPlayer;
+	private List<Player> players;
 	private Point selectorLocation;
 	private int[] storeResources;
 	private TownController townController;
@@ -81,7 +82,7 @@ public class FXMapView extends FXView implements TownMapView {
 				else if(k.getCode().equals(KeyCode.ENTER)){
 					controller.action();
 				}
-				else if(k.getCode() == KeyCode.SPACE) {
+				else if(k.getCode() == KeyCode.S) {
 					controller.done();
 				}
 			}
@@ -153,35 +154,25 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 	}
 	
-	private void drawPlayers() {
-		BufferedImage hs = currentPlayer.getHeadshot();
-		float ratio = (float)hs.getWidth()/hs.getHeight();
-		int newHeight = 100;
-		int newWidth = (int)(newHeight*ratio);
-		graphics.drawImage(currentPlayer.getHeadshot(), 20+80*0, 420, newWidth, newHeight);
-		for(int i=0; i<4; i++) {
-			if(currentPlayer != null) {
-				hs = currentPlayer.getHeadshot();
-				ratio = (float)hs.getWidth()/hs.getHeight();
-				newHeight = 100;
-				newWidth = (int)(newHeight*ratio);
-				if(i<1) {
-					graphics.drawText(currentPlayer.display(), new Point(160+120*i, 420));
-				} else {
-					graphics.drawGreyedText(currentPlayer.display(), new Point(160+120*i, 420));
-				}
+	private void drawPlayers() {	
+		BufferedImage hs = null;
+		float ratio = 0;
+		int newHeight, newWidth = 0;
+		
+		int i = 0;
+		for(Player player : players) {
+			hs = player.getHeadshot();
+			ratio = (float)hs.getWidth()/hs.getHeight();
+			newHeight = 100;
+			newWidth = (int)(newHeight*ratio);
+			if(player.equals(currentPlayer)) {
+				graphics.drawImage(player.getHeadshot(), 160+120*i, 420, newWidth, newHeight);
+				graphics.drawText(player.display(), new Point(160+120*i, 420));
+			} else {
+				graphics.drawImage(player.getHeadshot(), 160+120*i, 420, newWidth/2, newHeight/2);
+				graphics.drawGreyedText(player.display(), new Point(160+120*i, 420));
 			}
-		}
-	}
-	
-	private void drawCurrentPlayer() {
-		if(currentPlayer != null) {
-			BufferedImage hs = currentPlayer.getHeadshot();
-			float ratio = (float)hs.getWidth()/hs.getHeight();
-			int newHeight = 100;
-			int newWidth = (int)(newHeight*ratio);
-			graphics.drawImage(currentPlayer.getHeadshot(), 30, 420, newWidth, newHeight);
-			graphics.drawText(currentPlayer.display(), new Point(150, 420));
+			i++;
 		}
 	}
 	
@@ -199,6 +190,11 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;		
+	}
+	
+	@Override
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 
 	@Override

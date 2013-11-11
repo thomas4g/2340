@@ -1,7 +1,9 @@
 package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.player.Player;
@@ -18,6 +20,7 @@ public abstract class MapController extends ScreenController {
 	protected List<Entity> entities;
 	protected Turn turn;
 	protected Player currentPlayer;
+	protected Iterator<Player> players;
 	protected int moveRate;
 		
 	public MapController(GameEngine game, MapView view, int moveRate) {
@@ -42,6 +45,7 @@ public abstract class MapController extends ScreenController {
 		view.setGameMap(map);
 		view.setGameEntities(entities);
 		view.setCurrentPlayer(currentPlayer);
+		view.setPlayers(game.getSettings().getPlayers());
 	}
 
 	
