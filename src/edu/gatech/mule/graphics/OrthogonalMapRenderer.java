@@ -67,7 +67,7 @@ public class OrthogonalMapRenderer {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} //tile.getOwner().getTotem();
-	                		graphics.drawImage(totem, x * TILE_WIDTH + i*totem.getWidth(), y * TILE_HEIGHT + TILE_HEIGHT - 10, totem.getWidth(), totem.getHeight());
+	                		graphics.drawImage(totem, x * TILE_WIDTH + i*totem.getWidth(), y * TILE_HEIGHT + TILE_HEIGHT - totem.getHeight(), totem.getWidth(), totem.getHeight());
 	                	}
 	                }
 				}
