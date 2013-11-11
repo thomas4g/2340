@@ -151,20 +151,20 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * Get player's owned lands
 	 * @return player's owned lands
 	 */
-	public ArrayList<GameTile> getLands(){
+	public ArrayList<GameTile> getLands() {
 		return ownedLands;
 	}
 	
-	public void setMule(Mule mule){
-		this.mule=mule;
+	public void setMule(Mule mule) {
+		this.mule = mule;
 	}
 	
-	public Mule getMule(){
+	public Mule getMule() {
 		return mule;
 	}
 	
-	public boolean hasMule(){
-		return mule!=null;
+	public boolean hasMule() {
+		return mule != null;
 	}
 	
 	/**
@@ -189,7 +189,6 @@ public class Player extends Entity implements Transactor, Comparable {
 		return this.headshot;
 	}
 	
-	
 	@Override
 	public String toString() {
 		String resourcesString = "\n";
@@ -201,6 +200,14 @@ public class Player extends Entity implements Transactor, Comparable {
 		return "Name: " + name + " | Money: " + money
 			+ " | Color: "+color+" | Race: " + type.name()
 			+ resourcesString;
+	}
+	
+	public String display() {
+		String resourcesString = "\n";
+		for(int i = 0; i < resources.length; i++) {
+			resourcesString += ResourceType.values()[i].toString() + ": " + resources[i] + "\n";
+		}
+		return name + "\n$" + (int)money + resourcesString;
 	}
 	
 	///// working on transactions

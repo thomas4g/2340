@@ -29,8 +29,8 @@ public abstract class Entity {
 	 * @param location, location on a map
 	 * @param tile, the tile where the entity is positioned
 	 */
-	public Entity(String imgPath,Point location){
-		frameIndex=0;
+	public Entity(String imgPath,Point location) {
+		frameIndex = 0;
 		this.location = location;
 		this.direction = Direction.DOWN;
 		this.image = loadImage(imgPath);
@@ -129,7 +129,7 @@ public abstract class Entity {
 	 * @param pos, position to set entity to
 	 */
 	public void setPosition(Point pos) {
-		location=pos;
+		location = pos;
 	}
 
 	/**
