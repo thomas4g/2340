@@ -1,5 +1,8 @@
 package edu.gatech.mule.screen.screens.views;
 
+import java.util.List;
+
+import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
 
 
@@ -9,4 +12,5 @@ public interface TownMapView extends MapView {
 	public void displayStoreAmountMenu(boolean buying);
 	public void setStoreResourceAmounts(int[] resources);
 	public void displayMuleOptions();
+	void setMuleOptions(ResourceType[] mules);
 }

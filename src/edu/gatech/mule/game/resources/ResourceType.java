@@ -4,6 +4,6 @@ public enum ResourceType {
     FOOD, 
     ENERGY, 
     SMITHORE, 
-    CRYSTITE, 
+    CRYSTITE,
     MULE
 }

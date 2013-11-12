@@ -9,20 +9,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Popup;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
@@ -39,7 +35,6 @@ import edu.gatech.mule.screen.screens.views.TownMapView;
  * @version 1.0
  */
 public class FXMapView extends FXView implements TownMapView {
-	private StackPane stack; //add stuff to me!
 	private Canvas canvas;
 	private FXGraphics graphics;
 	private OrthogonalMapRenderer mapRenderer;
@@ -50,23 +45,53 @@ public class FXMapView extends FXView implements TownMapView {
 	private Point selectorLocation;
 	private int[] storeResources;
 	private TownController townController;
-
+	
+	final private ObservableList<String> buySell;
+	final private ObservableList<ResourceType> muleTypes;
+	
+	@FXML
+	private StackPane canvasContainer;
+	@FXML
+	private GridPane storeSelectorOverlay;
+	@FXML
+	private GridPane textOverlay;
+	@FXML
+	private ChoiceBox<String> storeSelector;
+	@FXML
+	private GridPane muleSelectorOverlay;
+	@FXML
+	private ChoiceBox<ResourceType> muleSelector;
+	@FXML
+	private TextField textField;
+	@FXML 
+	private HBox playerPanel;
+	
 	/**
 	 * Constructor for map view
 	 */
 	public FXMapView() {
-		super("");
+		super("map");
+		buySell = FXCollections.observableArrayList("Buy", "Sell");
+		muleTypes = FXCollections.observableArrayList();
 	}
-	
+
 	@Override
 	public void load() {
-		stack = new StackPane();
-		canvas = new Canvas(720, 700);
-		stack.getChildren().add(canvas);
-		node = stack;
+		super.load();
+
+		canvas = new Canvas(720, 520);
+		canvasContainer.getChildren().add(0, canvas);
+		muleSelectorOverlay.setVisible(false);
+		storeSelectorOverlay.setVisible(false);
+		textOverlay.setVisible(false);
+		
+		storeSelector.setItems(buySell);
+		muleSelector.setItems(muleTypes);
+		
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
+		
 	}
 	
 	/**
@@ -212,57 +237,53 @@ public class FXMapView extends FXView implements TownMapView {
 
 	@Override
 	public void displayStoreMenu() {
-		final FlowPane flow = new FlowPane();
-		final ObservableList<String> buySell = FXCollections.observableArrayList("Buy", "Sell");
-		final ComboBox<String> cb = new ComboBox<String>(buySell);
-		
-		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+		storeSelectorOverlay.setVisible(true);
+		storeSelector.requestFocus();
+		storeSelector.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> arg0,
 					String arg1, String selected) {
 				if(selected.equals(buySell.get(0))){
-					stack.getChildren().remove(flow);
+					storeSelectorOverlay.setVisible(false);
 					displayStoreAmountMenu(true);
 				}
 				else if(selected.equals(buySell.get(1))) {
-					stack.getChildren().remove(flow);
+					storeSelectorOverlay.setVisible(false);
 					displayStoreAmountMenu(false);
 				}
 			}
 			
 		});
-		flow.getChildren().add(cb);
-		stack.getChildren().add(flow);		
 	}
 
 	@Override
 	public void displayStoreAmountMenu(final boolean buying) {
-		final FlowPane flow = new FlowPane();
-		final TextField amount = new TextField();
-		Button done = new Button("Confirm");
-		done.setOnAction(new EventHandler<ActionEvent>() {
+		textOverlay.setVisible(true);
+		textField.requestFocus();
+		textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
 			@Override
-			public void handle(ActionEvent arg0) {
-				stack.getChildren().remove(flow);
-				
-				int count = 0;
-				try {
-					count = Integer.parseInt(amount.getText());
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.ENTER) {
+					int count = 0;
+					try {
+						count = Integer.parseInt(textField.getText());
+					}
+					catch(NumberFormatException ex) {
+						
+					}
+					textOverlay.setVisible(false);
+					townController.storeComplete(count, buying);
 				}
-				catch(NumberFormatException ex) {
-					
+				else if(event.getCode() == KeyCode.ESCAPE) {
+					textOverlay.setVisible(false);
 				}
-				townController.storeComplete(count, buying);
 			}
 			
 		});
-		
-		flow.getChildren().add(amount);
-		flow.getChildren().add(done);
-		stack.getChildren().add(flow);
 	}
+	
 
 	@Override
 	public void setStoreResourceAmounts(int[] resources) {
@@ -271,29 +292,26 @@ public class FXMapView extends FXView implements TownMapView {
 
 	@Override
 	public void displayMuleOptions() {
-		final BorderPane container = new BorderPane();
-		Pane pane = new Pane();
-		pane.setStyle("-fx-padding:15px; -fx-background-color:white");
-
-		
-		final ObservableList<ResourceType> resourceTypes = FXCollections.observableArrayList(ResourceType.values());
-		final ComboBox<ResourceType> cb = new ComboBox<ResourceType>(resourceTypes);
-		
-		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ResourceType>() {
+		if(muleSelectorOverlay.isVisible()) return;
+		muleSelectorOverlay.setVisible(true);
+		muleSelector.requestFocus();
+		muleSelector.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ResourceType>() {
 			@Override
 			public void changed(ObservableValue<? extends ResourceType> arg0,
 					ResourceType arg1, ResourceType arg2) {
 				if(arg2 != null) {
-					stack.getChildren().remove(container);
+					muleSelectorOverlay.setVisible(false);
 					townController.setMuleType(arg2);
 				}
 			}
 		});
-		
-//		flow.setPadding(new Insets(20, 20, 20, 20));
-		pane.getChildren().add(cb);
-		pane.setMaxSize(200, 200);
-		container.setCenter(pane);
-		stack.getChildren().add(container);
+
+	}
+	
+	@Override
+	public void setMuleOptions(ResourceType[] mules) {
+		muleTypes.clear();
+		muleTypes.addAll(mules);
+//		muleSelector.setItems(FXCollections.observableArrayList(mules));
 	}
 }

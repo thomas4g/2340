@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox layoutX="0.0" layoutY="0.0" prefHeight="520.0" prefWidth="720.0">
+      <children>
+        <StackPane fx:id="canvasContainer" prefHeight="400.0" prefWidth="720.0">
+          <children>
+            <GridPane id="canvasOverlays" fx:id="textOverlay" prefHeight="400.0" prefWidth="720.0" style="">
+              <children>
+                <BorderPane id="selector" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color:#efefef;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <center>
+                    <TextField fx:id="textField" maxWidth="170.0" prefWidth="170.0" />
+                  </center>
+                </BorderPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="105.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane id="canvasOverlays" fx:id="storeSelectorOverlay" prefHeight="400.0" prefWidth="720.0" style="">
+              <children>
+                <BorderPane id="selector" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color:#efefef;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <center>
+                    <ChoiceBox fx:id="storeSelector" maxHeight="30.0" maxWidth="120.0" prefHeight="70.0" prefWidth="202.0" visible="true">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ChoiceBox>
+                  </center>
+                </BorderPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="105.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane id="canvasOverlays" fx:id="muleSelectorOverlay" prefHeight="400.0" prefWidth="720.0" style="">
+              <children>
+                <BorderPane id="selector" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color:#efefef;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <center>
+                    <ChoiceBox id="storeSelector" fx:id="muleSelector" maxHeight="30.0" maxWidth="120.0" prefHeight="70.0" prefWidth="202.0" visible="true">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ChoiceBox>
+                  </center>
+                </BorderPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="105.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </StackPane>
+        <HBox fx:id="playerPanel" prefHeight="120.0" prefWidth="720.0" />
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
