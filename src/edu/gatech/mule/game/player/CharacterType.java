@@ -122,6 +122,8 @@ public enum CharacterType {
 		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
 	}
 	
+	
+	
 	private String[] getBigDirectionalSprites(Direction direction) {
 		String dir = 
 				direction == Direction.DOWN  ? "f" :

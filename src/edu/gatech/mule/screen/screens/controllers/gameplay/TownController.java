@@ -62,6 +62,7 @@ public class TownController extends MapController {
 		
 		currentPlayer.useBigSprites(true);
 		
+		
 		Point p = new Point(0, 0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
@@ -113,9 +114,11 @@ public class TownController extends MapController {
 	public void setMuleType(ResourceType type) {
 		if(currentPlayer.getMule() != null) return;
 		
-		Mule m = new Mule(currentPlayer, CharacterType.MULE);
-		m.setType(type);
-		this.entities.add(m);
-		currentPlayer.setMule(m);
+		mule = new Mule(currentPlayer, CharacterType.MULE);
+		mule.setType(type);
+		this.entities.add(mule);
+		currentPlayer.setMule(mule);
+		mule.useBigSprites(true);
+		
 	}
 }

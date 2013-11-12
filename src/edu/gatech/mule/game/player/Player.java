@@ -56,6 +56,9 @@ public class Player extends Entity implements Transactor, Comparable {
 	public void useBigSprites(boolean big) {
 		this.big = big;
 		setDirectionalFrames();
+		if(mule!=null){
+			mule.useBigSprites(big);
+		}
 	}
 	
 	public void setScore(int score) {
@@ -82,6 +85,8 @@ public class Player extends Entity implements Transactor, Comparable {
 		this.color = color;
 	}
 	
+	
+	
 	/**
 	 * Get name of player
 	 * @return name of player
@@ -96,6 +101,11 @@ public class Player extends Entity implements Transactor, Comparable {
 	 */
 	public Color getColor() {
 		return color;
+	}
+	
+	
+	public void setDirectionalFrames(){
+		setFrames(type.getDirectionalSprites(direction, big));
 	}
 	
 	/**
@@ -124,9 +134,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	/**
 	 * Set the directional frames ???
 	 */
-	public void setDirectionalFrames(){
-		setFrames(type.getDirectionalSprites(direction, big));
-	}
+	
 	
 	/**
 	 * Add a property to a player's possession

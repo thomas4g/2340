@@ -1,11 +1,14 @@
 package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
+import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
 
@@ -16,6 +19,7 @@ import edu.gatech.mule.screen.screens.views.MapView;
 public class GameplayController extends MapController {
 
 	public final static int MOVEMENT = 5;
+	private Timer timer;
 	
 	/**
 	 * Constructor for game controller
@@ -34,19 +38,37 @@ public class GameplayController extends MapController {
 		if(currentPlayer.getTileType() == TileType.ENTERTOWN) {
 			game.setScreen(ScreenType.TOWN_SCREEN);
 		}
+		
+		
+		
 	}
 	
 	public void action(){
 		
 		GameTile tile=currentPlayer.getTile();
 		
-		if (currentPlayer.getMule()!=null) {
+		if (currentPlayer.hasMule()) {
+			System.out.println(mule);
 			if (tile.hasOwner() && tile.getOwner() == currentPlayer && tile instanceof PropertyTile) {
-				((PropertyTile)tile).addMule(currentPlayer.getMule());
-			} 
-			
-			entities.remove(currentPlayer.getMule());
+				((PropertyTile)tile).addMule(mule);
+			}else{
+					timer=new Timer(true);
+					timer.schedule(new TimerTask() {
+						
+						@Override
+						public void run() {
+							if(!mule.outOfBounds()) mule.sweetFreedom();
+							else{
+								timer.cancel();
+								entities.remove(mule);
+								mule=null;
+							}
+						}
+					}, 0, 10);
+				
+			}
 			currentPlayer.setMule(null);
+			
 		} 
 		else{
 			System.out.println("tasteless fools!");
