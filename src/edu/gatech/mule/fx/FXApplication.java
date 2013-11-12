@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
-import edu.gatech.mule.music.MenuMusicTask;
 
 /**
  * Run this main method to start game
@@ -40,11 +39,11 @@ public class FXApplication extends Application {
         stage.setTitle(TITLE);
         stage.show();
 
-        MenuMusicTask music = new MenuMusicTask();
-        music.run();
     	Thread renderThread = new Thread(new RenderTask(handler));
     	renderThread.setDaemon(true);
     	renderThread.start();
+    	
+    	game.start();
     }
 
     /**

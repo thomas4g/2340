@@ -1,5 +1,6 @@
 package edu.gatech.mule.core;
 
+import java.net.URL;
 import java.util.List;
 
 import edu.gatech.mule.game.Settings;
@@ -11,6 +12,7 @@ import edu.gatech.mule.game.map.maps.TownMap;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.round.Round;
 import edu.gatech.mule.game.round.RoundController;
+import edu.gatech.mule.music.MusicPlayer;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
@@ -27,6 +29,7 @@ public class GameEngine {
 	private GameMap townMap;
 	private List<Player> players;
 	private RoundController roundController;
+	private MusicPlayer musicPlayer;
 	
 	/**
 	 * Constructor for the game engine
@@ -34,6 +37,8 @@ public class GameEngine {
 	 */
 	public GameEngine() {
 		this.settings = new Settings();
+		this.musicPlayer = new MusicPlayer();
+		musicPlayer.setMedia(getClass().getResource("/music/Artifact.mp3"));
 	}
 	
 	/**
@@ -43,7 +48,6 @@ public class GameEngine {
 	public void load(ScreenHandler handler) {
 		this.screenHandler = handler;
 		screenHandler.load();
-		screenHandler.start();
 	}
 	
 	public void setScreen(ScreenType type) {
@@ -67,6 +71,7 @@ public class GameEngine {
 	}
 	
 	public void start() {
+		musicPlayer.play();
 		screenHandler.setScreen(ScreenType.START);
 	}
 	
@@ -106,6 +111,8 @@ public class GameEngine {
 	 * Sets up map based on configurations and begins land selection
 	 */
 	public void playGame() {
+		musicPlayer.setMedia(getClass().getResource("/music/Night Cave.mp3"));
+		musicPlayer.play();
 		roundController = new RoundController(this, 1);
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {

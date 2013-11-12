@@ -44,11 +44,6 @@ public class FXScreenHandler extends ScreenHandler {
 		FXApplication.view = stack; //TODO this is bad
 	}
 	
-	@Override
-	public void start() {
-//		javafx.application.Application.launch(FXApplication.class);
-	}
-	
 	public FXView getCurrentView() {
 		return this.currentView;
 	}

@@ -61,8 +61,6 @@ public abstract class ScreenHandler {
 		screens.put(ScreenType.LAND_SELECT, new LandSelectController(game, loadLandSelectView()));
 		screens.put(ScreenType.GAME_SCREEN, new GameplayController(game, loadGameplayView()));
 		screens.put(ScreenType.TOWN_SCREEN, new TownController(game, loadTownView()));
-		
-		setScreen(ScreenType.START);
 	}
 
 	protected abstract ScreenView loadStartView();
@@ -89,5 +87,4 @@ public abstract class ScreenHandler {
 		screens.get(type).load();		
 	}
 		
-	public abstract void start();
 }
