@@ -1,0 +1,74 @@
+<project name="MULE Ant Build" basedir="." default="main">
+    
+    <property name="src" value="src" />
+    <property name="bin" value="bin" />
+    <property name="lib" value="lib" />
+    <property name="res" value="res" />
+    <property name="production" value="production" />
+    <property name="jar.file" value="${production}/MULE.jar" />
+    <property name="api" value="${production}/api" />
+    <property name="main-class" value="edu.gatech.mule.fx.FXApplication" />
+    
+    <path id="classpath">
+        <fileset dir="${lib}" includes="**/*.jar"/>
+    </path>
+    
+    <manifestclasspath property="jar.classpath" jarfile="${jar.file}">
+        <classpath refid="classpath" />
+    </manifestclasspath>
+    
+    <target name="init">
+        <mkdir dir="${bin}" />
+        <mkdir dir="${production}" />
+        <mkdir dir="${api}" />
+    </target>
+    
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${bin}" classpathref="classpath" includeantruntime="false" />
+    </target>
+    
+    <target name="javadoc" depends="compile">
+        <javadoc sourcepath="${src}" access="public" destdir="${api}" packagenames="edu.gatech.mule.*">
+            <classpath>
+                <fileset dir="${src}">
+                    <include name="**/*.java" />
+                </fileset>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javadoc>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.file}" basedir="${bin}">
+            <fileset dir=".">
+                <include name="**/*.class" />
+                <exclude name="**/*.java" />
+            </fileset>
+            <zipfileset dir="${lib}">
+                <include name="**/*.jar" />
+            </zipfileset>
+            <zipfileset dir="${res}" />
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}" />
+                <attribute name="Class-Path" value="${jar.classpath}" />
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="run" depends="jar">
+        <java jar="${jar.file}" fork="true" dir="production">
+            <classpath>
+                <path refid="classpath" />
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="all" depends="run" />
+    
+    <target name="clean">
+        <delete dir="${production}" />
+    </target>
+    
+</project>
