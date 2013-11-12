@@ -14,7 +14,7 @@ import edu.gatech.mule.game.map.TownTile;
  */
 public class TownMap extends GameMap {
 
-	final String tmx = "res/tiles/town.tmx";
+	final String tmx = "/tiles/town.tmx";
 	
 	/**
 	 * Generates the town map
