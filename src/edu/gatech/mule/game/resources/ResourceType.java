@@ -1,9 +1,9 @@
 package edu.gatech.mule.game.resources;
 
 public enum ResourceType {
-    FOOD, 
     ENERGY, 
+    FOOD, 
+    CRYSTITE, 
     SMITHORE, 
-    CRYSTITE,
     MULE
 }
