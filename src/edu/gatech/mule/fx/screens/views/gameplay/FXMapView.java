@@ -88,6 +88,18 @@ public class FXMapView extends FXView implements TownMapView {
 		storeSelector.setItems(buySell);
 		muleSelector.setItems(muleTypes);
 		
+		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.ESCAPE) {
+					muleSelectorOverlay.setVisible(false);
+					storeSelectorOverlay.setVisible(false);
+					textOverlay.setVisible(false);
+				}
+			}
+		});
+		
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
@@ -305,7 +317,6 @@ public class FXMapView extends FXView implements TownMapView {
 				}
 			}
 		});
-
 	}
 	
 	@Override
