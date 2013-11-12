@@ -89,6 +89,8 @@ public class TownController extends MapController {
 			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
 		}
 		view.setStoreResourceAmounts(store.getResources());
+		
+		view.setPlayers(game.getSettings().getPlayers());
 	}
 	
 	@Override
