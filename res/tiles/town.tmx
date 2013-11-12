@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="7" height="5" tilewidth="102" tileheight="80">
  <tileset firstgid="1" name="town" tilewidth="102" tileheight="80">
-  <image source="res/tiles/town_tileset.png" width="720" height="400"/>
+  <image source="/tiles/town_tileset.png" width="720" height="400"/>
   <tile id="0">
    <properties>
     <property name="type" value="exittown_left"/>

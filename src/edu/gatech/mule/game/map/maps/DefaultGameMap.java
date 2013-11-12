@@ -28,7 +28,7 @@ public class DefaultGameMap extends GameMap {
 	protected void generateMap() {
 		//read map from tmx
 		map = null;
-		final String tmx = "res/tiles/map.tmx";
+		final String tmx = "/tiles/map.tmx";
 		try {
 			TMXMapReader mapReader = new TMXMapReader();
 			map = mapReader.readMap(tmx);
