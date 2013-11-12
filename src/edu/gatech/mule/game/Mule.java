@@ -1,9 +1,11 @@
 package edu.gatech.mule.game;
 
+import java.util.Random;
+
+import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.player.Player;
-import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.resources.ResourceType;
 
 
@@ -15,11 +17,15 @@ public class Mule extends Entity {
 	private Player owner;
 	private ResourceType resourceType;
 	private boolean big;
+	private boolean enslaved;
+	private Random rand;
 	
 	public Mule(Player owner, CharacterType type) {
 		super(type.getStillSprite(owner.getDirection()),owner.getPosition());
 		this.type = type;
 		this.owner = owner;
+		this.enslaved=true;
+		rand=new Random();
 	}
 	
 	public void move(){
@@ -59,9 +65,15 @@ public class Mule extends Entity {
 		setDirectionalFrames();
 	}
 	
+	public void useBigSprites(boolean big) {
+		this.big = big;
+		setDirectionalFrames();
+	}
+	
 	public void setDirectionalFrames(){
 		setFrames(type.getDirectionalSprites(direction, big));
 	}
+	
 	
 	public ResourceType getType() {
 		return resourceType;
@@ -72,10 +84,24 @@ public class Mule extends Entity {
 		this.tile = tile;
 	}
 	
-	public void FREEDOM(){
-		
-		//Run away skipper!
+	public void run(int x,int y){
+		location.x+=x;
+		location.y+=y;
 	}
+	
+	public void sweetFreedom(){
+		run(-1*rand.nextInt(5),-1*rand.nextInt(5));
+	}
+	
+	public boolean outOfBounds(){
+		if(location.x<0 || location.y<0) return true;
+		return false;
+	}
+	
+	public void emancipate(){
+		enslaved=false;
+	}
+	
 	
 	public void produce() {
 		if(tile == null)

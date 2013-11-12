@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.GameTile;
@@ -22,6 +23,7 @@ public abstract class MapController extends ScreenController {
 	protected Player currentPlayer;
 	protected Iterator<Player> players;
 	protected int moveRate;
+	protected Mule mule;
 		
 	public MapController(GameEngine game, MapView view, int moveRate) {
 		super(game, view);
@@ -36,11 +38,13 @@ public abstract class MapController extends ScreenController {
 		turn = game.getRound().getTurn();
 		currentPlayer = turn.getPlayer();
 		entities.clear();
-//		currentPlayer.setMule(new Mule(currentPlayer, CharacterType.MULE));
 		entities.add(currentPlayer);
 		
-		if(currentPlayer.getMule() != null)
-			entities.add(currentPlayer.getMule());
+		if(currentPlayer.hasMule()){
+			mule=currentPlayer.getMule();
+			entities.add(mule);
+		}
+			
 		
 		view.setGameMap(map);
 		view.setGameEntities(entities);
@@ -55,9 +59,7 @@ public abstract class MapController extends ScreenController {
 		
 		currentPlayer.move(moveRate*x, moveRate*y);
 		
-		if(currentPlayer.getMule() != null) {
-			currentPlayer.getMule().move();
-		}	
+		if(currentPlayer.hasMule()) mule.move();	
 		
 		int xTilePos=(int)(currentPlayer.getPosition().x/map.getTileWidth());
 		int yTilePos=(int)(currentPlayer.getPosition().y/map.getTileHeight());

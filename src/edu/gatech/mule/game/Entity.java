@@ -64,6 +64,8 @@ public abstract class Entity {
 		direction = dir;
 	}
 	
+	
+	
 	/**
 	 * Get the direction the entity is facing
 	 * @return the direction the entity is facing
@@ -92,6 +94,8 @@ public abstract class Entity {
 	public TileType getTileType() {
 		return tile.getType();
 	}
+	
+	
 	
 	/**
 	 * Get the image of the entity
