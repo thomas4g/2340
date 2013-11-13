@@ -62,6 +62,7 @@ public enum CharacterType {
 	private static final String SPRITES = "/overmap walksprites/";
 	private static final String BIG_SPRITES = "/town walksprites/";
 	private static final String INDICATORS = "/color indicators/";
+	private static final String FRAME="f";
 	
 	private final String sprites;
 	private final String big_sprites;
@@ -86,7 +87,7 @@ public enum CharacterType {
 		this.names = names;
 		
 		//need to add color here instead of + "1"
-		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0) + "1f";
+		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0);
 		this.big_sprites = IMAGE_PATH + BIG_SPRITES + this.type + "/" + this.type.charAt(0) + "1s";
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
 		this.totem = IMAGE_PATH + INDICATORS;
@@ -107,8 +108,8 @@ public enum CharacterType {
 	 * @param direction, direction the sprite is facing
 	 * @return the filename of the corresponding still sprite
 	 */
-	public String getStillSprite(Direction direction) {
-		return sprites + (3*direction.ordinal() + 1) + IMAGE_EXT;
+	public String getStillSprite(Direction direction,Color color) {
+		return sprites+(color.ordinal()+1)+FRAME+(3*direction.ordinal() + 1) + IMAGE_EXT;
 	}
 	
 	/**
@@ -116,10 +117,10 @@ public enum CharacterType {
 	 * @param direction, direction the sprite is facing
 	 * @return the filename of the corresponding directional sprite
 	 */
-	public String[] getDirectionalSprites(Direction direction, boolean big) {
+	public String[] getDirectionalSprites(Direction direction, boolean big,Color color) {
 		if(big) return getBigDirectionalSprites(direction);
 		int base = 3*direction.ordinal() + 1;
-		return new String[]{sprites + (base+1) + IMAGE_EXT, sprites + (base+2) + IMAGE_EXT};
+		return new String[]{sprites+(color.ordinal()+1)+FRAME+(base+1) + IMAGE_EXT, sprites +(color.ordinal()+1)+FRAME+(base+2) + IMAGE_EXT};
 	}
 	
 	

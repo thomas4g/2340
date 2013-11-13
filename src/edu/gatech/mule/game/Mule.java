@@ -4,6 +4,7 @@ import java.util.Random;
 
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.player.CharacterType;
+import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
@@ -21,11 +22,13 @@ public class Mule extends Entity {
 	private Random rand;
 	
 	public Mule(Player owner, CharacterType type) {
-		super(type.getStillSprite(owner.getDirection()),owner.getPosition());
+		super(type.getStillSprite(owner.getDirection(), Color.PURPLE),owner.getPosition());
 		this.type = type;
 		this.owner = owner;
 		this.enslaved=true;
 		rand=new Random();
+		//Determine color based on resource
+		color=Color.BLUE;
 	}
 	
 	public void move(){
@@ -71,7 +74,7 @@ public class Mule extends Entity {
 	}
 	
 	public void setDirectionalFrames(){
-		setFrames(type.getDirectionalSprites(direction, big));
+		setFrames(type.getDirectionalSprites(direction, big, color));
 	}
 	
 	

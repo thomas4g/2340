@@ -57,6 +57,7 @@
 <tile id="26">
    <properties>
     <property name="type" value="mule_store"/>
+    <property name="resource_type" value="mule"/>
    </properties>
   </tile>
   

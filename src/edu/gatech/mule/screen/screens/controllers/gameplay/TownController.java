@@ -1,11 +1,15 @@
 package edu.gatech.mule.screen.screens.controllers.gameplay;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.player.CharacterType;
-import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.player.CharacterType;
+import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.store.Store;
 import edu.gatech.mule.game.store.Transaction;
@@ -47,8 +51,7 @@ public class TownController extends MapController {
 		else if(currentPlayer.getTileType() == TileType.RESOURCE_STORE) {
 			view.displayStoreMenu();
 		}
-		else if(currentPlayer.getTileType() == TileType.MULE_STORE){
-//			setMuleType(ResourceType.CRYSTITE);
+		else if(currentPlayer.getTileType() == TileType.MULE_STORE && !currentPlayer.hasMule()){
 			view.displayMuleOptions();
 		}
 	}
@@ -89,8 +92,11 @@ public class TownController extends MapController {
 		if(store == null) {
 			store = new Store(game.getSettings().getDifficulty().getStoreResources(), new int[] {1, 2, 3, 4, 5});
 		}
-		view.setStoreResourceAmounts(store.getResources());
 		
+		List<ResourceType> muleTypes = new ArrayList<ResourceType>(Arrays.asList(ResourceType.values()));
+		muleTypes.remove(ResourceType.MULE);
+		view.setMuleOptions(muleTypes.toArray(new ResourceType[]{}));
+		view.setStoreResourceAmounts(store.getResources());
 		view.setPlayers(game.getSettings().getPlayers());
 	}
 	

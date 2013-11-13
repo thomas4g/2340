@@ -9,8 +9,8 @@ public class MusicPlayer {
 	MediaPlayer bgPlayer;
 	
 	public void play() {
-		if(bgPlayer !=null) {
-			bgPlayer.play();
+		if(bgPlayer != null) {
+		bgPlayer.play();
 		}
 	}
 	
