@@ -19,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Popup;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
@@ -189,6 +190,12 @@ public class FXMapView extends FXView implements TownMapView {
 		if(storeResources != null) {
 			drawStoreResources();
 		}
+		
+//		if(message != null && !message.getMessage().isEmpty()) {
+//			Popup p = new Popup();
+//			p.getContent().add(new TextField(message.getMessage()));
+//			p.show(null);
+//		}
 		
 		if(message != null)
 			graphics.drawText(message.getMessage(), new Point(100, 500));

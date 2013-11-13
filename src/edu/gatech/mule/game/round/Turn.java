@@ -80,6 +80,7 @@ public class Turn implements Serializable {
 		int coinFlip=rand.nextInt(2);
 		if (coinFlip%2==0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
+			
 			event.execute(player);
 			System.out.println(event.getMessage());
 			game.setMessage(event.getMessage());
