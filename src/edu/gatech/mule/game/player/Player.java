@@ -249,6 +249,14 @@ public class Player extends Entity implements Transactor, Comparable {
 		this.money += money;
 	}
 	
+	public double getMoney(){
+		return money;
+	}
+	
+	public boolean hasMoney(){
+		return money>0;
+	}
+	
 	@Override
 	public void subtractMoney(int money) {
 		this.money -= money;
@@ -281,4 +289,5 @@ public class Player extends Entity implements Transactor, Comparable {
 	public int compareTo(Object other) {
 		return (int) (this.score - ((Player)other).score);
 	}
+
 }
