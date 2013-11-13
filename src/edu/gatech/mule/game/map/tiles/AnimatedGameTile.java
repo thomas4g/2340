@@ -23,7 +23,6 @@ public class AnimatedGameTile extends GameTile {
 	
 	public AnimatedGameTile(AnimatedTile t, TileType type, Tile[] frameTiles) {
 		super(t, type);
-		System.out.println("hi");
 		this.frames = new BufferedImage[frameTiles.length];
 		for(int i=0; i<frameTiles.length; i++) {
 			this.frames[i] = (BufferedImage) frameTiles[i].getImage();

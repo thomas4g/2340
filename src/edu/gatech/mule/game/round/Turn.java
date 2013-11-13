@@ -5,6 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.gatech.mule.game.GamblingFormula;
+import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
@@ -27,6 +28,10 @@ public class Turn implements Serializable {
 	}
 	
 	public void start() {
+		//do turnevent here
+		for(Mule m : player.getPlacedMules()) {
+			m.produce();
+		}
 		timer = new Timer(true);
 		timer.schedule(new TimerTask() {			
 			@Override

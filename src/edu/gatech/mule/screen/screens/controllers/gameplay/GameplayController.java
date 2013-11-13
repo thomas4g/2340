@@ -51,6 +51,9 @@ public class GameplayController extends MapController {
 			System.out.println(mule);
 			if (tile.hasOwner() && tile.getOwner() == currentPlayer && tile instanceof PropertyTile) {
 				((PropertyTile)tile).addMule(mule);
+				currentPlayer.addPlacedMule(mule);
+				mule.emplace(tile);
+
 				entities.remove(mule);
 			}else{
 				mule.setDirection(Direction.LEFT);

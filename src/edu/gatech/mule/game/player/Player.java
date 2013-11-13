@@ -3,6 +3,7 @@ package edu.gatech.mule.game.player;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Mule;
@@ -26,10 +27,12 @@ public class Player extends Entity implements Transactor, Comparable {
 	private CharacterType type;
 	private String name;
 	private double money;
-	private ArrayList<GameTile> ownedLands;
+	private List<GameTile> ownedLands;
 	private int[] resources;
 	private Mule mule;
+	private List<Mule> placedMules;
 	private boolean big;
+	private double[] productionCoefs;
 
     private int score;
 	
@@ -41,6 +44,8 @@ public class Player extends Entity implements Transactor, Comparable {
 		super(type.getStillSprite(Direction.RIGHT,Color.PURPLE), new Point(0,0));
 		this.type = type;
 		this.money = type.getMoney();
+		this.productionCoefs = new double[ResourceType.values().length];
+		this.placedMules = new ArrayList<>();
 		this.ownedLands = new ArrayList<>();
 		this.setDirection(Direction.DOWN);
 	}
@@ -157,7 +162,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * Get player's owned lands
 	 * @return player's owned lands
 	 */
-	public ArrayList<GameTile> getLands() {
+	public List<GameTile> getLands() {
 		return ownedLands;
 	}
 	
@@ -171,6 +176,18 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	public boolean hasMule() {
 		return mule != null;
+	}
+	
+	public void addPlacedMule(Mule mule) {
+		placedMules.add(mule);
+	}
+	
+	public void removePlacedMule(Mule mule) {
+		placedMules.remove(mule);
+	}
+	
+	public List<Mule> getPlacedMules() {
+		return this.placedMules;
 	}
 	
 	/**
@@ -283,6 +300,14 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	public int getResourceAmt(ResourceType resource) {
 	    return resources[resource.ordinal()];
+	}
+	
+	public double[] getProductionCoeficients() {
+		return this.productionCoefs;
+	}
+	
+	public void setProductionCoeficients(double[] pc) {
+		this.productionCoefs = pc;
 	}
 
 	@Override
