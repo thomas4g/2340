@@ -72,7 +72,9 @@ public class FXColorSelectView extends FXSettingsView {
 	
 	protected void done() {
 		if(!settings.colorUsed(toggle+1)) {
+			
 			settings.setCurrentPlayerColor(colors[toggle]);
+			settings.addColor(colors[toggle]);
 			controller.done();
 		}
 	}
