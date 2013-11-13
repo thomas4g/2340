@@ -1,5 +1,6 @@
 package edu.gatech.mule.screen;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
@@ -25,7 +26,12 @@ import edu.gatech.mule.screen.screens.views.TownMapView;
  * Screen handler structures for other screen subclasses
  * @version 1.0
  */
-public abstract class ScreenHandler {
+public abstract class ScreenHandler implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6251214685880267487L;
+
 	public enum ScreenType { START, PERSISTENCE, HELP,
 							DIFFICULTY, MAP_TYPE, NUM_PLAYERS,
 							RACE_SELECT, COLOR, NAME,

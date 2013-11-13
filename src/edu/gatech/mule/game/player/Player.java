@@ -2,6 +2,7 @@ package edu.gatech.mule.game.player;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.gatech.mule.game.Entity;
@@ -18,8 +19,12 @@ import edu.gatech.mule.game.store.Transactor;
  * Specifications of the player in the game depends on character type
  * @version 0.1
  */
-public class Player extends Entity implements Transactor, Comparable {
+public class Player extends Entity implements Transactor, Comparable, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2273039675390372613L;
 	private BufferedImage headshot;
 	private BufferedImage totem;
 	

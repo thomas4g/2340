@@ -1,6 +1,9 @@
 package edu.gatech.mule.core;
 
-import java.net.URL;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 import edu.gatech.mule.game.Settings;
@@ -167,6 +170,45 @@ public class GameEngine {
 	
 	public boolean allPlayersSet() {
 		return settings.allPlayersSet();
+	}
+
+	public void loadNewGame(ScreenHandler sh, Settings s, GameMap gameMap, GameMap townMap, List<Player> players) {
+		this.screenHandler = sh;
+		this.settings = s;
+		this.gameMap = gameMap;
+		this.townMap = townMap;
+		this.players = players;
+	}
+	
+	public void saveGameFile(String filename) {
+		try {
+			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("saveFile.sav"));
+			save.writeObject(screenHandler);
+			save.writeObject(settings);
+			save.writeObject(gameMap);
+			save.writeObject(townMap);
+			save.writeObject(players);
+			save.writeObject(roundController);
+			save.flush();
+			save.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadGameFile(String filename) {
+		try {
+			ObjectInputStream load = new ObjectInputStream(new FileInputStream(filename + ".mule"));
+			ScreenHandler sh = (ScreenHandler)load.readObject();
+			Settings s = (Settings)load.readObject();
+			GameMap gm = (GameMap)load.readObject();
+			GameMap tm = (GameMap)load.readObject();
+			List<Player> p = (List<Player>)load.readObject();
+			load.close();
+			loadNewGame(sh, s, gm, tm, p);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
