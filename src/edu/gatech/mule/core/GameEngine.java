@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
@@ -40,6 +42,7 @@ public class GameEngine implements Serializable {
 	private RoundController roundController;
 	private transient MusicPlayer musicPlayer;
 	private ScreenType currentScreen;
+	private Queue<String> messages;
 	
 	/**
 	 * Constructor for the game engine
@@ -48,6 +51,7 @@ public class GameEngine implements Serializable {
 	public GameEngine() {
 		this.settings = new Settings();
 		this.musicPlayer = new MusicPlayer();
+		this.messages = new LinkedList<String>();
 		musicPlayer.setMedia(getClass().getResource("/music/Artifact.mp3"));
 	}
 	
@@ -191,7 +195,6 @@ public class GameEngine implements Serializable {
 		roundController = ge.roundController;
 		currentScreen  	= ge.currentScreen;
 		
-//		setupMaps();
 		roundController.setGame(this);
 		roundController.round();
 	}
