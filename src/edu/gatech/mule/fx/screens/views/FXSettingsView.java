@@ -44,11 +44,11 @@ public abstract class FXSettingsView extends FXView implements SettingsView {
 	
 	@FXML
 	protected void transition(KeyEvent event){
-		if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.UP) {
+		if (event.getCode() == LEFT_KEY || event.getCode() == UP_KEY) {
 			scrollLeft();
-		} else if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.DOWN) {
+		} else if (event.getCode() == RIGHT_KEY || event.getCode() == DOWN_KEY) {
 			scrollRight();
-		} else if (event.getCode() == KeyCode.ENTER) {
+		} else if (event.getCode() == ACTION_KEY) {
 			done();
 		}
 	}
