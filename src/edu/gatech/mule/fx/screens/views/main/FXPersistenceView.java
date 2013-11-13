@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
+import edu.gatech.mule.screen.screens.controllers.main.PersistenceController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -32,7 +33,7 @@ public class FXPersistenceView extends FXSettingsView {
 	protected void toggleSelected() {
 		newGame.setTextFill(FXSettingsView.NORMAL);
 		loadGame.setTextFill(FXSettingsView.GREYED);
-		help.setTextFill(FXSettingsView.GREYED);
+		help.setTextFill(FXSettingsView.NORMAL);
 		switch(toggle) {
 		case 0:
 			newGame.setTextFill(FXSettingsView.SELECTED);
@@ -50,6 +51,8 @@ public class FXPersistenceView extends FXSettingsView {
 	protected void done() {
 		if(toggle==0) {
 			controller.done();
+		} else if(toggle==2) {
+			((PersistenceController)controller).help();
 		}
 	}
 

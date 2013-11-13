@@ -12,17 +12,21 @@ public class PersistenceController extends ScreenController {
 		super(game, view);
 		this.view = view;
 	}
+	
+	public void help() {
+		game.help();
+	}
 
 	@Override
 	public void done() {
-		boolean awesomeness = true;
-		if(awesomeness) {
-			System.out.println("making a new game, so let's make the game!");
-			game.chooseDifficulty();
-		} else if(awesomeness) {
-			System.out.println("help if needed");
-			game.help();
-		}		
+//		boolean awesomeness = true;
+//		if(awesomeness) {
+		System.out.println("making a new game, so let's make the game!");
+		game.chooseDifficulty();
+//		} else if(awesomeness) {
+//			System.out.println("help if needed");
+//			game.help();
+//		}		
 	}
 
 }
