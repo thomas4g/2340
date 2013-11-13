@@ -30,6 +30,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	private int[] resources;
 	private Mule mule;
 	private boolean big;
+	private double[] productionCoefs;
 
     private int score;
 	
@@ -41,6 +42,7 @@ public class Player extends Entity implements Transactor, Comparable {
 		super(type.getStillSprite(Direction.RIGHT,Color.PURPLE), new Point(0,0));
 		this.type = type;
 		this.money = type.getMoney();
+		this.productionCoefs =  new double[ResourceType.values().length];
 		this.ownedLands = new ArrayList<>();
 		this.setDirection(Direction.DOWN);
 	}
@@ -283,6 +285,14 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	public int getResourceAmt(ResourceType resource) {
 	    return resources[resource.ordinal()];
+	}
+	
+	public double[] getProductionCoeficients() {
+		return this.productionCoefs;
+	}
+	
+	public void setProductionCoeficients(double[] pc) {
+		this.productionCoefs = pc;
 	}
 
 	@Override

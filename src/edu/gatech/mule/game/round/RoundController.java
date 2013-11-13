@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
+import edu.gatech.mule.game.resources.ResourceType;
 
 public class RoundController implements Serializable {
 	private Player currentPlayer;
@@ -20,7 +21,11 @@ public class RoundController implements Serializable {
 	
 	public void round() {
 		if(roundNumber <= rounds) {
+			for(Player p : game.getPlayers()) {
+				p.setProductionCoeficients(new double[ResourceType.values().length]);
+			}
 			currentRound = new Round(game, this, roundNumber++);
+			//if not first round, do round event here
 			currentRound.start();
 		}
 		else {

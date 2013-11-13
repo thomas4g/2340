@@ -125,7 +125,8 @@ public class Mule extends Entity {
 		default:
 			break;
 		}
-		resources[type.ordinal()] = production;
+		production += production * owner.getProductionCoeficients()[resourceType.ordinal()];
+		resources[resourceType.ordinal()] = production;
 		owner.addResources(resources);
 	}
 
