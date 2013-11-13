@@ -15,7 +15,7 @@ import edu.gatech.mule.game.map.TileType;
  */
 public class PropertyTile extends GameTile {
 	
-	List<Mule> mules;
+	private List<Mule> mules;
 	
 	/**
 	 * Constructor for a property tile

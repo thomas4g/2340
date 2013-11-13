@@ -88,26 +88,26 @@ public class GameplayController extends MapController {
 		Point m=new Point(0,0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 + map.getTileHeight()/2;
+			p.x = (int) map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2 + map.getTileHeight()/2;
 			m.x=p.x;
 			m.y=p.y-currentPlayer.getImage().getHeight();
 			break;
 		case LEFT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 - map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2 - map.getTileWidth()/2;
 			m.x=p.x+currentPlayer.getImage().getWidth();
 			m.y=p.y;
 			break;
 		case RIGHT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 + map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2 + map.getTileWidth()/2;
 			m.x=p.x-currentPlayer.getImage().getWidth();
 			m.y=p.y;
 			break;
 		case UP:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 - map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2 - map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2;
 			m.x=p.x;
 			m.y=p.y+currentPlayer.getImage().getHeight();
 			break;
