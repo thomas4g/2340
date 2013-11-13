@@ -86,7 +86,6 @@ public enum CharacterType {
 		this.money = money;
 		this.names = names;
 		
-		//need to add color here instead of + "1"
 		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0);
 		this.big_sprites = IMAGE_PATH + BIG_SPRITES + this.type + "/" + this.type.charAt(0) + "1s";
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
