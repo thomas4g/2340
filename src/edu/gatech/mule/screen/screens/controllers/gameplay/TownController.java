@@ -7,7 +7,7 @@ import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Mule;
-import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.resources.ResourceType;

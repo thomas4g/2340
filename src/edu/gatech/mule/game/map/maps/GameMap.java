@@ -1,11 +1,13 @@
-package edu.gatech.mule.game.map;
+package edu.gatech.mule.game.map.maps;
+
+import edu.gatech.mule.game.map.tiles.GameTile;
 
 
 /**
  * General set up for a map
  * @version 0.1
  */
-public abstract class GameMap {
+public abstract class GameMap implements Serializable {
 	protected GameTile[][] tiles;
 	protected int width, height, tileWidth, tileHeight;
 	

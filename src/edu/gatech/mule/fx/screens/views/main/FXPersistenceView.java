@@ -3,11 +3,14 @@ package edu.gatech.mule.fx.screens.views.main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
+import edu.gatech.mule.fx.screens.views.FXSettingsView;
+import edu.gatech.mule.screen.screens.controllers.main.PersistenceController;
+import edu.gatech.mule.screen.screens.views.PersistenceView;
 
-public class FXPersistenceView extends FXSettingsView {
+public class FXPersistenceView extends FXSettingsView implements PersistenceView {
 	
 	@FXML
 	private Label newGame;
@@ -18,6 +21,8 @@ public class FXPersistenceView extends FXSettingsView {
 	@FXML
 	private Label help;
 
+	private PersistenceController controller;
+	
 	public FXPersistenceView() {
 		super("persistence");
 		toggleMod = 3;
@@ -51,6 +56,15 @@ public class FXPersistenceView extends FXSettingsView {
 		if(toggle==0) {
 			controller.done();
 		}
+		if(toggle==1) {
+			FileChooser fc = new FileChooser();
+			controller.done(fc.showOpenDialog(null));
+		}
+	}
+
+	@Override
+	public void setController(PersistenceController c) {
+		controller = c;
 	}
 
 }

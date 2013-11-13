@@ -1,16 +1,23 @@
 package edu.gatech.mule.screen.screens.controllers.main;
 
+import java.io.File;
+
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.views.ScreenView;
+import edu.gatech.mule.screen.screens.views.PersistenceView;
 
 public class PersistenceController extends ScreenController {
 	
-	protected ScreenView view;
+	protected PersistenceView view;
 
-	public PersistenceController(GameEngine game, ScreenView view) {
+	public PersistenceController(GameEngine game, PersistenceView view) {
 		super(game, view);
 		this.view = view;
+	}
+	
+	@Override
+	public void load() {
+		view.setController(this);
 	}
 
 	@Override
@@ -23,6 +30,10 @@ public class PersistenceController extends ScreenController {
 			System.out.println("help if needed");
 			game.help();
 		}		
+	}
+
+	public void done(File file) {
+		game.loadGameFile(file);
 	}
 
 }

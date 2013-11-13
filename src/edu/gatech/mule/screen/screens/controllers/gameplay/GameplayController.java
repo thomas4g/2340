@@ -5,9 +5,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
+import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;

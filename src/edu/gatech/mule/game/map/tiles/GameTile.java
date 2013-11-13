@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.map;
+package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
 import java.util.Properties;

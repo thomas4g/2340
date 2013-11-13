@@ -2,7 +2,7 @@ package edu.gatech.mule.game;
 
 import java.util.Random;
 
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.game.player.CharacterType.Direction;

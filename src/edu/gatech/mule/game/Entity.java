@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.GameTile;
+import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.player.Color;
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.maps.GameMap;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.screen.screens.controllers.ScreenController;
 import edu.gatech.mule.screen.screens.views.MapView;
 

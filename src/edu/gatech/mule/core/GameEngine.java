@@ -1,5 +1,6 @@
 package edu.gatech.mule.core;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -9,8 +10,8 @@ import java.util.List;
 
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
-import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.maps.DefaultGameMap;
+import edu.gatech.mule.game.map.maps.GameMap;
 import edu.gatech.mule.game.map.maps.RandomGameMap;
 import edu.gatech.mule.game.map.maps.TownMap;
 import edu.gatech.mule.game.player.Player;
@@ -130,6 +131,7 @@ public class GameEngine implements Serializable {
 		}
 
 		players = settings.getPlayers();
+		saveGameFile("gamedata");
 		
 		roundController.round();
 	}
@@ -183,7 +185,7 @@ public class GameEngine implements Serializable {
 	
 	public void saveGameFile(String filename) {
 		try {
-			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("saveFile.sav"));
+			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(filename));
 			save.writeObject(this);
 			save.flush();
 			save.close();
@@ -192,9 +194,9 @@ public class GameEngine implements Serializable {
 		}
 	}
 	
-	public void loadGameFile(String filename) {
+	public void loadGameFile(File file) {
 		try {
-			ObjectInputStream load = new ObjectInputStream(new FileInputStream(filename + ".mule"));
+			ObjectInputStream load = new ObjectInputStream(new FileInputStream(file));
 			GameEngine game = (GameEngine)load.readObject();
 			load.close();
 			loadNewGame(game);

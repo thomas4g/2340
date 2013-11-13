@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.GameMap;
+import edu.gatech.mule.game.map.maps.GameMap;
 import edu.gatech.mule.game.player.Player;
 
 /**
