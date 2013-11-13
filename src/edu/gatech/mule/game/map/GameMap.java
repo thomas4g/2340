@@ -1,19 +1,12 @@
 package edu.gatech.mule.game.map;
 
-import java.io.Serializable;
-
 import tiled.core.Map;
 
 /**
  * General set up for a map
  * @version 0.1
  */
-public abstract class GameMap implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4050963900852997526L;
+public abstract class GameMap {
 	protected GameTile[][] tiles;
 	protected Map map;
 //	private int tileWidth; //Set tileWidth in here somewhere

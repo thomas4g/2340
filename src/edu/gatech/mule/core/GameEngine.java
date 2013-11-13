@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import edu.gatech.mule.game.Settings;
@@ -24,8 +25,12 @@ import edu.gatech.mule.screen.ScreenHandler.ScreenType;
  * Has the ability to change the screen view based on game flow.
  * @version 0.1
  */
-public class GameEngine {
+public class GameEngine implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 725082656704462973L;
 	private ScreenHandler screenHandler;
 	private Settings settings;
 	private GameMap gameMap;
@@ -172,23 +177,14 @@ public class GameEngine {
 		return settings.allPlayersSet();
 	}
 
-	public void loadNewGame(ScreenHandler sh, Settings s, GameMap gameMap, GameMap townMap, List<Player> players) {
-		this.screenHandler = sh;
-		this.settings = s;
-		this.gameMap = gameMap;
-		this.townMap = townMap;
-		this.players = players;
+	public void loadNewGame(GameEngine ge) {
+		
 	}
 	
 	public void saveGameFile(String filename) {
 		try {
 			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("saveFile.sav"));
-			save.writeObject(screenHandler);
-			save.writeObject(settings);
-			save.writeObject(gameMap);
-			save.writeObject(townMap);
-			save.writeObject(players);
-			save.writeObject(roundController);
+			save.writeObject(this);
 			save.flush();
 			save.close();
 		} catch(Exception e) {
@@ -199,13 +195,9 @@ public class GameEngine {
 	public void loadGameFile(String filename) {
 		try {
 			ObjectInputStream load = new ObjectInputStream(new FileInputStream(filename + ".mule"));
-			ScreenHandler sh = (ScreenHandler)load.readObject();
-			Settings s = (Settings)load.readObject();
-			GameMap gm = (GameMap)load.readObject();
-			GameMap tm = (GameMap)load.readObject();
-			List<Player> p = (List<Player>)load.readObject();
+			GameEngine game = (GameEngine)load.readObject();
 			load.close();
-			loadNewGame(sh, s, gm, tm, p);
+			loadNewGame(game);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

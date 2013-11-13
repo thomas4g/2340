@@ -1,4 +1,4 @@
-<project name="MULE Ant Build" basedir="." default="main">
+<project name="MULE Ant Build" basedir="." default="all">
     
     <property name="src" value="src" />
     <property name="bin" value="bin" />
@@ -49,7 +49,6 @@
             <zipfileset dir="${lib}">
                 <include name="**/*.jar" />
             </zipfileset>
-            <zipfileset dir="${res}" />
             <manifest>
                 <attribute name="Main-Class" value="${main-class}" />
                 <attribute name="Class-Path" value="${jar.classpath}" />

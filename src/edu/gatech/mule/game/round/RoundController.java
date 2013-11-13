@@ -1,16 +1,9 @@
 package edu.gatech.mule.game.round;
 
-import java.io.Serializable;
-
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 
-public class RoundController implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3893396827251816369L;
+public class RoundController {
 	private Player currentPlayer;
 	private GameEngine game;
 	private int roundNumber;

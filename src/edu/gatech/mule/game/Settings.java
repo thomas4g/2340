@@ -1,6 +1,5 @@
 package edu.gatech.mule.game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,12 +12,7 @@ import edu.gatech.mule.game.player.Player;
  * Settings for the game
  * @version 0.1
  */
-public class Settings implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5899520793349843563L;
+public class Settings {
 
 	public enum MapType { DEFAULT, RANDOM };
 	
