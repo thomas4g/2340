@@ -37,6 +37,7 @@ public class Round implements Serializable {
 	}
 	
 	public void turn() {
+//		game.setMessage("");
 		if(iter.hasNext()) {
 			turn = iter.next();
 			turn.start();

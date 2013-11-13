@@ -1,10 +1,10 @@
 package edu.gatech.mule.screen.screens.views;
 
 import java.awt.Point;
-import java.util.Iterator;
 import java.util.List;
 
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Message;
 import edu.gatech.mule.game.map.maps.GameMap;
 import edu.gatech.mule.game.player.Player;
 
@@ -19,5 +19,6 @@ public interface MapView extends ScreenView {
 	public void setCurrentPlayer(Player player);
 	public void setPlayers(List<Player> players);
 	public void setSelector(Point location);
+	public void setMessage(Message message);
 	public void render();
 }

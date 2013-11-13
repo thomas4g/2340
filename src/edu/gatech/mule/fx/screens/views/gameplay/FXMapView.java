@@ -22,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.Message;
 import edu.gatech.mule.game.map.maps.GameMap;
 import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.player.Player;
@@ -45,6 +46,8 @@ public class FXMapView extends FXView implements TownMapView {
 	private Point selectorLocation;
 	private int[] storeResources;
 	private TownController townController;
+	private Message message;
+
 	
 	final private ObservableList<String> buySell;
 	final private ObservableList<ResourceType> muleTypes;
@@ -180,12 +183,16 @@ public class FXMapView extends FXView implements TownMapView {
 		
 //		timer.setProgress(currentPlayer.getCurrentTurn().getLength());
 		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
-		
+
 		drawPlayers();
 		
 		if(storeResources != null) {
 			drawStoreResources();
 		}
+		
+		if(message != null)
+			graphics.drawText(message.getMessage(), new Point(100, 500));
+
 	}
 	
 	// THIS IS BAD UGLY TERRIBLE FIX FIX FIX
@@ -434,4 +441,10 @@ public class FXMapView extends FXView implements TownMapView {
 		muleTypes.addAll(mules);
 //		muleSelector.setItems(FXCollections.observableArrayList(mules));
 	}
+
+	@Override
+	public void setMessage(Message message) {
+		this.message = message;
+	}
+
 }

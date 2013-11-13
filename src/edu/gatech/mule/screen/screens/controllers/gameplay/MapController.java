@@ -50,6 +50,7 @@ public abstract class MapController extends ScreenController {
 		view.setGameEntities(entities);
 		view.setCurrentPlayer(currentPlayer);
 		view.setPlayers(game.getSettings().getPlayers());
+		view.setMessage(game.getMessage());
 	}
 
 	

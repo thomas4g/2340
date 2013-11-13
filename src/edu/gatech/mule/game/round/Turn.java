@@ -25,12 +25,14 @@ public class Turn implements Serializable {
 	private transient Timer timer;
 	private Random rand;
 	private int coinFlip;
+	private GameEngine game;
 	
 	public Turn(Round round, Player player,GameEngine engine) {
 		this.round = round;
 		this.player = player;
 		this.player.setCurrentTurn(this);
 		this.rand=new Random();
+		this.game = engine;
 		genTurnLength();
 	}
 	
@@ -80,6 +82,7 @@ public class Turn implements Serializable {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
 			event.execute(player);
 			System.out.println(event.getMessage());
+			game.setMessage(event.getMessage());
 		}
 		round.turn();
 	}
