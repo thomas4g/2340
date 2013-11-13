@@ -19,8 +19,8 @@ import edu.gatech.mule.game.store.Transactor;
  * @version 0.1
  */
 public class Player extends Entity implements Transactor, Comparable {
-	private BufferedImage headshot;
-	private BufferedImage totem;
+	private transient BufferedImage headshot;
+	private transient BufferedImage totem;
 	
 	private Turn currentTurn;
 	private CharacterType type;

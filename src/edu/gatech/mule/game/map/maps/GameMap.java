@@ -1,5 +1,7 @@
 package edu.gatech.mule.game.map.maps;
 
+import java.io.Serializable;
+
 import edu.gatech.mule.game.map.tiles.GameTile;
 
 

@@ -32,13 +32,14 @@ public class GameEngine implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 725082656704462973L;
-	private ScreenHandler screenHandler;
+	private transient ScreenHandler screenHandler;
 	private Settings settings;
 	private GameMap gameMap;
 	private GameMap townMap;
 	private List<Player> players;
 	private RoundController roundController;
-	private MusicPlayer musicPlayer;
+	private transient MusicPlayer musicPlayer;
+	private ScreenType currentScreen;
 	
 	/**
 	 * Constructor for the game engine
@@ -60,6 +61,7 @@ public class GameEngine implements Serializable {
 	}
 	
 	public void setScreen(ScreenType type) {
+		currentScreen = type;
 		screenHandler.setScreen(type);
 	}
 	
@@ -81,39 +83,39 @@ public class GameEngine implements Serializable {
 	
 	public void start() {
 		musicPlayer.play();
-		screenHandler.setScreen(ScreenType.START);
+		setScreen(ScreenType.START);
 	}
 	
 	public void persistence() {
-		screenHandler.setScreen(ScreenType.PERSISTENCE);
+		setScreen(ScreenType.PERSISTENCE);
 	}
 	
 	public void help() {
-		screenHandler.setScreen(ScreenType.HELP);
+		setScreen(ScreenType.HELP);
 	}
 	
 	public void chooseDifficulty() {
-		screenHandler.setScreen(ScreenType.DIFFICULTY);
+		setScreen(ScreenType.DIFFICULTY);
 	}
 	
 	public void chooseMapType() {
-		screenHandler.setScreen(ScreenType.MAP_TYPE);
+		setScreen(ScreenType.MAP_TYPE);
 	}
 	
 	public void chooseNumPlayers() {
-		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
+		setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
 	public void chooseRace() {
-		screenHandler.setScreen(ScreenType.RACE_SELECT);
+		setScreen(ScreenType.RACE_SELECT);
 	}
 	
 	public void chooseColor() {
-		screenHandler.setScreen(ScreenType.COLOR);
+		setScreen(ScreenType.COLOR);
 	}
 	
 	public void chooseName() {
-		screenHandler.setScreen(ScreenType.NAME);
+		setScreen(ScreenType.NAME);
 	}
 	
 	/**

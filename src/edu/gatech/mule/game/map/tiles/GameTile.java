@@ -1,6 +1,7 @@
 package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Properties;
 
 import tiled.core.Tile;
@@ -10,13 +11,13 @@ import edu.gatech.mule.game.player.Player;
  * Representation of a tile in the game map
  * @version 0.1
  */
-public abstract class GameTile {
+public abstract class GameTile implements Serializable {
 
 	public static final int DEFAULT_COST = 300;
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
-	protected Image image;
+	protected transient Image image;
 	protected int width;
 	protected int height;
 	protected Properties properties;

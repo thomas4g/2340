@@ -9,7 +9,7 @@ import edu.gatech.mule.game.player.Player;
 public class AnimatedGameTile extends GameTile {
 
 	private int frameIndex;
-	private Image[] frames;
+	private transient Image[] frames;
 	
 	public AnimatedGameTile(AnimatedTile t, TileType type, Tile[] frameTiles) {
 		super(t, type);

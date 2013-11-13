@@ -3,6 +3,7 @@ package edu.gatech.mule.game;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
@@ -15,10 +16,10 @@ import edu.gatech.mule.game.player.Color;
  * Representation of an entity that can move around a map
  * @version 0.1
  */
-public abstract class Entity {
+public abstract class Entity implements Serializable {
 
-	protected BufferedImage[] frames;
-	protected BufferedImage image;
+	protected transient BufferedImage[] frames;
+	protected transient BufferedImage image;
 	protected Point location;
 	protected Direction direction;
 	protected GameTile tile;

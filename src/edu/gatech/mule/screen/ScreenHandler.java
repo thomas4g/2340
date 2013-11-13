@@ -1,5 +1,6 @@
 package edu.gatech.mule.screen;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
