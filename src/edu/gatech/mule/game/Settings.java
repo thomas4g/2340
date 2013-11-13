@@ -24,12 +24,15 @@ public class Settings implements Serializable {
 	private Player currentPlayer;
 	private int playerIndex;
 	
+	private ArrayList<Color> colorsUsed;
+	
 	/**
 	 * Sets up default settings
 	 */
 	public Settings() {
 		players = new ArrayList<Player>();
 		playerIndex = 1;
+		colorsUsed = new ArrayList<>();
 	}
 	
 	/**
@@ -160,9 +163,13 @@ public class Settings implements Serializable {
 		return players.iterator();
 	}
 	
+	public void addColor(Color color) {
+		colorsUsed.add(color);
+	}
+	
 	public boolean colorUsed(int color) {
-		for(Player player : players) {
-			if(player.getColor()!=null && (player.getColor().ordinal()+1) == color) {
+		for(Color c : colorsUsed) {
+			if((c.ordinal()+1) == color) {
 				return true;
 			}
 		}
