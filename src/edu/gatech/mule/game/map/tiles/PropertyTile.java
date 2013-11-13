@@ -6,8 +6,6 @@ import java.util.List;
 import tiled.core.Tile;
 import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.player.Player;
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
 
 /**
  * Representation of a property tile
@@ -15,7 +13,7 @@ import edu.gatech.mule.game.map.TileType;
  */
 public class PropertyTile extends GameTile {
 	
-	List<Mule> mules;
+	private List<Mule> mules;
 	
 	/**
 	 * Constructor for a property tile

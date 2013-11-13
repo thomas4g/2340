@@ -1,5 +1,6 @@
 package edu.gatech.mule.core;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -9,8 +10,8 @@ import java.util.List;
 
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
-import edu.gatech.mule.game.map.GameMap;
 import edu.gatech.mule.game.map.maps.DefaultGameMap;
+import edu.gatech.mule.game.map.maps.GameMap;
 import edu.gatech.mule.game.map.maps.RandomGameMap;
 import edu.gatech.mule.game.map.maps.TownMap;
 import edu.gatech.mule.game.player.Player;
@@ -31,13 +32,14 @@ public class GameEngine implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 725082656704462973L;
-	private ScreenHandler screenHandler;
+	private transient ScreenHandler screenHandler;
 	private Settings settings;
 	private GameMap gameMap;
 	private GameMap townMap;
 	private List<Player> players;
 	private RoundController roundController;
-	private MusicPlayer musicPlayer;
+	private transient MusicPlayer musicPlayer;
+	private ScreenType currentScreen;
 	
 	/**
 	 * Constructor for the game engine
@@ -59,6 +61,7 @@ public class GameEngine implements Serializable {
 	}
 	
 	public void setScreen(ScreenType type) {
+		currentScreen = type;
 		screenHandler.setScreen(type);
 	}
 	
@@ -80,39 +83,39 @@ public class GameEngine implements Serializable {
 	
 	public void start() {
 		musicPlayer.play();
-		screenHandler.setScreen(ScreenType.START);
+		setScreen(ScreenType.START);
 	}
 	
 	public void persistence() {
-		screenHandler.setScreen(ScreenType.PERSISTENCE);
+		setScreen(ScreenType.PERSISTENCE);
 	}
 	
 	public void help() {
-		screenHandler.setScreen(ScreenType.HELP);
+		setScreen(ScreenType.HELP);
 	}
 	
 	public void chooseDifficulty() {
-		screenHandler.setScreen(ScreenType.DIFFICULTY);
+		setScreen(ScreenType.DIFFICULTY);
 	}
 	
 	public void chooseMapType() {
-		screenHandler.setScreen(ScreenType.MAP_TYPE);
+		setScreen(ScreenType.MAP_TYPE);
 	}
 	
 	public void chooseNumPlayers() {
-		screenHandler.setScreen(ScreenType.NUM_PLAYERS);
+		setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
 	public void chooseRace() {
-		screenHandler.setScreen(ScreenType.RACE_SELECT);
+		setScreen(ScreenType.RACE_SELECT);
 	}
 	
 	public void chooseColor() {
-		screenHandler.setScreen(ScreenType.COLOR);
+		setScreen(ScreenType.COLOR);
 	}
 	
 	public void chooseName() {
-		screenHandler.setScreen(ScreenType.NAME);
+		setScreen(ScreenType.NAME);
 	}
 	
 	/**
@@ -130,6 +133,7 @@ public class GameEngine implements Serializable {
 		}
 
 		players = settings.getPlayers();
+		saveGameFile("gamedata");
 		
 		roundController.round();
 	}
@@ -183,7 +187,7 @@ public class GameEngine implements Serializable {
 	
 	public void saveGameFile(String filename) {
 		try {
-			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("saveFile.sav"));
+			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(filename));
 			save.writeObject(this);
 			save.flush();
 			save.close();
@@ -192,9 +196,9 @@ public class GameEngine implements Serializable {
 		}
 	}
 	
-	public void loadGameFile(String filename) {
+	public void loadGameFile(File file) {
 		try {
-			ObjectInputStream load = new ObjectInputStream(new FileInputStream(filename + ".mule"));
+			ObjectInputStream load = new ObjectInputStream(new FileInputStream(file));
 			GameEngine game = (GameEngine)load.readObject();
 			load.close();
 			loadNewGame(game);

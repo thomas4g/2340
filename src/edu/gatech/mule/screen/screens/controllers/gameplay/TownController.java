@@ -7,7 +7,7 @@ import java.util.List;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Mule;
-import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.resources.ResourceType;
@@ -69,20 +69,20 @@ public class TownController extends MapController {
 		Point p = new Point(0, 0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2;
 			p.y = 0;
 			break;
 		case LEFT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth();
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth();
 			break;
 		case RIGHT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
 			p.x = 0;
 			break;
 		case UP:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight();
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight();
+			p.x = (int) map.getWidth()*map.getTileWidth()/2;
 			break;
 		default:
 			break;

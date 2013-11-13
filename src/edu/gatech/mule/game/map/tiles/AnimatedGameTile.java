@@ -1,28 +1,34 @@
 package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
+
+import tiled.core.AnimatedTile;
 import tiled.core.Tile;
 import edu.gatech.mule.game.player.Player;
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
 
 public class AnimatedGameTile extends GameTile {
 
-	private Tile[] frames;
 	private int frameIndex;
+	private transient Image[] frames;
 	
-	public AnimatedGameTile(Tile t, TileType type, Tile[] frames) {
+	public AnimatedGameTile(AnimatedTile t, TileType type, Tile[] frameTiles) {
 		super(t, type);
+		System.out.println("hi");
+		this.frames = new Image[frameTiles.length];
+		for(int i=0; i<frameTiles.length; i++) {
+			this.frames[i] = frameTiles[i].getImage();
+		}
 		frameIndex = 0;
-		this.frames = frames;
 	}
 	
-	@Override
-	public Image getImage() {
-		if(frameIndex >= frames.length * 2) {
+	public Image getNextImage() {
+		if(frameIndex >= frames.length * 2)
 			frameIndex = 0;
-		}
-		return frames[frameIndex++ / 2].getImage();
+		return this.frames[(frameIndex++) / 2];
+	}
+	
+	public Image getImage() {
+		return getNextImage();
 	}
 
 	@Override

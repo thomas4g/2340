@@ -1,21 +1,26 @@
-package edu.gatech.mule.game.map;
+package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Properties;
-import edu.gatech.mule.game.player.Player;
+
 import tiled.core.Tile;
+import edu.gatech.mule.game.player.Player;
 
 /**
  * Representation of a tile in the game map
  * @version 0.1
  */
-public abstract class GameTile {
+public abstract class GameTile implements Serializable {
 
 	public static final int DEFAULT_COST = 300;
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
-	protected Tile tile;
+	protected transient Image image;
+	protected int width;
+	protected int height;
+	protected Properties properties;
 	
 	/**
 	 * Constructor for a game tile
@@ -23,25 +28,28 @@ public abstract class GameTile {
 	 * @param type, type of tile
 	 */
 	public GameTile(Tile t, TileType type) {
-		this.tile = t;
+		this.image = t.getImage();
+		this.properties = t.getProperties();
+		this.width = t.getWidth();
+		this.height = t.getHeight();
 		this.type = type;
 		this.cost = DEFAULT_COST;
 	}
 	
 	public Properties getProperties() {
-		return tile.getProperties();
+		return this.properties;
 	}
 	
 	public Image getImage() {
-		return tile.getImage();
+		return this.image;
 	}
 	
 	public int getWidth() {
-		return tile.getWidth();
+		return this.width;
 	}
 	
 	public int getHeight() {
-		return tile.getHeight();
+		return this.height;
 	}
 	
 	/**

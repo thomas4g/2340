@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.GameTile;
 
 /**
  * Representation of a renderer that can render an entity on a tile

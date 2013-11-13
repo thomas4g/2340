@@ -10,29 +10,23 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-color:#FFFFFF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fx:id="headshot" fitHeight="257.0" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@b3.png" />
-      </image>
-    </ImageView>
-    <Label fx:id="playerAnnouncer" alignment="CENTER" layoutX="133.0" layoutY="43.0" prefWidth="455.0" text="Player #, Choose your race" textAlignment="CENTER">
+    <Label fx:id="playerAnnouncer" alignment="CENTER" layoutX="133.0" layoutY="43.0" prefWidth="455.0" text="Help Screen" textAlignment="CENTER">
       <font>
         <Font size="32.0" />
       </font>
     </Label>
-    <Label fx:id="description" alignment="TOP_LEFT" layoutX="374.0" layoutY="193.0" prefHeight="203.0" prefWidth="256.0" text="So helpful." wrapText="true">
+    <Label fx:id="description" alignment="TOP_LEFT" layoutX="107.0" layoutY="123.0" prefHeight="32.0" prefWidth="507.0" text="Arrow keys to move or toggle." wrapText="true">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label fx:id="raceName" layoutX="374.0" layoutY="152.0" prefHeight="32.0" prefWidth="180.0" text="HELP!">
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="155.0" prefHeight="32.0" prefWidth="507.0" text="Enter key to initiate actions." wrapText="true" />
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="187.0" prefHeight="32.0" prefWidth="507.0" text="Escape key to cancel actions." wrapText="true" />
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="219.0" prefHeight="32.0" prefWidth="507.0" text="S key to skip actions." wrapText="true" />
+    <Button fx:id="backTo" layoutX="147.0" layoutY="402.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="1.0" prefHeight="39.0" prefWidth="427.0" style="-fx-background-color:#DDEEDD;" text="Press &lt;ENTER&gt; to return to previous screen">
       <font>
-        <Font size="24.0" />
+        <Font name="Arial Bold" size="18.0" />
       </font>
-    </Label>
-    <Button font="$x1" layoutX="333.0" layoutY="429.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="0.0" style="-fx-background-color:#00FF00;" text="OK" />
-    <Label fx:id="humanoid" font="$x1" layoutX="223.0" layoutY="102.0" text="Humanoid" />
-    <Label fx:id="flapper" font="$x1" layoutX="331.0" layoutY="102.0" text="Flapper" />
-    <Label fx:id="bonzoid" font="$x1" layoutX="419.0" layoutY="102.0" text="Bonzoid" />
+    </Button>
   </children>
 </AnchorPane>

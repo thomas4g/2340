@@ -10,7 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.graphics.Renderer;
 
 /**

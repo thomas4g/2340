@@ -1,9 +1,11 @@
 package edu.gatech.mule.game.round;
 
+import java.io.Serializable;
+
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 
-public class RoundController {
+public class RoundController implements Serializable {
 	private Player currentPlayer;
 	private GameEngine game;
 	private int roundNumber;

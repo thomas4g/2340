@@ -5,8 +5,6 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -23,8 +21,8 @@ import javafx.scene.layout.StackPane;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.screens.views.FXView;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.maps.GameMap;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
@@ -86,6 +84,9 @@ public class FXMapView extends FXView implements TownMapView {
 	@FXML
 	private Label quit;
 	private Label[] buySellQuit;
+	
+	@FXML
+	private Label prompt;
 	
 	/**
 	 * Constructor for map view

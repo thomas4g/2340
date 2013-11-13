@@ -18,6 +18,7 @@ import edu.gatech.mule.screen.screens.controllers.settings.DifficultyController;
 import edu.gatech.mule.screen.screens.controllers.settings.MapTypeController;
 import edu.gatech.mule.screen.screens.controllers.settings.NumPlayersController;
 import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.PersistenceView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 import edu.gatech.mule.screen.screens.views.TownMapView;
@@ -66,7 +67,7 @@ public abstract class ScreenHandler {
 	}
 
 	protected abstract ScreenView loadStartView();
-	protected abstract ScreenView loadPersistenceView();
+	protected abstract PersistenceView loadPersistenceView();
 	protected abstract ScreenView loadHelpView();
 	
 	protected abstract SettingsView loadDifficultyView();

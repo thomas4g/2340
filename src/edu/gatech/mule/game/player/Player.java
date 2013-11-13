@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Mule;
-import edu.gatech.mule.game.map.GameTile;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.round.Turn;
@@ -19,8 +19,8 @@ import edu.gatech.mule.game.store.Transactor;
  * @version 0.1
  */
 public class Player extends Entity implements Transactor, Comparable {
-	private BufferedImage headshot;
-	private BufferedImage totem;
+	private transient BufferedImage headshot;
+	private transient BufferedImage totem;
 	
 	private Turn currentTurn;
 	private CharacterType type;

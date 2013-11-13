@@ -10,23 +10,23 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fitHeight="520.0" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="540" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../assets/start.png" />
+        <Image url="@../tiles/bg1.png" />
       </image>
     </ImageView>
-    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="297.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Difficulty">
+    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="347.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Difficulty">
       <font>
         <Font name="System Bold" size="18.0" />
       </font>
     </Label>
-    <Label fx:id="beginner" layoutX="243.0" layoutY="300.0" mnemonicParsing="false" text="Beginner">
+    <Label fx:id="beginner" layoutX="243.0" layoutY="350.0" mnemonicParsing="false" text="Beginner">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label fx:id="standard" font="$x1" layoutX="360.0" layoutY="300.0" mnemonicParsing="false" text="Standard" />
-    <Label fx:id="advanced" font="$x1" layoutX="484.0" layoutY="300.0" mnemonicParsing="false" text="Advanced" />
+    <Label fx:id="standard" font="$x1" layoutX="360.0" layoutY="350.0" mnemonicParsing="false" text="Standard" />
+    <Label fx:id="advanced" font="$x1" layoutX="484.0" layoutY="350.0" mnemonicParsing="false" text="Advanced" />
     <Button layoutX="332.0" layoutY="414.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="0.0" text="OK" />
   </children>
 </AnchorPane>

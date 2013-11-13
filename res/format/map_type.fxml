@@ -10,22 +10,22 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="800.0" style="-fx-background-color:#EEEEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fitHeight="520.0" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="540" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../assets/start.png" />
+        <Image url="@../tiles/bg1.png" />
       </image>
     </ImageView>
-    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="297.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Map Type">
+    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="347.0" minHeight="16.0" prefHeight="30.0" prefWidth="104.0" text="Map Type">
       <font>
         <Font name="System Bold" size="18.0" />
       </font>
     </Label>
-    <Label fx:id="defaultMap" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" text="Default">
+    <Label fx:id="defaultMap" layoutX="300.0" layoutY="350.0" mnemonicParsing="false" text="Default">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label fx:id="randomMap" font="$x1" layoutX="438.0" layoutY="300.0" mnemonicParsing="false" text="Random" />
-    <Button layoutX="372.0" layoutY="419.0" mnemonicParsing="false" onKeyPressed="#transition" text="OK" opacity="0.0" />
+    <Label fx:id="randomMap" font="$x1" layoutX="438.0" layoutY="350.0" mnemonicParsing="false" text="Random" />
+    <Button layoutX="372.0" layoutY="419.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="0.0" text="OK" />
   </children>
 </AnchorPane>

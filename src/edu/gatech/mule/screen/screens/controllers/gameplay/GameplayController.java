@@ -5,9 +5,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
+import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.map.tiles.PropertyTile;
+import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 import edu.gatech.mule.screen.screens.views.MapView;
@@ -88,26 +88,26 @@ public class GameplayController extends MapController {
 		Point m=new Point(0,0);
 		switch(currentPlayer.getDirection()) {
 		case DOWN:
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 + map.getTileHeight()/2;
+			p.x = (int) map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2 + map.getTileHeight()/2;
 			m.x=p.x;
 			m.y=p.y-currentPlayer.getImage().getHeight();
 			break;
 		case LEFT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 - map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2 - map.getTileWidth()/2;
 			m.x=p.x+currentPlayer.getImage().getWidth();
 			m.y=p.y;
 			break;
 		case RIGHT:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2 + map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2 + map.getTileWidth()/2;
 			m.x=p.x-currentPlayer.getImage().getWidth();
 			m.y=p.y;
 			break;
 		case UP:
-			p.y = (int) map.getMap().getHeight()*map.getTileHeight()/2 - map.getTileHeight()/2;
-			p.x = (int) map.getMap().getWidth()*map.getTileWidth()/2;
+			p.y = (int) map.getHeight()*map.getTileHeight()/2 - map.getTileHeight()/2;
+			p.x = (int) map.getWidth()*map.getTileWidth()/2;
 			m.x=p.x;
 			m.y=p.y+currentPlayer.getImage().getHeight();
 			break;

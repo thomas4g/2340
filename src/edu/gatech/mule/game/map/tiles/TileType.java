@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.map;
+package edu.gatech.mule.game.map.tiles;
 
 /**
  * Library of tile types

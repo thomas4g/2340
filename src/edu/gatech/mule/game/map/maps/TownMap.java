@@ -1,12 +1,12 @@
 package edu.gatech.mule.game.map.maps;
 
+import tiled.core.Map;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.io.TMXMapReader;
-import edu.gatech.mule.game.map.GameMap;
-import edu.gatech.mule.game.map.GameTile;
-import edu.gatech.mule.game.map.TileType;
-import edu.gatech.mule.game.map.TownTile;
+import edu.gatech.mule.game.map.tiles.GameTile;
+import edu.gatech.mule.game.map.tiles.TileType;
+import edu.gatech.mule.game.map.tiles.TownTile;
 
 /**
  * Generates the town map
@@ -22,7 +22,7 @@ public class TownMap extends GameMap {
 	@Override
 	protected void generateMap() {
 		// TODO Auto-generated method stub
-		map=null;
+		Map map=null;
 		try {
 			TMXMapReader mapReader = new TMXMapReader();
 			map = mapReader.readMap(tmx);
@@ -32,6 +32,11 @@ public class TownMap extends GameMap {
 	
 		TileLayer layer = (TileLayer)map.getLayer(0);
 		tiles=new GameTile[layer.getWidth()][layer.getHeight()];
+		this.height = map.getHeight();
+		this.width = map.getWidth();
+		this.tileHeight = map.getTileHeight();
+		this.tileWidth = map.getTileWidth();
+		
 		for(int i=0;i<layer.getWidth();i++){
 			for(int j=0;j<layer.getHeight();j++){
 				

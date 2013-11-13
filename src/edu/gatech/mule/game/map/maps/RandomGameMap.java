@@ -1,6 +1,5 @@
 package edu.gatech.mule.game.map.maps;
 
-import edu.gatech.mule.game.map.GameMap;
 
 /**
  * Generates a randomly generated game map

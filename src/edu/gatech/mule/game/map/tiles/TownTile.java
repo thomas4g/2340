@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.map;
+package edu.gatech.mule.game.map.tiles;
 
 import edu.gatech.mule.game.player.Player;
 import tiled.core.Tile;

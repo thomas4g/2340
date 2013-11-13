@@ -18,6 +18,7 @@ import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
 import edu.gatech.mule.fx.screens.views.settings.FXNumPlayersView;
 import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.screens.views.MapView;
+import edu.gatech.mule.screen.screens.views.PersistenceView;
 import edu.gatech.mule.screen.screens.views.ScreenView;
 import edu.gatech.mule.screen.screens.views.SettingsView;
 import edu.gatech.mule.screen.screens.views.TownMapView;
@@ -85,7 +86,7 @@ public class FXScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	protected ScreenView loadPersistenceView() {
+	protected PersistenceView loadPersistenceView() {
 		return new FXPersistenceView();
 	}
 	
