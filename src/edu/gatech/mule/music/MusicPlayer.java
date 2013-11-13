@@ -10,7 +10,7 @@ public class MusicPlayer {
 	
 	public void play() {
 		if(bgPlayer != null) {
-//			bgPlayer.play();
+		bgPlayer.play();
 		}
 	}
 	

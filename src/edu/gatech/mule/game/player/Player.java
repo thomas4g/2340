@@ -25,7 +25,6 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	private Turn currentTurn;
 	private CharacterType type;
-	private Color color;
 	private String name;
 	private double money;
 	private ArrayList<GameTile> ownedLands;
@@ -40,7 +39,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * @param type, type of character
 	 */
 	public Player(CharacterType type) {
-		super(type.getStillSprite(Direction.RIGHT), new Point(0,0));
+		super(type.getStillSprite(Direction.RIGHT,Color.PURPLE), new Point(0,0));
 		this.type = type;
 		this.money = type.getMoney();
 		this.ownedLands = new ArrayList<>();
@@ -105,7 +104,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	
 	
 	public void setDirectionalFrames(){
-		setFrames(type.getDirectionalSprites(direction, big));
+		setFrames(type.getDirectionalSprites(direction, big,color));
 	}
 	
 	/**
@@ -128,7 +127,7 @@ public class Player extends Entity implements Transactor, Comparable {
 	 * Set the still sprite
 	 */
 	public void setStillSprite(){
-		image = loadImage(type.getStillSprite(direction));
+		image = loadImage(type.getStillSprite(direction,color));
 	}
 	
 	/**

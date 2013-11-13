@@ -53,6 +53,7 @@ public class GameplayController extends MapController {
 				((PropertyTile)tile).addMule(mule);
 				entities.remove(mule);
 			}else{
+				mule.setDirection(Direction.LEFT);
 					timer=new Timer(true);
 					timer.schedule(new TimerTask() {
 						

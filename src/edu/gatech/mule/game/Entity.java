@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import edu.gatech.mule.game.map.GameTile;
 import edu.gatech.mule.game.map.TileType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
+import edu.gatech.mule.game.player.Color;
 
 /**
  * Representation of an entity that can move around a map
@@ -22,6 +23,7 @@ public abstract class Entity {
 	protected Direction direction;
 	protected GameTile tile;
 	protected int frameIndex;
+	protected Color color;
 	
 	/**
 	 * Constructor for an entity
@@ -34,6 +36,8 @@ public abstract class Entity {
 		this.location = location;
 		this.direction = Direction.DOWN;
 		this.image = loadImage(imgPath);
+		this.color=Color.PURPLE;
+		System.out.println(color);
 	}
 	
 	/**
