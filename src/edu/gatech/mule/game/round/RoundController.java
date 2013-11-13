@@ -6,6 +6,19 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 
 public class RoundController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4187045980634695454L;
+
+	public GameEngine getGame() {
+		return game;
+	}
+
+	public void setGame(GameEngine game) {
+		this.game = game;
+	}
+
 	private Player currentPlayer;
 	private GameEngine game;
 	private int roundNumber;

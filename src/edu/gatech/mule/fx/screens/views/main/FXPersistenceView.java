@@ -1,5 +1,6 @@
 package edu.gatech.mule.fx.screens.views.main;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,6 +59,7 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 		} 
 		else if(toggle==1) {
 			FileChooser fc = new FileChooser();
+			fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 			controller.done(fc.showOpenDialog(null));
 		}
 		else if(toggle==2) {

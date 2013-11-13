@@ -125,18 +125,22 @@ public class GameEngine implements Serializable {
 		musicPlayer.setMedia(getClass().getResource("/music/Night Cave.mp3"));
 		musicPlayer.play();
 		roundController = new RoundController(this, 1);
+		setupMaps();
+		players = settings.getPlayers();
+		saveGameFile("gamedata");
+		
+		roundController.round();
+	}
+	
+	private void setupMaps() {
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
 		} else if(settings.getMapType().equals(MapType.RANDOM)) {
 			gameMap = new RandomGameMap();
 		}
-
-		players = settings.getPlayers();
-		saveGameFile("gamedata");
-		
-		roundController.round();
 	}
+	
 
 	/**
 	 * Shows screen of town map when entering town
@@ -182,7 +186,16 @@ public class GameEngine implements Serializable {
 	}
 
 	public void loadNewGame(GameEngine ge) {
+		settings 		= ge.settings;
+		gameMap 		= ge.gameMap;
+		townMap 		= ge.townMap;
+		players  		= ge.players;
+		roundController = ge.roundController;
+		currentScreen  	= ge.currentScreen;
 		
+		setupMaps();
+		roundController.setGame(this);
+		roundController.round();
 	}
 	
 	public void saveGameFile(String filename) {

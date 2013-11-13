@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -88,6 +89,9 @@ public class FXMapView extends FXView implements TownMapView {
 	@FXML
 	private Label prompt;
 	
+	@FXML
+	private ProgressIndicator timer;
+
 	/**
 	 * Constructor for map view
 	 */
@@ -174,7 +178,8 @@ public class FXMapView extends FXView implements TownMapView {
 			graphics.drawEntity(entity);
 		}
 		
-		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
+		timer.setProgress(currentPlayer.getCurrentTurn().getLength());
+//		graphics.drawText(Integer.toString(timeLeft), new Point(700, 500));
 		
 		drawPlayers();
 		
