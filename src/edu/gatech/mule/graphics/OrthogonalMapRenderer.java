@@ -28,8 +28,8 @@ public class OrthogonalMapRenderer {
 	 * @param map, map
 	 */
 	public OrthogonalMapRenderer(GameMap map, Renderer graphics) {
-		TILE_WIDTH = map.getMap().getTileWidth();
-		TILE_HEIGHT = map.getMap().getTileHeight();
+		TILE_WIDTH = map.getTileWidth();
+		TILE_HEIGHT = map.getTileHeight();
 		this.map = map;
 		this.graphics = graphics;
 	}
@@ -41,8 +41,8 @@ public class OrthogonalMapRenderer {
 	public void render(boolean outlined) {
 //		for(MapLayer ml : map.setLayers()) {
 //			TileLayer tl = (TileLayer)ml;
-			for(int x=0; x<map.getMap().getWidth(); x++) {
-				for(int y=0; y<map.getMap().getHeight(); y++) {
+			for(int x=0; x<map.getWidth(); x++) {
+				for(int y=0; y<map.getHeight(); y++) {
 					GameTile tile = map.getTile(x, y);
 	                if (tile == null) continue;	                
 

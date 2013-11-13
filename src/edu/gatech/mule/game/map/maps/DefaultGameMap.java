@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import tiled.core.AnimatedTile;
+import tiled.core.Map;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
@@ -27,7 +28,7 @@ public class DefaultGameMap extends GameMap {
 	@Override
 	protected void generateMap() {
 		//read map from tmx
-		map = null;
+		Map map = null;
 		final String tmx = "/tiles/map.tmx";
 		try {
 			TMXMapReader mapReader = new TMXMapReader();
@@ -38,6 +39,10 @@ public class DefaultGameMap extends GameMap {
 		
 		TileLayer layer = (TileLayer)map.getLayer(0);
 		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
+		this.height = map.getHeight();
+		this.width = map.getWidth();
+		this.tileHeight = map.getTileHeight();
+		this.tileWidth = map.getTileWidth();
 		
 		//generate animated tiles from river tileset
 		TileSet riverset = map.getTileSets().get(1);
