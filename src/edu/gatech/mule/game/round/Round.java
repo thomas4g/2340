@@ -52,7 +52,7 @@ public class Round {
 		
 		turns = new ArrayList<>();
 		for(Player p : players) {
-			turns.add(new Turn(this, p));
+			turns.add(new Turn(this, p,game));
 		}
 	}
 	

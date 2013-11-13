@@ -12,6 +12,8 @@ public class RandomEventFactory {
 	static {
 		roundEvents = new ArrayList<>();
 		turnEvents = new ArrayList<>();
+		turnEvents.add(new FindMineEvent());
+		turnEvents.add(new SwordWomanEvent());
 	}
 
 	public static TurnEvent createTurnEvent() {
