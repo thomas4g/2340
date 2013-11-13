@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.event;
+package edu.gatech.mule.game.event.roundevents;
 
 import edu.gatech.mule.core.GameEngine;
 

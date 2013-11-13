@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.event;
+package edu.gatech.mule.game.event.turnevents;
 
 import java.util.Random;
 

@@ -3,7 +3,6 @@ package edu.gatech.mule.game.event.roundevents;
 import java.util.Arrays;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.event.RoundEvent;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 

@@ -1,4 +1,4 @@
-package edu.gatech.mule.game.event;
+package edu.gatech.mule.game.event.turnevents;
 
 import edu.gatech.mule.game.player.Player;
 
