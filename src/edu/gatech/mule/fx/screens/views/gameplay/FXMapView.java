@@ -85,6 +85,9 @@ public class FXMapView extends FXView implements TownMapView {
 	private Label quit;
 	private Label[] buySellQuit;
 	
+	@FXML
+	private Label prompt;
+	
 	/**
 	 * Constructor for map view
 	 */

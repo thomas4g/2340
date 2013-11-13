@@ -15,7 +15,7 @@
         <Image url="@../tiles/bg1.png" />
       </image>
     </ImageView>
-    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="350.0" minHeight="16.0" prefHeight="31.0" prefWidth="178.0" text="Number of Players">
+    <Label alignment="CENTER_LEFT" layoutX="125.0" layoutY="347.0" minHeight="16.0" prefHeight="31.0" prefWidth="178.0" text="Number of Players">
       <font>
         <Font name="System Bold" size="18.0" />
       </font>

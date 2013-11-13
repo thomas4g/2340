@@ -37,7 +37,7 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 	protected void toggleSelected() {
 		newGame.setTextFill(FXSettingsView.NORMAL);
 		loadGame.setTextFill(FXSettingsView.GREYED);
-		help.setTextFill(FXSettingsView.GREYED);
+		help.setTextFill(FXSettingsView.NORMAL);
 		switch(toggle) {
 		case 0:
 			newGame.setTextFill(FXSettingsView.SELECTED);
@@ -55,11 +55,15 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 	protected void done() {
 		if(toggle==0) {
 			controller.done();
-		}
-		if(toggle==1) {
+		} 
+		else if(toggle==1) {
 			FileChooser fc = new FileChooser();
 			controller.done(fc.showOpenDialog(null));
 		}
+		else if(toggle==2) {
+			controller.help();
+		}
+		
 	}
 
 	@Override
