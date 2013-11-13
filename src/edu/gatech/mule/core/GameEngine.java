@@ -124,7 +124,7 @@ public class GameEngine implements Serializable {
 	public void playGame() {
 		musicPlayer.setMedia(getClass().getResource("/music/Night Cave.mp3"));
 		musicPlayer.play();
-		roundController = new RoundController(this, 1);
+		roundController = new RoundController(this, 2);
 		townMap = new TownMap();
 		if(settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
