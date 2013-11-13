@@ -124,11 +124,9 @@ public class GameEngine implements Serializable {
 	public void playGame() {
 		musicPlayer.setMedia(getClass().getResource("/music/Night Cave.mp3"));
 		musicPlayer.play();
-		roundController = new RoundController(this, 1);
+		roundController = new RoundController(this, 12);
 		setupMaps();
 		players = settings.getPlayers();
-		saveGameFile("gamedata");
-		
 		roundController.round();
 	}
 	
@@ -193,7 +191,7 @@ public class GameEngine implements Serializable {
 		roundController = ge.roundController;
 		currentScreen  	= ge.currentScreen;
 		
-		setupMaps();
+//		setupMaps();
 		roundController.setGame(this);
 		roundController.round();
 	}

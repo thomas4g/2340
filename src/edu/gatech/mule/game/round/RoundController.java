@@ -32,6 +32,7 @@ public class RoundController implements Serializable {
 	}
 	
 	public void round() {
+		game.saveGameFile("gamedata");
 		if(roundNumber <= rounds) {
 			currentRound = new Round(game, this, roundNumber++);
 			currentRound.start();

@@ -1,18 +1,23 @@
 package edu.gatech.mule.game.round;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.gatech.mule.game.GamblingFormula;
-import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.game.player.Player;
+import edu.gatech.mule.game.resources.ResourceType;
 
-public class Turn {
+public class Turn implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -301629855669899017L;
 	private Round round;
 	private Player player;
 	private int length;
-	private Timer timer;
+	private transient Timer timer;
 	
 	public Turn(Round round, Player player) {
 		this.round = round;

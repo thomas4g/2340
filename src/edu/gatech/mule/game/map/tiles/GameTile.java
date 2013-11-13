@@ -1,8 +1,14 @@
 package edu.gatech.mule.game.map.tiles;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Properties;
+
+import javax.imageio.ImageIO;
 
 import tiled.core.Tile;
 import edu.gatech.mule.game.player.Player;
@@ -13,11 +19,15 @@ import edu.gatech.mule.game.player.Player;
  */
 public abstract class GameTile implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7985811022411100046L;
 	public static final int DEFAULT_COST = 300;
 	protected TileType type;
 	protected Player owner;
 	protected int cost;
-	protected transient Image image;
+	protected transient BufferedImage image;
 	protected int width;
 	protected int height;
 	protected Properties properties;
@@ -28,7 +38,7 @@ public abstract class GameTile implements Serializable {
 	 * @param type, type of tile
 	 */
 	public GameTile(Tile t, TileType type) {
-		this.image = t.getImage();
+		this.image = (BufferedImage) t.getImage();
 		this.properties = t.getProperties();
 		this.width = t.getWidth();
 		this.height = t.getHeight();
@@ -96,4 +106,32 @@ public abstract class GameTile implements Serializable {
 	public abstract void action(Player player);
 	public abstract void enter(Player player);
 	public abstract void exit(Player player);
+	
+	protected void sWrite(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		if(image != null) {
+			out.writeInt(1);
+			ImageIO.write(image, "png", out);
+		}
+		else {
+			System.out.println(this.getClass().getName());
+			out.writeInt(0);
+		}
+	}
+    protected void sRead(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    	in.defaultReadObject();
+    	final int hasImg = in.readInt();
+    	if(hasImg > 0)
+    		image = ImageIO.read(in);
+    }
+	
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		sWrite(out);
+	}
+	
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    	sRead(in);
+    }
+    
+
 }

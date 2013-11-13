@@ -178,8 +178,8 @@ public class FXMapView extends FXView implements TownMapView {
 			graphics.drawEntity(entity);
 		}
 		
-		timer.setProgress(currentPlayer.getCurrentTurn().getLength());
-//		graphics.drawText(Integer.toString(timeLeft), new Point(700, 500));
+//		timer.setProgress(currentPlayer.getCurrentTurn().getLength());
+		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
 		
 		drawPlayers();
 		
