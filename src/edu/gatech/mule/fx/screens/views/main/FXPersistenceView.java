@@ -36,7 +36,7 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 	@Override
 	protected void toggleSelected() {
 		newGame.setTextFill(FXSettingsView.NORMAL);
-		loadGame.setTextFill(FXSettingsView.GREYED);
+		loadGame.setTextFill(FXSettingsView.NORMAL);
 		help.setTextFill(FXSettingsView.NORMAL);
 		switch(toggle) {
 		case 0:
