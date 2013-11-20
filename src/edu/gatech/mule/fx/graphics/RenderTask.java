@@ -11,6 +11,7 @@ public class RenderTask extends Thread {
 
 	private static boolean paused = false;
 	private static final long FPS = 15;
+	private static final int SECOND = 1000;
 
 	private FXScreenHandler handler;
 
@@ -34,7 +35,7 @@ public class RenderTask extends Thread {
 				}
 			});
 			try {
-				Thread.sleep(1000 / FPS);
+				Thread.sleep(SECOND / FPS);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
 			}
