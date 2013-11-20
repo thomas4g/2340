@@ -19,7 +19,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Popup;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.game.Entity;
@@ -33,7 +32,7 @@ import edu.gatech.mule.screen.controllers.gameplay.TownController;
 import edu.gatech.mule.screen.views.TownMapView;
 
 /**
- * View for main map
+ * View for main map.
  * @version 1.0
  */
 public class FXMapView extends FXView implements TownMapView {
@@ -49,9 +48,8 @@ public class FXMapView extends FXView implements TownMapView {
 	private TownController townController;
 	private Message message;
 
-	
-	final private ObservableList<ResourceType> muleTypes;
-	
+	private final ObservableList<ResourceType> muleTypes;
+
 	@FXML
 	private StackPane canvasContainer;
 	@FXML
@@ -64,9 +62,9 @@ public class FXMapView extends FXView implements TownMapView {
 	private GridPane muleSelectorOverlay;
 	@FXML
 	private TextField textField;
-	@FXML 
+	@FXML
 	private HBox playerPanel;
-	
+
 	@FXML
 	private Button muleSelect;
 	@FXML
@@ -78,7 +76,7 @@ public class FXMapView extends FXView implements TownMapView {
 	@FXML
 	private Label crystite;
 	private Label[] muleLabels;
-	
+
 	@FXML
 	private Button storeSelect;
 	@FXML
@@ -88,15 +86,15 @@ public class FXMapView extends FXView implements TownMapView {
 	@FXML
 	private Label quit;
 	private Label[] buySellQuit;
-	
+
 	@FXML
 	private Label prompt;
-	
+
 	@FXML
 	private ProgressIndicator timer;
 
 	/**
-	 * Constructor for map view
+	 * Constructor for map view.
 	 */
 	public FXMapView() {
 		super("map");
@@ -109,17 +107,17 @@ public class FXMapView extends FXView implements TownMapView {
 
 		canvas = new Canvas(720, 520);
 		canvasContainer.getChildren().add(0, canvas);
-		
+
 		muleSelectorOverlay.setVisible(false);
 		muleLabels = new Label[]{food, energy, smithore, crystite};
 		textMuleColor();
-		
+
 		storeSelectorOverlay.setVisible(false);
 		buySellQuit = new Label[]{buy, sell, quit};
 		textStoreColor();
-		
+
 		textOverlay.setVisible(false);
-		
+
 		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED,
 				new EventHandler<KeyEvent>() {
 					@Override
@@ -131,14 +129,14 @@ public class FXMapView extends FXView implements TownMapView {
 						}
 					}
 		});
-		
+
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
 	}
-	
+
 	/**
-	 * Wires the key board onto the game
+	 * Wires the key board onto the game.
 	 */
 	private void wireKeyboard() {
 		canvas.setFocusTraversable(true);
@@ -162,44 +160,45 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	/**
-	 * Renders graphics
+	 * Renders graphics.
 	 */
 	public void render() {
 		graphics.clear(0,
 					   0,
-					   (int)canvas.getWidth(),
-					   (int)canvas.getHeight());
-		
+					   (int) canvas.getWidth(),
+					   (int) canvas.getHeight());
+
 		if (mapRenderer != null) {
 			mapRenderer.render(true);
 		}
 		drawSelector();
-		
+
 		for (Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
-		
+
 		graphics.drawText(
 			Integer.toString(
 				currentPlayer.getCurrentTurn().getLength()),
 			new Point(700, 500));
 		drawPlayers();
-		
+
 		if (storeResources != null) {
 			drawStoreResources();
 		}
-		
+
 //		if(message != null && !message.getMessage().isEmpty()) {
 //			Popup p = new Popup();
 //			p.getContent().add(new TextField(message.getMessage()));
 //			p.show(null);
 //		}
-		
-		if(message != null)
+
+		if(message != null) {
 			graphics.drawText(message.getMessage(), new Point(100, 500));
+		}
 
 	}
-	
+
 	private void drawStoreResources() {
 		for (int i = 0; i < gameMap.getTiles().length; i++) {
 			for (int j = 0; j < gameMap.getTiles()[0].length; j++) {
@@ -208,46 +207,46 @@ public class FXMapView extends FXView implements TownMapView {
 
 				for(int k = 0; k < storeResources.length; k++) {
 					String rt = ResourceType.values()[k].name();
-					
+
 					if (rt.equalsIgnoreCase(tt)) {
-						graphics.drawText(Integer.toString(storeResources[k]), 
+						graphics.drawText(Integer.toString(storeResources[k]),
 								new Point(t.getWidth() * i + t.getWidth() / 2, 45),
 								Color.WHITE,
 								16);
-					}					
+					}
 				}
 			}
 		}
 	}
-	
+
 	@Override
 	public void setSelector(Point location) {
 		selectorLocation = location;
 	}
-	
+
 	/**
-	 * Draws selector
+	 * Draws selector.
 	 */
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null) {
 			graphics.drawHollowRect(
-					selectorLocation.x * OrthogonalMapRenderer.getTileWidth(), 
-					selectorLocation.y * OrthogonalMapRenderer.getTileHeight(), 
-					OrthogonalMapRenderer.getTileWidth(), 
+					selectorLocation.x * OrthogonalMapRenderer.getTileWidth(),
+					selectorLocation.y * OrthogonalMapRenderer.getTileHeight(),
+					OrthogonalMapRenderer.getTileWidth(),
 					OrthogonalMapRenderer.getTileHeight(),
-					3.0, 
+					3.0,
 					currentPlayer.getColor().getRGB()
 					);
 		}
 	}
-	
-	private void drawPlayers() {	
+
+	private void drawPlayers() {
 		BufferedImage hs = currentPlayer.getHeadshot();
-		float ratio = (float)hs.getWidth() / hs.getHeight();
+		float ratio = (float) hs.getWidth() / hs.getHeight();
 		int newHeight = 100;
-		int newWidth = (int)(newHeight * ratio);
+		int newWidth = (int) (newHeight * ratio);
 		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
-		
+
 		int i = 0;
 		for (Player player : players) {
 			if (player.equals(currentPlayer)) {
@@ -260,7 +259,7 @@ public class FXMapView extends FXView implements TownMapView {
 			i++;
 		}
 	}
-	
+
 	@Override
 	public void setGameMap(GameMap gameMap) {
 		this.gameMap = gameMap;
@@ -274,9 +273,9 @@ public class FXMapView extends FXView implements TownMapView {
 
 	@Override
 	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayer = currentPlayer;		
+		this.currentPlayer = currentPlayer;
 	}
-	
+
 	@Override
 	public void setPlayers(List<Player> players) {
 		this.players = players;
@@ -291,30 +290,29 @@ public class FXMapView extends FXView implements TownMapView {
 	public void setController(TownController controller) {
 		townController = controller;
 	}
-	
-	
+
 	private int store;
-	private static String[] BSQyum = {"buy","sell","quit"};
-	
+	private static String[] options = {"buy", "sell", "quit"};
+
 	/**
-	 * Scrolls store toggle to left
+	 * Scrolls store toggle to left.
 	 */
 	private void storeLeft() {
-		store = mod(--store,BSQyum.length);
+		store = mod(--store, options.length);
 		textStoreColor();
 	}
-	
+
 	/**
-	 * Scrolls store toggle to right
+	 * Scrolls store toggle to right.
 	 */
 	private void storeRight() {
-		store = mod(++store,BSQyum.length);
+		store = mod(++store, options.length);
 		textStoreColor();
 	}
-	
+
 	/**
-	 * Store actions based on key events
-	 * @param event, key pressed
+	 * Store actions based on key events.
+	 * @param event key pressed
 	 */
 	@FXML
 	protected void storeAction(KeyEvent event) {
@@ -324,18 +322,18 @@ public class FXMapView extends FXView implements TownMapView {
 			storeRight();
 		} else if (event.getCode() == ACTION_KEY) {
 			displayStoreSelector(false);
-			if (BSQyum[store].equals("buy")) {
+			if (options[store].equals("buy")) {
 				displayStoreAmountMenu(true);
-			} else if (BSQyum[store].equals("sell")) {
+			} else if (options[store].equals("sell")) {
 				displayStoreAmountMenu(false);
 			}
 		} else if (event.getCode() == CANCEL_KEY) {
 			displayMuleSelector(false);
 		}
 	}
-	
+
 	/**
-	 * Sets color of toggle
+	 * Sets color of toggle.
 	 */
 	private void textStoreColor() {
 		for (Label lab : buySellQuit) {
@@ -343,17 +341,17 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 		selectedStore();
 	}
-	
+
 	/**
-	 * Sets selected text to selected color
+	 * Sets selected text to selected color.
 	 */
 	private void selectedStore() {
 		buySellQuit[store].setTextFill(FXView.SELECTED);
 	}
-	
+
 	/**
-	 * Displays store selector
-	 * @param isVisible, whether selector will be visible or not
+	 * Displays store selector.
+	 * @param isVisible whether selector will be visible or not
 	 */
 	private void displayStoreSelector(boolean isVisible) {
 		storeSelectorOverlay.setVisible(isVisible);
@@ -370,7 +368,7 @@ public class FXMapView extends FXView implements TownMapView {
 		displayStoreSelector(true);
 		storeSelect.requestFocus();
 	}
-	
+
 	@Override
 	public void displayStoreAmountMenu(final boolean buying) {
 		textOverlay.setVisible(true);
@@ -392,40 +390,36 @@ public class FXMapView extends FXView implements TownMapView {
 					textOverlay.setVisible(false);
 				}
 			}
-			
+
 		});
 	}
-	
 
 	@Override
 	public void setStoreResourceAmounts(int[] resources) {
 		storeResources = resources;
 	}
-	
-	
 	private int mule;
-	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY, 
+	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY,
 										ResourceType.SMITHORE, ResourceType.CRYSTITE};
-	
+
 	/**
-	 * Toggles mule selector to the left
+	 * Toggles mule selector to the left.
 	 */
 	private void muleLeft() {
-		mule = mod(--mule,res.length);
+		mule = mod(--mule, res.length);
 		textMuleColor();
 	}
-	
+
 	/**
-	 * Toggles mule selector to the right
+	 * Toggles mule selector to the right.
 	 */
 	private void muleRight() {
-		mule = mod(++mule,res.length);
+		mule = mod(++mule, res.length);
 		textMuleColor();
 	}
-	
 	/**
-	 * Actions of mule selector based on key event
-	 * @param event, key pressed
+	 * Actions of mule selector based on key event.
+	 * @param event key pressed
 	 */
 	@FXML
 	protected void muleAction(KeyEvent event) {
@@ -441,9 +435,9 @@ public class FXMapView extends FXView implements TownMapView {
 			displayMuleSelector(false);
 		}
 	}
-	
+
 	/**
-	 * Sets up mule selector text
+	 * Sets up mule selector text.
 	 */
 	private void textMuleColor() {
 		for(Label lab : muleLabels) {
@@ -451,16 +445,16 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 		selectedMule();
 	}
-	
+
 	/**
-	 * Colors selected mule text to selected color
+	 * Colors selected mule text to selected color.
 	 */
 	private void selectedMule() {
 		muleLabels[mule].setTextFill(FXView.SELECTED);
 	}
-	
+
 	/**
-	 * Displays mule selector
+	 * Displays mule selector.
 	 * @param isVisible, whether selector will be visible
 	 */
 	private void displayMuleSelector(boolean isVisible) {
@@ -475,10 +469,12 @@ public class FXMapView extends FXView implements TownMapView {
 
 	@Override
 	public void displayMuleOptions() {
-		if(muleSelectorOverlay.isVisible()) return;
+		if(muleSelectorOverlay.isVisible()) {
+			return;
+		}
 		displayMuleSelector(true);
 	}
-	
+
 	@Override
 	public void setMuleOptions(ResourceType[] mules) {
 		muleTypes.clear();
