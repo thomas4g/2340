@@ -12,7 +12,7 @@ public class DanielEngel {
 
 	@Test
 	public void directionalSpriteTest() {
-		
+
 		Direction dirOne=Direction.RIGHT;
 		boolean sizeOne=false;
 		Color colorOne=Color.GREEN;

@@ -113,7 +113,7 @@ public class Turn implements Serializable {
 		player.addMoney(gainedMoney);
 		timer.cancel();
 
-		if (rand.nextInt(2) % 2 == 0) {
+		if (!game.getCurrentLoser().equals(player) &&  rand.nextInt(2) % 2 == 0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
 			event.execute(player);
 			game.setMessage(event.getMessage());
