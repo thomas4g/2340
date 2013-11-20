@@ -25,7 +25,6 @@ public class RenderTask extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("STARTED");
 		while (!paused) {
 			Platform.runLater(new Runnable() {
 				public void run() {

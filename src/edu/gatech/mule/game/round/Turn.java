@@ -114,7 +114,6 @@ public class Turn implements Serializable {
 		if (coinFlip % 2 == 0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
 			event.execute(player);
-			System.out.println(event.getMessage());
 			game.setMessage(event.getMessage());
 		}
 		round.turn();

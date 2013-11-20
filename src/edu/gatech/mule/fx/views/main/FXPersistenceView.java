@@ -26,6 +26,8 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 	@FXML
 	private Label help;
 
+	private Label[] labels;
+
 	private PersistenceController controller;
 
 	/**
@@ -33,11 +35,12 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 	 */
 	public FXPersistenceView() {
 		super("persistence");
-		toggleMod = 3;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		labels = new Label[]{newGame, loadGame, help};
+		toggleMod = labels.length;
 		toggleSelected();
 	}
 
@@ -46,19 +49,7 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 		newGame.setTextFill(FXSettingsView.NORMAL);
 		loadGame.setTextFill(FXSettingsView.NORMAL);
 		help.setTextFill(FXSettingsView.NORMAL);
-		switch (toggle) {
-		case 0:
-			newGame.setTextFill(FXSettingsView.SELECTED);
-			break;
-		case 1:
-			loadGame.setTextFill(FXSettingsView.SELECTED);
-			break;
-		case 2:
-			help.setTextFill(FXSettingsView.SELECTED);
-			break;
-		default:
-			break;
-		}
+		labels[toggle].setTextFill(FXSettingsView.SELECTED);
 	}
 
 	@Override
