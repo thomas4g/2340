@@ -10,35 +10,35 @@ import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.player.Difficulty;
 
 /**
- * View for difficulty select screen
+ * View for difficulty select screen.
  * @version 1.0
  */
 public class FXDifficultyView extends FXSettingsView {
-	
-	private final static Difficulty[] difficulties = Difficulty.values();
-	
+
+	private static final Difficulty[] DIFFICULTIES = Difficulty.values();
+
 	private Settings settings;
-	
+
 	@FXML
 	private Label beginner;
 	@FXML
 	private Label standard;
 	@FXML
 	private Label advanced;
-	
+
 	/**
-	 * Constructor for difficulty select view
+	 * Constructor for difficulty select view.
 	 */
 	public FXDifficultyView() {
 		super("difficulty");
-		toggleMod = difficulties.length;
+		toggleMod = DIFFICULTIES.length;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		toggleSelected();
 	}
-	
+
 	@Override
 	protected void toggleSelected() {
 		beginner.setTextFill(FXSettingsView.NORMAL);
@@ -54,22 +54,24 @@ public class FXDifficultyView extends FXSettingsView {
 		case 2:
 			advanced.setTextFill(FXSettingsView.SELECTED);
 			break;
+		default:
+			break;
 		}
 	}
-	
+
 	@Override
 	public void setSettings(Settings settings) {
 		this.settings = settings;
 		toggle = 0;
 	}
-	
+
 	@Override
 	protected void done() {
-		settings.setDifficulty(difficulties[toggle]);
+		settings.setDifficulty(DIFFICULTIES[toggle]);
 		controller.done();
 	}
 
 	@Override
-	public void render() {}
+	public void render() { }
 
 }
