@@ -14,8 +14,9 @@ import edu.gatech.mule.game.player.Player;
 
 /**
  * Representation of a property tile
- * @version 0.1
+ * @version 1.0
  */
+@SuppressWarnings("serial")
 public class PropertyTile extends GameTile {
 	
 	/**
@@ -26,7 +27,7 @@ public class PropertyTile extends GameTile {
 	
 	/**
 	 * Constructor for a property tile
-	 * @param t, tile config ???
+	 * @param t, tile
 	 * @param type, type of tile
 	 */
 	public PropertyTile(Tile t, TileType type) {
@@ -34,28 +35,31 @@ public class PropertyTile extends GameTile {
 		mules = new ArrayList<Mule>();
 	}
 	
+	/**
+	 * Add a mule
+	 * @param mule
+	 */
 	public void addMule(Mule mule) {
 		mules.add(mule);
 	}
+	
+	/**
+	 * Returns a list of mules
+	 * @return a list of mules
+	 */
 	public List<Mule> getMules() {
 		return mules;
 	}
 
 	@Override
-	public void action(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void action(Player player) {}
 
 	@Override
-	public void enter(Player player) {
-
-	}
+	public void enter(Player player) {}
 
 	@Override
 	public void exit(Player player) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	private void writeObject(ObjectOutputStream out) throws IOException {

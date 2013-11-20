@@ -13,8 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 /**
- * General set up for any view ports
- * @version 0.1
+ * General set up for all view ports
+ * @version 1.0
  */
 public abstract class FXView implements ScreenView, Initializable {
 	
@@ -39,8 +39,8 @@ public abstract class FXView implements ScreenView, Initializable {
 	protected ScreenController controller;
 	
 	/**
-	 * Constructor for FX view ???
-	 * @param fxmlName
+	 * Constructor for view
+	 * @param fxmlName, the fxml file containing view layout
 	 */
 	public FXView(String fxmlName) {
 		this.fxmlName = fxmlName;
@@ -51,7 +51,8 @@ public abstract class FXView implements ScreenView, Initializable {
 	 */
 	public void load() {
 		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FXML_DIR + fxmlName + FXML_EXT));
+			FXMLLoader loader = new FXMLLoader(this.getClass()
+					.getResource(FXML_DIR + fxmlName + FXML_EXT));
 			loader.setController(this);
 			node = (Pane)loader.load();
 		} catch(Exception e) {
@@ -60,7 +61,7 @@ public abstract class FXView implements ScreenView, Initializable {
 	}
 	
 	/**
-	 * Get the node ???
+	 * Returns node
 	 * @return node
 	 */
 	public Node getNode() {
@@ -73,6 +74,9 @@ public abstract class FXView implements ScreenView, Initializable {
 		
 	}  
 	
+	/**
+	 * Renders image
+	 */
 	public abstract void render();
 	
 	@Override
@@ -80,6 +84,13 @@ public abstract class FXView implements ScreenView, Initializable {
 		this.controller = controller;
 	}
 	
+	/**
+	 * Returns the mod in mod division based on division theory,
+	 * AKA the mod will always be a nonnegative number
+	 * @param cheese, the dividend
+	 * @param knife, the divisor
+	 * @return the mod between the dividend and divisor
+	 */
 	protected int mod(int cheese, int knife) {
 		int mod = cheese % knife;
 		if(mod < 0) {

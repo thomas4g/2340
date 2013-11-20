@@ -7,8 +7,9 @@ import edu.gatech.mule.game.map.tiles.GameTile;
 
 /**
  * General set up for a map
- * @version 0.1
+ * @version 1.0
  */
+@SuppressWarnings("serial")
 public abstract class GameMap implements Serializable {
 	protected GameTile[][] tiles;
 	protected int width, height, tileWidth, tileHeight;
@@ -20,10 +21,18 @@ public abstract class GameMap implements Serializable {
 		generateMap();
 	}
 	
+	/**
+	 * Returns width of map
+	 * @return width of map
+	 */
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * Returns height of map
+	 * @return height of map
+	 */
 	public int getHeight() {
 		return this.height;
 	}
@@ -61,7 +70,6 @@ public abstract class GameMap implements Serializable {
 	public int getTileHeight(){
 		return this.tileHeight;
 	}
-	
 	
 	/**
 	 * Generates map based on specifications

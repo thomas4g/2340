@@ -1,8 +1,11 @@
 package edu.gatech.mule.game.event.roundevents;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.game.event.RoundEvent;
 
+/**
+ * Round event where it causes a mule to be lost
+ * @version
+ */
 public class StampedeEvent implements RoundEvent {
 
 	@Override

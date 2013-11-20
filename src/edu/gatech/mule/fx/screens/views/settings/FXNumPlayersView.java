@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
 
 /**
- * View for settings config
+ * View for screen to set number of players
+ * @version 1.0
  */
 public class FXNumPlayersView extends FXSettingsView {
 	
@@ -34,12 +35,13 @@ public class FXNumPlayersView extends FXSettingsView {
 		toggleSelected();
 	}
 	
+	@Override
 	protected void toggleSelected() {
 		two.setTextFill(FXSettingsView.NORMAL);
 		three.setTextFill(FXSettingsView.NORMAL);
 		four.setTextFill(FXSettingsView.NORMAL);
 		
-		switch(toggle) {
+		switch (toggle) {
 		case 0: two.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 1: three.setTextFill(FXSettingsView.SELECTED);
@@ -49,6 +51,7 @@ public class FXNumPlayersView extends FXSettingsView {
 		}
 	}
 	
+	@Override
 	protected void done() {
 		settings.setPlayerCount(playerNums[toggle]);
 		controller.done();
@@ -56,4 +59,5 @@ public class FXNumPlayersView extends FXSettingsView {
 
 	@Override
 	public void render() {}
+	
 }

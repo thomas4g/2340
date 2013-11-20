@@ -9,6 +9,10 @@ import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.player.Difficulty;
 
+/**
+ * View for difficulty select screen
+ * @version 1.0
+ */
 public class FXDifficultyView extends FXSettingsView {
 	
 	private final static Difficulty[] difficulties = Difficulty.values();
@@ -22,6 +26,9 @@ public class FXDifficultyView extends FXSettingsView {
 	@FXML
 	private Label advanced;
 	
+	/**
+	 * Constructor for difficulty select view
+	 */
 	public FXDifficultyView() {
 		super("difficulty");
 		toggleMod = difficulties.length;
@@ -32,6 +39,7 @@ public class FXDifficultyView extends FXSettingsView {
 		toggleSelected();
 	}
 	
+	@Override
 	protected void toggleSelected() {
 		beginner.setTextFill(FXSettingsView.NORMAL);
 		standard.setTextFill(FXSettingsView.NORMAL);

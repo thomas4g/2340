@@ -12,6 +12,7 @@ import edu.gatech.mule.game.map.tiles.TownTile;
  * Generates the town map
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class TownMap extends GameMap {
 
 	final String tmx = "/tiles/town.tmx";
@@ -21,8 +22,7 @@ public class TownMap extends GameMap {
 	 */
 	@Override
 	protected void generateMap() {
-		// TODO Auto-generated method stub
-		Map map=null;
+		Map map = null;
 		try {
 			TMXMapReader mapReader = new TMXMapReader();
 			map = mapReader.readMap(tmx);
@@ -31,19 +31,17 @@ public class TownMap extends GameMap {
 		}
 	
 		TileLayer layer = (TileLayer)map.getLayer(0);
-		tiles=new GameTile[layer.getWidth()][layer.getHeight()];
+		tiles = new GameTile[layer.getWidth()][layer.getHeight()];
 		this.height = map.getHeight();
 		this.width = map.getWidth();
 		this.tileHeight = map.getTileHeight();
 		this.tileWidth = map.getTileWidth();
 		
-		for(int i=0;i<layer.getWidth();i++){
-			for(int j=0;j<layer.getHeight();j++){
-				
+		for(int i = 0; i < layer.getWidth(); i++){
+			for(int j = 0; j < layer.getHeight(); j++){
 				Tile tile = layer.getTileAt(i, j);
 				String type = ((String) tile.getProperties().getProperty("type", "town")).toUpperCase();
 				tiles[i][j] = new TownTile(tile, TileType.valueOf(type));
-				
 			}
 		}
 		

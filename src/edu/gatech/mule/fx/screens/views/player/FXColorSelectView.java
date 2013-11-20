@@ -13,8 +13,8 @@ import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
 
 /**
- * View for player config
- * @version 0.1
+ * View for player color config
+ * @version 1.0
  */
 public class FXColorSelectView extends FXSettingsView {
 	
@@ -47,7 +47,7 @@ public class FXColorSelectView extends FXSettingsView {
 	private Label[] colorLabels;
 		
 	/**
-	 * Constructor for player screen
+	 * Constructor for player color select screen
 	 */
 	public FXColorSelectView() {
 		super("color_select");
@@ -64,21 +64,27 @@ public class FXColorSelectView extends FXSettingsView {
 		toggleSelected();
 	}
 	
+	@Override
 	protected void toggleSelected() {
 		greyedOrNotAll();
 		colorLabels[toggle].setTextFill(FXSettingsView.SELECTED);
 		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
 	}
 	
+	@Override
 	protected void done() {
-		if(!settings.colorUsed(toggle+1)) {
-			
+		if (!settings.colorUsed(toggle+1)) {
 			settings.setCurrentPlayerColor(colors[toggle]);
 			settings.addColor(colors[toggle]);
 			controller.done();
 		}
 	}
 	
+	/**
+	 * Returns color that corresponds to whether color is already used or not
+	 * @param color, color of player config
+	 * @return JavaFX text color based on whether color is already used or not
+	 */
 	private javafx.scene.paint.Color grayedOrNot(int color) {
 		if(settings.colorUsed(color)) {
 			return FXSettingsView.GREYED;
@@ -86,6 +92,10 @@ public class FXColorSelectView extends FXSettingsView {
 		return FXSettingsView.NORMAL;
 	}
 	
+	/**
+	 * Sets text colors of all toggles based on whether corresponding
+	 * colors were already selected or not
+	 */
 	private void greyedOrNotAll() {
 		int i = 0;
 		for(Label label : colorLabels) {

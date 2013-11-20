@@ -9,7 +9,7 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.GamblingFormula;
 import edu.gatech.mule.game.Mule;
 import edu.gatech.mule.game.event.RandomEventFactory;
-import edu.gatech.mule.game.event.TurnEvent;
+import edu.gatech.mule.game.event.turnevents.TurnEvent;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.gatech.mule.fx.screens.views.main;
 
 import edu.gatech.mule.fx.screens.views.FXView;
@@ -11,7 +7,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * View for start screen
- * @version 0.1
+ * @version 1.0
  */
 public class FXStartView extends FXView {
 	
@@ -22,6 +18,10 @@ public class FXStartView extends FXView {
 		super("start");
 	}
 	
+	/**
+	 * Starts the game
+	 * @param event, key pressed
+	 */
 	@FXML
     public void startGame(KeyEvent event) {
 	    if (event.getCode() == KeyCode.ENTER) {
@@ -30,8 +30,6 @@ public class FXStartView extends FXView {
 	}
 
 	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void render() {}
+	
 }

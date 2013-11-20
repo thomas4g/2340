@@ -2,7 +2,7 @@ package edu.gatech.mule.game.map.tiles;
 
 /**
  * Library of tile types
- * @version 0.1
+ * @version 1.0
  */
 public enum TileType {
 

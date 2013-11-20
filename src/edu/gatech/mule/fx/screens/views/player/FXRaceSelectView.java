@@ -14,12 +14,14 @@ import edu.gatech.mule.game.player.Player;
 
 /**
  * View for race select config
- * @version 0.1
+ * @version 1.0
  */
 public class FXRaceSelectView extends FXSettingsView {
 	
 	protected final static CharacterType[] raceScroll = 
-			new CharacterType[]{CharacterType.HUMANOID,CharacterType.FLAPPER, CharacterType.BONZOID};
+			new CharacterType[]{CharacterType.HUMANOID,
+								CharacterType.FLAPPER,
+								CharacterType.BONZOID};
 	private static Random randy = new Random();
 	
 	@FXML
@@ -51,10 +53,13 @@ public class FXRaceSelectView extends FXSettingsView {
 	public void initialize(URL location, ResourceBundle resources) {
 		toggle = randy.nextInt(raceScroll.length);
 		
-		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your race");
+		playerAnnouncer.setText("Player "
+				+ settings.getPlayerIndex()
+				+ ", choose your race");
 		toggleSelected();
 	}
 	
+	@Override
 	protected void toggleSelected() {
 		raceName.setText(raceScroll[toggle].getType());
 		headshot.setImage(new Image(raceScroll[toggle].getHeadshot(1)));
@@ -64,7 +69,7 @@ public class FXRaceSelectView extends FXSettingsView {
 		flapper.setTextFill(FXSettingsView.NORMAL);
 		bonzoid.setTextFill(FXSettingsView.NORMAL);
 		
-		switch(toggle) {
+		switch (toggle) {
 		case 0: humanoid.setTextFill(FXSettingsView.SELECTED);
 			break;
 		case 1: flapper.setTextFill(FXSettingsView.SELECTED);
@@ -74,6 +79,7 @@ public class FXRaceSelectView extends FXSettingsView {
 		}
 	}
 	
+	@Override
 	protected void done() {
 		Player p = new Player(raceScroll[toggle]);
 		toggle = randy.nextInt(raceScroll.length);
@@ -85,4 +91,5 @@ public class FXRaceSelectView extends FXSettingsView {
 
 	@Override
 	public void render() {}	
+	
 }

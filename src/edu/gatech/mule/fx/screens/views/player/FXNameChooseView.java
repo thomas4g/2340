@@ -12,6 +12,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.screens.views.FXSettingsView;
 
+/**
+ * View for player name choosing screen
+ * @version 1.0
+ */
 public class FXNameChooseView extends FXSettingsView {
 	
 	private final static String NAME_REGEX = "^([A-Z][a-zA-Z]*)([.]{0,1} [A-Z][a-zA-Z]*)*$";
@@ -27,10 +31,14 @@ public class FXNameChooseView extends FXSettingsView {
 	@FXML
 	private ImageView headshot;
 	
+	/**
+	 * Constructor for player name choosing view
+	 */
 	public FXNameChooseView() {
 		super("name_choose");
 	}
 	
+	@Override
 	@FXML
 	protected void transition(KeyEvent event){
 		if(event.getCode() == KeyCode.UP) {
