@@ -9,7 +9,7 @@ import java.util.Random;
 public final class GamblingFormula {
 
 	private static final Random RAND_GEN = new Random();
-	
+
 	private GamblingFormula() { }
 
 	/**
