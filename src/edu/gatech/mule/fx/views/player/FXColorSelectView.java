@@ -1,8 +1,6 @@
 package edu.gatech.mule.fx.views.player;
 
-
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -54,7 +52,12 @@ public class FXColorSelectView extends FXSettingsView {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		toggle = 0;
-		playerAnnouncer.setText("Player " + settings.getPlayerIndex() + ", choose your color");
+		while(settings.colorUsed(toggle + 1)) {
+			toggle++;
+		}
+		playerAnnouncer.setText("Player "
+				+ settings.getPlayerIndex()
+				+ ", choose your color");
 		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle + 1)));
 		colorLabels = new Label[]{purple, blue, teal, seafoam, green, gold, orange, maroon};
 		toggleSelected();

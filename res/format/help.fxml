@@ -21,8 +21,7 @@
       </font>
     </Label>
     <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="155.0" prefHeight="32.0" prefWidth="507.0" text="Enter key to initiate actions." wrapText="true" />
-    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="187.0" prefHeight="32.0" prefWidth="507.0" text="Escape key to cancel actions." wrapText="true" />
-    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="219.0" prefHeight="32.0" prefWidth="507.0" text="S key to skip actions." wrapText="true" />
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="187.0" prefHeight="32.0" prefWidth="507.0" text="Escape key to cancel or skip actions." wrapText="true" />
     <Button fx:id="backTo" layoutX="147.0" layoutY="402.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="1.0" prefHeight="39.0" prefWidth="427.0" style="-fx-background-color:#DDEEDD;" text="Press &lt;ENTER&gt; to return to previous screen">
       <font>
         <Font name="Arial Bold" size="18.0" />
