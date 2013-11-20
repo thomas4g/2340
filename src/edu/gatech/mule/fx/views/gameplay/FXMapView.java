@@ -231,10 +231,10 @@ public class FXMapView extends FXView implements TownMapView {
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null) {
 			graphics.drawHollowRect(
-					selectorLocation.x * OrthogonalMapRenderer.TILE_WIDTH, 
-					selectorLocation.y * OrthogonalMapRenderer.TILE_HEIGHT, 
-					OrthogonalMapRenderer.TILE_WIDTH, 
-					OrthogonalMapRenderer.TILE_HEIGHT,
+					selectorLocation.x * OrthogonalMapRenderer.getTileWidth(), 
+					selectorLocation.y * OrthogonalMapRenderer.getTileHeight(), 
+					OrthogonalMapRenderer.getTileWidth(), 
+					OrthogonalMapRenderer.getTileHeight(),
 					3.0, 
 					currentPlayer.getColor().getRGB()
 					);
