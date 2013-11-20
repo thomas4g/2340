@@ -23,10 +23,10 @@ public class FXStartView extends FXView {
 	 * @param event key pressed
 	 */
 	@FXML
-    public void startGame(KeyEvent event) {
-	    if (event.getCode() == KeyCode.ENTER) {
-	    	controller.done();
-	    }
+	public void startGame(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			controller.done();
+		}
 	}
 
 	@Override
