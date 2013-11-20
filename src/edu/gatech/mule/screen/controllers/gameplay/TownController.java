@@ -89,8 +89,7 @@ public class TownController extends MapController {
 
 		if(store == null) {
 			//@TODO Law of Demeter violation much?!
-			store = new Store(game.getSettings().getDifficulty().getStoreResources(),
-					new int[] {1, 2, 3, 4, 5});
+			store = new Store(game.getSettings().getDifficulty().getStoreResources());
 		}
 
 		List<ResourceType> muleTypes = new ArrayList<ResourceType>(
@@ -113,7 +112,7 @@ public class TownController extends MapController {
 	 * @param buying whether or not they're buying or selling
 	 */
 	public void storeComplete(int count, boolean buying) {
-		int[] rDeltas = new int[5];
+		int[] rDeltas = new int[ResourceType.values().length];
 
 		//@TODO Again with the Law of Demeter violations!
 		ResourceType type = ResourceType.valueOf(

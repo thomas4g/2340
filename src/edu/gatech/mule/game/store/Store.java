@@ -20,6 +20,14 @@ public class Store implements Transactor {
 		this.prices = prices;
 	}
 
+	/**
+	 * Alternate constructor for not having to pass prices.
+	 * @param resources in store bro
+	 */
+	public Store(int[] resources) {
+		this(resources, new int[resources.length]);
+	}
+
 	@Override
 	public boolean sell(Transaction transaction, Transactor buyer) {
 		if(!buyer.canAfford(transaction) || !hasResources(transaction.getResources())) {
