@@ -151,7 +151,6 @@ public class FXMapView extends FXView implements TownMapView {
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
 
-		selectorLocation = new Point(0, 0);
 		drawSelector();
 	}
 
