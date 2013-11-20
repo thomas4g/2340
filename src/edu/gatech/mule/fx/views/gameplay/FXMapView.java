@@ -3,7 +3,9 @@ package edu.gatech.mule.fx.views.gameplay;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -251,10 +253,10 @@ public class FXMapView extends FXView implements TownMapView {
 		for (Player player : players) {
 			if (player.equals(currentPlayer)) {
 				graphics.drawText(player.getResourceString(),
-						new Point(160+120*i, 420));
+						new Point(160+120 * i, 420));
 			} else {
 				graphics.drawGreyedText(player.getResourceString(),
-						new Point(160+120*i, 420));
+						new Point(160+120 * i, 420));
 			}
 			i++;
 		}

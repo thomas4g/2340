@@ -12,30 +12,30 @@ import edu.gatech.mule.screen.controllers.main.PersistenceController;
 import edu.gatech.mule.screen.views.PersistenceView;
 
 /**
- * View for persistence screen
+ * View for persistence screen.
  * @version 1.0
  */
 public class FXPersistenceView extends FXSettingsView implements PersistenceView {
-	
+
 	@FXML
 	private Label newGame;
-	
+
 	@FXML
 	private Label loadGame;
-	
+
 	@FXML
 	private Label help;
 
 	private PersistenceController controller;
-	
+
 	/**
-	 * Constructor for persistence view
+	 * Constructor for persistence view.
 	 */
 	public FXPersistenceView() {
 		super("persistence");
 		toggleMod = 3;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		toggleSelected();
@@ -56,23 +56,22 @@ public class FXPersistenceView extends FXSettingsView implements PersistenceView
 		case 2:
 			help.setTextFill(FXSettingsView.SELECTED);
 			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	protected void done() {
-		if (toggle==0) {
+		if (toggle == 0) {
 			controller.done();
-		} 
-		else if (toggle==1) {
+		} else if (toggle == 1) {
 			FileChooser fc = new FileChooser();
 			fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 			controller.done(fc.showOpenDialog(null));
-		}
-		else if (toggle==2) {
+		} else if (toggle == 2) {
 			controller.help();
 		}
-		
 	}
 
 	@Override
