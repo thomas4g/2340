@@ -1,5 +1,8 @@
 package edu.gatech.mule.fx.views;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import edu.gatech.mule.screen.controllers.ScreenController;
 import edu.gatech.mule.screen.views.ScreenView;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +58,10 @@ public abstract class FXView implements ScreenView, Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 	}
 
 	/**
