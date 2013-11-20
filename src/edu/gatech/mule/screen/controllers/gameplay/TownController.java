@@ -89,8 +89,7 @@ public class TownController extends MapController {
 
 		if(store == null) {
 			//@TODO Law of Demeter violation much?!
-			store = new Store(game.getSettings().getDifficulty().getStoreResources(),
-					new int[] {1, 2, 3, 4, 5});
+			store = new Store(game.getSettings().getDifficulty().getStoreResources());
 		}
 
 		List<ResourceType> muleTypes = new ArrayList<ResourceType>(
