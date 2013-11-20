@@ -265,4 +265,20 @@ public class GameEngine implements Serializable {
 	public void setMessage(String mess) {
 		this.message.setMessage(mess);
 	}
+
+	/**
+	 * Returns the games current loser.
+	 * @return player current loser
+	 */
+
+	public Player getCurrentLoser() {
+		Player currentLoser = players.get(0);
+		for(Player player: players) {
+			if(player.compareTo(currentLoser) < 0) {
+				currentLoser = player;
+			}
+		}
+		return currentLoser;
+	}
+
 }

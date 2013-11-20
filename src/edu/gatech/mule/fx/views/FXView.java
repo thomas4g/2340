@@ -29,7 +29,6 @@ public abstract class FXView implements ScreenView, Initializable {
 
 	protected static final KeyCode ACTION_KEY = KeyCode.ENTER;
 	protected static final  KeyCode CANCEL_KEY = KeyCode.ESCAPE;
-	protected static final KeyCode SKIP_KEY = KeyCode.S;
 
 	private static final String FXML_DIR = "/format/";
 	private static final String FXML_EXT = ".fxml";
