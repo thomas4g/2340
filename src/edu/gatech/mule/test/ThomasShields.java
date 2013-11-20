@@ -8,6 +8,9 @@ import java.io.File;
 import java.net.URL;
 
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.Settings;
@@ -21,10 +24,11 @@ import edu.gatech.mule.music.MusicPlayer;
  * @author tshields
  *
  */
+@RunWith(JUnit4.class)
 public class ThomasShields {
 
+	private ExpectedException exception = ExpectedException.none();
 	private GameEngine game = new GameEngine(new MusicPlayer() {
-
 		@Override
 		public void play() {
 			// TODO Auto-generated method stub
@@ -69,6 +73,16 @@ public class ThomasShields {
 		Settings s = game.getSettings();
 		game.loadGameFile(new File("TestFileCreated.junit.dat"));
 		assertFalse(s == game.getSettings());
+	}
+
+	/**
+	 * Tests if loading throws a null pointer exception.
+	 * Should throw a null pointer exception because roundController hasn't been created.
+	 */
+	@Test
+	public void nullPointerLoad() {
+		exception.expect(NullPointerException.class);
+		game.loadGameFile(new File("TestFileCreated.junit.dat"));
 	}
 
 	/**
