@@ -45,7 +45,7 @@ public class LandSelectController extends ScreenController {
 		view.setGameMap(map);
 		setPlayer();
 		view.setPlayers(game.getSettings().getPlayers());
-		view.setSelector(new Point(0, 0));
+		view.setSelector(location);
 	}
 
 	/**
