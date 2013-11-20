@@ -12,7 +12,7 @@ public class AnnaEvent implements TurnEvent {
 
 	@Override
 	public void execute(Player player) {
-		money = (int)(player.getMoney() * .25);
+		money = (int) (player.getMoney() * .25);
 		player.addMoney(-1 * money);
 	}
 

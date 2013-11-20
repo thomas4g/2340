@@ -6,23 +6,23 @@ import edu.gatech.mule.map.tiles.GameTile;
 
 
 /**
- * General set up for a map
+ * General set up for a map.
  * @version 1.0
  */
 @SuppressWarnings("serial")
 public abstract class GameMap implements Serializable {
 	protected GameTile[][] tiles;
 	protected int width, height, tileWidth, tileHeight;
-	
+
 	/**
-	 * Constructor for the map
+	 * Constructor for the map.
 	 */
 	public GameMap() {
 		generateMap();
 	}
-	
+
 	/**
-	 * Returns width of map
+	 * Returns width of map.
 	 * @return width of map
 	 */
 	public int getWidth() {
@@ -30,50 +30,50 @@ public abstract class GameMap implements Serializable {
 	}
 
 	/**
-	 * Returns height of map
-	 * @return height of map
+	 * Height of map in tiles.
+	 * @return height
 	 */
 	public int getHeight() {
 		return this.height;
 	}
-	
+
 	/**
-	 * Get tiles in the map
+	 * Get tiles in the map.
 	 * @return tiles in the map
 	 */
 	public GameTile[][] getTiles() {
 		return tiles;
 	}
-	
+
 	/**
-	 * Get a tile in the map
-	 * @param xPos, x-coordinate in map
-	 * @param yPos, y-coordinate in map
+	 * Get a tile in the map.
+	 * @param xPos x-coordinate in map
+	 * @param yPos y-coordinate in map
 	 * @return the corresponding tile in map
 	 */
-	public GameTile getTile(int xPos,int yPos){
+	public GameTile getTile(int xPos , int yPos) {
 		return tiles[xPos][yPos];
 	}
-	
+
 	/**
-	 * Get the tile width of the map
-	 * @return tile width of the map
+	 * Get the tile width of the map.
+	 * @return tileWidth
 	 */
-	public int getTileWidth(){
+	public int getTileWidth() {
 		return this.tileWidth;
 	}
-	
+
 	/**
-	 * Get the tile height of the map
+	 * Get the tile height of the map.
 	 * @return tile height of the map
 	 */
-	public int getTileHeight(){
+	public int getTileHeight() {
 		return this.tileHeight;
 	}
-	
+
 	/**
-	 * Generates map based on specifications
+	 * Generates map based on specifications.
 	 */
 	protected abstract void generateMap();
-	
+
 }

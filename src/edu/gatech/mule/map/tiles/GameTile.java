@@ -14,15 +14,10 @@ import tiled.core.Tile;
 import edu.gatech.mule.game.player.Player;
 
 /**
- * Representation of a tile in the game map
- * @version 1.0
+ * Representation of a tile in the game map.
  */
-@SuppressWarnings("serial")
 public abstract class GameTile implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7985811022411100046L;
 	public static final int DEFAULT_COST = 300;
 	protected TileType type;
@@ -32,11 +27,11 @@ public abstract class GameTile implements Serializable {
 	protected int width;
 	protected int height;
 	protected Properties properties;
-	
+
 	/**
-	 * Constructor for a game tile
-	 * @param t, the config for a tile entity
-	 * @param type, type of tile
+	 * Constructor for a game tile.
+	 * @param t the config for a tile entity
+	 * @param type type of tile
 	 */
 	public GameTile(Tile t, TileType type) {
 		this.image = (BufferedImage) t.getImage();
@@ -46,117 +41,147 @@ public abstract class GameTile implements Serializable {
 		this.type = type;
 		this.cost = DEFAULT_COST;
 	}
-	
+
 	/**
-	 * Returns properties
+	 * Gets properties of the tile.
 	 * @return properties
 	 */
 	public Properties getProperties() {
 		return this.properties;
 	}
-	
+
 	/**
-	 * Returns image
+	 * Gets the image of the tile.
 	 * @return image
 	 */
 	public Image getImage() {
 		return this.image;
 	}
-	
+
 	/**
-	 * Returns width
+	 * Pixel width of the tile.
 	 * @return width
 	 */
 	public int getWidth() {
 		return this.width;
 	}
-	
+
 	/**
-	 * Returns height
+	 * Pixel height of the tile.
 	 * @return height
 	 */
 	public int getHeight() {
 		return this.height;
 	}
-	
+
 	/**
-	 * Set the owner of the tile
-	 * @param player, the owner of the tile
+	 * Set the owner of the tile.
+	 * @param player the owner of the tile
 	 */
 	public void setOwner(Player player) {
 		this.owner = player;
-	}	
-	
+	}
+
 	/**
-	 * Get the owner of the tile
+	 * Get the owner of the tile.
 	 * @return owner of the tile
 	 */
 	public Player getOwner() {
 		return owner;
 	}
-	
+
 	/**
-	 * Get the cost of the tile
+	 * Get the cost of the tile.
 	 * @return cost of the tile
 	 */
 	public int getCost() {
 		return cost;
 	}
-	
+
 	/**
-	 * Get the type of the tile
+	 * Get the type of the tile.
 	 * @return type of the tile
 	 */
 	public TileType getType() {
 		return type;
 	}
-	
+
 	@Override
 	public String toString() {
 		return type.toString();
 	}
-	
+
 	/**
-	 * Returns whether the mule has an owner
+	 * Returns whether the mule has an owner.
 	 * @return true if has owner, false otherwise
 	 */
-	public boolean hasOwner(){
+	public boolean hasOwner() {
 		return owner != null;
 	}
-	
+
+	/**
+	 * Called when action key is pressed.
+	 * @param player current player
+	 */
 	public abstract void action(Player player);
+
+	/**
+	 * Called when tile is entered.
+	 * @param player current player
+	 */
 	public abstract void enter(Player player);
+
+	/**
+	 * Called when tile is exited.
+	 * @param player current player.
+	 */
 	public abstract void exit(Player player);
 
 	/**
-	 * asdf.
-	 * @param out asdf
-	 * @throws IOException asdf
+	 * Writes a tile to output stream.
+	 * @param out output stream
+	 * @throws IOException ioexception
 	 */
 	protected void sWrite(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 		if(image != null) {
 			out.writeInt(1);
 			ImageIO.write(image, "png", out);
-		}
-		else {
+		} else {
 			out.writeInt(0);
 		}
 	}
+
+	/**
+	 * Read a tile from input stream.
+	 * @param in input stream
+	 * @throws IOException ioexception
+	 * @throws ClassNotFoundException classnotfoundException
+	 */
     protected void sRead(ObjectInputStream in) throws IOException, ClassNotFoundException {
     	in.defaultReadObject();
     	final int hasImg = in.readInt();
-    	if(hasImg > 0)
+    	if(hasImg > 0) {
     		image = ImageIO.read(in);
+    	}
     }
-	
+
+    /**
+     * writeObject implementation for Serializable.
+     * @param out outputstream
+     * @throws IOException ioexception
+     */
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		sWrite(out);
 	}
-	
+
+	/**
+	 * readObject implementatino for Serializable.
+	 * @param in inputstream
+	 * @throws IOException ioexception
+	 * @throws ClassNotFoundException classnotfoundexception
+	 */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
     	sRead(in);
     }
-    
-
 }

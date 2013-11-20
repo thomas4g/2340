@@ -4,24 +4,24 @@ import javafx.application.Platform;
 import edu.gatech.mule.fx.FXScreenHandler;
 
 /**
- * What makes the constant updates and takes care of drawing
+ * What makes the constant updates and takes care of drawing.
  * @version 1.0
  */
 public class RenderTask extends Thread {
 
-	public static boolean paused = false;
+	private static boolean paused = false;
 	private static final long FPS = 15;
-	
+
 	private FXScreenHandler handler;
-	
+
 	/**
-	 * Constructor for the render task
-	 * @param handler, screen handler view
+	 * Constructor for the render task.
+	 * @param handler screen handler
 	 */
 	public RenderTask(FXScreenHandler handler) {
 		this.handler = handler;
 	}
-	
+
 	@Override
 	public void run() {
 		System.out.println("STARTED");
@@ -40,5 +40,4 @@ public class RenderTask extends Thread {
 			}
 		}
 	}
-	
 }

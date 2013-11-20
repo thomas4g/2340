@@ -25,19 +25,19 @@ import edu.gatech.mule.screen.views.SettingsView;
 import edu.gatech.mule.screen.views.TownMapView;
 
 /**
- * View representation of the screen handler
+ * View representation of the screen handler.
  * @version 1.0
  */
 public class FXScreenHandler extends ScreenHandler {
-	
+
 	private StackPane stack;
 	private FXMapView mainMapView;
 	private HashMap<ScreenType, FXView> loadedScreens;
 	private FXView currentView;
-	
+
 	/**
-	 * Constructor for FX screen handler
-	 * @param game, game engine associated with the game
+	 * Constructor for FX screen handler.
+	 * @param game engine associated with the game
 	 */
 	public FXScreenHandler(GameEngine game) {
 		super(game);
@@ -45,15 +45,15 @@ public class FXScreenHandler extends ScreenHandler {
 		loadedScreens = new HashMap<>();
 		FXApplication.view = stack;  //TODO this is bad
 	}
-	
+
 	/**
-	 * Returns the current view
+	 * Returns the current view.
 	 * @return the current view
 	 */
 	public FXView getCurrentView() {
 		return this.currentView;
 	}
-	
+
 	@Override
 	public void setScreen(final ScreenType type) {
 		Platform.runLater(new Runnable() {
@@ -62,27 +62,27 @@ public class FXScreenHandler extends ScreenHandler {
 			}
 		});
 	}
-	
+
 	/**
-	 * Sets the screen's view based on the screen type
-	 * @param type, the screen type
+	 * Sets the screen's view based on the screen type.
+	 * @param type the screen type
 	 */
 	private void setFXScreen(ScreenType type) {
 		FXView view = null;
 		super.setScreen(type);
 
 		if (!loadedScreens.containsKey(type)) {
-	    	view = (FXView)screens.get(type).getView();
+	    	view = (FXView) screens.get(type).getView();
 			loadedScreens.put(type, view);
 		} else {
 			view = loadedScreens.get(type);
 		}
-		
+
 		view.load();
 		this.currentView = view;
 
 		// stack.getChildren() is JavaFX norm :(
-		if (!stack.getChildren().isEmpty()){
+		if (!stack.getChildren().isEmpty()) {
 	    	stack.getChildren().remove(0);
 	        stack.getChildren().add(0, view.getNode());
 	    } else {
@@ -94,17 +94,17 @@ public class FXScreenHandler extends ScreenHandler {
 	protected ScreenView loadStartView() {
 		return new FXStartView();
 	}
-	
+
 	@Override
 	protected PersistenceView loadPersistenceView() {
 		return new FXPersistenceView();
 	}
-	
+
 	@Override
 	protected ScreenView loadHelpView() {
 		return new FXHelpView();
 	}
-	
+
 	@Override
 	protected SettingsView loadDifficultyView() {
 		return new FXDifficultyView();
