@@ -113,7 +113,7 @@ public class TownController extends MapController {
 	 * @param buying whether or not they're buying or selling
 	 */
 	public void storeComplete(int count, boolean buying) {
-		int[] rDeltas = new int[5];
+		int[] rDeltas = new int[ResourceType.values().length];
 
 		//@TODO Again with the Law of Demeter violations!
 		ResourceType type = ResourceType.valueOf(
