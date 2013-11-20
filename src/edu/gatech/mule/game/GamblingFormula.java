@@ -9,8 +9,10 @@ import java.util.Random;
 public final class GamblingFormula {
 
 	private static final Random RAND_GEN = new Random();
-	
+
 	private GamblingFormula() { }
+
+	private static final int MAX_MONEY = 250;
 
 	/**
 	 * gambles.
@@ -48,8 +50,8 @@ public final class GamblingFormula {
 		}
 
 		moneyBonus = roundBonus + RAND_GEN.nextInt(timeBonus + 1);
-		if(moneyBonus > 250) {
-			moneyBonus = 250;
+		if(moneyBonus > MAX_MONEY) {
+			moneyBonus = MAX_MONEY;
 		}
 		if(moneyBonus < 0) {
 			moneyBonus = 0;
