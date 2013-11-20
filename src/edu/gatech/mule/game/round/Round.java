@@ -58,7 +58,6 @@ public class Round implements Serializable {
 			turn.start();
 			game.setScreen(ScreenType.GAME_SCREEN);
 		} else {
-			System.out.println("Round Over");
 			roundController.round();
 		}
 	}
