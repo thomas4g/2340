@@ -94,7 +94,7 @@ public class FXMapView extends FXView implements TownMapView {
 	private ProgressIndicator timer;
 
 
-	private static final double BORDER_WIDTH = 3.0;
+	private static final double BORDER_WIDTH = 5.0;
 
 	private static final int X_STAT_START = 160;
 	private static final int X_STAT_SPACE = 120;
@@ -169,7 +169,7 @@ public class FXMapView extends FXView implements TownMapView {
 								: k.getCode() == UP_KEY ? -1 : 0);
 				} else if (k.getCode().equals(ACTION_KEY)) {
 					controller.action();
-				} else if (k.getCode() == SKIP_KEY) {
+				} else if (k.getCode() == CANCEL_KEY) {
 					controller.done();
 				}
 			}

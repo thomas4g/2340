@@ -46,9 +46,9 @@ public enum CharacterType {
 	FLAPPER("Flapper",
 			"The aristocracy of the empire is primarily composed of Flappers. "
 			+ "Their race has accumulated vast riches by establishing trade with far-off lands.",
-			1600, new String[]{"Samantha", "Sally", "Edna", "Susan B. Anthony",
+			1600, new String[]{"Samantha", "Sally", "Edna", "Susan",
 			"Betty Crocker", "Mary Antoinette", "Amelia Earhart", "Queen Elizabeth",
-			"Ida B. Wells", "Emma Goldman", "Margaret Fuller", "Betty Friedan"}),
+			"Ida", "Emma Goldman", "Margaret Fuller", "Betty Friedan"}),
 
 	MULE("MULE", "The labor force of the empire", 0, new String[]{"The Garbage Man"});
 

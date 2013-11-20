@@ -18,8 +18,7 @@ import edu.gatech.mule.fx.views.FXSettingsView;
  */
 public class FXColorSelectView extends FXSettingsView {
 
-	private static final Random RAND_GEN = new Random();
-	private static final  Color[] COLORS = Color.values();
+	private static final Color[] COLORS = Color.values();
 
 	@FXML
 	private Label playerAnnouncer;
@@ -54,7 +53,7 @@ public class FXColorSelectView extends FXSettingsView {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		toggle = RAND_GEN.nextInt(COLORS.length);
+		toggle = 0;
 		playerAnnouncer.setText("Player " + settings.getPlayerIndex() + ", choose your color");
 		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle + 1)));
 		colorLabels = new Label[]{purple, blue, teal, seafoam, green, gold, orange, maroon};
