@@ -204,4 +204,22 @@ public class Mule extends Entity {
 	public void setType(ResourceType type) {
 		resourceType = type;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || !(o instanceof Mule)) {
+			return false;
+		}
+		Mule other = (Mule) o;
+		return enslaved == other.enslaved && resourceType.equals(other.resourceType)
+			&& placed == other.placed && (placed) ? (tile.equals(other.tile)) : true;
+	}
+
+	@Override
+	public int hashCode() {
+		return (enslaved ? 1 : 0) + resourceType.hashCode() + (placed ? 1 : 0) + tile.hashCode();
+	}
 }

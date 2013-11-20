@@ -40,6 +40,8 @@ public class Settings implements Serializable {
 		players = new ArrayList<Player>();
 		playerIndex = 1;
 		colorsUsed = new ArrayList<>();
+		difficulty = Difficulty.STANDARD;
+		mapType = MapType.DEFAULT;
 	}
 
 	/**
@@ -230,5 +232,32 @@ public class Settings implements Serializable {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Checks if two settings objects are equal.
+	 * @param o the other object we're comparing
+	 * @return true if they're functionally equal
+	 */
+	public boolean equals(Object o) {
+		if(o == null || !(o instanceof Settings)) {
+			return false;
+		}
+		if(o == this) {
+			return true;
+		}
+		Settings other = (Settings) o;
+		return difficulty.equals(other.difficulty) && mapType.equals(other.mapType)
+				&& playerCount == other.playerCount && players.equals(other.players)
+				&& colorsUsed.equals(other.colorsUsed);
+	}
+
+	/**
+	 * Hashcode yo.
+	 * @return a hash code.
+	 */
+	public int hashCode() {
+		return difficulty.hashCode() + mapType.hashCode() + playerCount + players.hashCode()
+				+ colorsUsed.hashCode();
 	}
 }

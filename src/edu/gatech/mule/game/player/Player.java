@@ -3,6 +3,7 @@ package edu.gatech.mule.game.player;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import edu.gatech.mule.game.Entity;
@@ -49,6 +50,8 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		this.placedMules = new ArrayList<>();
 		this.ownedLands = new ArrayList<>();
 		this.setDirection(Direction.DOWN);
+		this.resources = new int[0];
+		this.name = type.getName();
 	}
 
 	@Override
@@ -397,4 +400,33 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		return this.score - other.score;
 	}
 
+	/**
+	 * Checks if two players are equal.
+	 * @param o the other player
+	 * @return true if they're functionally equivalent
+	 */
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || !(o instanceof Player)) {
+			return false;
+		}
+		Player other = (Player) o;
+		return money == other.money && name.equals(other.name)
+				&& ownedLands.equals(other.ownedLands)
+				&& placedMules.equals(other.placedMules)
+				&& Arrays.equals(resources, other.resources)
+				&& score == other.score
+				&& type.equals(other.type);
+	}
+
+	/**
+	 * Hash code.
+	 * @return a hashcode.
+	 */
+	public int hashCode() {
+		return (int) money + name.hashCode() + ownedLands.hashCode() + placedMules.hashCode()
+				+ placedMules.hashCode() + resources.hashCode() + score + type.hashCode();
+	}
 }

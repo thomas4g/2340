@@ -158,19 +158,19 @@ public abstract class GameTile implements Serializable {
 	 * @throws IOException ioexception
 	 * @throws ClassNotFoundException classnotfoundException
 	 */
-    protected void sRead(ObjectInputStream in) throws IOException, ClassNotFoundException {
-    	in.defaultReadObject();
-    	final int hasImg = in.readInt();
-    	if(hasImg > 0) {
-    		image = ImageIO.read(in);
-    	}
-    }
+	protected void sRead(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+		final int hasImg = in.readInt();
+		if(hasImg > 0) {
+			image = ImageIO.read(in);
+		}
+	}
 
-    /**
-     * writeObject implementation for Serializable.
-     * @param out outputstream
-     * @throws IOException ioexception
-     */
+	/**
+	 * writeObject implementation for Serializable.
+	 * @param out outputstream
+	 * @throws IOException ioexception
+	 */
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		sWrite(out);
 	}
@@ -181,7 +181,25 @@ public abstract class GameTile implements Serializable {
 	 * @throws IOException ioexception
 	 * @throws ClassNotFoundException classnotfoundexception
 	 */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-    	sRead(in);
-    }
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		sRead(in);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || !(o instanceof GameTile)) {
+			return false;
+		}
+		GameTile other = (GameTile) o;
+		return cost == other.cost && height == other.height
+			&& width == other.width && type.equals(other.type);
+	}
+
+	@Override
+	public int hashCode() {
+		return cost + (int) height + (int) width + type.hashCode();
+	}
 }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import edu.gatech.mule.fx.FXScreenHandler;
 import edu.gatech.mule.fx.graphics.RenderTask;
+import edu.gatech.mule.fx.music.FXMusicPlayer;
 
 /**
  * Sets up and launches the application.
@@ -24,7 +25,7 @@ public class FXApplication extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		GameEngine game = new GameEngine();
+		GameEngine game = new GameEngine(new FXMusicPlayer());
 		FXScreenHandler handler = new FXScreenHandler(game);
 		game.load(handler);
 

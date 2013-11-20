@@ -41,10 +41,11 @@ public class GameEngine implements Serializable {
 
 	/** Constructor for game engine.
 	 * Sets up settings and music player
+	 * @param musicPlayer the thing that, like, plays music
 	 */
-	public GameEngine() {
+	public GameEngine(MusicPlayer musicPlayer) {
 		this.settings = new Settings();
-		this.musicPlayer = new MusicPlayer();
+		this.musicPlayer = musicPlayer;
 		this.message = new Message();
 		musicPlayer.setMedia(
 				getClass().getResource("/music/Artifact.mp3"));
