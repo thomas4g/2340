@@ -162,16 +162,16 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 	}
 
 	/**
-	 * Set the directional frames ???
-	 */
-
-	/**
 	 * Add a property to a player's possession.
 	 * @param tile tile the player is possessing
 	 * @param free true if land is free, false if need to purchase
-	 * @return true if land is in player's possession, false otherwise
+	 * @return true if land has been transferred to player's ownership, false otherwise
 	 */
 	public boolean addLand(GameTile tile, boolean free) {
+		if(tile.getOwner() != null) {
+			return false;
+		}
+
 		if(!free) {
 			this.money -= tile.getCost();
 			if(this.money < 0) {
@@ -179,6 +179,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 				return false;
 			}
 		}
+
 		ownedLands.add(tile);
 		tile.setOwner(this);
 		return true;

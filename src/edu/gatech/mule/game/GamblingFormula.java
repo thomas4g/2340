@@ -12,6 +12,8 @@ public final class GamblingFormula {
 
 	private GamblingFormula() { }
 
+	private static final int MAX_MONEY = 250;
+
 	/**
 	 * gambles.
 	 * @param round the round number.
@@ -48,8 +50,8 @@ public final class GamblingFormula {
 		}
 
 		moneyBonus = roundBonus + RAND_GEN.nextInt(timeBonus + 1);
-		if(moneyBonus > 250) {
-			moneyBonus = 250;
+		if(moneyBonus > MAX_MONEY) {
+			moneyBonus = MAX_MONEY;
 		}
 		if(moneyBonus < 0) {
 			moneyBonus = 0;

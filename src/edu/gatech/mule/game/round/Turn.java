@@ -30,6 +30,10 @@ public class Turn implements Serializable {
 	private GameEngine game;
 	private static final int TIME = 1000;
 
+	private static final int NORMAL_TURN = 50;
+	private static final int HUNGRY_TURN = 30;
+	private static final int STARVING_TURN = 5;
+
 	/**
 	 * Turn Constructor.
 	 * @param round round
@@ -87,17 +91,16 @@ public class Turn implements Serializable {
 
 	/**
 	 * Gets the turn length based on player resources.
-	 * TODO use an enum or something for those "magic numbers" below
 	 */
 	public void genTurnLength() {
 		int playerFood = player.getResourceAmt(ResourceType.FOOD);
 		int foodReq = round.getFoodReq();
 		if(playerFood == 0) {
-			this.length = 5;
+			this.length = STARVING_TURN;
 		} else if(playerFood < foodReq) {
-			this.length = 30;
+			this.length = HUNGRY_TURN;
 		} else if(playerFood >= foodReq) {
-			this.length = 50;
+			this.length = NORMAL_TURN;
 		}
 	}
 
@@ -110,8 +113,7 @@ public class Turn implements Serializable {
 		player.addMoney(gainedMoney);
 		timer.cancel();
 
-		int coinFlip = rand.nextInt(2);
-		if (coinFlip % 2 == 0) {
+		if (rand.nextInt(2) % 2 == 0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
 			event.execute(player);
 			game.setMessage(event.getMessage());

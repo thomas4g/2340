@@ -11,6 +11,11 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
+    <ImageView fitHeight="540" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../tiles/bg2.png" />
+      </image>
+    </ImageView>
     <ImageView fx:id="imgView" fitHeight="257.20644149780276" fitWidth="274.0" layoutX="86.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@b3.png" />

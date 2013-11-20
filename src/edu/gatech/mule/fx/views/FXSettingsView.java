@@ -13,8 +13,8 @@ import edu.gatech.mule.screen.views.SettingsView;
 public abstract class FXSettingsView extends FXView implements SettingsView {
 
 	public static final Color NORMAL = Color.web("#2F2F2F");
-	public static final  Color SELECTED = Color.web("#0000FF");
-	public static final  Color GREYED = Color.web("#AAAAAA");
+	public static final Color SELECTED = Color.web("#0000FF");
+	public static final Color GREYED = Color.web("#AAAAAA");
 
 	protected Settings settings;
 	protected int toggle;
