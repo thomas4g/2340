@@ -91,7 +91,6 @@ public class Turn implements Serializable {
 
 	/**
 	 * Gets the turn length based on player resources.
-	 * TODO use an enum or something for those "magic numbers" below
 	 */
 	public void genTurnLength() {
 		int playerFood = player.getResourceAmt(ResourceType.FOOD);
