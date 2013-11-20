@@ -41,7 +41,6 @@ public abstract class Entity implements Serializable {
 		this.direction = Direction.DOWN;
 		this.image = loadImage(imgPath);
 		this.color = Color.PURPLE;
-		System.out.println(color);
 	}
 
 	/**

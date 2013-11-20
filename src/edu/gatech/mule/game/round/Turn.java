@@ -27,7 +27,6 @@ public class Turn implements Serializable {
 	private int length;
 	private transient Timer timer;
 	private Random rand;
-	private int coinFlip;
 	private GameEngine game;
 
 	/**
@@ -87,8 +86,8 @@ public class Turn implements Serializable {
 
 	/**
 	 * Gets the turn length based on player resources.
+	 * @TODO use an enum or something for those "magic numbers" below
 	 */
-
 	public void genTurnLength() {
 		int playerFood = player.getResourceAmt(ResourceType.FOOD);
 		int foodReq = round.getFoodReq();
@@ -114,7 +113,6 @@ public class Turn implements Serializable {
 		if (coinFlip % 2 == 0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
 			event.execute(player);
-			System.out.println(event.getMessage());
 			game.setMessage(event.getMessage());
 		}
 		round.turn();
