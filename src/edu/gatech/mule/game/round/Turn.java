@@ -93,7 +93,7 @@ public class Turn implements Serializable {
 	 * Gets the turn length based on player resources.
 	 */
 	public void genTurnLength() {
-		int playerFood = player.getResourceAmt(ResourceType.FOOD);
+		int playerFood = player.getResourceAmount(ResourceType.FOOD);
 		int foodReq = round.getFoodReq();
 		if(playerFood == 0) {
 			this.length = STARVING_TURN;

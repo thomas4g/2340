@@ -15,7 +15,7 @@ public class DroughtEvent implements RoundEvent {
 		for (Player p : game.getPlayers()) {
 			int[] resources = new int[ResourceType.values().length];
 			resources[ResourceType.FOOD.ordinal()] =
-					p.getResourceAmt(ResourceType.FOOD) / 2;
+					p.getResourceAmount(ResourceType.FOOD) / 2;
 			p.subtractResources(resources);
 		}
 	}

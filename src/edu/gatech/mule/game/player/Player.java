@@ -374,8 +374,28 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 	 * @param resource the resource to get the count for
 	 * @return the count of that resource
 	 */
-	public int getResourceAmt(ResourceType resource) {
+	public int getResourceAmount(ResourceType resource) {
 		return resources[resource.ordinal()];
+	}
+
+	/**
+	 * Sets a particular resource.
+	 * @param resource the resource to set
+	 * @param amount the new amount for that resource.
+	 */
+	public void setResourceAmount(ResourceType resource, int amount) {
+		if(amount > 0) {
+			resources[resource.ordinal()] = amount;
+		}
+	}
+
+	/**
+	 * Changes a particular resource.
+	 * @param resource the resource to change the amount for
+	 * @param delta the delta to change the resource by
+	 */
+	public void changeResourceAmount(ResourceType resource, int delta) {
+		resources[resource.ordinal()] += delta;
 	}
 
 	/**

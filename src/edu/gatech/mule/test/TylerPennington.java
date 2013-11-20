@@ -27,7 +27,7 @@ public class TylerPennington {
 		player.addPlacedMule(mule);
 		
 		mule.produce();
-		assertEquals(2, player.getResourceAmt(ResourceType.FOOD));
+		assertEquals(2, player.getResourceAmount(ResourceType.FOOD));
 	}
 	
 	@Test
@@ -58,8 +58,8 @@ public class TylerPennington {
 		for(Mule mule : player.getPlacedMules())
 			mule.produce();
 		
-		assertEquals(3, player.getResourceAmt(ResourceType.ENERGY));
-		assertEquals(2, player.getResourceAmt(ResourceType.SMITHORE));
-		assertEquals(4, player.getResourceAmt(ResourceType.FOOD));
+		assertEquals(3, player.getResourceAmount(ResourceType.ENERGY));
+		assertEquals(2, player.getResourceAmount(ResourceType.SMITHORE));
+		assertEquals(4, player.getResourceAmount(ResourceType.FOOD));
 	}
 }

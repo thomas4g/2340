@@ -88,11 +88,11 @@ public class AnnaHeddenStoreTest {
 		assertEquals(18550,(int)p.getMoney());
 		
 		//does the player have the right amount of resources?
-		assertEquals(1,p.getResourceAmt(ResourceType.ENERGY));
-		assertEquals(3,p.getResourceAmt(ResourceType.FOOD));
-		assertEquals(5,p.getResourceAmt(ResourceType.CRYSTITE));
-		assertEquals(2,p.getResourceAmt(ResourceType.SMITHORE));
-		assertEquals(10,p.getResourceAmt(ResourceType.MULE));
+		assertEquals(1,p.getResourceAmount(ResourceType.ENERGY));
+		assertEquals(3,p.getResourceAmount(ResourceType.FOOD));
+		assertEquals(5,p.getResourceAmount(ResourceType.CRYSTITE));
+		assertEquals(2,p.getResourceAmount(ResourceType.SMITHORE));
+		assertEquals(10,p.getResourceAmount(ResourceType.MULE));
 		
 		//does the store have the right amount of resources?
 		int[] n = new int[]{4,7,15,0,290};
