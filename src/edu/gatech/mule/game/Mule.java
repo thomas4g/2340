@@ -172,10 +172,11 @@ public class Mule extends Entity {
 	 * Produce resources if on a tile.
 	 */
 	public void produce() {
-		if(tile == null) {
+		if(tile == null || owner.getResourceAmount(ResourceType.ENERGY) == 0) {
 			return;
 		}
 
+		owner.changeResourceAmount(ResourceType.ENERGY, -1);
 		int[] resources = new int[ResourceType.values().length];
 		int production = 0;
 		switch(resourceType) {

@@ -14,7 +14,7 @@ public class StubToeEvent implements TurnEvent {
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[5];
-		energyLoss = (int) (player.getResourceAmt(ResourceType.ENERGY) * .25);
+		energyLoss = (int) (player.getResourceAmount(ResourceType.ENERGY) * .25);
 		resources[ResourceType.ENERGY.ordinal()] = energyLoss;
 		player.subtractResources(resources);
 	}

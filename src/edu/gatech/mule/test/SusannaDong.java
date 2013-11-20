@@ -97,13 +97,15 @@ public class SusannaDong {
 
 		// checking owner of land via player array of tile
 		for(int i = 0; i < 5; i++) {
-			assertEquals(true, bonzoid.getLands().contains(gameTiles.get(i)));
+			System.out.println(flapper.getLands().get(i));
+			System.out.println(gameTiles.get(i));
+			assertEquals(true, bonzoid.getLands().get(i) == gameTiles.get(i));
 		}
 		for(int i = 0; i < 5; i++) {
-			assertEquals(false, flapper.getLands().contains(gameTiles.get(i)));
+			assertEquals(false, flapper.getLands().get(i) == gameTiles.get(i));
 		}
-		for(int i = 5; i < 10; i++) {
-			assertEquals(true, flapper.getLands().contains(gameTiles.get(i)));
+		for(int i = 0; i < 5; i++) {
+			assertEquals(true, flapper.getLands().get(i) == gameTiles.get(i+5));
 		}
 	}
 

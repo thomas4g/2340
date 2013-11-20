@@ -15,8 +15,8 @@ public class FindMineEvent implements TurnEvent {
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[ResourceType.values().length];
-		smithore = (int) (player.getResourceAmt(ResourceType.SMITHORE) * .25);
-		energy = (int) (player.getResourceAmt(ResourceType.ENERGY) * .25);
+		smithore = (int) (player.getResourceAmount(ResourceType.SMITHORE) * .25);
+		energy = (int) (player.getResourceAmount(ResourceType.ENERGY) * .25);
 		resources[ResourceType.SMITHORE.ordinal()] = smithore;
 		resources[ResourceType.ENERGY.ordinal()] = energy;
 		player.addResources(resources);

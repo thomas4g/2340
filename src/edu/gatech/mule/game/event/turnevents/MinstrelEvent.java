@@ -14,7 +14,7 @@ public class MinstrelEvent implements TurnEvent {
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[ResourceType.values().length];
-		energy = (int) (player.getResourceAmt(ResourceType.ENERGY) * .25);
+		energy = (int) (player.getResourceAmount(ResourceType.ENERGY) * .25);
 		resources[ResourceType.ENERGY.ordinal()] = energy;
 		player.addResources(resources);
 	}
