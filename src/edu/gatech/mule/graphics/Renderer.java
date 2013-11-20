@@ -12,7 +12,7 @@ import edu.gatech.mule.map.tiles.GameTile;
  */
 public interface Renderer {
 
-	float LAND_SELECT_ALPHA = 0.25F;
+	float LAND_SELECT_ALPHA = 0.1f;
 
 	/**
 	 * Draws a tile.

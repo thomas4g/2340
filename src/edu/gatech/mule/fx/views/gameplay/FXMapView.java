@@ -2,6 +2,7 @@ package edu.gatech.mule.fx.views.gameplay;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -277,6 +278,32 @@ public class FXMapView extends FXView implements TownMapView {
 						new Point(X_STAT_START + X_STAT_SPACE * i, Y_STAT_SPACE));
 			}
 			i++;
+		}
+	}
+
+	/**
+	 * Draws the owned-land indicators.
+	 * TODO give tiles access to their own location!!
+	 * So that I can draw just owned tiles
+	 */
+	private void drawLands() {
+		for(Player player : players) {
+			for(GameTile tile : player.getLands()) {
+				if(tile.getOwner() != null) {
+					BufferedImage totem = player.getTotem();
+//					graphics.drawImage(totem,
+//							x * tile.getWidth(),
+//							y * tile.getHeight(),
+//							totem.getWidth(),
+//							totem.getHeight());
+//					graphics.drawHollowRect(x * tileWidth,
+//							y * tileHeight,
+//							tileWidth,
+//							tileHeight,
+//							4.0,
+//							tile.getOwner().getColor().getRGB());
+				}
+			}
 		}
 	}
 

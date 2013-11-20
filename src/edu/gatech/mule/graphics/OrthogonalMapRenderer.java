@@ -59,34 +59,34 @@ public class OrthogonalMapRenderer {
 			for(int y = 0; y < map.getHeight(); y++) {
 
 				GameTile tile = map.getTile(x, y);
-                if (tile == null) {
-                	continue;
-                }
+				if (tile == null) {
+					continue;
+				}
 
-                graphics.drawTile(tile, x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+				graphics.drawTile(tile, x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 
-                if(outlined) {
-                	graphics.drawHollowRect(x * tileWidth,
-                							y * tileHeight,
-                							tileWidth,
-                							tileHeight,
-                							1.0,
-                							new Color(0, 0, 0, Renderer.LAND_SELECT_ALPHA));
-                }
-                if(tile.getOwner() != null) {
-                	BufferedImage totem = tile.getOwner().getTotem();
-                	graphics.drawImage(totem,
-                					   x * tileWidth,
-                					   y * tileHeight,
-                					   totem.getWidth(),
-                					   totem.getHeight());
-                }
+				if(outlined) {
+					graphics.drawHollowRect(x * tileWidth,
+						y * tileHeight,
+						tileWidth,
+						tileHeight,
+						1.0,
+						new Color(0, 0, 0, Renderer.LAND_SELECT_ALPHA));
+				}
+				if(tile.getOwner() != null) {
+					BufferedImage totem = tile.getOwner().getTotem();
+					graphics.drawImage(totem,
+							x * tileWidth,
+							y * tileHeight,
+							totem.getWidth(),
+							totem.getHeight());
+				}
 
-                if(tile instanceof PropertyTile && tile.hasOwner()) {
-                	PropertyTile t = (PropertyTile) tile;
+				if(tile instanceof PropertyTile && tile.hasOwner()) {
+					PropertyTile t = (PropertyTile) tile;
 
-                	for(int i = 0; i < t.getMules().size(); i++) {
-	                	BufferedImage totem = null;
+					for(int i = 0; i < t.getMules().size(); i++) {
+						BufferedImage totem = null;
 						try {
 							totem = ImageIO.read(new File("res/tiles/resource tiles/"
 										+ t.getMules().get(i).getType().name().toLowerCase()
@@ -94,13 +94,13 @@ public class OrthogonalMapRenderer {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-                		graphics.drawImage(totem,
-                							x * tileWidth + i * totem.getWidth(),
-                							y * tileHeight + tileHeight - totem.getHeight(),
-                							totem.getWidth(),
-                							totem.getHeight());
-                	}
-                }
+						graphics.drawImage(totem,
+								x * tileWidth + i * totem.getWidth(),
+								y * tileHeight + tileHeight - totem.getHeight(),
+								totem.getWidth(),
+								totem.getHeight());
+					}
+				}
 			}
 		}
 	}
