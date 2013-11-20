@@ -6,20 +6,25 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
+/**
+ * Round event that increase production by 50%
+ * @version 1.0
+ */
 public class LemurEvent implements RoundEvent {
 
 	@Override
 	public void execute(GameEngine game) {
 		double[] pc = new double[ResourceType.values().length];
 		Arrays.fill(pc, 2);
-		for(Player p : game.getPlayers()) {
+		for (Player p : game.getPlayers()) {
 			p.setProductionCoeficients(pc);
 		}
 	}
 
 	@Override
 	public String getMessage() {
-		return "Lemurs have taught you how to move it. All production increased by 50%";
+		return "Lemurs have taught you how to move it. "
+				+ "All production increased by 50%";
 	}
 
 }

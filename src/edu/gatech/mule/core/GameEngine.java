@@ -22,15 +22,11 @@ import edu.gatech.mule.screen.ScreenHandler;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
 /**
- * Game engine sets up and runs the MULE game.
- * Has the ability to change the screen view based on game flow.
- * @version 0.1
+ * Game engine/controller for the MULE game
+ * @version 1.0
  */
 public class GameEngine implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 725082656704462973L;
 	private transient ScreenHandler screenHandler;
 	private Settings settings;
@@ -39,11 +35,10 @@ public class GameEngine implements Serializable {
 	private List<Player> players;
 	private RoundController roundController;
 	private transient MusicPlayer musicPlayer;
-	private ScreenType currentScreen;
 	
 	/**
-	 * Constructor for the game engine
-	 * Loads new settings
+	 * Constructor for game engine
+	 * Sets up settings and music player
 	 */
 	public GameEngine() {
 		this.settings = new Settings();
@@ -52,7 +47,7 @@ public class GameEngine implements Serializable {
 	}
 	
 	/**
-	 * Loads the screens to start screen
+	 * Loads the screens
 	 * @param handler, screen handler
 	 */
 	public void load(ScreenHandler handler) {
@@ -60,8 +55,11 @@ public class GameEngine implements Serializable {
 		screenHandler.load();
 	}
 	
+	/**
+	 * Sets a screen up
+	 * @param type, type of screen to be set up
+	 */
 	public void setScreen(ScreenType type) {
-		currentScreen = type;
 		screenHandler.setScreen(type);
 	}
 	
@@ -81,39 +79,66 @@ public class GameEngine implements Serializable {
 		return townMap;
 	}
 	
+	/**
+	 * Starts music and displays start screen
+	 */
 	public void start() {
 		musicPlayer.play();
 		setScreen(ScreenType.START);
 	}
 	
+	/**
+	 * Displays screen for making/loading game
+	 */
 	public void persistence() {
 		setScreen(ScreenType.PERSISTENCE);
 	}
 	
+	/**
+	 * Displays help screen
+	 */
 	public void help() {
 		setScreen(ScreenType.HELP);
 	}
 	
+	/**
+	 * Displays screen for setting difficulty
+	 */
 	public void chooseDifficulty() {
 		setScreen(ScreenType.DIFFICULTY);
 	}
 	
+	/**
+	 * Displays screen for setting map type
+	 */
 	public void chooseMapType() {
 		setScreen(ScreenType.MAP_TYPE);
 	}
 	
+	/**
+	 * Displays screen for setting the number of players
+	 */
 	public void chooseNumPlayers() {
 		setScreen(ScreenType.NUM_PLAYERS);
 	}
 	
+	/**
+	 * Displays screen for choosing player race
+	 */
 	public void chooseRace() {
 		setScreen(ScreenType.RACE_SELECT);
 	}
 	
+	/**
+	 * Displays screen for choosing player color
+	 */
 	public void chooseColor() {
 		setScreen(ScreenType.COLOR);
 	}
 	
+	/**
+	 * Displays screen for player name
+	 */
 	public void chooseName() {
 		setScreen(ScreenType.NAME);
 	}
@@ -126,9 +151,9 @@ public class GameEngine implements Serializable {
 		musicPlayer.play();
 		roundController = new RoundController(this, 2);
 		townMap = new TownMap();
-		if(settings.getMapType().equals(MapType.DEFAULT)) {
+		if (settings.getMapType().equals(MapType.DEFAULT)) {
 			gameMap = new DefaultGameMap();
-		} else if(settings.getMapType().equals(MapType.RANDOM)) {
+		} else if (settings.getMapType().equals(MapType.RANDOM)) {
 			gameMap = new RandomGameMap();
 		}
 
@@ -152,6 +177,9 @@ public class GameEngine implements Serializable {
 		screenHandler.setScreen(ScreenType.GAME_SCREEN);
 	}
 	
+	/**
+	 * Runs when the game ends
+	 */
 	public void end() {
 		System.out.println("That's all, folks! (thanks for bearing with us)");
 		System.exit(0);
@@ -173,21 +201,38 @@ public class GameEngine implements Serializable {
 		return players;
 	}
 
+	/**
+	 * Returns round of the game
+	 * @return round of the game
+	 */
 	public Round getRound() {
 		return roundController.getRound();
 	}
 	
+	/**
+	 * Returns whether all players config are set
+	 * @return true if all players config are set, false otherwise
+	 */
 	public boolean allPlayersSet() {
 		return settings.allPlayersSet();
 	}
 
+	/**
+	 * Loads a new game
+	 * @param ge, game engine connected to the game
+	 */
 	public void loadNewGame(GameEngine ge) {
 		
 	}
 	
+	/**
+	 * Saves the game
+	 * @param filename, filename of the game that the game will be saved in
+	 */
 	public void saveGameFile(String filename) {
 		try {
-			ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(filename));
+			ObjectOutputStream save = 
+					new ObjectOutputStream(new FileOutputStream(filename));
 			save.writeObject(this);
 			save.flush();
 			save.close();
@@ -196,9 +241,14 @@ public class GameEngine implements Serializable {
 		}
 	}
 	
+	/**
+	 * Loads saved game
+	 * @param file, file that the game will load from
+	 */
 	public void loadGameFile(File file) {
 		try {
-			ObjectInputStream load = new ObjectInputStream(new FileInputStream(file));
+			ObjectInputStream load = 
+					new ObjectInputStream(new FileInputStream(file));
 			GameEngine game = (GameEngine)load.readObject();
 			load.close();
 			loadNewGame(game);

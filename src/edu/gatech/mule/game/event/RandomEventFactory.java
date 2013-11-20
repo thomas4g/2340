@@ -15,6 +15,10 @@ import edu.gatech.mule.game.event.turnevents.SwordWomanEvent;
 import edu.gatech.mule.game.event.turnevents.ThomasBearEvent;
 import edu.gatech.mule.game.event.turnevents.TurnEvent;
 
+/**
+ * Factory of random events
+ * @version 1.0
+ */
 public class RandomEventFactory {
 	
 	private static List<RoundEvent> roundEvents;
@@ -24,7 +28,6 @@ public class RandomEventFactory {
 		roundEvents = new ArrayList<>();
 		turnEvents = new ArrayList<>();
 		
-		//Blargyyargs turn events meee hearty!
 		turnEvents.add(new AnnaEvent());
 		turnEvents.add(new FindMineEvent());
 		turnEvents.add(new MinstrelEvent());
@@ -33,14 +36,21 @@ public class RandomEventFactory {
 		turnEvents.add(new SwordWomanEvent());
 		turnEvents.add(new ThomasBearEvent());
 		
-		//Some joker should add some roundEvents here
 		roundEvents.add(new DroughtEvent());
 	}
 
+	/**
+	 * Creates a turn event
+	 * @return a turn event
+	 */
 	public static TurnEvent createTurnEvent() {
 		return turnEvents.get(new Random().nextInt(turnEvents.size()));
 	}
 	
+	/**
+	 * Creates a round event
+	 * @return a round event
+	 */
 	public static RoundEvent createRoundEvent() {
 		return roundEvents.get(new Random().nextInt(roundEvents.size()));
 	}

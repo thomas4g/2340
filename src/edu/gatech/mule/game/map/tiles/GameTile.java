@@ -9,8 +9,9 @@ import edu.gatech.mule.game.player.Player;
 
 /**
  * Representation of a tile in the game map
- * @version 0.1
+ * @version 1.0
  */
+@SuppressWarnings("serial")
 public abstract class GameTile implements Serializable {
 
 	public static final int DEFAULT_COST = 300;
@@ -36,18 +37,34 @@ public abstract class GameTile implements Serializable {
 		this.cost = DEFAULT_COST;
 	}
 	
+	/**
+	 * Returns properties
+	 * @return properties
+	 */
 	public Properties getProperties() {
 		return this.properties;
 	}
 	
+	/**
+	 * Returns image
+	 * @return image
+	 */
 	public Image getImage() {
 		return this.image;
 	}
 	
+	/**
+	 * Returns width
+	 * @return width
+	 */
 	public int getWidth() {
 		return this.width;
 	}
 	
+	/**
+	 * Returns height
+	 * @return height
+	 */
 	public int getHeight() {
 		return this.height;
 	}
@@ -89,8 +106,12 @@ public abstract class GameTile implements Serializable {
 		return type.toString();
 	}
 	
+	/**
+	 * Returns whether the mule has an owner
+	 * @return true if has owner, false otherwise
+	 */
 	public boolean hasOwner(){
-		return owner!=null;
+		return owner != null;
 	}
 	
 	public abstract void action(Player player);

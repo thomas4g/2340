@@ -5,30 +5,27 @@ import tiled.core.Tile;
 
 /**
  * Representation of a tile in the town
- * @version 0.1
+ * @version 1.0
  */
+@SuppressWarnings("serial")
 public class TownTile extends GameTile {
 
+	/**
+	 * Constructor for a town tile
+	 * @param t, tile
+	 * @param type, type of tile
+	 */
 	public TownTile(Tile t, TileType type){
 		super(t,type);
 	}
 
 	@Override
-	public void action(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void action(Player player) {}
 
 	@Override
-	public void enter(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void enter(Player player) {}
 
 	@Override
-	public void exit(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void exit(Player player) {}
 
 }

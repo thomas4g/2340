@@ -2,6 +2,10 @@ package edu.gatech.mule.game.event.roundevents;
 
 import edu.gatech.mule.core.GameEngine;
 
+/**
+ * Round event that adds food to the store
+ * @version 1.0
+ */
 public class MysteryManEvent implements RoundEvent {
 
 	@Override

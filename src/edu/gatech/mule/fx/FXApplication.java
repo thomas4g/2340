@@ -13,9 +13,8 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.graphics.RenderTask;
 
 /**
- * Run this main method to start game
- * 
- * @version 0.1
+ * Sets up and launches the application
+ * @version 1.0
  */
 public class FXApplication extends Application {
 	

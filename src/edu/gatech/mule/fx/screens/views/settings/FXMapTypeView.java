@@ -9,6 +9,10 @@ import edu.gatech.mule.fx.screens.views.FXSettingsView;
 import edu.gatech.mule.game.Settings;
 import edu.gatech.mule.game.Settings.MapType;
 
+/**
+ * View for screen to set map type
+ * @version 1.0
+ */
 public class FXMapTypeView extends FXSettingsView {
 	
 	private static MapType[] mapTypes = Settings.MapType.values();
@@ -17,7 +21,10 @@ public class FXMapTypeView extends FXSettingsView {
 	private Label defaultMap;
 	@FXML
 	private Label randomMap;
-			
+	
+	/**
+	 * Constructor for map type select view
+	 */
 	public FXMapTypeView() {
 		super("map_type");
 		toggleMod = mapTypes.length;
@@ -28,8 +35,9 @@ public class FXMapTypeView extends FXSettingsView {
 		toggleSelected();
 	}
 	
+	@Override
 	protected void toggleSelected() {
-		switch(toggle) {
+		switch (toggle) {
 		case 0:
 			defaultMap.setTextFill(FXSettingsView.SELECTED);
 			randomMap.setTextFill(FXSettingsView.NORMAL);
@@ -41,6 +49,7 @@ public class FXMapTypeView extends FXSettingsView {
 		}
 	}
 	
+	@Override
 	protected void done() {
 		settings.setMapType(mapTypes[toggle]);
 		controller.done();

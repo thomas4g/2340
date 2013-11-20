@@ -45,7 +45,6 @@ public class FXMapView extends FXView implements TownMapView {
 	private int[] storeResources;
 	private TownController townController;
 	
-	final private ObservableList<String> buySell;
 	final private ObservableList<ResourceType> muleTypes;
 	
 	@FXML
@@ -93,7 +92,6 @@ public class FXMapView extends FXView implements TownMapView {
 	 */
 	public FXMapView() {
 		super("map");
-		buySell = FXCollections.observableArrayList("Buy", "Sell");
 		muleTypes = FXCollections.observableArrayList();
 	}
 
@@ -114,45 +112,41 @@ public class FXMapView extends FXView implements TownMapView {
 		
 		textOverlay.setVisible(false);
 		
-		//storeSelector.setItems(buySell);
-		//muleSelector.setItems(muleTypes);
-		
-		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				if(event.getCode() == CANCEL_KEY) {
-					displayMuleSelector(false);
-					storeSelectorOverlay.setVisible(false);
-					textOverlay.setVisible(false);
-				}
-			}
+		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED,
+				new EventHandler<KeyEvent>() {
+					@Override
+					public void handle(KeyEvent event) {
+						if (event.getCode() == CANCEL_KEY) {
+							displayMuleSelector(false);
+							storeSelectorOverlay.setVisible(false);
+							textOverlay.setVisible(false);
+						}
+					}
 		});
 		
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
-		
 	}
 	
 	/**
 	 * Wires the key board onto the game
 	 */
-	private void wireKeyboard(){
+	private void wireKeyboard() {
 		canvas.setFocusTraversable(true);
 		canvas.requestFocus();
 		canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent k) {
-				if(k.getCode().isArrowKey()) {
+				if (k.getCode().isArrowKey()) {
 					controller.move(
-							k.getCode() == LEFT_KEY ? -1 : k.getCode() == RIGHT_KEY ? 1 : 0,
-							k.getCode() == DOWN_KEY ? 1 : k.getCode() == UP_KEY ? -1 : 0);
-				}
-				else if(k.getCode().equals(ACTION_KEY)){
+						k.getCode() == LEFT_KEY ? -1
+								: k.getCode() == RIGHT_KEY ? 1 : 0,
+						k.getCode() == DOWN_KEY ? 1
+								: k.getCode() == UP_KEY ? -1 : 0);
+				} else if (k.getCode().equals(ACTION_KEY)){
 					controller.action();
-				}
-				else if(k.getCode() == SKIP_KEY) {
+				} else if (k.getCode() == SKIP_KEY) {
 					controller.done();
 				}
 			}
@@ -163,40 +157,43 @@ public class FXMapView extends FXView implements TownMapView {
 	 * Renders graphics
 	 */
 	public void render() {
-		graphics.clear(0, 0, (int)canvas.getWidth(), (int)canvas.getHeight());
+		graphics.clear(0,
+					   0,
+					   (int)canvas.getWidth(),
+					   (int)canvas.getHeight());
 		
-		if(mapRenderer != null) {
+		if (mapRenderer != null) {
 			mapRenderer.render(true);
 		}
 		drawSelector();
 		
-		for(Entity entity : gameEntities) {
+		for (Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
 		
-		graphics.drawText(Integer.toString(currentPlayer.getCurrentTurn().getLength()), new Point(700, 500));
+		graphics.drawText(
+				Integer.toString(currentPlayer.getCurrentTurn().getLength()),
+								 new Point(700, 500));
 		
 		drawPlayers();
 		
-		if(storeResources != null) {
+		if (storeResources != null) {
 			drawStoreResources();
 		}
 	}
 	
-	// THIS IS BAD UGLY TERRIBLE FIX FIX FIX
-	// TODO FIX FIX FIX
 	private void drawStoreResources() {
-		for(int i=0;i<gameMap.getTiles().length;i++) {
-			for(int j=0;j<gameMap.getTiles()[0].length;j++) {
+		for (int i = 0; i < gameMap.getTiles().length; i++) {
+			for (int j = 0; j < gameMap.getTiles()[0].length; j++) {
 				GameTile t = gameMap.getTiles()[i][j];
 				String tt = t.getProperties().getProperty("resource_type");
 
-				for(int k=0;k<storeResources.length;k++) {
+				for(int k = 0; k < storeResources.length; k++) {
 					String rt = ResourceType.values()[k].name();
 					
-					if(rt.equalsIgnoreCase(tt)) {
+					if (rt.equalsIgnoreCase(tt)) {
 						graphics.drawText(Integer.toString(storeResources[k]), 
-								new Point(t.getWidth()*i + t.getWidth()/2, 45),
+								new Point(t.getWidth() * i + t.getWidth() / 2, 45),
 								Color.WHITE,
 								16);
 					}					
@@ -215,27 +212,32 @@ public class FXMapView extends FXView implements TownMapView {
 	 */
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null) {
-			graphics.drawHollowRect(selectorLocation.x * OrthogonalMapRenderer.TILE_WIDTH, 
+			graphics.drawHollowRect(
+					selectorLocation.x * OrthogonalMapRenderer.TILE_WIDTH, 
 					selectorLocation.y * OrthogonalMapRenderer.TILE_HEIGHT, 
 					OrthogonalMapRenderer.TILE_WIDTH, 
-					OrthogonalMapRenderer.TILE_HEIGHT, 3.0, 
-					currentPlayer.getColor().getRGB());
+					OrthogonalMapRenderer.TILE_HEIGHT,
+					3.0, 
+					currentPlayer.getColor().getRGB()
+					);
 		}
 	}
 	
 	private void drawPlayers() {	
 		BufferedImage hs = currentPlayer.getHeadshot();
-		float ratio = (float)hs.getWidth()/hs.getHeight();
+		float ratio = (float)hs.getWidth() / hs.getHeight();
 		int newHeight = 100;
-		int newWidth = (int)(newHeight*ratio);
+		int newWidth = (int)(newHeight * ratio);
 		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
 		
 		int i = 0;
-		for(Player player : players) {
-			if(player.equals(currentPlayer)) {
-				graphics.drawText(player.display(), new Point(160+120*i, 420));
+		for (Player player : players) {
+			if (player.equals(currentPlayer)) {
+				graphics.drawText(player.display(),
+						new Point(160+120*i, 420));
 			} else {
-				graphics.drawGreyedText(player.display(), new Point(160+120*i, 420));
+				graphics.drawGreyedText(player.display(),
+						new Point(160+120*i, 420));
 			}
 			i++;
 		}
@@ -272,21 +274,30 @@ public class FXMapView extends FXView implements TownMapView {
 		townController = controller;
 	}
 	
-	// store select
 	
 	private int store;
 	private static String[] BSQyum = {"buy","sell","quit"};
 	
+	/**
+	 * Scrolls store toggle to left
+	 */
 	private void storeLeft() {
 		store = mod(--store,BSQyum.length);
 		textStoreColor();
 	}
 	
+	/**
+	 * Scrolls store toggle to right
+	 */
 	private void storeRight() {
 		store = mod(++store,BSQyum.length);
 		textStoreColor();
 	}
 	
+	/**
+	 * Store actions based on key events
+	 * @param event, key pressed
+	 */
 	@FXML
 	protected void storeAction(KeyEvent event) {
 		if (event.getCode() == UP_KEY) {
@@ -295,9 +306,9 @@ public class FXMapView extends FXView implements TownMapView {
 			storeRight();
 		} else if (event.getCode() == ACTION_KEY) {
 			displayStoreSelector(false);
-			if(BSQyum[store].equals("buy")) {
+			if (BSQyum[store].equals("buy")) {
 				displayStoreAmountMenu(true);
-			} else if(BSQyum[store].equals("sell")) {
+			} else if (BSQyum[store].equals("sell")) {
 				displayStoreAmountMenu(false);
 			}
 		} else if (event.getCode() == CANCEL_KEY) {
@@ -305,21 +316,31 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 	}
 	
+	/**
+	 * Sets color of toggle
+	 */
 	private void textStoreColor() {
-		for(Label lab : buySellQuit) {
+		for (Label lab : buySellQuit) {
 			lab.setTextFill(FXView.NORMAL);
 		}
 		selectedStore();
 	}
 	
+	/**
+	 * Sets selected text to selected color
+	 */
 	private void selectedStore() {
 		buySellQuit[store].setTextFill(FXView.SELECTED);
 	}
 	
+	/**
+	 * Displays store selector
+	 * @param isVisible, whether selector will be visible or not
+	 */
 	private void displayStoreSelector(boolean isVisible) {
 		storeSelectorOverlay.setVisible(isVisible);
 		storeSelect.setVisible(isVisible);
-		if(isVisible) {
+		if (isVisible) {
 			storeSelect.requestFocus();
 			store = 0;
 			textStoreColor();
@@ -332,26 +353,24 @@ public class FXMapView extends FXView implements TownMapView {
 		storeSelect.requestFocus();
 	}
 	
-	// store amount input
-
 	@Override
 	public void displayStoreAmountMenu(final boolean buying) {
 		textOverlay.setVisible(true);
 		textField.requestFocus();
-		textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-
+		textField.addEventHandler(KeyEvent.KEY_PRESSED,
+								  new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.getCode() == ACTION_KEY) {
+				if (event.getCode() == ACTION_KEY) {
 					int count = 0;
 					try {
 						count = Integer.parseInt(textField.getText());
-					} catch(NumberFormatException ex) {
+					} catch (NumberFormatException ex) {
 						System.out.println("Silly alien, that's not a number!");
 					}
 					textOverlay.setVisible(false);
 					townController.storeComplete(count, buying);
-				} else if(event.getCode() == CANCEL_KEY) {
+				} else if (event.getCode() == CANCEL_KEY) {
 					textOverlay.setVisible(false);
 				}
 			}
@@ -365,22 +384,31 @@ public class FXMapView extends FXView implements TownMapView {
 		storeResources = resources;
 	}
 	
-	// mule selection
 	
 	private int mule;
 	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY, 
 										ResourceType.SMITHORE, ResourceType.CRYSTITE};
 	
+	/**
+	 * Toggles mule selector to the left
+	 */
 	private void muleLeft() {
 		mule = mod(--mule,res.length);
 		textMuleColor();
 	}
 	
+	/**
+	 * Toggles mule selector to the right
+	 */
 	private void muleRight() {
 		mule = mod(++mule,res.length);
 		textMuleColor();
 	}
 	
+	/**
+	 * Actions of mule selector based on key event
+	 * @param event, key pressed
+	 */
 	@FXML
 	protected void muleAction(KeyEvent event) {
 		if (event.getCode() == UP_KEY) {
@@ -396,6 +424,9 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 	}
 	
+	/**
+	 * Sets up mule selector text
+	 */
 	private void textMuleColor() {
 		for(Label lab : muleLabels) {
 			lab.setTextFill(FXView.NORMAL);
@@ -403,10 +434,17 @@ public class FXMapView extends FXView implements TownMapView {
 		selectedMule();
 	}
 	
+	/**
+	 * Colors selected mule text to selected color
+	 */
 	private void selectedMule() {
 		muleLabels[mule].setTextFill(FXView.SELECTED);
 	}
 	
+	/**
+	 * Displays mule selector
+	 * @param isVisible, whether selector will be visible
+	 */
 	private void displayMuleSelector(boolean isVisible) {
 		muleSelectorOverlay.setVisible(isVisible);
 		muleSelect.setVisible(isVisible);
