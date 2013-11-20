@@ -1,5 +1,6 @@
 package edu.gatech.mule.game.round;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,20 +13,26 @@ import edu.gatech.mule.game.event.turnevents.TurnEvent;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
-public class Turn {
+public class Turn implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -301629855669899017L;
 	private Round round;
 	private Player player;
 	private int length;
-	private Timer timer;
+	private transient Timer timer;
 	private Random rand;
 	private int coinFlip;
+	private GameEngine game;
 	
 	public Turn(Round round, Player player,GameEngine engine) {
 		this.round = round;
 		this.player = player;
 		this.player.setCurrentTurn(this);
 		this.rand=new Random();
+		this.game = engine;
 		genTurnLength();
 	}
 	
@@ -73,8 +80,10 @@ public class Turn {
 		int coinFlip=rand.nextInt(2);
 		if (coinFlip%2==0) {
 			TurnEvent event = RandomEventFactory.createTurnEvent();
+			
 			event.execute(player);
 			System.out.println(event.getMessage());
+			game.setMessage(event.getMessage());
 		}
 		round.turn();
 	}

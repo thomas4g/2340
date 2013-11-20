@@ -113,7 +113,11 @@
             </GridPane>
           </children>
         </StackPane>
-        <HBox fx:id="playerPanel" prefHeight="120.0" prefWidth="720.0" />
+        <HBox fx:id="playerPanel" prefHeight="120.0" prefWidth="720.0">
+          <children>
+            <ProgressIndicator fx:id="timer" prefHeight="120.0" prefWidth="720.0" progress="0.0" />
+          </children>
+        </HBox>
       </children>
     </VBox>
   </children>

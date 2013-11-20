@@ -4,28 +4,29 @@ import java.util.HashMap;
 
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
+import edu.gatech.mule.core.FXApplication;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXView;
-import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
-import edu.gatech.mule.fx.screens.views.main.FXHelpView;
-import edu.gatech.mule.fx.screens.views.main.FXPersistenceView;
-import edu.gatech.mule.fx.screens.views.main.FXStartView;
-import edu.gatech.mule.fx.screens.views.player.FXColorSelectView;
-import edu.gatech.mule.fx.screens.views.player.FXNameChooseView;
-import edu.gatech.mule.fx.screens.views.player.FXRaceSelectView;
-import edu.gatech.mule.fx.screens.views.settings.FXDifficultyView;
-import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
-import edu.gatech.mule.fx.screens.views.settings.FXNumPlayersView;
+import edu.gatech.mule.fx.views.FXView;
+import edu.gatech.mule.fx.views.gameplay.FXMapView;
+import edu.gatech.mule.fx.views.main.FXHelpView;
+import edu.gatech.mule.fx.views.main.FXPersistenceView;
+import edu.gatech.mule.fx.views.main.FXStartView;
+import edu.gatech.mule.fx.views.player.FXColorSelectView;
+import edu.gatech.mule.fx.views.player.FXNameChooseView;
+import edu.gatech.mule.fx.views.player.FXRaceSelectView;
+import edu.gatech.mule.fx.views.settings.FXDifficultyView;
+import edu.gatech.mule.fx.views.settings.FXMapTypeView;
+import edu.gatech.mule.fx.views.settings.FXNumPlayersView;
 import edu.gatech.mule.screen.ScreenHandler;
-import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.PersistenceView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
-import edu.gatech.mule.screen.screens.views.SettingsView;
-import edu.gatech.mule.screen.screens.views.TownMapView;
+import edu.gatech.mule.screen.views.MapView;
+import edu.gatech.mule.screen.views.PersistenceView;
+import edu.gatech.mule.screen.views.ScreenView;
+import edu.gatech.mule.screen.views.SettingsView;
+import edu.gatech.mule.screen.views.TownMapView;
 
 /**
- * FX screen handler
- * @version 0.1
+ * View representation of the screen handler
+ * @version 1.0
  */
 public class FXScreenHandler extends ScreenHandler {
 	
@@ -36,15 +37,19 @@ public class FXScreenHandler extends ScreenHandler {
 	
 	/**
 	 * Constructor for FX screen handler
-	 * @param game, game engine
+	 * @param game, game engine associated with the game
 	 */
 	public FXScreenHandler(GameEngine game) {
 		super(game);
 		stack = new StackPane();
 		loadedScreens = new HashMap<>();
-		FXApplication.view = stack; //TODO this is bad
+		FXApplication.view = stack;  //TODO this is bad
 	}
 	
+	/**
+	 * Returns the current view
+	 * @return the current view
+	 */
 	public FXView getCurrentView() {
 		return this.currentView;
 	}
@@ -58,11 +63,15 @@ public class FXScreenHandler extends ScreenHandler {
 		});
 	}
 	
+	/**
+	 * Sets the screen's view based on the screen type
+	 * @param type, the screen type
+	 */
 	private void setFXScreen(ScreenType type) {
 		FXView view = null;
 		super.setScreen(type);
 
-		if(!loadedScreens.containsKey(type)) {
+		if (!loadedScreens.containsKey(type)) {
 	    	view = (FXView)screens.get(type).getView();
 			loadedScreens.put(type, view);
 		} else {
@@ -72,7 +81,8 @@ public class FXScreenHandler extends ScreenHandler {
 		view.load();
 		this.currentView = view;
 
-		if(!stack.getChildren().isEmpty()){
+		// stack.getChildren() is JavaFX norm :(
+		if (!stack.getChildren().isEmpty()){
 	    	stack.getChildren().remove(0);
 	        stack.getChildren().add(0, view.getNode());
 	    } else {
@@ -127,22 +137,25 @@ public class FXScreenHandler extends ScreenHandler {
 
 	@Override
 	protected MapView loadGameplayView() {
-		if(null == mainMapView)
+		if (null == mainMapView) {
 			mainMapView = new FXMapView();
+		}
 		return mainMapView;
 	}
 
 	@Override
 	protected MapView loadLandSelectView() {
-		if(null == mainMapView)
+		if (null == mainMapView) {
 			mainMapView = new FXMapView();
+		}
 		return mainMapView;
 	}
 
 	@Override
 	protected TownMapView loadTownView() {
-		if(null == mainMapView)
+		if (null == mainMapView) {
 			mainMapView = new FXMapView();
+		}
 		return mainMapView;
 	}
 

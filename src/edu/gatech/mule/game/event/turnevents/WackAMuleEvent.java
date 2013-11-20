@@ -4,24 +4,26 @@ import java.util.Random;
 
 import edu.gatech.mule.game.player.Player;
 
+/**
+ * A turn event where a player loses a mule.
+ * @version 1.0
+ */
 public class WackAMuleEvent implements TurnEvent {
 
 	private Player player;
-	
+
 	@Override
 	public void execute(Player player) {
-		Random rand=new Random();
+		Random rand = new Random();
 		player.getLands().remove(rand.nextInt(player.getLands().size()));
-		this.player=player;
+		this.player = player;
 	}
 
 	@Override
 	public String getMessage() {
-		return "Aww it looks like "+player.getName()+" was playing Wack-a-Mule and made one of the mules"
+		return "Aww it looks like " + player.getName()
+				+ " was playing Wack-a-Mule and made one of the mules "
 				+ "run off!";
 	}
 
-	
-	
-	
 }

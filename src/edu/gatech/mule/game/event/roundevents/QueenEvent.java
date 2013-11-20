@@ -4,13 +4,17 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
+/**
+ * A round event where everyone gets 2 food.
+ * @version 1.0
+ */
 public class QueenEvent implements RoundEvent {
 
 	@Override
 	public void execute(GameEngine game) {
 		int[] resources = new int[ResourceType.values().length];
 		resources[ResourceType.FOOD.ordinal()] = 2;
-		for(Player p : game.getPlayers()) {
+		for (Player p : game.getPlayers()) {
 			p.addResources(resources);
 		}
 	}

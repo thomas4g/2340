@@ -1,5 +1,6 @@
 package edu.gatech.mule.game.round;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -9,12 +10,16 @@ import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.screen.ScreenHandler.ScreenType;
 
-public class Round {
+public class Round implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6250527181695602273L;
 	private GameEngine game;
 	private RoundController roundController;
 	private List<Turn> turns;
-	private Iterator<Turn> iter;
+	private transient Iterator<Turn> iter;
 	private Turn turn;
 	private RoundInfo rInfo;
 	
@@ -32,6 +37,7 @@ public class Round {
 	}
 	
 	public void turn() {
+//		game.setMessage("");
 		if(iter.hasNext()) {
 			turn = iter.next();
 			turn.start();
