@@ -19,6 +19,10 @@ import edu.gatech.mule.map.tiles.GameTile;
  */
 public class FXGraphics implements Renderer {
 
+	public static final double MAX_RGB = 255.0;
+	public static final int FONT_SIZE = 12;
+	public static final double LINE_WIDTH = 0.75;
+
 	private GraphicsContext gc;
 	private static HashMap<java.awt.Image, Image> convertedImages = new HashMap<>();
 
@@ -79,9 +83,10 @@ public class FXGraphics implements Renderer {
 	 * @return color, javafx
 	 */
 	private javafx.scene.paint.Color fxColor(Color color) {
-		return new javafx.scene.paint.Color(color.getRed() / 255.0,
-											color.getGreen() / 255.0,
-											color.getBlue() / 255.0, 1);
+		return new javafx.scene.paint.Color(color.getRed() / MAX_RGB,
+											color.getGreen() / MAX_RGB,
+											color.getBlue() / MAX_RGB,
+											1);
 	}
 
 	/**
@@ -103,7 +108,7 @@ public class FXGraphics implements Renderer {
 	 * @param point location where text starts
 	 */
 	public void drawText(String text, Point point) {
-		drawText(text, point, Color.BLACK, 12);
+		drawText(text, point, Color.BLACK, FONT_SIZE);
 	}
 
 	/**
@@ -112,7 +117,7 @@ public class FXGraphics implements Renderer {
 	 * @param point location where text starts
 	 */
 	public void drawGreyedText(String text, Point point) {
-		drawText(text, point, Color.GRAY, 12);
+		drawText(text, point, Color.GRAY, FONT_SIZE);
 	}
 
 	/**
@@ -123,7 +128,7 @@ public class FXGraphics implements Renderer {
 	 * @param fontSize font size of the text
 	 */
 	public void drawText(String text, Point point, Color color, double fontSize) {
-		gc.setLineWidth(.75);
+		gc.setLineWidth(LINE_WIDTH);
 		gc.setFont(new Font(fontSize));
 		gc.setStroke(fxColor(color));
 		gc.strokeText(text, point.x, point.y);
