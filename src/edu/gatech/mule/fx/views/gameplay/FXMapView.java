@@ -251,10 +251,10 @@ public class FXMapView extends FXView implements TownMapView {
 		for (Player player : players) {
 			if (player.equals(currentPlayer)) {
 				graphics.drawText(player.getResourceString(),
-						new Point(160+120*i, 420));
+						new Point(160+120 * i, 420));
 			} else {
 				graphics.drawGreyedText(player.getResourceString(),
-						new Point(160+120*i, 420));
+						new Point(160+120 * i, 420));
 			}
 			i++;
 		}
