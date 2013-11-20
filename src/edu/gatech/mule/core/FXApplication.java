@@ -13,24 +13,24 @@ import edu.gatech.mule.fx.FXScreenHandler;
 import edu.gatech.mule.fx.graphics.RenderTask;
 
 /**
- * Sets up and launches the application
+ * Sets up and launches the application.
  * @version 1.0
  */
 public class FXApplication extends Application {
-	
-	private final static String TITLE = "M.U.L.E. by 85% Wildebeests";
-	
-	private final static int WIDTH = 720;
-	private final static int HEIGHT = 520;
-    
+
+	private static final String TITLE = "M.U.L.E. by 85% Wildebeests";
+
+	private static final int WIDTH = 720;
+	private static final int HEIGHT = 520;
+
 	public static StackPane view;
-	
+
     @Override
     public void start(Stage stage) throws Exception {
     	GameEngine game = new GameEngine();
     	FXScreenHandler handler = new FXScreenHandler(game);
     	game.load(handler);
-    	
+
         Group root = new Group();
         root.getChildren().addAll(view);
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -41,7 +41,7 @@ public class FXApplication extends Application {
     	Thread renderThread = new Thread(new RenderTask(handler));
     	renderThread.setDaemon(true);
     	renderThread.start();
-    	
+
     	game.start();
     }
 

@@ -9,9 +9,16 @@ import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 import edu.gatech.mule.map.tiles.GameTile;
 
-
+/**
+ * Representative of a mule.
+ * @version 1.0
+ */
 public class Mule extends Entity {
 
+	/**
+	 * Yay serial version U ID.
+	 */
+	private static final long serialVersionUID = 462367184641862973L;
 	public CharacterType type;
 	public GameTile tile;
 	public boolean placed;
@@ -20,97 +27,140 @@ public class Mule extends Entity {
 	private boolean big;
 	private boolean enslaved;
 	private Random rand;
-	
+
+	public static final int FREEDOM_SPEED = 5;
+
+	/**
+	 * Constructor for a mule.
+	 * @param owner of the mule
+	 * @param type of the mule by resource
+	 */
 	public Mule(Player owner, CharacterType type) {
-		super(type.getStillSprite(owner.getDirection(), Color.PURPLE),owner.getPosition());
+		super(type.getStillSprite(owner.getDirection(), Color.PURPLE), owner.getPosition());
 		this.type = type;
 		this.owner = owner;
-		this.enslaved=true;
-		rand=new Random();
-		//Determine color based on resource
-		color=Color.BLUE;
+		this.enslaved = true;
+		rand = new Random();
+		color = Color.BLUE;
 	}
-	
-	public void move(){
-		
-		switch(owner.getDirection()){
+
+	/**
+	 * Moves mule.
+	 */
+	public void move() {
+		switch(owner.getDirection()) {
 			case DOWN:
 				location.setLocation(
 						owner.getPosition().getX(),
-						owner.getPosition().getY() - 2*owner.getImage().getHeight());
+						owner.getPosition().getY() - 2 * owner.getImage().getHeight());
 				break;
 			case RIGHT:
 				location.setLocation(
-						owner.getPosition().getX() - 2*owner.getImage().getWidth(),
+						owner.getPosition().getX() - 2 * owner.getImage().getWidth(),
 						owner.getPosition().getY());
 				break;
 			case LEFT:
 				location.setLocation(
-						owner.getPosition().getX() + 2*owner.getImage().getWidth(),
+						owner.getPosition().getX() + 2 * owner.getImage().getWidth(),
 						owner.getPosition().getY());
 				break;
 			case UP:
 				location.setLocation(
 						owner.getPosition().getX(),
-						owner.getPosition().getY() + 2*owner.getImage().getHeight());
+						owner.getPosition().getY() + 2 * owner.getImage().getHeight());
 				break;
-			
 			default:
 				break;
-		
 		}
 		setDirection(owner.getDirection());
-		
 	}
-	
+
+	/**
+	 * Sets direction of mule.
+	 * @param direction of mule
+	 */
 	public void setDirection(Direction direction) {
 		super.setDirection(direction);
 		setDirectionalFrames();
 	}
-	
+
+	/**
+	 * Adjusts sprites for big or small sprites.
+	 * @param big true if need big sprites, false otherwise
+	 */
 	public void useBigSprites(boolean big) {
 		this.big = big;
 		setDirectionalFrames();
 	}
-	
-	public void setDirectionalFrames(){
+
+	/**
+	 * Set the directional frames based on direction.
+	 */
+	public void setDirectionalFrames() {
 		setFrames(type.getDirectionalSprites(direction, big, color));
 	}
-	
-	
+
+	/**
+	 * Get type of mule.
+	 * @return type of mule
+	 */
 	public ResourceType getType() {
 		return resourceType;
 	}
-	
+
+	/**
+	 * Place the mule on a tile.
+	 * @param tile the mule will be placed at
+	 */
 	public void emplace(GameTile tile) {
 		placed = true;
 		this.tile = tile;
 	}
-	
-	public void run(int x,int y){
-		location.x+=x;
-		location.y+=y;
+
+	/**
+	 * Moving while running.
+	 * @param x horizontal speed at which mule runs away
+	 * @param y vertical speed at which mule runs away
+	 */
+	public void run(int x, int y) {
+		location.x += x;
+		location.y += y;
 	}
-	
-	public void sweetFreedom(){
-		run(-1*rand.nextInt(5),-1*rand.nextInt(5));
+
+	/**
+	 * Method for when mule is running away.
+	 */
+	public void sweetFreedom() {
+		run(-1 * rand.nextInt(FREEDOM_SPEED), -1 * rand.nextInt(FREEDOM_SPEED));
 	}
-	
-	public boolean outOfBounds(){
-		if(location.x<0 || location.y<0) return true;
+
+	/**
+	 * Determines whether out of bounds or not.
+	 * @return true if out of bounds, false otherwise
+	 */
+	public boolean outOfBounds() {
+		if(location.x < 0 || location.y < 0) {
+			return true;
+		}
 		return false;
 	}
-	
-	public void emancipate(){
-		enslaved=false;
+
+	/**
+	 * Mule is no longer owned by an owner.
+	 */
+	public void emancipate() {
+		enslaved = false;
 	}
-	
-	
+
+	/**
+	 * Produce resources if on a tile.
+	 */
 	public void produce() {
-		if(tile == null)
+		if(tile == null) {
 			return;
-				
-		int[] resources = new int[5];
+		}
+
+		int[] resources = new int[ResourceType.values().length];
 		int production = 0;
 		switch(resourceType) {
 		case FOOD:
@@ -125,11 +175,16 @@ public class Mule extends Entity {
 		default:
 			break;
 		}
+
 		production += production * owner.getProductionCoeficients()[resourceType.ordinal()];
 		resources[resourceType.ordinal()] = production;
 		owner.addResources(resources);
 	}
 
+	/**
+	 * Sets the type of resource the mule is in.
+	 * @param type by resource
+	 */
 	public void setType(ResourceType type) {
 		resourceType = type;
 	}
