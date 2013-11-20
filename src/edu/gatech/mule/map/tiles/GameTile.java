@@ -120,6 +120,14 @@ public abstract class GameTile implements Serializable {
 	}
 
 	/**
+	 * Returns whether tile is purchasable.
+	 * @return true if purchasable, false otherwise
+	 */
+	public boolean isPurchasable() {
+		return type.isPurchasable();
+	}
+
+	/**
 	 * Called when action key is pressed.
 	 * @param player current player
 	 */
