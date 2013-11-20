@@ -93,6 +93,23 @@ public class FXMapView extends FXView implements TownMapView {
 	@FXML
 	private ProgressIndicator timer;
 
+
+	private static final double BORDER_WIDTH = 3.0;
+
+	private static final int X_STAT_START = 160;
+	private static final int X_STAT_SPACE = 120;
+	private static final int Y_STAT_SPACE = 420;
+
+	private static final int HUH = 45;
+	private static final int WUT = 16;
+
+	private static final int X_MESSAGE = 25;
+	private static final int Y_MESSAGE = 510;
+
+//	private static final int MAX_PLAYERS = 4;
+	private static final int X_TIMER = 30;
+	private static final int Y_TIMER = Y_STAT_SPACE;
+
 	/**
 	 * Constructor for map view.
 	 */
@@ -159,12 +176,6 @@ public class FXMapView extends FXView implements TownMapView {
 		});
 	}
 
-	private static final int X_MESSAGE = 100;
-	private static final int Y_MESSAGE = 500;
-
-	private static final int X_TIMER = 700;
-	private static final int Y_TIMER = 500;
-
 	/**
 	 * Renders graphics.
 	 */
@@ -183,9 +194,8 @@ public class FXMapView extends FXView implements TownMapView {
 			graphics.drawEntity(entity);
 		}
 
-		graphics.drawText(
-			Integer.toString(
-				currentPlayer.getCurrentTurn().getLength()),
+		graphics.drawText("Time left: "
+			+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
 			new Point(X_TIMER, Y_TIMER));
 		drawPlayers();
 
@@ -204,9 +214,9 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 	}
 
-	private static final int HUH = 45;
-	private static final int WUT = 16;
-
+	/**
+	 * Draw store resources.
+	 */
 	private void drawStoreResources() {
 		for (int i = 0; i < gameMap.getTiles().length; i++) {
 			for (int j = 0; j < gameMap.getTiles()[0].length; j++) {
@@ -232,8 +242,6 @@ public class FXMapView extends FXView implements TownMapView {
 		selectorLocation = location;
 	}
 
-	private static final double BORDER_WIDTH = 3.0;
-
 	/**
 	 * Draws selector.
 	 */
@@ -249,10 +257,6 @@ public class FXMapView extends FXView implements TownMapView {
 					);
 		}
 	}
-
-	private static final int X_STAT_START = 160;
-	private static final int X_STAT_SPACE = 120;
-	private static final int Y_STAT_SPACE = 420;
 
 	private void drawPlayers() {
 		/*
@@ -414,6 +418,7 @@ public class FXMapView extends FXView implements TownMapView {
 	public void setStoreResourceAmounts(int[] resources) {
 		storeResources = resources;
 	}
+
 	private int mule;
 	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY,
 										ResourceType.SMITHORE, ResourceType.CRYSTITE};
