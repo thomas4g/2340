@@ -68,6 +68,7 @@ public class PropertyTile extends GameTile {
 			out.writeInt(0);
 		}
 	}
+
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
     	in.defaultReadObject();
     	if(in.readInt() > 0) {
