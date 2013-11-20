@@ -13,19 +13,18 @@ import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.fx.views.FXSettingsView;
 
 /**
- * View for player color config
+ * View for player color config.
  * @version 1.0
  */
 public class FXColorSelectView extends FXSettingsView {
-	
-	private final static Random randy = new Random();
-	private final static Color[] colors = Color.values();
-	
+
+	private static final Random RAND_GEN = new Random();
+	private static final  Color[] COLORS = Color.values();
+
 	@FXML
 	private Label playerAnnouncer;
 	@FXML
 	private ImageView imgView;
-	
 	@FXML
 	private Label purple;
 	@FXML
@@ -42,46 +41,44 @@ public class FXColorSelectView extends FXSettingsView {
 	private Label orange;
 	@FXML
 	private Label maroon;
-	
 	@FXML
 	private Label[] colorLabels;
-		
+
 	/**
-	 * Constructor for player color select screen
+	 * Constructor for player color select screen.
 	 */
 	public FXColorSelectView() {
 		super("color_select");
-		toggleMod = colors.length;
+		toggleMod = COLORS.length;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		toggle = randy.nextInt(colors.length);
-		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", choose your color");
-		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
-		colorLabels = new Label[]{purple,blue,teal,seafoam,green,gold,orange,maroon};
-		
+		toggle = RAND_GEN.nextInt(COLORS.length);
+		playerAnnouncer.setText("Player " + settings.getPlayerIndex() + ", choose your color");
+		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle + 1)));
+		colorLabels = new Label[]{purple, blue, teal, seafoam, green, gold, orange, maroon};
 		toggleSelected();
 	}
-	
+
 	@Override
 	protected void toggleSelected() {
 		greyedOrNotAll();
 		colorLabels[toggle].setTextFill(FXSettingsView.SELECTED);
-		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle+1)));
+		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle + 1)));
 	}
-	
+
 	@Override
 	protected void done() {
-		if (!settings.colorUsed(toggle+1)) {
-			settings.setCurrentPlayerColor(colors[toggle]);
-			settings.addColor(colors[toggle]);
+		if (!settings.colorUsed(toggle + 1)) {
+			settings.setCurrentPlayerColor(COLORS[toggle]);
+			settings.addColor(COLORS[toggle]);
 			controller.done();
 		}
 	}
-	
+
 	/**
-	 * Returns color that corresponds to whether color is already used or not
+	 * Returns color that corresponds to whether color is already used or not.
 	 * @param color, color of player config
 	 * @return JavaFX text color based on whether color is already used or not
 	 */
@@ -91,18 +88,18 @@ public class FXColorSelectView extends FXSettingsView {
 		}
 		return FXSettingsView.NORMAL;
 	}
-	
+
 	/**
-	 * Sets text colors of all toggles based on whether corresponding
+	 * Sets text colors of all toggles based on whether corresponding.
 	 * colors were already selected or not
 	 */
 	private void greyedOrNotAll() {
 		int i = 0;
 		for(Label label : colorLabels) {
-			label.setTextFill(grayedOrNot(colors[i++].ordinal()+1));
+			label.setTextFill(grayedOrNot(COLORS[i++].ordinal() + 1));
 		}
 	}
 
 	@Override
-	public void render() {}
+	public void render() { }
 }
