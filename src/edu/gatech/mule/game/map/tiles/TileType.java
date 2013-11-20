@@ -1,7 +1,7 @@
 package edu.gatech.mule.game.map.tiles;
 
 /**
- * Library of tile types
+ * Library of tile types.
  * @version 0.1
  */
 public enum TileType {
@@ -11,7 +11,7 @@ public enum TileType {
 	MOUNTAIN1(true, 1, 1, 2),
 	MOUNTAIN2(true, 1, 1, 3),
 	MOUNTAIN3(true, 1, 1, 4),
-	
+
 	RESOURCE_STORE(false, 0, 0, 0),
 	MULE_STORE(false, 0, 0, 0),
 	TOWN(false, 0, 0, 0),
@@ -19,13 +19,13 @@ public enum TileType {
 	EXITTOWN_RIGHT(false, 0, 0, 0),
 	ENTERTOWN(false, 0, 0, 0),
 	PUB(false, 0, 0, 0);
-	
+
 	private boolean purchasable;
 	private int foodRate, energyRate, oreRate;
-	
+
 	/**
-	 * Constructor for the tile type
-	 * 
+	 * Constructor for the tile type.
+	 *
 	 * @param purchasable, designates whether a tile is buyable or not
 	 * @param foodRate, the rate of food to be produced
 	 * @param energyRate, the rate of energy to be produced
@@ -38,33 +38,33 @@ public enum TileType {
 		this.energyRate = energyRate;
 		this.oreRate = oreRate;
 	}
-	
+
 	/**
-	 * Get whether tile is purchasable
+	 * Get whether tile is purchasable.
 	 * @return true if purchasable, false otherwise
 	 */
 	public boolean isPurchasable() {
 		return this.purchasable;
 	}
-	
+
 	/**
-	 * Get the food rate of the tile
+	 * Get the food rate of the tile.
 	 * @return food rate
 	 */
 	public int getFoodRate() {
 		return this.foodRate;
 	}
-	
+
 	/**
-	 * Get the energy rate of the tile
+	 * Get the energy rate of the tile.
 	 * @return energy rate
 	 */
 	public int getEnergyRate() {
 		return this.energyRate;
 	}
-	
+
 	/**
-	 * Get the ore rate of the tile
+	 * Get the ore rate of the tile.
 	 * @return ore rate
 	 */
 	public int getOreRate() {

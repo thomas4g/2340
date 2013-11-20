@@ -8,7 +8,7 @@ import tiled.core.Tile;
 import edu.gatech.mule.game.player.Player;
 
 /**
- * Representation of a tile in the game map
+ * Representation of a tile in the game map.
  * @version 0.1
  */
 public abstract class GameTile implements Serializable {
@@ -21,11 +21,11 @@ public abstract class GameTile implements Serializable {
 	protected int width;
 	protected int height;
 	protected Properties properties;
-	
+
 	/**
-	 * Constructor for a game tile
-	 * @param t, the config for a tile entity
-	 * @param type, type of tile
+	 * Constructor for a game tile.
+	 * @param t the config for a tile entity
+	 * @param type type of tile
 	 */
 	public GameTile(Tile t, TileType type) {
 		this.image = t.getImage();
@@ -35,65 +35,99 @@ public abstract class GameTile implements Serializable {
 		this.type = type;
 		this.cost = DEFAULT_COST;
 	}
-	
+
+	/**
+	 * Gets properties of the tile.
+	 * @return properties
+	 */
 	public Properties getProperties() {
 		return this.properties;
 	}
-	
+
+	/**
+	 * Gets the image of the tile.
+	 * @return image
+	 */
 	public Image getImage() {
 		return this.image;
 	}
-	
+
+	/**
+	 * Pixel width of the tile.
+	 * @return width
+	 */
 	public int getWidth() {
 		return this.width;
 	}
-	
+
+	/**
+	 * Pixel height of the tile.
+	 * @return height
+	 */
 	public int getHeight() {
 		return this.height;
 	}
-	
+
 	/**
-	 * Set the owner of the tile
-	 * @param player, the owner of the tile
+	 * Set the owner of the tile.
+	 * @param player the owner of the tile
 	 */
 	public void setOwner(Player player) {
 		this.owner = player;
-	}	
-	
+	}
+
 	/**
-	 * Get the owner of the tile
+	 * Get the owner of the tile.
 	 * @return owner of the tile
 	 */
 	public Player getOwner() {
 		return owner;
 	}
-	
+
 	/**
-	 * Get the cost of the tile
+	 * Get the cost of the tile.
 	 * @return cost of the tile
 	 */
 	public int getCost() {
 		return cost;
 	}
-	
+
 	/**
-	 * Get the type of the tile
+	 * Get the type of the tile.
 	 * @return type of the tile
 	 */
 	public TileType getType() {
 		return type;
 	}
-	
+
 	@Override
 	public String toString() {
 		return type.toString();
 	}
-	
-	public boolean hasOwner(){
-		return owner!=null;
+
+	/**
+	 * True if tile is owned.
+	 * @return true or false
+	 */
+	public boolean hasOwner() {
+		return owner != null;
 	}
-	
+
+	/**
+	 * Called when action key is pressed.
+	 * @param player current player
+	 */
 	public abstract void action(Player player);
+
+	/**
+	 * Called when tile is entered.
+	 * @param player current player
+	 */
 	public abstract void enter(Player player);
+
+	/**
+	 * Called when tile is exited.
+	 * @param player current player.
+	 */
 	public abstract void exit(Player player);
 }
