@@ -5,13 +5,13 @@ import java.util.Random;
 import edu.gatech.mule.game.player.Player;
 
 /**
- * A turn event where a player loses a mule
+ * A turn event where a player loses a mule.
  * @version 1.0
  */
 public class WackAMuleEvent implements TurnEvent {
 
 	private Player player;
-	
+
 	@Override
 	public void execute(Player player) {
 		Random rand = new Random();
@@ -26,7 +26,4 @@ public class WackAMuleEvent implements TurnEvent {
 				+ "run off!";
 	}
 
-	
-	
-	
 }

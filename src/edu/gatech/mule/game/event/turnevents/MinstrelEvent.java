@@ -4,17 +4,17 @@ import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
 /**
- * A turn event where a player earns energy
+ * A turn event where a player earns energy.
  * @version 1.0
  */
 public class MinstrelEvent implements TurnEvent {
 
-	int energy;
-	
+	private int energy;
+
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[ResourceType.values().length];
-		energy = (int)(player.getResourceAmt(ResourceType.ENERGY) * .25);
+		energy = (int) (player.getResourceAmt(ResourceType.ENERGY) * .25);
 		resources[ResourceType.ENERGY.ordinal()] = energy;
 		player.addResources(resources);
 	}
@@ -25,7 +25,5 @@ public class MinstrelEvent implements TurnEvent {
 				+ " sings some tunes, and does a dance. This brings"
 				+ " joy and " + energy + " energy to you";
 	}
-	
-	
 
 }

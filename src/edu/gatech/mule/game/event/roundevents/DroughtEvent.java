@@ -5,7 +5,7 @@ import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
 /**
- * Round event where players lose half of their food
+ * Round event where players lose half of their food.
  * @version 1.0
  */
 public class DroughtEvent implements RoundEvent {
@@ -25,5 +25,5 @@ public class DroughtEvent implements RoundEvent {
 		return "A drought has caused all players to lose half of their food!";
 	}
 
-	
+
 }
