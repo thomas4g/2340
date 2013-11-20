@@ -48,7 +48,6 @@ public class LandSelectController extends ScreenController {
 		view.setPlayers(game.getSettings().getPlayers());
 	}
 	
-	@Override
 	public final void move(int x, int y) {
 		x = x == 0 ? 0 : x / Math.abs(x);
 		y = y == 0 ? 0 : y / Math.abs(y);		
