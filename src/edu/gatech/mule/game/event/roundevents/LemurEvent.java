@@ -7,7 +7,7 @@ import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
 /**
- * Round event that increase production by 50%
+ * Round event that increase production by 50%.
  * @version 1.0
  */
 public class LemurEvent implements RoundEvent {

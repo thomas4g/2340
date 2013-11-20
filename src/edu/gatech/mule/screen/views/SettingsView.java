@@ -3,9 +3,15 @@ package edu.gatech.mule.screen.views;
 import edu.gatech.mule.game.Settings;
 
 /**
- * Settings view
- * @version 0.1
+ * Set up for settings view.
+ * @version 1.0
  */
 public interface SettingsView extends ScreenView {
-	public void setSettings(Settings settings);
+
+	/**
+	 * Sets up settings.
+	 * @param settings the settings
+	 */
+	void setSettings(Settings settings);
+
 }

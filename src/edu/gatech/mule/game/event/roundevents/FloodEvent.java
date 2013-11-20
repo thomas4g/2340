@@ -5,7 +5,7 @@ import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
 
 /**
- * Round event that reduces ore production by half
+ * Round event that reduces ore production by half.
  * @version 1.0
  */
 public class FloodEvent implements RoundEvent {
