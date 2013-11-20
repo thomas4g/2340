@@ -13,7 +13,7 @@ import tiled.core.Tile;
  * Representation of a tile in the town.
  * @version 1.0
  */
-@SuppressWarnings("serial")
+
 public class TownTile extends GameTile {
 
 	private static final long serialVersionUID = 1034125066905221834L;

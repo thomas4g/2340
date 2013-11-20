@@ -19,8 +19,8 @@ public class FXApplication extends Application {
 
 	private static final String TITLE = "M.U.L.E. by 85% Wildebeests";
 
-	private static final int WIDTH = 720;
-	private static final int HEIGHT = 520;
+	public static final int WIDTH = 720;
+	public static final int HEIGHT = 520;
 
 	@Override
 	public void start(Stage stage) throws Exception {

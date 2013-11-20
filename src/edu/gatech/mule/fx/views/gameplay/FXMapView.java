@@ -2,10 +2,7 @@ package edu.gatech.mule.fx.views.gameplay;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import edu.gatech.mule.core.FXApplication;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.game.Entity;
@@ -107,7 +105,7 @@ public class FXMapView extends FXView implements TownMapView {
 	public void load() {
 		super.load();
 
-		canvas = new Canvas(720, 520);
+		canvas = new Canvas(FXApplication.WIDTH, FXApplication.HEIGHT);
 		canvasContainer.getChildren().add(0, canvas);
 
 		muleSelectorOverlay.setVisible(false);
@@ -152,7 +150,7 @@ public class FXMapView extends FXView implements TownMapView {
 								: k.getCode() == RIGHT_KEY ? 1 : 0,
 						k.getCode() == DOWN_KEY ? 1
 								: k.getCode() == UP_KEY ? -1 : 0);
-				} else if (k.getCode().equals(ACTION_KEY)){
+				} else if (k.getCode().equals(ACTION_KEY)) {
 					controller.action();
 				} else if (k.getCode() == SKIP_KEY) {
 					controller.done();
@@ -160,6 +158,12 @@ public class FXMapView extends FXView implements TownMapView {
 			}
 		});
 	}
+
+	private static final int X_MESSAGE = 100;
+	private static final int Y_MESSAGE = 500;
+
+	private static final int X_TIMER = 700;
+	private static final int Y_TIMER = 500;
 
 	/**
 	 * Renders graphics.
@@ -182,7 +186,7 @@ public class FXMapView extends FXView implements TownMapView {
 		graphics.drawText(
 			Integer.toString(
 				currentPlayer.getCurrentTurn().getLength()),
-			new Point(700, 500));
+			new Point(X_TIMER, Y_TIMER));
 		drawPlayers();
 
 		if (storeResources != null) {
@@ -196,10 +200,12 @@ public class FXMapView extends FXView implements TownMapView {
 //		}
 
 		if(message != null) {
-			graphics.drawText(message.getMessage(), new Point(100, 500));
+			graphics.drawText(message.getMessage(), new Point(X_MESSAGE, Y_MESSAGE));
 		}
-
 	}
+
+	private static final int HUH = 45;
+	private static final int WUT = 16;
 
 	private void drawStoreResources() {
 		for (int i = 0; i < gameMap.getTiles().length; i++) {
@@ -212,9 +218,9 @@ public class FXMapView extends FXView implements TownMapView {
 
 					if (rt.equalsIgnoreCase(tt)) {
 						graphics.drawText(Integer.toString(storeResources[k]),
-								new Point(t.getWidth() * i + t.getWidth() / 2, 45),
+								new Point(t.getWidth() * i + t.getWidth() / 2, HUH),
 								Color.WHITE,
-								16);
+								WUT);
 					}
 				}
 			}
@@ -226,6 +232,8 @@ public class FXMapView extends FXView implements TownMapView {
 		selectorLocation = location;
 	}
 
+	private static final double BORDER_WIDTH = 3.0;
+
 	/**
 	 * Draws selector.
 	 */
@@ -236,27 +244,33 @@ public class FXMapView extends FXView implements TownMapView {
 					selectorLocation.y * OrthogonalMapRenderer.getTileHeight(),
 					OrthogonalMapRenderer.getTileWidth(),
 					OrthogonalMapRenderer.getTileHeight(),
-					3.0,
+					BORDER_WIDTH,
 					currentPlayer.getColor().getRGB()
 					);
 		}
 	}
 
+	private static final int X_STAT_START = 160;
+	private static final int X_STAT_SPACE = 120;
+	private static final int Y_STAT_SPACE = 420;
+
 	private void drawPlayers() {
+		/*
 		BufferedImage hs = currentPlayer.getHeadshot();
 		float ratio = (float) hs.getWidth() / hs.getHeight();
 		int newHeight = 100;
 		int newWidth = (int) (newHeight * ratio);
 		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
+		*/
 
 		int i = 0;
 		for (Player player : players) {
 			if (player.equals(currentPlayer)) {
 				graphics.drawText(player.getResourceString(),
-						new Point(160+120 * i, 420));
+						new Point(X_STAT_START + X_STAT_SPACE * i, Y_STAT_SPACE));
 			} else {
 				graphics.drawGreyedText(player.getResourceString(),
-						new Point(160+120 * i, 420));
+						new Point(X_STAT_START + X_STAT_SPACE * i, Y_STAT_SPACE));
 			}
 			i++;
 		}
@@ -481,7 +495,6 @@ public class FXMapView extends FXView implements TownMapView {
 	public void setMuleOptions(ResourceType[] mules) {
 		muleTypes.clear();
 		muleTypes.addAll(mules);
-//		muleSelector.setItems(FXCollections.observableArrayList(mules));
 	}
 
 	@Override
