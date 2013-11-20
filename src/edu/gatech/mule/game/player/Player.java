@@ -66,7 +66,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		this.big = big;
 		setDirectionalFrames();
 		if(mule != null) {
-			//@TODO make useBigSprites() a method in Entity
+			//TODO make useBigSprites() a method in Entity
 			mule.useBigSprites(big);
 		}
 	}
@@ -213,7 +213,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		return mule != null;
 	}
 
-	//@TODO get rid of these and only access mules through owned properties
+	//TODO get rid of these and only access mules through owned properties
 	// Then we would call property.produce() which would call it on each of a
 	// property's mules.
 

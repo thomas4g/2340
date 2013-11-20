@@ -2,12 +2,11 @@ package edu.gatech.mule.game.player;
 
 import java.util.Random;
 
-//@TODO Consider splitting this up, or just... fixing it.
-
 /**
  * Library of character types.
  * Contains listings of races with corresponding name, description, and images
  * @version 0.1
+ * TODO Consider splitting this up, or just... fixing it.
  */
 public enum CharacterType {
 
@@ -111,7 +110,7 @@ public enum CharacterType {
 
 	/**
 	 * Get the still/idle sprite based on facing direction.
-	 * @TODO account for resource type on mules instead of color.
+	 * TODO account for resource type on mules instead of color.
 	 * Related to the todo from above.
 	 * @param direction direction the sprite is facing
 	 * @param color the color of the character

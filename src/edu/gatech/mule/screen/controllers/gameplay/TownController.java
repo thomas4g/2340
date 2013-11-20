@@ -37,7 +37,7 @@ public class TownController extends MapController {
 	}
 
 	@Override
-	//@TODO Change this logic so that it's being handled from within the tiles
+	//TODO Change this logic so that it's being handled from within the tiles
 	public void move(int x, int y) {
 		super.move(x, y);
 		if((currentPlayer.getTileType() == TileType.EXITTOWN_LEFT
@@ -88,7 +88,7 @@ public class TownController extends MapController {
 		currentPlayer.setPosition(p);
 
 		if(store == null) {
-			//@TODO Law of Demeter violation much?!
+			//TODO Law of Demeter violation much?!
 			store = new Store(game.getSettings().getDifficulty().getStoreResources());
 		}
 
@@ -114,7 +114,7 @@ public class TownController extends MapController {
 	public void storeComplete(int count, boolean buying) {
 		int[] rDeltas = new int[ResourceType.values().length];
 
-		//@TODO Again with the Law of Demeter violations!
+		//TODO Again with the Law of Demeter violations!
 		ResourceType type = ResourceType.valueOf(
 				currentPlayer.getTile().getProperties().getProperty("resource_type").toUpperCase());
 		rDeltas[type.ordinal()] = count;
