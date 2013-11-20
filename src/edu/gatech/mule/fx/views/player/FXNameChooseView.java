@@ -13,34 +13,32 @@ import javafx.scene.input.KeyEvent;
 import edu.gatech.mule.fx.views.FXSettingsView;
 
 /**
- * View for player name choosing screen
+ * View for player name choosing screen.
  * @version 1.0
  */
 public class FXNameChooseView extends FXSettingsView {
-	
-	private final static String NAME_REGEX = "^([A-Z][a-zA-Z]*)([.]{0,1} [A-Z][a-zA-Z]*)*$";
-	
+
+	private static final String NAME_REGEX = "^([A-Z][a-zA-Z]*)([.]{0,1} [A-Z][a-zA-Z]*)*$";
+
 	@FXML
 	private TextField nameField;
-	
 	@FXML
 	private Label playerAnnouncer;
 	@FXML
 	private Label instructions;
-	
 	@FXML
 	private ImageView headshot;
-	
+
 	/**
-	 * Constructor for player name choosing view
+	 * Constructor for player name choosing view.
 	 */
 	public FXNameChooseView() {
 		super("name_choose");
 	}
-	
+
 	@Override
 	@FXML
-	protected void transition(KeyEvent event){
+	protected void transition(KeyEvent event) {
 		if(event.getCode() == KeyCode.UP) {
 			nameField.setText(settings.getCurrentPlayerDefaultName());
 		} else if((event.getCode() == KeyCode.ENTER /*|| event.getCode() == KeyCode.SPACE*/)
@@ -50,28 +48,19 @@ public class FXNameChooseView extends FXSettingsView {
 			controller.done();
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		playerAnnouncer.setText("Player "+settings.getPlayerIndex()+", enter your name");
+		playerAnnouncer.setText("Player " + settings.getPlayerIndex() + ", enter your name");
 		headshot.setImage(new Image(settings.getCurrentPlayerHeadshot()));
 		nameField.setText(settings.getCurrentPlayerDefaultName());
 		instructions.setText("Proper names only.\n(i.e. Colonel Mustard Rawr)");
 	}
 
 	@Override
-	public void render() {}
+	protected void done() { }
 
 	@Override
-	protected void scrollLeft() {}
-
-	@Override
-	protected void scrollRight() {}
-
-	@Override
-	protected void toggleSelected() {}
-
-	@Override
-	protected void done() {}
+	protected void toggleSelected() { }
 
 }

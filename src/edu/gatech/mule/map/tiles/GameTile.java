@@ -16,7 +16,6 @@ import edu.gatech.mule.game.player.Player;
 /**
  * Representation of a tile in the game map.
  */
-@SuppressWarnings("serial")
 public abstract class GameTile implements Serializable {
 
 	private static final long serialVersionUID = -7985811022411100046L;
@@ -149,7 +148,6 @@ public abstract class GameTile implements Serializable {
 			out.writeInt(1);
 			ImageIO.write(image, "png", out);
 		} else {
-			System.out.println(this.getClass().getName());
 			out.writeInt(0);
 		}
 	}

@@ -13,62 +13,58 @@ import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.Player;
 
 /**
- * View for race select config
+ * View for race select config.
  * @version 1.0
  */
 public class FXRaceSelectView extends FXSettingsView {
-	
-	protected final static CharacterType[] raceScroll = 
+
+	protected static final  CharacterType[] RACE_SCROLL =
 			new CharacterType[]{CharacterType.HUMANOID,
 								CharacterType.FLAPPER,
 								CharacterType.BONZOID};
 	private static Random randy = new Random();
-	
+
 	@FXML
 	private ImageView headshot;
-	
 	@FXML
 	private Label humanoid;
 	@FXML
 	private Label flapper;
 	@FXML
 	private Label bonzoid;
-	
 	@FXML
 	private Label playerAnnouncer;
 	@FXML
 	private Label description;
 	@FXML
 	private Label raceName;
-	
+
 	/**
-	 * Constructor for race select screen
+	 * Constructor for race select screen.
 	 */
 	public FXRaceSelectView() {
 		super("race_select");
-		toggleMod = raceScroll.length;
+		toggleMod = RACE_SCROLL.length;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		toggle = randy.nextInt(raceScroll.length);
-		
+		toggle = randy.nextInt(RACE_SCROLL.length);
 		playerAnnouncer.setText("Player "
 				+ settings.getPlayerIndex()
 				+ ", choose your race");
 		toggleSelected();
 	}
-	
+
 	@Override
 	protected void toggleSelected() {
-		raceName.setText(raceScroll[toggle].getType());
-		headshot.setImage(new Image(raceScroll[toggle].getHeadshot(1)));
-		description.setText(raceScroll[toggle].getDescripion());
-		
+		raceName.setText(RACE_SCROLL[toggle].name());
+		headshot.setImage(new Image(RACE_SCROLL[toggle].getHeadshot(1)));
+		description.setText(RACE_SCROLL[toggle].getDescripion());
 		humanoid.setTextFill(FXSettingsView.NORMAL);
 		flapper.setTextFill(FXSettingsView.NORMAL);
 		bonzoid.setTextFill(FXSettingsView.NORMAL);
-		
+
 		switch (toggle) {
 		case 0: humanoid.setTextFill(FXSettingsView.SELECTED);
 			break;
@@ -76,13 +72,15 @@ public class FXRaceSelectView extends FXSettingsView {
 			break;
 		case 2: bonzoid.setTextFill(FXSettingsView.SELECTED);
 			break;
+		default:
+			break;
 		}
 	}
-	
+
 	@Override
 	protected void done() {
-		Player p = new Player(raceScroll[toggle]);
-		toggle = randy.nextInt(raceScroll.length);
+		Player p = new Player(RACE_SCROLL[toggle]);
+		toggle = randy.nextInt(RACE_SCROLL.length);
 		p.setResources(settings.getDifficulty().getPlayerResources());
 		settings.setCurrentPlayer(p);
 		settings.addPlayer(p);
@@ -90,6 +88,6 @@ public class FXRaceSelectView extends FXSettingsView {
 	}
 
 	@Override
-	public void render() {}	
-	
+	public void render() { }
+
 }
