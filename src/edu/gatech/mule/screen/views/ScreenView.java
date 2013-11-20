@@ -3,9 +3,15 @@ package edu.gatech.mule.screen.views;
 import edu.gatech.mule.screen.controllers.ScreenController;
 
 /**
- * Screen view
- * @version 0.1
+ * Set up for screen view.
+ * @version 1.0
  */
 public interface ScreenView {
-	public void setController(ScreenController c);
+
+	/**
+	 * Sets up general screen controller.
+	 * @param c the screen controller
+	 */
+	void setController(ScreenController c);
+
 }
