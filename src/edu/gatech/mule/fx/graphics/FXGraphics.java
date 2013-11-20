@@ -10,8 +10,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.graphics.Renderer;
+import edu.gatech.mule.map.tiles.GameTile;
 
 /**
  * Acts as a wrapper for Graphics objects to allow for abstraction of rendering

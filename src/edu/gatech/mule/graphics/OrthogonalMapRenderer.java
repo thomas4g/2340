@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import edu.gatech.mule.game.map.maps.GameMap;
-import edu.gatech.mule.game.map.tiles.GameTile;
-import edu.gatech.mule.game.map.tiles.PropertyTile;
+import edu.gatech.mule.map.maps.GameMap;
+import edu.gatech.mule.map.tiles.GameTile;
+import edu.gatech.mule.map.tiles.PropertyTile;
 
 /**
  * Representation of a renderer for an orthogonal map

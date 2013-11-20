@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
-import edu.gatech.mule.game.map.tiles.GameTile;
-import edu.gatech.mule.game.map.tiles.TileType;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.player.Color;
+import edu.gatech.mule.map.tiles.GameTile;
+import edu.gatech.mule.map.tiles.TileType;
 
 /**
  * Representation of an entity that can move around a map

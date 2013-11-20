@@ -2,12 +2,12 @@ package edu.gatech.mule.game;
 
 import java.util.Random;
 
-import edu.gatech.mule.game.map.tiles.GameTile;
 import edu.gatech.mule.game.player.CharacterType;
 import edu.gatech.mule.game.player.Color;
 import edu.gatech.mule.game.player.CharacterType.Direction;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
+import edu.gatech.mule.map.tiles.GameTile;
 
 
 public class Mule extends Entity {

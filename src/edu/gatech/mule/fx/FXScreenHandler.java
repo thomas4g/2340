@@ -4,24 +4,25 @@ import java.util.HashMap;
 
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
+import edu.gatech.mule.core.FXApplication;
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.fx.screens.views.FXView;
-import edu.gatech.mule.fx.screens.views.gameplay.FXMapView;
-import edu.gatech.mule.fx.screens.views.main.FXHelpView;
-import edu.gatech.mule.fx.screens.views.main.FXPersistenceView;
-import edu.gatech.mule.fx.screens.views.main.FXStartView;
-import edu.gatech.mule.fx.screens.views.player.FXColorSelectView;
-import edu.gatech.mule.fx.screens.views.player.FXNameChooseView;
-import edu.gatech.mule.fx.screens.views.player.FXRaceSelectView;
-import edu.gatech.mule.fx.screens.views.settings.FXDifficultyView;
-import edu.gatech.mule.fx.screens.views.settings.FXMapTypeView;
-import edu.gatech.mule.fx.screens.views.settings.FXNumPlayersView;
+import edu.gatech.mule.fx.views.FXView;
+import edu.gatech.mule.fx.views.gameplay.FXMapView;
+import edu.gatech.mule.fx.views.main.FXHelpView;
+import edu.gatech.mule.fx.views.main.FXPersistenceView;
+import edu.gatech.mule.fx.views.main.FXStartView;
+import edu.gatech.mule.fx.views.player.FXColorSelectView;
+import edu.gatech.mule.fx.views.player.FXNameChooseView;
+import edu.gatech.mule.fx.views.player.FXRaceSelectView;
+import edu.gatech.mule.fx.views.settings.FXDifficultyView;
+import edu.gatech.mule.fx.views.settings.FXMapTypeView;
+import edu.gatech.mule.fx.views.settings.FXNumPlayersView;
 import edu.gatech.mule.screen.ScreenHandler;
-import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.PersistenceView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
-import edu.gatech.mule.screen.screens.views.SettingsView;
-import edu.gatech.mule.screen.screens.views.TownMapView;
+import edu.gatech.mule.screen.views.MapView;
+import edu.gatech.mule.screen.views.PersistenceView;
+import edu.gatech.mule.screen.views.ScreenView;
+import edu.gatech.mule.screen.views.SettingsView;
+import edu.gatech.mule.screen.views.TownMapView;
 
 /**
  * View representation of the screen handler

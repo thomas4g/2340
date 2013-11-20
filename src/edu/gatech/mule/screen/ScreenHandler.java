@@ -4,24 +4,24 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import edu.gatech.mule.core.GameEngine;
-import edu.gatech.mule.screen.screens.controllers.ScreenController;
-import edu.gatech.mule.screen.screens.controllers.gameplay.GameplayController;
-import edu.gatech.mule.screen.screens.controllers.gameplay.LandSelectController;
-import edu.gatech.mule.screen.screens.controllers.gameplay.TownController;
-import edu.gatech.mule.screen.screens.controllers.main.HelpController;
-import edu.gatech.mule.screen.screens.controllers.main.PersistenceController;
-import edu.gatech.mule.screen.screens.controllers.main.StartController;
-import edu.gatech.mule.screen.screens.controllers.player.ColorSelectController;
-import edu.gatech.mule.screen.screens.controllers.player.NameChooseController;
-import edu.gatech.mule.screen.screens.controllers.player.RaceSelectController;
-import edu.gatech.mule.screen.screens.controllers.settings.DifficultyController;
-import edu.gatech.mule.screen.screens.controllers.settings.MapTypeController;
-import edu.gatech.mule.screen.screens.controllers.settings.NumPlayersController;
-import edu.gatech.mule.screen.screens.views.MapView;
-import edu.gatech.mule.screen.screens.views.PersistenceView;
-import edu.gatech.mule.screen.screens.views.ScreenView;
-import edu.gatech.mule.screen.screens.views.SettingsView;
-import edu.gatech.mule.screen.screens.views.TownMapView;
+import edu.gatech.mule.screen.controllers.ScreenController;
+import edu.gatech.mule.screen.controllers.gameplay.GameplayController;
+import edu.gatech.mule.screen.controllers.gameplay.LandSelectController;
+import edu.gatech.mule.screen.controllers.gameplay.TownController;
+import edu.gatech.mule.screen.controllers.main.HelpController;
+import edu.gatech.mule.screen.controllers.main.PersistenceController;
+import edu.gatech.mule.screen.controllers.main.StartController;
+import edu.gatech.mule.screen.controllers.player.ColorSelectController;
+import edu.gatech.mule.screen.controllers.player.NameChooseController;
+import edu.gatech.mule.screen.controllers.player.RaceSelectController;
+import edu.gatech.mule.screen.controllers.settings.DifficultyController;
+import edu.gatech.mule.screen.controllers.settings.MapTypeController;
+import edu.gatech.mule.screen.controllers.settings.NumPlayersController;
+import edu.gatech.mule.screen.views.MapView;
+import edu.gatech.mule.screen.views.PersistenceView;
+import edu.gatech.mule.screen.views.ScreenView;
+import edu.gatech.mule.screen.views.SettingsView;
+import edu.gatech.mule.screen.views.TownMapView;
 
 /**
  * Screen handler structures for other screen subclasses
