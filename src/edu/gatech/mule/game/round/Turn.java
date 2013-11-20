@@ -28,6 +28,7 @@ public class Turn implements Serializable {
 	private transient Timer timer;
 	private Random rand;
 	private GameEngine game;
+	private static final int TIME = 1000;
 
 	/**
 	 * Turn Constructor.
@@ -63,7 +64,7 @@ public class Turn implements Serializable {
 					done();
 				}
 			}
-		}, 0, 1000);
+		}, 0, TIME);
 	}
 
 	/**
