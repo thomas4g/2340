@@ -47,7 +47,11 @@ public class LandSelectController extends ScreenController {
 		view.setPlayers(game.getSettings().getPlayers());
 	}
 
-	@Override
+	/**
+	 * Moves the selector square.
+	 * @param x deltaX
+	 * @param y deltaY
+	 */
 	public final void move(int x, int y) {
 		x = (x == 0) ? 0 : x / Math.abs(x);
 		y = (y == 0) ? 0 : y / Math.abs(y);

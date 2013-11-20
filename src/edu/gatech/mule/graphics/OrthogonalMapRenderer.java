@@ -12,67 +12,96 @@ import edu.gatech.mule.map.tiles.GameTile;
 import edu.gatech.mule.map.tiles.PropertyTile;
 
 /**
- * Representation of a renderer for an orthogonal map
- * @version 0.1
+ * Representation of a renderer for an orthogonal map.
+ * @version 1.0
  */
 public class OrthogonalMapRenderer {
 
 	private final GameMap map;
 	private final Renderer graphics;
-	public static int TILE_WIDTH;
-	public static int TILE_HEIGHT;
-	
-	
+	private static int tileWidth;
+	private static int tileHeight;
+
 	/**
-	 * Constructor for the map rendSerer
-	 * @param map, map
+	 * Constructor for the map renderer.
+	 * @param map to be rendered
+	 * @param graphics the renderer
 	 */
 	public OrthogonalMapRenderer(GameMap map, Renderer graphics) {
-		TILE_WIDTH = map.getTileWidth();
-		TILE_HEIGHT = map.getTileHeight();
+		tileWidth = map.getTileWidth();
+		tileHeight = map.getTileHeight();
 		this.map = map;
 		this.graphics = graphics;
 	}
-	
+
 	/**
-	 * Renders map
-	 * @param graphics, the graphics ???
+	 * Returns tile width.
+	 * @return tile width
+	 */
+	public static int getTileWidth() {
+		return tileWidth;
+	}
+
+	/**
+	 * Returns tile height.
+	 * @return tile height.
+	 */
+	public static int getTileHeight() {
+		return tileHeight;
+	}
+
+	/**
+	 * Renders map.
+	 * @param outlined if need rectangle for land select
 	 */
 	public void render(boolean outlined) {
-//		for(MapLayer ml : map.setLayers()) {
-//			TileLayer tl = (TileLayer)ml;
-			for(int x=0; x<map.getWidth(); x++) {
-				for(int y=0; y<map.getHeight(); y++) {
-					GameTile tile = map.getTile(x, y);
-	                if (tile == null) continue;	                
+		for(int x = 0; x < map.getWidth(); x++) {
+			for(int y = 0; y < map.getHeight(); y++) {
 
-	                graphics.drawTile(tile, x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
-	                
-	                if(outlined) {
-	                	graphics.drawHollowRect(x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT, 1.0, new Color(0, 0, 0, .25F));
-	                }
-	                if(tile.getOwner() != null) {
-	                	BufferedImage totem = tile.getOwner().getTotem();
-	                	graphics.drawImage(totem, x * TILE_WIDTH, y * TILE_HEIGHT, totem.getWidth() , totem.getHeight());
-	                }
-	                
-	                if(tile instanceof PropertyTile && tile.hasOwner()) {
-	                	PropertyTile t = (PropertyTile)tile;
-	                	
-	                	for(int i=0;i<t.getMules().size();i++) {
-		                	BufferedImage totem = null;
-							try {
-								totem = ImageIO.read(new File("res/tiles/resource tiles/" + t.getMules().get(i).getType().name().toLowerCase() + "tile.png"));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} //tile.getOwner().getTotem();
-	                		graphics.drawImage(totem, x * TILE_WIDTH + i*totem.getWidth(), y * TILE_HEIGHT + TILE_HEIGHT - totem.getHeight(), totem.getWidth(), totem.getHeight());
-	                	}
-	                }
-				}
+				GameTile tile = map.getTile(x, y);
+                if (tile == null) {
+                	continue;
+                }
+
+                graphics.drawTile(tile, x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+
+                if(outlined) {
+                	graphics.drawHollowRect(x * tileWidth,
+                							y * tileHeight,
+                							tileWidth,
+                							tileHeight,
+                							1.0,
+                							new Color(0, 0, 0, Renderer.LAND_SELECT_ALPHA));
+                }
+                if(tile.getOwner() != null) {
+                	BufferedImage totem = tile.getOwner().getTotem();
+                	graphics.drawImage(totem,
+                					   x * tileWidth,
+                					   y * tileHeight,
+                					   totem.getWidth(),
+                					   totem.getHeight());
+                }
+
+                if(tile instanceof PropertyTile && tile.hasOwner()) {
+                	PropertyTile t = (PropertyTile) tile;
+
+                	for(int i = 0; i < t.getMules().size(); i++) {
+	                	BufferedImage totem = null;
+						try {
+							totem = ImageIO.read(new File("res/tiles/resource tiles/"
+										+ t.getMules().get(i).getType().name().toLowerCase()
+										+ "tile.png"));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                		graphics.drawImage(totem,
+                							x * tileWidth + i * totem.getWidth(),
+                							y * tileHeight + tileHeight - totem.getHeight(),
+                							totem.getWidth(),
+                							totem.getHeight());
+                	}
+                }
 			}
-//		}
+		}
 	}
-	
 }
