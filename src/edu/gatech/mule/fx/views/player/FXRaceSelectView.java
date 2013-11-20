@@ -61,7 +61,7 @@ public class FXRaceSelectView extends FXSettingsView {
 	
 	@Override
 	protected void toggleSelected() {
-		raceName.setText(raceScroll[toggle].getType());
+		raceName.setText(raceScroll[toggle].name());
 		headshot.setImage(new Image(raceScroll[toggle].getHeadshot(1)));
 		description.setText(raceScroll[toggle].getDescripion());
 		

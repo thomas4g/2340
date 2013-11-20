@@ -127,7 +127,12 @@ public abstract class GameTile implements Serializable {
 	public abstract void action(Player player);
 	public abstract void enter(Player player);
 	public abstract void exit(Player player);
-	
+
+	/**
+	 * asdf.
+	 * @param out asdf
+	 * @throws IOException asdf
+	 */
 	protected void sWrite(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 		if(image != null) {
@@ -135,7 +140,6 @@ public abstract class GameTile implements Serializable {
 			ImageIO.write(image, "png", out);
 		}
 		else {
-			System.out.println(this.getClass().getName());
 			out.writeInt(0);
 		}
 	}
