@@ -11,7 +11,7 @@ import edu.gatech.mule.game.resources.ResourceType;
 public class MissionaryEvent implements TurnEvent {
 
 private int energy;
-	
+
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[ResourceType.values().length];
