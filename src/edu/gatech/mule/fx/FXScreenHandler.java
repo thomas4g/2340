@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
-import edu.gatech.mule.core.FXApplication;
 import edu.gatech.mule.core.GameEngine;
 import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.fx.views.gameplay.FXMapView;
@@ -43,7 +42,6 @@ public class FXScreenHandler extends ScreenHandler {
 		super(game);
 		stack = new StackPane();
 		loadedScreens = new HashMap<>();
-		FXApplication.view = stack;  //TODO this is bad
 	}
 
 	/**
@@ -83,11 +81,11 @@ public class FXScreenHandler extends ScreenHandler {
 
 		// stack.getChildren() is JavaFX norm :(
 		if (!stack.getChildren().isEmpty()) {
-	    	stack.getChildren().remove(0);
-	        stack.getChildren().add(0, view.getNode());
-	    } else {
-	    	stack.getChildren().add(view.getNode());
-	    }
+			stack.getChildren().remove(0);
+			stack.getChildren().add(0, view.getNode());
+		} else {
+			stack.getChildren().add(view.getNode());
+		}
 	}
 
 	@Override
@@ -157,6 +155,14 @@ public class FXScreenHandler extends ScreenHandler {
 			mainMapView = new FXMapView();
 		}
 		return mainMapView;
+	}
+
+	/**
+	 * Gets the main stack pane.
+	 * @return a stackpane
+	 */
+	public StackPane getStack() {
+		return stack;
 	}
 
 }
