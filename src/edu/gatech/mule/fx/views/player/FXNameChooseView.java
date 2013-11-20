@@ -45,7 +45,7 @@ public class FXNameChooseView extends FXSettingsView {
 	protected void transition(KeyEvent event) {
 		if(event.getCode() == KeyCode.UP) {
 			nameField.setText(settings.getCurrentPlayerDefaultName());
-		} else if((event.getCode() == KeyCode.ENTER /*|| event.getCode() == KeyCode.SPACE*/)) {
+		} else if(event.getCode() == KeyCode.ENTER) {
 			if(nameField.getText().matches(NAME_REGEX)) {
 				settings.setCurrentPlayerName(nameField.getText());
 				settings.nextPlayer();
@@ -58,7 +58,9 @@ public class FXNameChooseView extends FXSettingsView {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		playerAnnouncer.setText("Player " + settings.getPlayerIndex() + ", enter your name");
+		playerAnnouncer.setText("Player "
+				+ settings.getPlayerIndex()
+				+ ", enter your name");
 		headshot.setImage(new Image(settings.getCurrentPlayerHeadshot()));
 		nameField.setText(settings.getCurrentPlayerDefaultName());
 		instructions.setText("Names must only contain"

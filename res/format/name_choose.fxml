@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fitHeight="540" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="540.0" fitWidth="720.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../tiles/bg2.png" />
       </image>
@@ -25,7 +25,7 @@
         <Font size="32.0" />
       </font>
     </Label>
-    <TextField fx:id="nameField" layoutX="388.0" layoutY="260.0" onKeyPressed="#transition" prefWidth="200.0" />
+    <TextField fx:id="nameField" layoutX="388.0" layoutY="285.0" onKeyPressed="#transition" prefWidth="200.0" />
     <Label fx:id="instructions" layoutX="388.0" layoutY="207.0" prefHeight="50.0" prefWidth="250.0" text="">
       <font>
         <Font size="18.0" />
