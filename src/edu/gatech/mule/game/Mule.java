@@ -19,9 +19,9 @@ public class Mule extends Entity {
 	 * Yay serial version U ID.
 	 */
 	private static final long serialVersionUID = 462367184641862973L;
-	public CharacterType type;
-	public GameTile tile;
-	public boolean placed;
+	private CharacterType type;
+	private GameTile tile;
+	private boolean placed;
 	private Player owner;
 	private ResourceType resourceType;
 	private boolean big;
@@ -118,6 +118,14 @@ public class Mule extends Entity {
 	}
 
 	/**
+	 * Returns whether a mule is placed on a tile.
+	 * @return true if placed on tile, false otherwise
+	 */
+	public boolean isPlaced() {
+		return placed;
+	}
+
+	/**
 	 * Moving while running.
 	 * @param x horizontal speed at which mule runs away
 	 * @param y vertical speed at which mule runs away
@@ -150,6 +158,14 @@ public class Mule extends Entity {
 	 */
 	public void emancipate() {
 		enslaved = false;
+	}
+
+	/**
+	 * Returns whether mule is owned by player or not.
+	 * @return true if is owned by player, false otherwise
+	 */
+	public boolean isEnslaved() {
+		return enslaved;
 	}
 
 	/**
