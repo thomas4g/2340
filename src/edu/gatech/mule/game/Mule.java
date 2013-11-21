@@ -170,6 +170,7 @@ public class Mule extends Entity {
 
 	/**
 	 * Produce resources if on a tile.
+	 * TODO this appears to be broken from Tyler's test
 	 */
 	public void produce() {
 		if(tile == null || owner.getResourceAmount(ResourceType.ENERGY) == 0) {

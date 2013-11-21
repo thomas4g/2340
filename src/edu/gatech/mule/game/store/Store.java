@@ -25,7 +25,7 @@ public class Store implements Transactor {
 	 * @param resources in store bro
 	 */
 	public Store(int[] resources) {
-		this(resources, new int[resources.length]);
+		this(resources, new int[resources.length + 1]);
 	}
 
 	@Override

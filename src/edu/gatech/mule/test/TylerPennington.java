@@ -25,7 +25,7 @@ public class TylerPennington {
 		GameTile tile = new PropertyTile(new Tile(), TileType.PLAIN);
 		mule.emplace(tile);
 		player.addPlacedMule(mule);
-		
+
 		mule.produce();
 		assertEquals(2, player.getResourceAmount(ResourceType.FOOD));
 	}
