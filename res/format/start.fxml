@@ -15,7 +15,7 @@
         <Image url="@../tiles/bg1.png" />
       </image>
     </ImageView>
-    <Button id="" layoutX="89.0" layoutY="396.0" mnemonicParsing="false" onKeyPressed="#startGame" opacity="1.0" prefHeight="42.0" prefWidth="543.0" style="-fx-background-color:#DDEEDD;" text="This is in the testing stage, so press &lt;ENTER&gt; to proceed" textFill="BLACK" visible="true">
+    <Button id="" layoutX="214.0" layoutY="396.0" mnemonicParsing="false" onKeyPressed="#startGame" opacity="1.0" prefHeight="42.0" prefWidth="293.0" style="-fx-background-color:#EEEEEE;" text="Press &lt;ENTER&gt; to proceed" textFill="BLACK" visible="true">
       <font>
         <Font name="Arial Bold" size="18.0" />
       </font>

@@ -15,17 +15,18 @@
         <Font size="32.0" />
       </font>
     </Label>
-    <Label fx:id="description" alignment="TOP_LEFT" layoutX="107.0" layoutY="123.0" prefHeight="32.0" prefWidth="507.0" text="Arrow keys to move or toggle." wrapText="true">
+    <Label fx:id="description" alignment="TOP_LEFT" layoutX="107.0" layoutY="180.0" prefHeight="32.0" prefWidth="507.0" text="Arrow keys to move or toggle." wrapText="true">
       <font>
         <Font size="18.0" fx:id="x1" />
       </font>
     </Label>
-    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="155.0" prefHeight="32.0" prefWidth="507.0" text="Enter key to initiate actions." wrapText="true" />
-    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="187.0" prefHeight="32.0" prefWidth="507.0" text="Escape key to cancel or skip actions." wrapText="true" />
-    <Button fx:id="backTo" layoutX="147.0" layoutY="402.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="1.0" prefHeight="39.0" prefWidth="427.0" style="-fx-background-color:#DDEEDD;" text="Press &lt;ENTER&gt; to return to previous screen">
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="212.0" prefHeight="32.0" prefWidth="507.0" text="Enter key to initiate actions." wrapText="true" />
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="244.0" prefHeight="32.0" prefWidth="507.0" text="Escape key to cancel or skip actions." wrapText="true" />
+    <Button fx:id="backTo" layoutX="147.0" layoutY="402.0" mnemonicParsing="false" onKeyPressed="#transition" opacity="1.0" prefHeight="39.0" prefWidth="427.0" style="-fx-background-color:#EEEEEE;" text="Press &lt;ENTER&gt; to return to previous screen">
       <font>
         <Font name="Arial Bold" size="18.0" />
       </font>
     </Button>
+    <Label id="description" alignment="TOP_LEFT" font="$x1" layoutX="107.0" layoutY="110.0" prefHeight="32.0" prefWidth="507.0" text="Welcome to M.U.L.E!  Please enjoy our game.  :)" wrapText="true" />
   </children>
 </AnchorPane>

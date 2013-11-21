@@ -49,6 +49,11 @@ public class SusannaDong {
 		assertEquals(false, bonzoid.addLand(tile1, true));
 		assertEquals(false, bonzoid.addLand(tile1, false));
 		assertEquals(true, 1000.0 == bonzoid.getMoney());
+
+		assertEquals(false, bonzoid.addLand(new PropertyTile(new Tile(),
+											TileType.TOWN), true));
+		assertEquals(false, bonzoid.addLand(new PropertyTile(new Tile(),
+											TileType.RESOURCE_STORE), true));
 	}
 
 	@Test

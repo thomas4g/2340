@@ -151,6 +151,8 @@ public class FXMapView extends FXView implements TownMapView {
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
 		wireKeyboard();
+
+		drawSelector();
 	}
 
 	/**
@@ -204,12 +206,6 @@ public class FXMapView extends FXView implements TownMapView {
 			drawStoreResources();
 		}
 
-//		if(message != null && !message.getMessage().isEmpty()) {
-//			Popup p = new Popup();
-//			p.getContent().add(new TextField(message.getMessage()));
-//			p.show(null);
-//		}
-
 		if(message != null) {
 			graphics.drawText(message.getMessage(), new Point(X_MESSAGE, Y_MESSAGE));
 		}
@@ -249,13 +245,13 @@ public class FXMapView extends FXView implements TownMapView {
 	private void drawSelector() {
 		if(selectorLocation != null && currentPlayer != null) {
 			graphics.drawHollowRect(
-					selectorLocation.x * OrthogonalMapRenderer.getTileWidth(),
-					selectorLocation.y * OrthogonalMapRenderer.getTileHeight(),
-					OrthogonalMapRenderer.getTileWidth(),
-					OrthogonalMapRenderer.getTileHeight(),
-					BORDER_WIDTH,
-					currentPlayer.getColor().getRGB()
-					);
+				selectorLocation.x * OrthogonalMapRenderer.getTileWidth(),
+				selectorLocation.y * OrthogonalMapRenderer.getTileHeight(),
+				OrthogonalMapRenderer.getTileWidth(),
+				OrthogonalMapRenderer.getTileHeight(),
+				BORDER_WIDTH,
+				currentPlayer.getColor().getRGB()
+				);
 		}
 	}
 

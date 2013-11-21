@@ -168,7 +168,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 	 * @return true if land has been transferred to player's ownership, false otherwise
 	 */
 	public boolean addLand(GameTile tile, boolean free) {
-		if(tile.getOwner() != null) {
+		if(!(tile.getOwner() == null && tile.isPurchasable())) {
 			return false;
 		}
 

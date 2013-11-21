@@ -59,7 +59,14 @@ public class FXColorSelectView extends FXSettingsView {
 				+ settings.getPlayerIndex()
 				+ ", choose your color");
 		imgView.setImage(new Image(settings.getCurrentPlayerHeadshot(toggle + 1)));
-		colorLabels = new Label[]{purple, blue, teal, seafoam, green, gold, orange, maroon};
+		colorLabels = new Label[]{purple,
+								  blue,
+								  teal,
+								  seafoam,
+								  green,
+								  gold,
+								  orange,
+								  maroon};
 		toggleSelected();
 	}
 
