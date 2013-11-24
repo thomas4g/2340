@@ -93,7 +93,7 @@ public enum CharacterType {
 		this.names = names;
 
 		this.sprites = IMAGE_PATH + SPRITES + this.type + "/" + this.type.charAt(0);
-		this.bigSprites = IMAGE_PATH + BIG_SPRITES + this.type + "/" + this.type.charAt(0) + "1s";
+		this.bigSprites = IMAGE_PATH + BIG_SPRITES + this.type + "/" + this.type.charAt(0);
 		this.headshot = IMAGE_PATH + "/" + this.type.charAt(0);
 		this.totem = IMAGE_PATH + INDICATORS;
 	}
@@ -130,14 +130,14 @@ public enum CharacterType {
 	 */
 	public String[] getDirectionalSprites(Direction direction, boolean big, Color color) {
 		if(big) {
-			return getBigDirectionalSprites(direction);
+			return getBigDirectionalSprites(direction, color);
 		}
 		int base = (Direction.values().length - 1) * direction.ordinal() + 1;
 		return new String[]{sprites + (color.ordinal() + 1) + FRAME + (base + 1) + IMAGE_EXT,
 				sprites + (color.ordinal() + 1) + FRAME + (base + 2) + IMAGE_EXT};
 	}
 
-	private String[] getBigDirectionalSprites(Direction direction) {
+	private String[] getBigDirectionalSprites(Direction direction, Color color) {
 		String dir =
 				direction == Direction.DOWN  ? "f"
 				: direction == Direction.UP    ? "b"
@@ -146,7 +146,9 @@ public enum CharacterType {
 				: "";
 		String[] res = new String[FRAMES];
 		for(int i = 0; i < FRAMES; i++) {
-			res[i] = bigSprites + dir + "f" + (i + 1) + IMAGE_EXT;
+			//res[i] = bigSprites + dir + "f" + (i + 1) + IMAGE_EXT;
+			res[i] = bigSprites + (color.ordinal() + 1) + "s" + dir + "f" + (i + 1) + IMAGE_EXT;
+			System.out.println(res[i]);
 		}
 		return res;
 	}

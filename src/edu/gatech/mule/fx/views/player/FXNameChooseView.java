@@ -49,9 +49,12 @@ public class FXNameChooseView extends FXSettingsView {
 			if(nameField.getText().matches(NAME_REGEX)) {
 				settings.setCurrentPlayerName(nameField.getText());
 				settings.nextPlayer();
+				instructions.setText("Game starting...");
 				controller.done();
 			} else {
-				instructions.setText("Invalid input.");
+				instructions.setText("Invalid input."
+						+ "\nNames must only contain"
+						+ "\nletters or spaces");
 			}
 		}
 	}
