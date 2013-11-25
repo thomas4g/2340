@@ -117,6 +117,7 @@ public class FXMapView extends FXView implements TownMapView {
 	private static final int Y_TIMER = Y_STAT_SPACE;
 	private final int HEIGHT=FXApplication.HEIGHT;
 	private final int WIDTH=FXApplication.WIDTH;
+	private int clockInterval=0;
 
 	/**
 	 * Constructor for map view.
@@ -129,9 +130,7 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void load() {
 		super.load();
-		BufferedImage image=loadImage("/assets/bottom/grain.png");
-		System.out.println(image);
-		//graphics.drawImage(image, X_TIMER, Y_TIMER,WIDTH, HEIGHT-Y_TIMER);
+	
 
 		canvas = new Canvas(FXApplication.WIDTH, FXApplication.HEIGHT);
 		canvasContainer.getChildren().add(0, canvas);
@@ -206,7 +205,7 @@ public class FXMapView extends FXView implements TownMapView {
 		for (Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
-
+		drawGrain();
 		drawClock();
 		drawPlayers();
 
@@ -220,9 +219,18 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 	
 	private void drawClock(){
+		clockInterval=Math.max(clockInterval, currentPlayer.getCurrentTurn().getLength());
 		graphics.drawText("Time left: "
 				+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
 				new Point(X_TIMER, Y_TIMER));
+		//TODO finish this
+		//BufferedImage clock=loadImage("/assets/bottom/time/c"++".png");
+		
+	}
+	
+	private void drawGrain(){
+		BufferedImage image=loadImage("/assets/bottom/grain.png");
+		graphics.drawImage(image, 0, Y_TIMER-10,WIDTH, HEIGHT-Y_TIMER);
 	}
 
 	/**
@@ -270,13 +278,12 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private void drawPlayers() {
-		/*
 		BufferedImage hs = currentPlayer.getHeadshot();
 		float ratio = (float) hs.getWidth() / hs.getHeight();
 		int newHeight = 100;
 		int newWidth = (int) (newHeight * ratio);
 		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
-		*/
+		
 
 		int i = 0;
 		for (Player player : players) {
