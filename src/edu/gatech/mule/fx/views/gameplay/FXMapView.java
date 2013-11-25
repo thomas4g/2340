@@ -205,9 +205,9 @@ public class FXMapView extends FXView implements TownMapView {
 		for (Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
-		drawGrain();
+		//drawGrain();
 		drawClock();
-		drawPlayers();
+		//drawPlayers();
 
 		if (storeResources != null) {
 			drawStoreResources();
