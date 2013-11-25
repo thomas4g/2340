@@ -207,7 +207,7 @@ public class FXMapView extends FXView implements TownMapView {
 		}
 		//drawGrain();
 		drawClock();
-		//drawPlayers();
+		drawPlayers();
 
 		if (storeResources != null) {
 			drawStoreResources();
@@ -278,11 +278,13 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private void drawPlayers() {
+		/*
 		BufferedImage hs = currentPlayer.getHeadshot();
 		float ratio = (float) hs.getWidth() / hs.getHeight();
 		int newHeight = 100;
 		int newWidth = (int) (newHeight * ratio);
 		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
+		*/
 		
 
 		int i = 0;
