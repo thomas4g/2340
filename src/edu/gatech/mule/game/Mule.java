@@ -1,5 +1,6 @@
 package edu.gatech.mule.game;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import edu.gatech.mule.game.player.CharacterType;
@@ -27,6 +28,7 @@ public class Mule extends Entity {
 	private boolean big;
 	private boolean enslaved;
 	private Random rand;
+	private HashMap<ResourceType, Color> resources;
 
 	public static final int FREEDOM_SPEED = 5;
 
@@ -41,9 +43,18 @@ public class Mule extends Entity {
 		this.owner = owner;
 		this.enslaved = true;
 		rand = new Random();
-		color = Color.BLUE;
+		initResources();
+	}
+	
+	private void initResources(){
+		resources=new HashMap<>();
+		resources.put(ResourceType.ENERGY, Color.PURPLE);
+		resources.put(ResourceType.FOOD, Color.BLUE);
+		resources.put(ResourceType.CRYSTITE, Color.TEAL);
+		resources.put(ResourceType.SMITHORE, Color.SEAFOAM);
 	}
 
+	
 	/**
 	 * Moves mule.
 	 */
@@ -97,7 +108,7 @@ public class Mule extends Entity {
 	 * Set the directional frames based on direction.
 	 */
 	public void setDirectionalFrames() {
-		setFrames(type.getDirectionalSprites(direction, big, color));
+		setFrames(type.getDirectionalSprites(direction, big, getResourceValue(resourceType) ));
 	}
 
 	/**
@@ -224,4 +235,11 @@ public class Mule extends Entity {
 	public int hashCode() {
 		return (enslaved ? 1 : 0) + resourceType.hashCode() + (placed ? 1 : 0) + tile.hashCode();
 	}
+	
+	private Color getResourceValue(ResourceType type){
+		Color c= resources.get(type);
+		System.out.println(c.ordinal()+1);
+		return c;
+	}
+	
 }

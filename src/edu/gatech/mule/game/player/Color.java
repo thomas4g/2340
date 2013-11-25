@@ -1,5 +1,9 @@
 package edu.gatech.mule.game.player;
 
+import java.util.HashMap;
+
+import edu.gatech.mule.game.resources.ResourceType;
+
 /**
  * A nice wrapper for colors, really.
  * @author tshields
@@ -16,9 +20,12 @@ public enum Color {
 	MAROON (123, 63, 59);
 
 	private java.awt.Color color;
+	
 
 	private Color(int red, int green, int blue) {
 		this.color = new java.awt.Color(red, green, blue);
+		//Weird indices
+		
 	}
 
 	/**
@@ -28,5 +35,6 @@ public enum Color {
 	public java.awt.Color getRGB() {
 		return this.color;
 	}
+
 
 }

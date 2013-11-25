@@ -148,7 +148,6 @@ public enum CharacterType {
 		for(int i = 0; i < FRAMES; i++) {
 			//res[i] = bigSprites + dir + "f" + (i + 1) + IMAGE_EXT;
 			res[i] = bigSprites + (color.ordinal() + 1) + "s" + dir + "f" + (i + 1) + IMAGE_EXT;
-			System.out.println(res[i]);
 		}
 		return res;
 	}

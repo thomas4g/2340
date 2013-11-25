@@ -3,13 +3,17 @@ package edu.gatech.mule.fx.views.gameplay;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -23,6 +27,7 @@ import edu.gatech.mule.core.FXApplication;
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.game.Entity;
+import edu.gatech.mule.game.ImageEntity;
 import edu.gatech.mule.game.Message;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
@@ -110,6 +115,8 @@ public class FXMapView extends FXView implements TownMapView {
 //	private static final int MAX_PLAYERS = 4;
 	private static final int X_TIMER = 30;
 	private static final int Y_TIMER = Y_STAT_SPACE;
+	private final int HEIGHT=FXApplication.HEIGHT;
+	private final int WIDTH=FXApplication.WIDTH;
 
 	/**
 	 * Constructor for map view.
@@ -122,6 +129,9 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void load() {
 		super.load();
+		BufferedImage image=loadImage("/assets/bottom/grain.png");
+		System.out.println(image);
+		//graphics.drawImage(image, X_TIMER, Y_TIMER,WIDTH, HEIGHT-Y_TIMER);
 
 		canvas = new Canvas(FXApplication.WIDTH, FXApplication.HEIGHT);
 		canvasContainer.getChildren().add(0, canvas);
@@ -197,9 +207,7 @@ public class FXMapView extends FXView implements TownMapView {
 			graphics.drawEntity(entity);
 		}
 
-		graphics.drawText("Time left: "
-			+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
-			new Point(X_TIMER, Y_TIMER));
+		drawClock();
 		drawPlayers();
 
 		if (storeResources != null) {
@@ -209,6 +217,12 @@ public class FXMapView extends FXView implements TownMapView {
 		if(message != null) {
 			graphics.drawText(message.getMessage(), new Point(X_MESSAGE, Y_MESSAGE));
 		}
+	}
+	
+	private void drawClock(){
+		graphics.drawText("Time left: "
+				+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
+				new Point(X_TIMER, Y_TIMER));
 	}
 
 	/**
@@ -443,8 +457,8 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private int mule;
-	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY,
-										ResourceType.SMITHORE, ResourceType.CRYSTITE};
+	private static ResourceType[] res = {ResourceType.FOOD,ResourceType.ENERGY, 
+										ResourceType.SMITHORE, ResourceType.CRYSTITE, };
 
 	/**
 	 * Toggles mule selector to the left.
@@ -528,6 +542,16 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void setMessage(Message message) {
 		this.message = message;
+	}
+	
+	private BufferedImage loadImage(String src) {
+		try {
+			
+			return ImageIO.read(FXMapView.class.getResource(src));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new BufferedImage(0, 0, 0);
+		}
 	}
 
 }
