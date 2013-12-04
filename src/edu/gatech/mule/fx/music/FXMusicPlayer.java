@@ -16,7 +16,7 @@ public class FXMusicPlayer implements MusicPlayer {
 	@Override
 	public void play() {
 		if(bgPlayer != null) {
-		bgPlayer.play();
+			bgPlayer.play();
 		}
 	}
 

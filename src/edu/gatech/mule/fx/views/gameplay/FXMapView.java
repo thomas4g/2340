@@ -4,30 +4,31 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import edu.gatech.mule.core.FXApplication;
+
+import javax.imageio.ImageIO;
+
 import edu.gatech.mule.fx.graphics.FXGraphics;
 import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.game.Entity;
-import edu.gatech.mule.game.ImageEntity;
 import edu.gatech.mule.game.Message;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
@@ -97,13 +98,37 @@ public class FXMapView extends FXView implements TownMapView {
 	private Label prompt;
 
 	@FXML
+	private Label player1Info;
+	@FXML
+	private ImageView player1Tile;
+	@FXML
+	private Label player2Info;
+	@FXML
+	private ImageView player2Tile;
+	@FXML
+	private Label player3Info;
+	@FXML
+	private ImageView player3Tile;
+	@FXML
+	private Label player4Info;
+	@FXML
+	private ImageView player4Tile;
+	@FXML
+	private Label storeInfo;
+	@FXML
+	private ImageView storeTile;
+
+	private Label[] playerLabels;
+	private ImageView[] playerTiles;
+	private Image[] playerActiveImages;
+	private Image[] playerInactiveImages;
+
+	@FXML
 	private ProgressIndicator timer;
 
 
 	private static final double BORDER_WIDTH = 5.0;
 
-	private static final int X_STAT_START = 160;
-	private static final int X_STAT_SPACE = 120;
 	private static final int Y_STAT_SPACE = 420;
 
 	private static final int HUH = 45;
@@ -115,9 +140,7 @@ public class FXMapView extends FXView implements TownMapView {
 //	private static final int MAX_PLAYERS = 4;
 	private static final int X_TIMER = 30;
 	private static final int Y_TIMER = Y_STAT_SPACE;
-	private final int HEIGHT=FXApplication.HEIGHT;
-	private final int WIDTH=FXApplication.WIDTH;
-	private int clockInterval=0;
+	private int clockInterval = 0;
 
 	/**
 	 * Constructor for map view.
@@ -130,13 +153,15 @@ public class FXMapView extends FXView implements TownMapView {
 	@Override
 	public void load() {
 		super.load();
-	
 
-		canvas = new Canvas(FXApplication.WIDTH, FXApplication.HEIGHT);
+		canvas = new Canvas(canvasContainer.getPrefWidth(), canvasContainer.getPrefHeight());
 		canvasContainer.getChildren().add(0, canvas);
 
 		muleSelectorOverlay.setVisible(false);
 		muleLabels = new Label[]{food, energy, smithore, crystite};
+		playerLabels = new Label[] {player1Info, player2Info, player3Info, player4Info};
+		playerTiles = new ImageView[] {player1Tile, player2Tile, player3Tile, player4Tile};
+
 		textMuleColor();
 
 		storeSelectorOverlay.setVisible(false);
@@ -145,25 +170,24 @@ public class FXMapView extends FXView implements TownMapView {
 
 		textOverlay.setVisible(false);
 
-		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED,
-				new EventHandler<KeyEvent>() {
-					@Override
-					public void handle(KeyEvent event) {
-						if (event.getCode() == CANCEL_KEY) {
-							displayMuleSelector(false);
-							storeSelectorOverlay.setVisible(false);
-							textOverlay.setVisible(false);
-						}
-					}
-		});
-
 		graphics = new FXGraphics(canvas.getGraphicsContext2D());
 		mapRenderer = new OrthogonalMapRenderer(gameMap, graphics);
+		setupPlayerTiles();
 		wireKeyboard();
-
 		drawSelector();
 	}
 
+	private void setupPlayerTiles() {
+		playerActiveImages = new Image[players.size()];
+		playerInactiveImages = new Image[players.size()];
+		for(int i = 0; i < players.size(); i++) {
+			String res = "/assets/bottom/wood/p" + (players.get(i).getColor().ordinal() + 1);
+
+			playerActiveImages[i] = graphics.createImage(loadImage(res + "d.png"));
+			playerInactiveImages[i] = graphics.createImage(loadImage(res + "l.png"));
+
+		}
+	}
 	/**
 	 * Wires the key board onto the game.
 	 */
@@ -185,6 +209,18 @@ public class FXMapView extends FXView implements TownMapView {
 					controller.done();
 				}
 			}
+		});
+
+		canvasContainer.addEventHandler(KeyEvent.KEY_PRESSED,
+				new EventHandler<KeyEvent>() {
+					@Override
+					public void handle(KeyEvent event) {
+						if (event.getCode() == CANCEL_KEY) {
+							displayMuleSelector(false);
+							storeSelectorOverlay.setVisible(false);
+							textOverlay.setVisible(false);
+						}
+					}
 		});
 	}
 
@@ -217,20 +253,20 @@ public class FXMapView extends FXView implements TownMapView {
 			graphics.drawText(message.getMessage(), new Point(X_MESSAGE, Y_MESSAGE));
 		}
 	}
-	
-	private void drawClock(){
-		clockInterval=Math.max(clockInterval, currentPlayer.getCurrentTurn().getLength());
+
+	private void drawClock() {
+		clockInterval = Math.max(clockInterval,
+				currentPlayer.getCurrentTurn().getLength());
 		graphics.drawText("Time left: "
 				+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
 				new Point(X_TIMER, Y_TIMER));
 		//TODO finish this
 		//BufferedImage clock=loadImage("/assets/bottom/time/c"++".png");
-		
 	}
-	
-	private void drawGrain(){
-		BufferedImage image=loadImage("/assets/bottom/grain.png");
-		graphics.drawImage(image, 0, Y_TIMER-10,WIDTH, HEIGHT-Y_TIMER);
+
+	private void drawGrain() {
+//		BufferedImage image = loadImage("/assets/bottom/grain.png");
+//		graphics.drawImage(image, 0, Y_TIMER-10,WIDTH, HEIGHT-Y_TIMER);
 	}
 
 	/**
@@ -278,25 +314,18 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private void drawPlayers() {
-		/*
-		BufferedImage hs = currentPlayer.getHeadshot();
-		float ratio = (float) hs.getWidth() / hs.getHeight();
-		int newHeight = 100;
-		int newWidth = (int) (newHeight * ratio);
-		graphics.drawImage(hs, 30, 420, newWidth, newHeight);
-		*/
-		
-
 		int i = 0;
 		for (Player player : players) {
-			if (player.equals(currentPlayer)) {
-				graphics.drawText(player.getResourceString(),
-						new Point(X_STAT_START + X_STAT_SPACE * i, Y_STAT_SPACE));
-			} else {
-				graphics.drawGreyedText(player.getResourceString(),
-						new Point(X_STAT_START + X_STAT_SPACE * i, Y_STAT_SPACE));
+			playerTiles[i].setImage(
+				player.equals(currentPlayer) ? playerActiveImages[i] : playerInactiveImages[i]);
+			playerLabels[i++].setText(player.getResourceString());
+		}
+		if(storeResources != null) {
+			String resString = "";
+			for(int j = 0; j < storeResources.length; j++) {
+				resString += ResourceType.values()[j].name() + ": " + storeResources[j] + "\n";
 			}
-			i++;
+			storeInfo.setText(resString);
 		}
 	}
 

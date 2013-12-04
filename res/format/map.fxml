@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="720.0" style="-fx-background-image: url(&quot;../assets/bottom/grain.png&quot;)&#10;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <VBox layoutX="0.0" layoutY="0.0" prefHeight="520.0" prefWidth="720.0">
       <children>
@@ -113,10 +116,83 @@
             </GridPane>
           </children>
         </StackPane>
-        <HBox fx:id="playerPanel" prefHeight="120.0" prefWidth="720.0">
+        <HBox id="" fx:id="playerPanel" prefHeight="120.0" prefWidth="720.0" style="" VBox.vgrow="ALWAYS">
           <children>
-            <ProgressIndicator fx:id="timer" prefHeight="120.0" prefWidth="720.0" progress="0.0" />
+            <ProgressIndicator fx:id="timer" prefHeight="80.0" prefWidth="80.0" progress="0.0" />
+            <StackPane prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <ImageView id="player1Image" fx:id="player1Tile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../assets/bottom/wood/p0l.png" />
+                  </image>
+                </ImageView>
+                <Label fx:id="player1Info" text="" StackPane.alignment="TOP_LEFT">
+                  <StackPane.margin>
+                    <Insets left="20.0" top="15.0" />
+                  </StackPane.margin>
+                </Label>
+              </children>
+            </StackPane>
+            <StackPane prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <ImageView fx:id="player2Tile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../assets/bottom/wood/p0l.png" />
+                  </image>
+                </ImageView>
+                <Label id="player1Info" fx:id="player2Info" text="" StackPane.alignment="TOP_LEFT">
+                  <StackPane.margin>
+                    <Insets left="20.0" top="15.0" />
+                  </StackPane.margin>
+                </Label>
+              </children>
+            </StackPane>
+            <StackPane prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <ImageView fx:id="player3Tile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../assets/bottom/wood/p0l.png" />
+                  </image>
+                </ImageView>
+                <Label id="player1Info" fx:id="player3Info" text="" StackPane.alignment="TOP_LEFT">
+                  <StackPane.margin>
+                    <Insets left="20.0" top="15.0" />
+                  </StackPane.margin>
+                </Label>
+              </children>
+            </StackPane>
+            <StackPane prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <ImageView fx:id="player4Tile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../assets/bottom/wood/p0l.png" />
+                  </image>
+                </ImageView>
+                <Label id="player1Info" fx:id="player4Info" text="" StackPane.alignment="TOP_LEFT">
+                  <StackPane.margin>
+                    <Insets left="20.0" top="15.0" />
+                  </StackPane.margin>
+                </Label>
+              </children>
+            </StackPane>
+            <StackPane prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <ImageView fx:id="storeTile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../assets/bottom/wood/p0l.png" />
+                  </image>
+                </ImageView>
+                <Label id="player1Info" fx:id="storeInfo" text="" StackPane.alignment="TOP_LEFT">
+                  <StackPane.margin>
+                    <Insets left="20.0" top="15.0" />
+                  </StackPane.margin>
+                </Label>
+              </children>
+            </StackPane>
           </children>
+          <stylesheets>
+            <URL value="@bg.css" />
+          </stylesheets>
         </HBox>
       </children>
     </VBox>

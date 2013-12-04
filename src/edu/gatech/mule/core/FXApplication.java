@@ -28,7 +28,7 @@ public class FXApplication extends Application {
 		GameEngine game = new GameEngine(new FXMusicPlayer());
 		FXScreenHandler handler = new FXScreenHandler(game);
 		game.load(handler);
-							
+
 		Group root = new Group();
 		root.getChildren().addAll(handler.getStack());
 		Scene scene = new Scene(root, WIDTH, HEIGHT);
