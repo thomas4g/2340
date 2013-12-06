@@ -127,10 +127,10 @@ public class FXMapView extends FXView implements TownMapView {
 	private ImageView[] playerTiles;
 	private Image[] playerActiveImages;
 	private Image[] playerInactiveImages;
-	
+
 	@FXML
 	private ImageView clock;
-	
+
 	private boolean buying = true;
 
 	private static final double BORDER_WIDTH = 5.0;
@@ -141,6 +141,10 @@ public class FXMapView extends FXView implements TownMapView {
 
 	private static final int X_MESSAGE = 25;
 	private static final int Y_MESSAGE = 510;
+
+	private static final int CLOCK_INTERVAL = 6;
+
+	private static final int STORE_RES_Y = 45;
 
 	private ArrayList<BufferedImage> clockFrames;
 
@@ -165,10 +169,10 @@ public class FXMapView extends FXView implements TownMapView {
 		muleLabels = new Label[]{food, energy, smithore, crystite};
 		playerLabels = new Label[] {player1Info, player2Info, player3Info, player4Info};
 		playerTiles = new ImageView[] {player1Tile, player2Tile, player3Tile, player4Tile};
-		
+
 		if(clockFrames == null) {
 			clockFrames = new ArrayList<>();
-			for(int i=0; i < 6; i++) {
+			for(int i = 0; i < CLOCK_INTERVAL; i++) {
 				String clockString = "/assets/bottom/time/c" + i + ".png";
 				clockFrames.add(loadImage(clockString));
 			}
@@ -234,7 +238,7 @@ public class FXMapView extends FXView implements TownMapView {
 						}
 					}
 		});
-		
+
 		textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				if(e.getCode() == ACTION_KEY) {
@@ -275,8 +279,9 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private void drawClock() {
-		int clockNum = (6 - (int)
-				((double) currentPlayer.getCurrentTurn().getRemaining() / 50 * 6) + 5) % 6;
+		int clockNum = (CLOCK_INTERVAL - (int)
+				((double) currentPlayer.getCurrentTurn().getRemaining()
+						/ Turn.NORMAL_TURN * CLOCK_INTERVAL) + CLOCK_INTERVAL - 1) % CLOCK_INTERVAL;
 		clock.setImage(graphics.createImage(clockFrames.get(clockNum)));
 	}
 
@@ -294,7 +299,8 @@ public class FXMapView extends FXView implements TownMapView {
 
 					if (rt.equalsIgnoreCase(tt)) {
 						graphics.drawText(Integer.toString(storeResources[k]),
-								new Point(t.getWidth() * i + t.getWidth() / 2, 45),
+								new Point(t.getWidth() * i + t.getWidth() / 2,
+								STORE_RES_Y),
 								Color.WHITE,
 								FONT_SIZE);
 					}
@@ -483,7 +489,11 @@ public class FXMapView extends FXView implements TownMapView {
 		backgroundOverlay.setVisible(true);
 		textField.requestFocus();
 	}
-	
+
+	/**
+	 * Store finishes store.
+	 * @param buying whether buying or not
+	 */
 	public void storeComplete(boolean buying) {
 		int count = 0;
 		try {

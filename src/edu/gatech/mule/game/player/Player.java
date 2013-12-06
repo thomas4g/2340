@@ -293,6 +293,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		return name + "\n$" + (int) money + resourcesString;
 	}
 
+	@Override
 	public boolean hasResources(int[] transactionResources) {
 		for(int i = 0; i < resources.length; i++) {
 			if(resources[i] - transactionResources[i] < 0) {

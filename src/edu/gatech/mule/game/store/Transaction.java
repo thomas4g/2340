@@ -10,12 +10,14 @@ public class Transaction {
 
 	private int[] resources;
 	private int[] prices;
-	Transactor buyer, seller;
+	private Transactor buyer, seller;
 
 	/**
 	 * Constructor of transaction.
 	 * @param resources associated with transaction
 	 * @param prices associated with transaction
+	 * @param buyer of the transaction
+	 * @param seller of the transaction
 	 */
 	public Transaction(int[] resources, int[] prices, Transactor buyer, Transactor seller) {
 		this.resources = resources;
@@ -51,7 +53,7 @@ public class Transaction {
 		}
 		return total;
 	}
-	
+
 	/**
 	 * Performs the transaction.
 	 * @return true if transaction was successful

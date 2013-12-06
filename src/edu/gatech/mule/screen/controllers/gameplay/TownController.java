@@ -22,6 +22,8 @@ import edu.gatech.mule.screen.views.TownMapView;
  */
 public class TownController extends MapController {
 
+	private static final int[] PRICES = {30, 25, 50, 100, 0};
+
 	public static final int MOVEMENT = 10;
 	private TownMapView view;
 	private Store store;
@@ -89,9 +91,8 @@ public class TownController extends MapController {
 
 		if(store == null) {
 			//TODO Law of Demeter violation much?!
-			int[] prices = {30, 25, 50, 100, 0 };
 			store = new Store(game.getSettings().getDifficulty().getStoreResources(),
-					prices);
+					PRICES);
 		}
 
 		List<ResourceType> muleTypes = new ArrayList<ResourceType>(

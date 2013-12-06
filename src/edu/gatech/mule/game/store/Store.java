@@ -30,6 +30,11 @@ public class Store implements Transactor {
 		this(resources, new int[resources.length + 1]);
 	}
 
+	/**
+	 * Finds out whether the store has enough resources for requested.
+	 * @param transactionResources the resources to transaction with
+	 * @return true if transaction is possible, false otherwise
+	 */
 	public boolean hasResources(int[] transactionResources) {
 		for(int i = 0; i < resources.length; i++) {
 			if(resources[i] - transactionResources[i] < 0) {
@@ -76,7 +81,7 @@ public class Store implements Transactor {
 
     /**
      * Sets the price of a resource.
-     * @param index position of resource in array
+     * @param resource resource
      * @param price new price to be set
      */
     public void setPrice(ResourceType resource, int price) {
