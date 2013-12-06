@@ -1,6 +1,7 @@
 package edu.gatech.mule.graphics;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import edu.gatech.mule.game.Entity;
@@ -59,5 +60,7 @@ public interface Renderer {
 	 * @param height of area
 	 */
 	void clear(int x, int y, int width, int height);
+	
+	public void drawText(String text, Point point, Color color, double fontSize);
 
 }

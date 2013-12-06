@@ -138,7 +138,7 @@ public class FXMapView extends FXView implements TownMapView {
 	private static final int Y_STAT_SPACE = 420;
 
 	private static final int HUH = 45;
-	private static final int WUT = 16;
+	private static final int FONT_SIZE = 16;
 
 	private static final int X_MESSAGE = 25;
 	private static final int Y_MESSAGE = 510;
@@ -296,7 +296,7 @@ public class FXMapView extends FXView implements TownMapView {
 						graphics.drawText(Integer.toString(storeResources[k]),
 								new Point(t.getWidth() * i + t.getWidth() / 2, HUH),
 								Color.WHITE,
-								WUT);
+								FONT_SIZE);
 					}
 				}
 			}

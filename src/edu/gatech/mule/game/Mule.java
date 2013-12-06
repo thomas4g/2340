@@ -238,7 +238,7 @@ public class Mule extends Entity {
 	
 	private Color getResourceValue(ResourceType type){
 		Color c= resources.get(type);
-		System.out.println(c.ordinal()+1);
+		//System.out.println(c.ordinal()+1);
 		return c;
 	}
 	

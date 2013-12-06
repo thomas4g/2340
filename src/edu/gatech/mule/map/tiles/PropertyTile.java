@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -22,6 +23,11 @@ public class PropertyTile extends GameTile {
 	private static final long serialVersionUID = -3896514596626042174L;
 	private List<Mule> mules;
 
+	private static Random randy = new Random();
+	private final int crystiteAmount;
+	private boolean discoveredCrystite;
+	private static final int MAX_CRYSTITE = 3;
+
 	/**
 	 * Constructor for a property tile.
 	 * @param t tile
@@ -30,6 +36,24 @@ public class PropertyTile extends GameTile {
 	public PropertyTile(Tile t, TileType type) {
 		super(t, type);
 		mules = new ArrayList<Mule>();
+		crystiteAmount = randy.nextInt(MAX_CRYSTITE + 1);
+		discoveredCrystite = false;
+	}
+
+	@Override
+	public void setOwner(Player player) {
+		this.owner = player;
+		if (owner != null) {
+			discoveredCrystite = true;
+		}
+	}
+
+	/**
+	 * Returns crystite amount.
+	 * @return crystite amount.
+	 */
+	public int getCrystiteAmount() {
+		return crystiteAmount;
 	}
 
 	/**

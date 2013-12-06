@@ -1,6 +1,7 @@
 package edu.gatech.mule.graphics;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -99,6 +100,12 @@ public class OrthogonalMapRenderer {
 								y * tileHeight + tileHeight - totem.getHeight(),
 								totem.getWidth(),
 								totem.getHeight());
+
+						graphics.drawText(Integer.toString(t.getCrystiteAmount()),
+								new Point(x * tileWidth + tileWidth - totem.getWidth(),
+										y * tileWidth + tileHeight - totem.getHeight()),
+								Color.CYAN,
+								16);
 					}
 				}
 			}
