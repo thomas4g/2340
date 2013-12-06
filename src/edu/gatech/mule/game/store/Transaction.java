@@ -64,9 +64,6 @@ public class Transaction {
 		}
 
 		int total = getTotal();
-		System.out.println(Arrays.toString(resources));
-		System.out.println(Arrays.toString(this.prices));
-		System.out.println(total);
 		buyer.subtractMoney(total);
 		seller.subtractResources(this.resources);
 		buyer.addResources(this.resources);

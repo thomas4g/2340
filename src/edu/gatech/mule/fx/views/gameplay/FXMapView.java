@@ -541,7 +541,6 @@ public class FXMapView extends FXView implements TownMapView {
 		} else if (event.getCode() == DOWN_KEY) {
 			muleRight();
 		} else if (event.getCode() == ACTION_KEY) {
-			System.out.println("Look at my MULE, my MULE is amazing.");
 			displayMuleSelector(false);
 			townController.setMuleType(res[mule]);
 		} else if (event.getCode() == CANCEL_KEY) {

@@ -51,7 +51,6 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		this.ownedLands = new ArrayList<>();
 		this.setDirection(Direction.DOWN);
 		this.resources = new int[ResourceType.values().length];
-		System.out.println(ResourceType.values().length);
 		this.name = type.getName();
 	}
 
