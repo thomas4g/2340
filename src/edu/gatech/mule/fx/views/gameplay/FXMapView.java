@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -15,7 +15,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -127,26 +126,22 @@ public class FXMapView extends FXView implements TownMapView {
 	private ImageView[] playerTiles;
 	private Image[] playerActiveImages;
 	private Image[] playerInactiveImages;
-
-//	@FXML
-//	private ProgressIndicator timer;
+	
 	@FXML
 	private ImageView clock;
+	
+	private boolean buying = true;
 
 	private static final double BORDER_WIDTH = 5.0;
 
 	private static final int Y_STAT_SPACE = 420;
 
-	private static final int HUH = 45;
 	private static final int FONT_SIZE = 16;
 
 	private static final int X_MESSAGE = 25;
 	private static final int Y_MESSAGE = 510;
 
-//	private static final int MAX_PLAYERS = 4;
-	private static final int X_TIMER = 30;
-	private static final int Y_TIMER = Y_STAT_SPACE;
-	private int clockInterval = 0;
+	private ArrayList<BufferedImage> clockFrames;
 
 	/**
 	 * Constructor for map view.
@@ -169,6 +164,14 @@ public class FXMapView extends FXView implements TownMapView {
 		muleLabels = new Label[]{food, energy, smithore, crystite};
 		playerLabels = new Label[] {player1Info, player2Info, player3Info, player4Info};
 		playerTiles = new ImageView[] {player1Tile, player2Tile, player3Tile, player4Tile};
+		
+		if(clockFrames == null) {
+			clockFrames = new ArrayList<>();
+			for(int i=0; i < 6; i++) {
+				String clockString = "/assets/bottom/time/c" + i + ".png";
+				clockFrames.add(loadImage(clockString));
+			}
+		}
 
 		textMuleColor();
 
@@ -230,14 +233,21 @@ public class FXMapView extends FXView implements TownMapView {
 						}
 					}
 		});
+		
+		textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				if(e.getCode() == ACTION_KEY) {
+					storeComplete(buying);
+				}
+			}
+		});
 	}
 
 	/**
 	 * Renders graphics.
 	 */
 	public void render() {
-		graphics.clear(0,
-					   0,
+		graphics.clear(0, 0,
 					   (int) canvas.getWidth(),
 					   (int) canvas.getHeight());
 
@@ -249,7 +259,6 @@ public class FXMapView extends FXView implements TownMapView {
 		for (Entity entity : gameEntities) {
 			graphics.drawEntity(entity);
 		}
-		drawGrain();
 		drawClock();
 		drawPlayers();
 
@@ -263,21 +272,9 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private void drawClock() {
-//		clockInterval = Math.max(clockInterval,
-//				currentPlayer.getCurrentTurn().getLength());
-//		graphics.drawText("Time left: "
-//				+ Integer.toString(currentPlayer.getCurrentTurn().getLength()),
-//				new Point(X_TIMER, Y_TIMER));
-		//TODO finish this
 		int clockNum = (6 - (int)
-				((double) currentPlayer.getCurrentTurn().getLength() / 50 * 6) + 5) % 6;
-		String clockString = "/assets/bottom/time/c" + clockNum + ".png";
-		clock.setImage(graphics.createImage(loadImage(clockString)));
-	}
-
-	private void drawGrain() {
-//		BufferedImage image = loadImage("/assets/bottom/grain.png");
-//		graphics.drawImage(image, 0, Y_TIMER-10,WIDTH, HEIGHT-Y_TIMER);
+				((double) currentPlayer.getCurrentTurn().getRemaining() / 50 * 6) + 5) % 6;
+		clock.setImage(graphics.createImage(clockFrames.get(clockNum)));
 	}
 
 	/**
@@ -294,7 +291,7 @@ public class FXMapView extends FXView implements TownMapView {
 
 					if (rt.equalsIgnoreCase(tt)) {
 						graphics.drawText(Integer.toString(storeResources[k]),
-								new Point(t.getWidth() * i + t.getWidth() / 2, HUH),
+								new Point(t.getWidth() * i + t.getWidth() / 2, 45),
 								Color.WHITE,
 								FONT_SIZE);
 					}
@@ -429,10 +426,11 @@ public class FXMapView extends FXView implements TownMapView {
 		} else if (event.getCode() == ACTION_KEY) {
 			displayStoreSelector(false);
 			if (options[store].equals("buy")) {
-				displayStoreAmountMenu(true);
+				buying = true;
 			} else if (options[store].equals("sell")) {
-				displayStoreAmountMenu(false);
+				buying = false;
 			}
+			displayStoreAmountMenu();
 		} else if (event.getCode() == CANCEL_KEY) {
 			displayMuleSelector(false);
 		}
@@ -477,31 +475,22 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	@Override
-	public void displayStoreAmountMenu(final boolean buying) {
+	public void displayStoreAmountMenu() {
 		textOverlay.setVisible(true);
 		backgroundOverlay.setVisible(true);
 		textField.requestFocus();
-		textField.addEventHandler(KeyEvent.KEY_PRESSED,
-								  new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == ACTION_KEY) {
-					int count = 0;
-					try {
-						count = Integer.parseInt(textField.getText());
-					} catch (NumberFormatException ex) {
-						System.out.println("Silly alien, that's not a number!");
-					}
-					textOverlay.setVisible(false);
-					backgroundOverlay.setVisible(false);
-					townController.storeComplete(count, buying);
-				} else if (event.getCode() == CANCEL_KEY) {
-					textOverlay.setVisible(false);
-					backgroundOverlay.setVisible(false);
-				}
-			}
-
-		});
+	}
+	
+	public void storeComplete(boolean buying) {
+		int count = 0;
+		try {
+			count = Integer.parseInt(textField.getText());
+		} catch(NumberFormatException nfe) {
+			System.out.println("Not a number!");
+		}
+		textOverlay.setVisible(false);
+		backgroundOverlay.setVisible(false);
+		townController.storeComplete(count, buying);
 	}
 
 	@Override
@@ -603,7 +592,7 @@ public class FXMapView extends FXView implements TownMapView {
 			return ImageIO.read(FXMapView.class.getResource(src));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return new BufferedImage(0, 0, 0);
+			return null;
 		}
 	}
 

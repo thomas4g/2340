@@ -24,7 +24,7 @@ public interface TownMapView extends MapView {
 	 * Displays menu for modifying store amount.
 	 * @param buying whether buying or not
 	 */
-	void displayStoreAmountMenu(boolean buying);
+	void displayStoreAmountMenu();
 
 	/**
 	 * Sets the store resource options.

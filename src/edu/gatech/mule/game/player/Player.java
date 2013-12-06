@@ -50,7 +50,8 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		this.placedMules = new ArrayList<>();
 		this.ownedLands = new ArrayList<>();
 		this.setDirection(Direction.DOWN);
-		this.resources = new int[0];
+		this.resources = new int[ResourceType.values().length];
+		System.out.println(ResourceType.values().length);
 		this.name = type.getName();
 	}
 
@@ -292,22 +293,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 		return name + "\n$" + (int) money + resourcesString;
 	}
 
-
-	@Override
-	public boolean sell(Transaction transaction, Transactor buyer) {
-		if(!buyer.canAfford(transaction) || !this.hasResources(transaction.getResources())) {
-			return false;
-		}
-
-		int total = transaction.getTotal();
-		buyer.subtractMoney(total);
-		this.subtractResources(transaction.getResources());
-		buyer.addResources(transaction.getResources());
-		this.addMoney(total);
-		return true;
-	}
-
-	private boolean hasResources(int[] transactionResources) {
+	public boolean hasResources(int[] transactionResources) {
 		for(int i = 0; i < resources.length; i++) {
 			if(resources[i] - transactionResources[i] < 0) {
 				return false;
@@ -366,7 +352,7 @@ public class Player extends Entity implements Transactor, Comparable<Player> {
 	 * @param resources the new resource counts.
 	 */
 	public void setResources(int[] resources) {
-		this.resources = resources;
+		this.resources = Arrays.copyOf(resources, resources.length);
 	}
 
 	/**

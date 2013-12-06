@@ -7,14 +7,6 @@ package edu.gatech.mule.game.store;
 public interface Transactor {
 
 	/**
-	 * Transaction of buying.
-	 * @param transaction of resources and money
-	 * @param buyer of the transaction
-	 * @return true if transaction is successful, false otherwise
-	 */
-	boolean sell(Transaction transaction, Transactor buyer);
-
-	/**
 	 * Determines whether able to afford to purchase transaction.
 	 * @param transaction of resources and money
 	 * @return true if can afford, false otherwise
@@ -44,4 +36,11 @@ public interface Transactor {
 	 * @param resources to be subtracted
 	 */
 	void subtractResources(int[] resources);
+	
+	/**
+	 * Determines whether the transactor has at least as many resources as specified.
+	 * @param the resources
+	 * @return true if has enough resources
+	 */
+	boolean hasResources(int[] resources);
 }
