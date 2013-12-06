@@ -24,6 +24,7 @@ public class Turn implements Serializable {
 	private static final long serialVersionUID = -301629855669899017L;
 	private Round round;
 	private Player player;
+	private int remaining;
 	private int length;
 	private transient Timer timer;
 	private Random rand;
@@ -59,12 +60,13 @@ public class Turn implements Serializable {
 		for(Mule m : player.getPlacedMules()) {
 			m.produce();
 		}
+		this.remaining = this.length;
 		timer = new Timer(true);
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				length -= 1;
-				if(length <= 0) {
+				remaining -= 1;
+				if(remaining <= 0) {
 					done();
 				}
 			}
@@ -87,6 +89,10 @@ public class Turn implements Serializable {
 
 	public int getLength() {
 		return length;
+	}
+	
+	public int getRemaining() {
+		return remaining;
 	}
 
 	/**
