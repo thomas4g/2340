@@ -31,9 +31,9 @@ public class Turn implements Serializable {
 	private GameEngine game;
 	private static final int TIME = 1000;
 
-	private static final int NORMAL_TURN = 50;
-	private static final int HUNGRY_TURN = 30;
-	private static final int STARVING_TURN = 5;
+	public static final int NORMAL_TURN = 50;
+	public static final int HUNGRY_TURN = 30;
+	public static final int STARVING_TURN = 5;
 
 	/**
 	 * Turn Constructor.
@@ -90,7 +90,11 @@ public class Turn implements Serializable {
 	public int getLength() {
 		return length;
 	}
-	
+
+	/**
+	 * Get remaining time.
+	 * @return remaining time
+	 */
 	public int getRemaining() {
 		return remaining;
 	}
@@ -115,7 +119,7 @@ public class Turn implements Serializable {
 	 */
 
 	public void done() {
-		int gainedMoney = GamblingFormula.gamble(round.getNum(), length);
+		int gainedMoney = GamblingFormula.gamble(round, length);
 		player.addMoney(gainedMoney);
 		timer.cancel();
 

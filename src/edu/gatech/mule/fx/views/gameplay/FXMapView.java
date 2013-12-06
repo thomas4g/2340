@@ -31,6 +31,7 @@ import edu.gatech.mule.game.Entity;
 import edu.gatech.mule.game.Message;
 import edu.gatech.mule.game.player.Player;
 import edu.gatech.mule.game.resources.ResourceType;
+import edu.gatech.mule.game.round.Turn;
 import edu.gatech.mule.graphics.OrthogonalMapRenderer;
 import edu.gatech.mule.map.maps.GameMap;
 import edu.gatech.mule.map.tiles.GameTile;
@@ -134,7 +135,7 @@ public class FXMapView extends FXView implements TownMapView {
 
 	private static final double BORDER_WIDTH = 5.0;
 
-	private static final int Y_STAT_SPACE = 420;
+//	private static final int Y_STAT_SPACE = 420;
 
 	private static final int FONT_SIZE = 16;
 
@@ -264,6 +265,8 @@ public class FXMapView extends FXView implements TownMapView {
 
 		if (storeResources != null) {
 			drawStoreResources();
+		} else {
+			drawLands();
 		}
 
 		if(message != null) {
@@ -343,10 +346,10 @@ public class FXMapView extends FXView implements TownMapView {
 	 * So that I can draw just owned tiles
 	 */
 	private void drawLands() {
-		for(Player player : players) {
-			for(GameTile tile : player.getLands()) {
-				if(tile.getOwner() != null) {
-					BufferedImage totem = player.getTotem();
+//		for(Player player : players) {
+//			for(GameTile tile : player.getLands()) {
+//				if(tile.getOwner() != null) {
+//					BufferedImage totem = player.getTotem();
 //					graphics.drawImage(totem,
 //							x * tile.getWidth(),
 //							y * tile.getHeight(),
@@ -358,9 +361,9 @@ public class FXMapView extends FXView implements TownMapView {
 //							tileHeight,
 //							4.0,
 //							tile.getOwner().getColor().getRGB());
-				}
-			}
-		}
+//				}
+//			}
+//		}
 	}
 
 	@Override
@@ -499,7 +502,7 @@ public class FXMapView extends FXView implements TownMapView {
 	}
 
 	private int mule;
-	private static ResourceType[] res = {ResourceType.FOOD,ResourceType.ENERGY, 
+	private static ResourceType[] res = {ResourceType.FOOD, ResourceType.ENERGY,
 										ResourceType.SMITHORE, ResourceType.CRYSTITE, };
 
 	/**

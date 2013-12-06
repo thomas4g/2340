@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import edu.gatech.mule.fx.views.FXView;
 import edu.gatech.mule.map.maps.GameMap;
 import edu.gatech.mule.map.tiles.GameTile;
 import edu.gatech.mule.map.tiles.PropertyTile;
@@ -105,7 +106,7 @@ public class OrthogonalMapRenderer {
 								new Point(x * tileWidth + tileWidth - totem.getWidth(),
 										y * tileWidth + tileHeight - totem.getHeight()),
 								Color.CYAN,
-								16);
+								FXView.FONT_SIZE);
 					}
 				}
 			}

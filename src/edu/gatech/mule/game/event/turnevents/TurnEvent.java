@@ -8,6 +8,8 @@ import edu.gatech.mule.game.player.Player;
  */
 public interface TurnEvent {
 
+	double QUARTER = 0.25;
+
 	/**
 	 * Affects player.
 	 * @param player player to be affected

@@ -12,7 +12,7 @@ public class PantaloonsEvent implements RoundEvent {
 	@Override
 	public void execute(GameEngine game) {
 		for (Player p : game.getPlayers()) {
-			p.addMoney(100);
+			p.addMoney(BENJAMIN);
 		}
 	}
 

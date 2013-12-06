@@ -11,7 +11,7 @@ public class SwordWomanEvent implements TurnEvent {
 	private int money;
 	@Override
 	public void execute(Player player) {
-		money = (int) (player.getMoney() * .25);
+		money = (int) (player.getMoney() * QUARTER);
 		player.addMoney(money);
 	}
 

@@ -8,6 +8,9 @@ import edu.gatech.mule.core.GameEngine;
  */
 public interface RoundEvent {
 
+	int BENJAMIN = 100;
+	double PRODUCTION_HALVED = -0.5;
+
 	/**
 	 * Affects game.
 	 * @param game the game engine

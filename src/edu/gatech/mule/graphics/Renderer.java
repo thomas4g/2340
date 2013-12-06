@@ -60,7 +60,14 @@ public interface Renderer {
 	 * @param height of area
 	 */
 	void clear(int x, int y, int width, int height);
-	
-	public void drawText(String text, Point point, Color color, double fontSize);
+
+	/**
+	 * Draws text.
+	 * @param text of string to be displayed
+	 * @param point where text start
+	 * @param color of text
+	 * @param fontSize of text
+	 */
+	void drawText(String text, Point point, Color color, double fontSize);
 
 }

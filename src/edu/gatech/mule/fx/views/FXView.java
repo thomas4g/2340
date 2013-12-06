@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
  */
 public abstract class FXView implements ScreenView, Initializable {
 
+	public static final int FONT_SIZE = 16;
+
 	public static final Color NORMAL = Color.web("#2F2F2F");
 	public static final Color SELECTED = Color.web("#0000FF");
 	public static final Color GREYED = Color.web("#AAAAAA");

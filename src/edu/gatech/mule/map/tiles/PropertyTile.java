@@ -49,6 +49,14 @@ public class PropertyTile extends GameTile {
 	}
 
 	/**
+	 * Returns whether crystite has been discoverd.
+	 * @return true if discovered, false otherwise;
+	 */
+	public boolean getDiscoveredCrystite() {
+		return discoveredCrystite;
+	}
+
+	/**
 	 * Returns crystite amount.
 	 * @return crystite amount.
 	 */

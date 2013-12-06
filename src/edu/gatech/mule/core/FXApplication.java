@@ -7,7 +7,6 @@ package edu.gatech.mule.core;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import edu.gatech.mule.fx.FXScreenHandler;
 import edu.gatech.mule.fx.graphics.RenderTask;
