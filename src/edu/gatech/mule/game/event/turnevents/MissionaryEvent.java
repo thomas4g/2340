@@ -15,7 +15,7 @@ private int energy;
 	@Override
 	public void execute(Player player) {
 		int[] resources = new int[ResourceType.values().length];
-		energy = (int) (player.getResourceAmount(ResourceType.ENERGY) * .25);
+		energy = (int) (player.getResourceAmount(ResourceType.ENERGY) * QUARTER);
 		resources[ResourceType.ENERGY.ordinal()] = energy;
 		player.addResources(resources);
 	}

@@ -11,7 +11,7 @@ public class ThomasBearEvent implements TurnEvent {
 	private int money;
 	@Override
 	public void execute(Player player) {
-		money = (int) (-1 * player.getMoney() * .25);
+		money = (int) (-1 * player.getMoney() * QUARTER);
 		player.addMoney(money);
 	}
 

@@ -45,16 +45,18 @@ public class Mule extends Entity {
 		rand = new Random();
 		initResources();
 	}
-	
-	private void initResources(){
-		resources=new HashMap<>();
+
+	/**
+	 * Initialize resources.
+	 */
+	private void initResources() {
+		resources = new HashMap<>();
 		resources.put(ResourceType.ENERGY, Color.PURPLE);
 		resources.put(ResourceType.FOOD, Color.BLUE);
 		resources.put(ResourceType.CRYSTITE, Color.TEAL);
 		resources.put(ResourceType.SMITHORE, Color.SEAFOAM);
 	}
 
-	
 	/**
 	 * Moves mule.
 	 */
@@ -108,7 +110,7 @@ public class Mule extends Entity {
 	 * Set the directional frames based on direction.
 	 */
 	public void setDirectionalFrames() {
-		setFrames(type.getDirectionalSprites(direction, big, getResourceValue(resourceType) ));
+		setFrames(type.getDirectionalSprites(direction, big, getResourceValue(resourceType)));
 	}
 
 	/**
@@ -235,11 +237,15 @@ public class Mule extends Entity {
 	public int hashCode() {
 		return (enslaved ? 1 : 0) + resourceType.hashCode() + (placed ? 1 : 0) + tile.hashCode();
 	}
-	
-	private Color getResourceValue(ResourceType type){
-		Color c= resources.get(type);
+
+	/**
+	 * Get color of resource.
+	 * @param type of resource
+	 * @return color associated
+	 */
+	private Color getResourceValue(ResourceType type) {
+		Color c = resources.get(type);
 		//System.out.println(c.ordinal()+1);
 		return c;
 	}
-	
 }

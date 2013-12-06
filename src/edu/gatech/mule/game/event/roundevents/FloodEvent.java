@@ -14,7 +14,7 @@ public class FloodEvent implements RoundEvent {
 	public void execute(GameEngine game) {
 		for (Player p : game.getPlayers()) {
 			double[] pc = p.getProductionCoeficients();
-			pc[ResourceType.SMITHORE.ordinal()] = -0.5;
+			pc[ResourceType.SMITHORE.ordinal()] = PRODUCTION_HALVED;
 			p.setProductionCoeficients(pc);
 		}
 	}
